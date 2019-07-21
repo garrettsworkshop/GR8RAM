@@ -1,4 +1,4 @@
-update=Monday, June 10, 2019 at 02:27:25 PM
+update=Sunday, July 21, 2019 at 05:51:33 PM
 version=1
 last_client=kicad
 [general]
@@ -12,16 +12,6 @@ NetIExt=net
 version=1
 LibDir=
 [eeschema/libraries]
-[schematic_editor]
-version=1
-PageLayoutDescrFile=
-PlotDirectoryName=
-SubpartIdSeparator=0
-SubpartFirstId=65
-NetFmtName=
-SpiceAjustPassiveValues=0
-LabSize=50
-ERC_TestSimilarLabels=1
 [pcbnew]
 version=1
 PageLayoutDescrFile=
@@ -45,10 +35,12 @@ TrackWidth4=0.508
 TrackWidth5=0.762
 TrackWidth6=1.27
 TrackWidth7=1.524
-ViaDiameter1=0.8
-ViaDrill1=0.4
-ViaDiameter2=1.524
-ViaDrill2=0.762
+ViaDiameter1=0.6
+ViaDrill1=0.3
+ViaDiameter2=0.8
+ViaDrill2=0.4
+ViaDiameter3=1.524
+ViaDrill3=0.762
 dPairWidth1=0.2
 dPairGap1=0.25
 dPairViaGap1=0.25
@@ -73,9 +65,9 @@ OthersTextSizeThickness=0.15
 OthersTextItalic=0
 OthersTextUpright=1
 SolderMaskClearance=0.07619999999999999
-SolderMaskMinWidth=0.1524
-SolderPasteClearance=-0.05
-SolderPasteRatio=0
+SolderMaskMinWidth=0.127
+SolderPasteClearance=-0.03809999999999999
+SolderPasteRatio=-0
 [pcbnew/Layer.F.Cu]
 Name=F.Cu
 Type=0
@@ -247,10 +239,20 @@ Enabled=0
 Name=Default
 Clearance=0.1524
 TrackWidth=0.1524
-ViaDiameter=0.8
-ViaDrill=0.4
+ViaDiameter=0.6
+ViaDrill=0.3
 uViaDiameter=0.3
 uViaDrill=0.1
 dPairWidth=0.2
 dPairGap=0.25
 dPairViaGap=0.25
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=
+SpiceAjustPassiveValues=0
+LabSize=50
+ERC_TestSimilarLabels=1
