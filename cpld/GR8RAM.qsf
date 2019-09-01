@@ -1,0 +1,158 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2013 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II 32-bit
+# Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+# Date created = 02:27:57  August 06, 2019
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		GR8RAM_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY MAX7000S
+set_global_assignment -name DEVICE "EPM7128SLC84-15"
+set_global_assignment -name TOP_LEVEL_ENTITY GR8RAM
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "02:27:57  AUGUST 06, 2019"
+set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name DEVICE_FILTER_PACKAGE PLCC
+set_global_assignment -name DEVICE_FILTER_PIN_COUNT 84
+set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 15
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR "-1"
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name VERILOG_FILE GR8RAM.v
+set_global_assignment -name MAX7000_DEVICE_IO_STANDARD TTL
+set_location_assignment PIN_1 -to nRES
+set_location_assignment PIN_75 -to A[0]
+set_location_assignment PIN_77 -to A[2]
+set_location_assignment PIN_79 -to A[3]
+set_location_assignment PIN_80 -to A[4]
+set_location_assignment PIN_81 -to A[5]
+set_location_assignment PIN_83 -to C7M
+set_location_assignment PIN_84 -to C7M_2
+set_location_assignment PIN_4 -to A[6]
+set_location_assignment PIN_5 -to A[7]
+set_location_assignment PIN_9 -to A[8]
+set_location_assignment PIN_10 -to A[9]
+set_location_assignment PIN_11 -to A[10]
+set_location_assignment PIN_12 -to A[11]
+set_location_assignment PIN_15 -to A[12]
+set_location_assignment PIN_6 -to Q3
+set_location_assignment PIN_16 -to A[13]
+set_location_assignment PIN_17 -to A[14]
+set_location_assignment PIN_18 -to A[15]
+set_location_assignment PIN_20 -to nWE
+set_location_assignment PIN_21 -to nDEVSEL
+set_location_assignment PIN_22 -to nINH
+set_location_assignment PIN_24 -to nIOSTRB
+set_location_assignment PIN_25 -to D[7]
+set_location_assignment PIN_27 -to D[6]
+set_location_assignment PIN_28 -to D[5]
+set_location_assignment PIN_29 -to D[4]
+set_location_assignment PIN_33 -to D[3]
+set_location_assignment PIN_34 -to D[2]
+set_location_assignment PIN_35 -to D[1]
+set_location_assignment PIN_36 -to D[0]
+set_location_assignment PIN_39 -to nCAS0
+set_location_assignment PIN_40 -to nCAS1
+set_location_assignment PIN_41 -to nRCS
+set_location_assignment PIN_44 -to MODE
+set_location_assignment PIN_45 -to nROE
+set_location_assignment PIN_46 -to RA[9]
+set_location_assignment PIN_48 -to RA[10]
+set_location_assignment PIN_49 -to RA[3]
+set_location_assignment PIN_50 -to RA[2]
+set_location_assignment PIN_51 -to RA[5]
+set_location_assignment PIN_52 -to RA[0]
+set_location_assignment PIN_54 -to RA[1]
+set_location_assignment PIN_55 -to RA[4]
+set_location_assignment PIN_56 -to RA[7]
+set_location_assignment PIN_57 -to RA[6]
+set_location_assignment PIN_58 -to RA[8]
+set_location_assignment PIN_60 -to nRAS
+set_location_assignment PIN_61 -to RD[7]
+set_location_assignment PIN_63 -to RD[5]
+set_location_assignment PIN_64 -to RD[6]
+set_location_assignment PIN_65 -to RD[4]
+set_location_assignment PIN_67 -to nRWE
+set_location_assignment PIN_68 -to RD[3]
+set_location_assignment PIN_69 -to RD[2]
+set_location_assignment PIN_70 -to RD[1]
+set_location_assignment PIN_73 -to RD[0]
+set_location_assignment PIN_74 -to nIOSEL
+set_global_assignment -name OPTIMIZE_HOLD_TIMING OFF
+set_global_assignment -name OPTIMIZE_MULTI_CORNER_TIMING OFF
+set_global_assignment -name FITTER_EFFORT "STANDARD FIT"
+set_global_assignment -name OPTIMIZE_IOC_REGISTER_PLACEMENT_FOR_TIMING "PACK ALL IO REGISTERS"
+set_global_assignment -name SYNTH_TIMING_DRIVEN_SYNTHESIS OFF
+set_global_assignment -name AUTO_LCELL_INSERTION ON
+set_global_assignment -name AUTO_PARALLEL_EXPANDERS ON
+set_global_assignment -name AUTO_RESOURCE_SHARING ON
+set_global_assignment -name SYNTH_MESSAGE_LEVEL HIGH
+set_global_assignment -name SLOW_SLEW_RATE ON
+set_global_assignment -name ALM_REGISTER_PACKING_EFFORT HIGH
+set_global_assignment -name ECO_OPTIMIZE_TIMING ON
+set_global_assignment -name ECO_REGENERATE_REPORT ON
+set_location_assignment LC1 -to Addr[0]
+set_location_assignment LC2 -to Addr[1]
+set_location_assignment LC3 -to Addr[2]
+set_location_assignment LC4 -to Addr[3]
+set_location_assignment LC5 -to Addr[4]
+set_location_assignment LC6 -to Addr[5]
+set_location_assignment LC7 -to Addr[6]
+set_location_assignment LC8 -to Addr[7]
+set_location_assignment LC9 -to Addr[8]
+set_location_assignment LC10 -to Addr[9]
+set_location_assignment LC11 -to Addr[10]
+set_location_assignment LC12 -to Addr[11]
+set_location_assignment LC13 -to Addr[12]
+set_location_assignment LC14 -to Addr[13]
+set_location_assignment LC15 -to Addr[14]
+set_location_assignment LC16 -to Addr[15]
+set_global_assignment -name PARALLEL_SYNTHESIS OFF
+set_global_assignment -name STATE_MACHINE_PROCESSING "USER-ENCODED"
+set_global_assignment -name MAX7000_IGNORE_LCELL_BUFFERS OFF
+set_location_assignment LC128 -to Addr[22]
+set_location_assignment LC122 -to Addr[19]
+set_location_assignment LC124 -to Addr[20]
+set_location_assignment LC120 -to Addr[17]
+set_location_assignment LC118 -to Addr[16]
+set_location_assignment LC126 -to Addr[21]
+set_location_assignment PIN_76 -to A[1]
+set_location_assignment PIN_8 -to PHI0in
+set_location_assignment PIN_2 -to PHI1in
+set_location_assignment LC127 -to PHI1b7_MC
+set_location_assignment LC125 -to PHI1b6_MC
+set_location_assignment LC123 -to PHI1b5_MC
+set_location_assignment LC121 -to PHI1b4_MC
+set_location_assignment PIN_31 -to C7Mout
+set_location_assignment PIN_30 -to PHI1out

@@ -1,0 +1,9 @@
+Fitter Status : Successful - Sat Aug 31 22:53:38 2019
+Quartus II 32-bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
+Revision Name : GR8RAM
+Top-level Entity Name : GR8RAM
+Family : MAX7000S
+Device : EPM7128SLC84-15
+Timing Models : Final
+Total macrocells : 96 / 128 ( 75 % )
+Total pins : 67 / 68 ( 99 % )

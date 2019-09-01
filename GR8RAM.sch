@@ -1211,7 +1211,7 @@ L Device:R_Small R4
 U 1 1 5DA6CBE2
 P 1300 6450
 F 0 "R4" V 1150 6450 50  0000 C CNN
-F 1 "100" V 1250 6450 50  0000 C BNN
+F 1 "1" V 1250 6450 50  0000 C BNN
 F 2 "stdpads:R_0805" H 1300 6450 50  0001 C CNN
 F 3 "~" H 1300 6450 50  0001 C CNN
 	1    1300 6450
@@ -1395,8 +1395,6 @@ F 3 "" H 3300 3650 50  0001 C CNN
 	1    3450 3450
 	1    0    0    -1  
 $EndComp
-NoConn ~ 2700 3250
-NoConn ~ 2700 3350
 NoConn ~ 2700 3950
 $Comp
 L Mechanical:Fiducial FID1
@@ -2218,4 +2216,8 @@ Wire Bus Line
 	8900 1900 8900 5850
 Wire Bus Line
 	7300 1900 7300 5850
+Text Label 2700 3350 2    50   ~ 0
+C7Mout
+Text Label 2700 3250 2    50   ~ 0
+PHI1out
 $EndSCHEMATC
