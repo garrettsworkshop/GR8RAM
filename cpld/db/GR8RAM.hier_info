@@ -141,7 +141,6 @@ nDEVSEL => comb.IN0
 nDEVSEL => comb.IN0
 nIOSEL => RA.IN1
 nIOSEL => RA.IN0
-nIOSEL => RA.IN1
 nIOSEL => comb.IN0
 nIOSEL => comb.IN1
 nIOSTRB => RA.IN0

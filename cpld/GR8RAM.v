@@ -29,11 +29,10 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 	input [15:0] A; // 6502 address bus
 	input nWE; // 6502 R/W
 	output [10:0] RA; // DRAM/ROM address
-	assign RA[10:8] = ASel ? Addr[10:8] : Addr[21:19];
-	assign RA[7:0] =  
-		(~nIOSTRB & nIOSEL & ~IOBank0) ? Bank+1 :
-		(ASel & nIOSEL & nIOSTRB) ? Addr[7:0] : 
-		(~ASel & nIOSEL & nIOSTRB) ? Addr[18:11] : 8'h00;
+	assign RA[10:8] = ASel ? Addr[21:19] : Addr[10:8];
+	assign RA[7:0] = (~nIOSTRB & ~IOBank0) ? Bank+1 :
+		(~ASel & nIOSEL & nIOSTRB) ? Addr[18:11] :
+		(ASel & nIOSEL & nIOSTRB) ? Addr[7:0] : 8'h00;
 
 	/* Data Bus Routing */
 	// DRAM/ROM data bus
@@ -49,18 +48,17 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 	inout [7:0] D = DOE ? Dout : 8'bZ;
 	
 	/* Inhibit output */
-	/*wire AROMSEL;
-	LCELL AROMSEL_MC (.in((A[15:12]==4'hD | A[15:12]==4'hE | A[15:12]==4'hF) & nWE & ~MODE), .out(AROMSEL));
-	output nINH = AROMSEL ? 1'b0 : 1'bZ;*/
-	output nINH = 1'bZ;
+	wire AROMSEL;
+	LCELL AROMSEL_MC (.in(/*(A[15:12]==4'hD | A[15:12]==4'hE | A[15:12]==4'hF) & nWE & ~MODE*/0), .out(AROMSEL));
+	output nINH = AROMSEL ? 1'b0 : 1'bZ;
 
 	/* DRAM and ROM Control Signals */
 	output nRCS = ~((~nIOSEL | (~nIOSTRB & IOROMEN)) & CSDBEN); // ROM chip select
 	output nROE = ~nWE; // need this for flash ROM
 	output nRWE = nWE | (nDEVSEL & nIOSEL & nIOSTRB); // for ROM & DRAM
 	output nRAS = ~(RASr | RASf);
-	output nCAS0 = ~(CASr | (CASf & ~nDEVSEL & ~Addr[22])); // DRAM CAS bank 0
-	output nCAS1 = ~(CASr | (CASf & ~nDEVSEL & Addr[22])); // DRAM CAS bank 1
+	output nCAS0 = ~(CASr | (CASf & RAMSEL & ~Addr[22])); // DRAM CAS bank 0
+	output nCAS1 = ~(CASr | (CASf & RAMSEL & Addr[22])); // DRAM CAS bank 1
 
   	/* 6502-accessible Registers */
 	reg [7:0] Bank = 8'h00; // Bank register for ROM access
@@ -154,15 +152,15 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 			// Similarly, only select the ROM chip starting at the end of S4.
 			// This provides address setup time for write operations and 
 			// minimizes power consumption.
-			CSDBEN <= S[2]; /*S==4 | S==5 | S==6 | S==7 */
+			CSDBEN <= S==4 | S==5 | S==6 | S==7;
 
-			// Increment address register after RAM access,
-			// otherwise set register during S6 if accessed.
+			// Increment address register after RAM access.
 			if (S==2 & RAMSELreg) begin
-				Addr <= Addr+1; // RAMSELreg refers to prev.
+				Addr <= Addr+1;
 				RAMSELreg <= 1'b0;
 			end
 			
+			// Set register during S6 if accessed.
 			if (S==6) begin
 				if (BankWR) Bank[7:0] <= D[7:0]; // Bank
 				if (SetWR) IOBank0 <= D[7:0] == 8'hE5;
@@ -181,8 +179,8 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 			// so hold RAS through S5
 			RASr <= (S==4 & RAMSEL);
 
-			// Multiplex DRAM address in at end of S4 through S5 end.
-			ASel = RAMSEL & S[2] & ~S[1]; /*(S==4 | S==5)*/
+			// Multiplex DRAM address in at end of S4 through S6.
+			ASel = RAMSEL & (S==4 | S==5);
 
 			// Refresh at end of S1 (i.e. through S2) 
 			// CAS whenever RAM seleced
@@ -195,7 +193,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 			// Refresh in S2
 			// Row activate in S4 when accessing RAM
 			// Hold RAS in S5 when not doing late CAS for write.
-			RASf <= (S==2 & Ref==0) | ((S==4 | (S==5 & ~nWE) & RAMSEL));
+			RASf <= (S==2 & Ref==0) | (RAMSEL & (S==4 | (S==5 /*& ~nWE*/)));
 
 			// CASf gated by nDEVSEL; no need to predicate on RAMSEL.
 			// Early CAS in S5 for read operations.

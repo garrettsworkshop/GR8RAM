@@ -2186,6 +2186,10 @@ Wire Bus Line
 Connection ~ 7100 4800
 Wire Bus Line
 	7100 4800 4500 4800
+Text Label 2700 3350 2    50   ~ 0
+C7Mout
+Text Label 2700 3250 2    50   ~ 0
+PHI1out
 Wire Bus Line
 	2400 1150 2400 2150
 Wire Bus Line
@@ -2216,8 +2220,4 @@ Wire Bus Line
 	8900 1900 8900 5850
 Wire Bus Line
 	7300 1900 7300 5850
-Text Label 2700 3350 2    50   ~ 0
-C7Mout
-Text Label 2700 3250 2    50   ~ 0
-PHI1out
 $EndSCHEMATC

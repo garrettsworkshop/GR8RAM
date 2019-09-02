@@ -44,8 +44,6 @@ Wire Wire Line
 	6100 1400 6150 1300
 Wire Wire Line
 	6100 1150 6150 1250
-Text Notes 6300 1100 0    40   ~ 0
-S7
 Wire Wire Line
 	10300 1100 10300 1000
 Wire Wire Line
@@ -213,15 +211,11 @@ Wire Wire Line
 Wire Wire Line
 	4300 1000 4600 1000
 Wire Wire Line
-	4600 1000 4600 1100
-Wire Wire Line
 	4600 1100 4900 1100
 Wire Wire Line
 	4900 1100 4900 1000
 Wire Wire Line
 	4900 1000 5200 1000
-Wire Wire Line
-	5200 1000 5200 1100
 Wire Wire Line
 	10300 1000 10400 1000
 Wire Wire Line
@@ -803,4 +797,10 @@ Wire Wire Line
 	10400 1650 10450 1650
 Wire Wire Line
 	10350 1550 10400 1650
+Wire Wire Line
+	5200 1000 5200 1100
+Wire Wire Line
+	4600 1000 4600 1100
+Text Notes 6300 1100 0    40   ~ 0
+S7
 $EndSCHEMATC
