@@ -1,6 +1,6 @@
 Flow report for GR8RAM
-Sat Aug 31 22:53:50 2019
-Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+Sun Sep 01 20:44:17 2019
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
 ---------------------
@@ -40,14 +40,14 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------+
 ; Flow Summary                                                                ;
 +---------------------------+-------------------------------------------------+
-; Flow Status               ; Successful - Sat Aug 31 22:53:42 2019           ;
-; Quartus II 32-bit Version ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Flow Status               ; Successful - Sun Sep 01 20:44:16 2019           ;
+; Quartus II 64-Bit Version ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name             ; GR8RAM                                          ;
 ; Top-level Entity Name     ; GR8RAM                                          ;
 ; Family                    ; MAX7000S                                        ;
 ; Device                    ; EPM7128SLC84-15                                 ;
 ; Timing Models             ; Final                                           ;
-; Total macrocells          ; 96 / 128 ( 75 % )                               ;
+; Total macrocells          ; 102 / 128 ( 80 % )                              ;
 ; Total pins                ; 67 / 68 ( 99 % )                                ;
 +---------------------------+-------------------------------------------------+
 
@@ -57,35 +57,39 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 08/31/2019 22:53:23 ;
+; Start date & time ; 09/01/2019 20:44:13 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; GR8RAM              ;
 +-------------------+---------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------+
-; Flow Non-Default Global Settings                                                                                    ;
-+--------------------------------------------+-----------------------------+---------------+-------------+------------+
-; Assignment Name                            ; Value                       ; Default Value ; Entity Name ; Section Id ;
-+--------------------------------------------+-----------------------------+---------------+-------------+------------+
-; ALM_REGISTER_PACKING_EFFORT                ; High                        ; Medium        ; --          ; --         ;
-; AUTO_RESOURCE_SHARING                      ; On                          ; Off           ; --          ; --         ;
-; COMPILER_SIGNATURE_ID                      ; 52238299365.156730640303584 ; --            ; --          ; --         ;
-; ECO_OPTIMIZE_TIMING                        ; On                          ; Off           ; --          ; --         ;
-; ECO_REGENERATE_REPORT                      ; On                          ; Off           ; --          ; --         ;
-; FITTER_EFFORT                              ; Standard Fit                ; Auto Fit      ; --          ; --         ;
-; MAX7000_IGNORE_LCELL_BUFFERS               ; Off                         ; Auto          ; --          ; --         ;
-; MAX_CORE_JUNCTION_TEMP                     ; 85                          ; --            ; --          ; --         ;
-; MIN_CORE_JUNCTION_TEMP                     ; 0                           ; --            ; --          ; --         ;
-; OPTIMIZE_HOLD_TIMING                       ; Off                         ; --            ; --          ; --         ;
-; OPTIMIZE_IOC_REGISTER_PLACEMENT_FOR_TIMING ; Pack All IO Registers       ; Normal        ; --          ; --         ;
-; PARALLEL_SYNTHESIS                         ; Off                         ; On            ; --          ; --         ;
-; PROJECT_OUTPUT_DIRECTORY                   ; output_files                ; --            ; --          ; --         ;
-; SLOW_SLEW_RATE                             ; On                          ; Off           ; --          ; --         ;
-; STATE_MACHINE_PROCESSING                   ; User-Encoded                ; Auto          ; --          ; --         ;
-; SYNTH_MESSAGE_LEVEL                        ; High                        ; Medium        ; --          ; --         ;
-; SYNTH_TIMING_DRIVEN_SYNTHESIS              ; Off                         ; --            ; --          ; --         ;
-+--------------------------------------------+-----------------------------+---------------+-------------+------------+
++-------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                        ;
++--------------------------------------------+---------------------------------+---------------+-------------+------------+
+; Assignment Name                            ; Value                           ; Default Value ; Entity Name ; Section Id ;
++--------------------------------------------+---------------------------------+---------------+-------------+------------+
+; ALM_REGISTER_PACKING_EFFORT                ; High                            ; Medium        ; --          ; --         ;
+; AUTO_LCELL_INSERTION                       ; Off                             ; On            ; --          ; --         ;
+; AUTO_PARALLEL_EXPANDERS                    ; Off                             ; On            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID                      ; 207120313862967.156738505316020 ; --            ; --          ; --         ;
+; ECO_OPTIMIZE_TIMING                        ; On                              ; Off           ; --          ; --         ;
+; ECO_REGENERATE_REPORT                      ; On                              ; Off           ; --          ; --         ;
+; EXTRACT_VERILOG_STATE_MACHINES             ; Off                             ; On            ; --          ; --         ;
+; EXTRACT_VHDL_STATE_MACHINES                ; Off                             ; On            ; --          ; --         ;
+; FITTER_EFFORT                              ; Standard Fit                    ; Auto Fit      ; --          ; --         ;
+; MAX7000_IGNORE_LCELL_BUFFERS               ; Off                             ; Auto          ; --          ; --         ;
+; MAX_CORE_JUNCTION_TEMP                     ; 85                              ; --            ; --          ; --         ;
+; MIN_CORE_JUNCTION_TEMP                     ; 0                               ; --            ; --          ; --         ;
+; OPTIMIZE_HOLD_TIMING                       ; Off                             ; --            ; --          ; --         ;
+; OPTIMIZE_IOC_REGISTER_PLACEMENT_FOR_TIMING ; Pack All IO Registers           ; Normal        ; --          ; --         ;
+; PARALLEL_SYNTHESIS                         ; Off                             ; On            ; --          ; --         ;
+; PRE_MAPPING_RESYNTHESIS                    ; On                              ; Off           ; --          ; --         ;
+; PROJECT_OUTPUT_DIRECTORY                   ; output_files                    ; --            ; --          ; --         ;
+; SLOW_SLEW_RATE                             ; On                              ; Off           ; --          ; --         ;
+; STATE_MACHINE_PROCESSING                   ; User-Encoded                    ; Auto          ; --          ; --         ;
+; SYNTH_MESSAGE_LEVEL                        ; High                            ; Medium        ; --          ; --         ;
+; SYNTH_TIMING_DRIVEN_SYNTHESIS              ; Off                             ; --            ; --          ; --         ;
++--------------------------------------------+---------------------------------+---------------+-------------+------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------------+
@@ -93,24 +97,24 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:10     ; 1.0                     ; 308 MB              ; 00:00:09                           ;
-; Fitter                    ; 00:00:07     ; 1.0                     ; 287 MB              ; 00:00:05                           ;
-; Assembler                 ; 00:00:02     ; 1.0                     ; 275 MB              ; 00:00:02                           ;
-; TimeQuest Timing Analyzer ; 00:00:06     ; 1.0                     ; 260 MB              ; 00:00:05                           ;
-; Total                     ; 00:00:25     ; --                      ; --                  ; 00:00:21                           ;
+; Analysis & Synthesis      ; 00:00:01     ; 1.0                     ; 4587 MB             ; 00:00:01                           ;
+; Fitter                    ; 00:00:01     ; 1.0                     ; 4708 MB             ; 00:00:00                           ;
+; Assembler                 ; 00:00:00     ; 1.0                     ; 4520 MB             ; 00:00:00                           ;
+; TimeQuest Timing Analyzer ; 00:00:00     ; 1.0                     ; 4530 MB             ; 00:00:00                           ;
+; Total                     ; 00:00:02     ; --                      ; --                  ; 00:00:01                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------+
-; Flow OS Summary                                                                         ;
-+---------------------------+------------------+------------+------------+----------------+
-; Module Name               ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
-+---------------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis      ; zane-f8c4ec68a5  ; Windows XP ; 5.1        ; i686           ;
-; Fitter                    ; zane-f8c4ec68a5  ; Windows XP ; 5.1        ; i686           ;
-; Assembler                 ; zane-f8c4ec68a5  ; Windows XP ; 5.1        ; i686           ;
-; TimeQuest Timing Analyzer ; zane-f8c4ec68a5  ; Windows XP ; 5.1        ; i686           ;
-+---------------------------+------------------+------------+------------+----------------+
++----------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                        ;
++---------------------------+------------------+-----------+------------+----------------+
+; Module Name               ; Machine Hostname ; OS Name   ; OS Version ; Processor type ;
++---------------------------+------------------+-----------+------------+----------------+
+; Analysis & Synthesis      ; DESKTOP-G62HNQS  ; Windows 7 ; 6.2        ; x86_64         ;
+; Fitter                    ; DESKTOP-G62HNQS  ; Windows 7 ; 6.2        ; x86_64         ;
+; Assembler                 ; DESKTOP-G62HNQS  ; Windows 7 ; 6.2        ; x86_64         ;
+; TimeQuest Timing Analyzer ; DESKTOP-G62HNQS  ; Windows 7 ; 6.2        ; x86_64         ;
++---------------------------+------------------+-----------+------------+----------------+
 
 
 ------------

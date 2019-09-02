@@ -9,7 +9,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 	input nRES, MODE; // Reset, mode
 
 	/* PHI1 Delay */
-	wire [6:0] PHI1b;
+	wire [8:0] PHI1b;
 	wire PHI1;
 	LCELL PHI1b0_MC (.in(PHI1in), .out(PHI1b[0]));
 	LCELL PHI1b1_MC (.in(PHI1b[0]), .out(PHI1b[1]));
@@ -18,7 +18,9 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 	LCELL PHI1b4_MC (.in(PHI1b[3]), .out(PHI1b[4]));
 	LCELL PHI1b5_MC (.in(PHI1b[4]), .out(PHI1b[5]));
 	LCELL PHI1b6_MC (.in(PHI1b[5]), .out(PHI1b[6]));
-	LCELL PHI1b7_MC (.in(PHI1b[6] & PHI1in), .out(PHI1));
+	LCELL PHI1b7_MC (.in(PHI1b[6]), .out(PHI1b[7]));
+	LCELL PHI1b8_MC (.in(PHI1b[7]), .out(PHI1b[8]));
+	LCELL PHI1b9_MC (.in(PHI1b[8] & PHI1in), .out(PHI1));
 	output C7Mout = C7M_2;
 	output PHI1out = PHI1;
 
@@ -28,37 +30,40 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 	input nWE; // 6502 R/W
 	output [10:0] RA; // DRAM/ROM address
 	assign RA[10:8] = ASel ? Addr[10:8] : Addr[21:19];
-	assign RA[7:1] = ~nDEVSEL ? (ASel ? Addr[7:1] : Addr[18:12]) : Bank[6:0];
-	assign RA[0] = ~nDEVSEL ? (ASel ? Addr[0] : Addr[11]) : A[11];
+	assign RA[7:0] =  
+		(~nIOSTRB & nIOSEL & ~IOBank0) ? Bank+1 :
+		(ASel & nIOSEL & nIOSTRB) ? Addr[7:0] : 
+		(~ASel & nIOSEL & nIOSTRB) ? Addr[18:11] : 8'h00;
 
 	/* Data Bus Routing */
 	// DRAM/ROM data bus
-	wire RDOE = nRES | (CSDBEN & (~nWE | (nDEVSEL & nIOSEL & nIOSTRB)));
+	wire RDOE = CSDBEN & ~nWE;
 	inout [7:0] RD = RDOE ? D[7:0] : 8'bZ;
 	// Apple II data bus
-	wire DOE = nRES & CSDBEN & nWE & 
+	wire DOE = CSDBEN & nWE & 
 		((~nDEVSEL & REGEN) | ~nIOSEL | (~nIOSTRB & IOROMEN));
 	wire [7:0] Dout = (nDEVSEL | RAMSELA) ? RD[7:0] :
-        AddrHSELA ? {1'b1, Addr[22:16]} : 
+        AddrHSELA ? {4'b1111, Addr[19:16]} : 
         AddrMSELA ? Addr[15:8] : 
         AddrLSELA ? Addr[7:0] : 8'h00;
 	inout [7:0] D = DOE ? Dout : 8'bZ;
 	
 	/* Inhibit output */
-	wire AROMSEL;
+	/*wire AROMSEL;
 	LCELL AROMSEL_MC (.in((A[15:12]==4'hD | A[15:12]==4'hE | A[15:12]==4'hF) & nWE & ~MODE), .out(AROMSEL));
-	output nINH = AROMSEL ? 1'b0 : 1'bZ;
+	output nINH = AROMSEL ? 1'b0 : 1'bZ;*/
+	output nINH = 1'bZ;
 
 	/* DRAM and ROM Control Signals */
 	output nRCS = ~((~nIOSEL | (~nIOSTRB & IOROMEN)) & CSDBEN); // ROM chip select
 	output nROE = ~nWE; // need this for flash ROM
-	output nRWE = ~(~nWE & (~nDEVSEL | ~nIOSEL | ~nIOSTRB)); // for ROM & DRAM
+	output nRWE = nWE | (nDEVSEL & nIOSEL & nIOSTRB); // for ROM & DRAM
 	output nRAS = ~(RASr | RASf);
 	output nCAS0 = ~(CASr | (CASf & ~nDEVSEL & ~Addr[22])); // DRAM CAS bank 0
 	output nCAS1 = ~(CASr | (CASf & ~nDEVSEL & Addr[22])); // DRAM CAS bank 1
 
   	/* 6502-accessible Registers */
-	reg [6:0] Bank = 7'h00; // Bank register for ROM access
+	reg [7:0] Bank = 8'h00; // Bank register for ROM access
 	reg [22:0] Addr = 23'h00000; // RAM address register
 
 	/* CAS rising/falling edge components */
@@ -77,22 +82,24 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 	/* Select Signals */
 	reg RAMSELreg = 1'b0; // RAMSEL registered at end of S4
 	wire BankSELA = A[3:0]==4'hF;
+	wire SetSELA = A[3:0]==4'hE;
 	wire RAMSELA = A[3:0]==4'h3;
 	wire AddrHSELA = A[3:0]==4'h2;
 	wire AddrMSELA = A[3:0]==4'h1;
 	wire AddrLSELA = A[3:0]==4'h0;
-	LCELL BankWR_MC (.in(BankSELA & ~nWE & ~nDEVSEL & REGEN), .out(BankWR));
-	wire BankWR; // Bank reg. at Cn0F
-	wire RAMSEL = RAMSELA & ~nDEVSEL & REGEN; // RAM data reg. at Cn03
-	wire AddrHWR = AddrHSELA & ~nWE & ~nDEVSEL & REGEN; // Addr. hi reg. at Cn02
-	wire AddrMWR = AddrMSELA & ~nWE & ~nDEVSEL & REGEN; // Addr. mid reg. at Cn01
-	wire AddrLWR = AddrLSELA & ~nWE & ~nDEVSEL & REGEN; // Addr. lo reg. at Cn00
+	LCELL BankWR_MC (.in(BankSELA & ~nWE & ~nDEVSEL & REGEN), .out(BankWR)); wire BankWR;
+	wire SetWR = SetSELA & ~nWE & ~nDEVSEL & REGEN;
+	LCELL RAMSEL_MC (.in(RAMSELA & ~nDEVSEL & REGEN), .out(RAMSEL)); wire RAMSEL;
+	LCELL AddrHWR_MC (.in(AddrHSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrHWR)); wire AddrHWR;
+	LCELL AddrMWR_MC (.in(AddrMSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrMWR)); wire AddrMWR;
+	LCELL AddrLWR_MC (.in(AddrLSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrLWR)); wire AddrLWR;
 
 	/* Misc. */
 	reg REGEN = 0; // Register enable
 	reg IOROMEN = 0; // IOSTRB ROM enable
 	reg CSDBEN = 0; // ROM CS, data bus driver gating
 	reg ASel = 0; // DRAM address multiplexer select
+	reg IOBank0 = 0;
 
 	// Apple II Bus Compatibiltiy Rules:
 	// Synchronize to PHI0 or PHI1. (PHI1 here)
@@ -115,7 +122,8 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 			IOROMEN <= 1'b0;
 			CSDBEN <= 1'b0;
 			Addr <= 23'h000000;
-			Bank <= 7'h00;
+			Bank <= 8'h00;
+			IOBank0 <= 1'b0;
 			RAMSELreg <= 1'b0;
 		end else begin
 			// Synchronize state counter to S1 when just entering PHI1
@@ -134,8 +142,8 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 			// Registers enabled at end of S4 by any IOSEL access (Cn00-CnFF).
 			if (S==4 & ~nIOSEL) REGEN <= 1;
 
-			// Enable IOSTRB ROM when accessing 0xCn00 in IOSEL ROM.
-			if (S==4 & ~nIOSEL /* & A[7:0]==8'h00 */) IOROMEN <= 1'b1;
+			// Enable IOSTRB ROM when accessing CnXX in IOSEL ROM.
+			if (S==4 & ~nIOSEL) IOROMEN <= 1'b1;
 
 			// Register RAM "register" selected at end of S4.
 			if (S==4) RAMSELreg <= RAMSEL;
@@ -150,12 +158,17 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 
 			// Increment address register after RAM access,
 			// otherwise set register during S6 if accessed.
-			if (S==1 & RAMSELreg) Addr <= Addr+1; // RAMSELreg refers to prev.
-			else if (S==6) begin
-				if (AddrHWR) Addr[22:16] <= D[6:0]; // Addr hi
+			if (S==2 & RAMSELreg) begin
+				Addr <= Addr+1; // RAMSELreg refers to prev.
+				RAMSELreg <= 1'b0;
+			end
+			
+			if (S==6) begin
+				if (BankWR) Bank[7:0] <= D[7:0]; // Bank
+				if (SetWR) IOBank0 <= D[7:0] == 8'hE5;
+				if (AddrHWR) Addr[19:16] <= D[3:0]; // Addr hi
 				if (AddrMWR) Addr[15:8] <= D[7:0]; // Addr mid
 				if (AddrLWR) Addr[7:0] <= D[7:0]; // Addr lo
-				if (BankWR) Bank[6:0] <= D[6:0]; // Bank
 			end
 		end
 	end
