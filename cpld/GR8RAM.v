@@ -30,7 +30,8 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 	input nWE; // 6502 R/W
 	output [10:0] RA; // DRAM/ROM address
 	assign RA[10:8] = ASel ? Addr[21:19] : Addr[10:8];
-	assign RA[7:0] = (~nIOSTRB & ~IOBank0) ? Bank+1 :
+	assign RA[7:0] = (~nIOSTRB & FullIOEN) ? Bank+1 :
+		(~nIOSTRB & ~FullIOEN) ? {7'b0000001, Bank[0]} :
 		(~ASel & nIOSEL & nIOSTRB) ? Addr[18:11] :
 		(ASel & nIOSEL & nIOSTRB) ? Addr[7:0] : 8'h00;
 
@@ -42,7 +43,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 	wire DOE = CSDBEN & nWE & 
 		((~nDEVSEL & REGEN) | ~nIOSEL | (~nIOSTRB & IOROMEN));
 	wire [7:0] Dout = (nDEVSEL | RAMSELA) ? RD[7:0] :
-        AddrHSELA ? {4'b1111, Addr[19:16]} : 
+        AddrHSELA ? {1'b1, Addr[22:16]} : 
         AddrMSELA ? Addr[15:8] : 
         AddrLSELA ? Addr[7:0] : 8'h00;
 	inout [7:0] D = DOE ? Dout : 8'bZ;
@@ -97,7 +98,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 	reg IOROMEN = 0; // IOSTRB ROM enable
 	reg CSDBEN = 0; // ROM CS, data bus driver gating
 	reg ASel = 0; // DRAM address multiplexer select
-	reg IOBank0 = 0;
+	reg FullIOEN = 0;
 
 	// Apple II Bus Compatibiltiy Rules:
 	// Synchronize to PHI0 or PHI1. (PHI1 here)
@@ -121,7 +122,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 			CSDBEN <= 1'b0;
 			Addr <= 23'h000000;
 			Bank <= 8'h00;
-			IOBank0 <= 1'b0;
+			FullIOEN <= 1'b0;
 			RAMSELreg <= 1'b0;
 		end else begin
 			// Synchronize state counter to S1 when just entering PHI1
@@ -163,8 +164,8 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 			// Set register during S6 if accessed.
 			if (S==6) begin
 				if (BankWR) Bank[7:0] <= D[7:0]; // Bank
-				if (SetWR) IOBank0 <= D[7:0] == 8'hE5;
-				if (AddrHWR) Addr[19:16] <= D[3:0]; // Addr hi
+				if (SetWR) FullIOEN <= D[7:0] == 8'hE5;
+				if (AddrHWR) Addr[22:16] <= D[6:0]; // Addr hi
 				if (AddrMWR) Addr[15:8] <= D[7:0]; // Addr mid
 				if (AddrLWR) Addr[7:0] <= D[7:0]; // Addr lo
 			end

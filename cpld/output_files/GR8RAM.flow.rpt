@@ -1,5 +1,5 @@
 Flow report for GR8RAM
-Mon Sep 02 01:41:42 2019
+Mon Sep 02 20:56:05 2019
 Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -40,7 +40,7 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------+
 ; Flow Summary                                                                ;
 +---------------------------+-------------------------------------------------+
-; Flow Status               ; Successful - Mon Sep 02 01:41:35 2019           ;
+; Flow Status               ; Successful - Mon Sep 02 20:55:58 2019           ;
 ; Quartus II 32-bit Version ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name             ; GR8RAM                                          ;
 ; Top-level Entity Name     ; GR8RAM                                          ;
@@ -57,7 +57,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 09/02/2019 01:41:21 ;
+; Start date & time ; 09/02/2019 20:55:44 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; GR8RAM              ;
 +-------------------+---------------------+
@@ -71,7 +71,7 @@ applicable agreement for further details.
 ; ALM_REGISTER_PACKING_EFFORT                ; High                        ; Medium        ; --          ; --         ;
 ; AUTO_LCELL_INSERTION                       ; Off                         ; On            ; --          ; --         ;
 ; AUTO_PARALLEL_EXPANDERS                    ; Off                         ; On            ; --          ; --         ;
-; COMPILER_SIGNATURE_ID                      ; 52238299365.156740288102732 ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID                      ; 52238299365.156747214401988 ; --            ; --          ; --         ;
 ; ECO_OPTIMIZE_TIMING                        ; On                          ; Off           ; --          ; --         ;
 ; ECO_REGENERATE_REPORT                      ; On                          ; Off           ; --          ; --         ;
 ; EXTRACT_VERILOG_STATE_MACHINES             ; Off                         ; On            ; --          ; --         ;
@@ -98,10 +98,10 @@ applicable agreement for further details.
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Analysis & Synthesis      ; 00:00:08     ; 1.0                     ; 303 MB              ; 00:00:08                           ;
-; Fitter                    ; 00:00:05     ; 1.0                     ; 287 MB              ; 00:00:04                           ;
-; Assembler                 ; 00:00:03     ; 1.0                     ; 275 MB              ; 00:00:03                           ;
-; TimeQuest Timing Analyzer ; 00:00:05     ; 1.0                     ; 263 MB              ; 00:00:05                           ;
-; Total                     ; 00:00:21     ; --                      ; --                  ; 00:00:20                           ;
+; Fitter                    ; 00:00:04     ; 1.0                     ; 287 MB              ; 00:00:04                           ;
+; Assembler                 ; 00:00:03     ; 1.0                     ; 275 MB              ; 00:00:02                           ;
+; TimeQuest Timing Analyzer ; 00:00:06     ; 1.0                     ; 263 MB              ; 00:00:05                           ;
+; Total                     ; 00:00:21     ; --                      ; --                  ; 00:00:19                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
