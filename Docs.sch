@@ -550,44 +550,6 @@ Wire Wire Line
 	6100 1550 6350 1550
 Wire Wire Line
 	6150 1450 7300 1450
-Wire Wire Line
-	3550 6050 3450 6150
-Wire Wire Line
-	3300 6450 3400 6350
-Wire Wire Line
-	3600 6600 3700 6500
-Wire Notes Line
-	3500 5950 3500 6750
-Text Notes 2750 6100 0    40   ~ 0
-7 MHz
-Text Notes 2750 6400 0    40   ~ 0
-1 MHz (IIgs)
-Text Notes 2750 6550 0    40   ~ 0
-1 MHz (IIe)
-Wire Wire Line
-	3450 6300 3550 6200
-Text Notes 2750 6250 0    40   ~ 0
-1 MHz (//, //+)
-Wire Wire Line
-	2700 6450 3300 6450
-Wire Wire Line
-	2700 6600 3600 6600
-Wire Wire Line
-	4250 6150 4150 6050
-Wire Wire Line
-	3550 6050 4150 6050
-Wire Wire Line
-	3550 6200 4350 6200
-Wire Wire Line
-	4250 6150 4350 6150
-Wire Wire Line
-	3400 6350 4350 6350
-Wire Wire Line
-	3700 6500 4350 6500
-Wire Wire Line
-	2700 6300 3450 6300
-Wire Wire Line
-	2700 6150 3450 6150
 Connection ~ 1050 2800
 Wire Wire Line
 	1050 2800 2800 2800
