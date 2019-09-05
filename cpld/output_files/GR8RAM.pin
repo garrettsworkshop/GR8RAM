@@ -56,7 +56,7 @@
  -- Pin directions (input, output or bidir) are based on device operating in user mode.
  ---------------------------------------------------------------------------------
 
-Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 CHIP  "GR8RAM"  ASSIGNED TO AN: EPM7128SLC84-15
 
 Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment
@@ -90,8 +90,8 @@ VCCIO                        : 26        : power  :                   : 5.0V    
 D[6]                         : 27        : bidir  : TTL               :         :           : Y              
 D[5]                         : 28        : bidir  : TTL               :         :           : Y              
 D[4]                         : 29        : bidir  : TTL               :         :           : Y              
-PHI1out                      : 30        : output : TTL               :         :           : Y              
-C7Mout                       : 31        : output : TTL               :         :           : Y              
+RESERVED                     : 30        :        :                   :         :           :                
+RESERVED                     : 31        :        :                   :         :           :                
 GND                          : 32        : gnd    :                   :         :           :                
 D[3]                         : 33        : bidir  : TTL               :         :           : Y              
 D[2]                         : 34        : bidir  : TTL               :         :           : Y              

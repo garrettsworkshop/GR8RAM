@@ -1,6 +1,6 @@
 Analysis & Synthesis report for GR8RAM
-Mon Sep 02 20:55:48 2019
-Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+Tue Sep 03 14:09:16 2019
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
 ---------------------
@@ -9,14 +9,17 @@ Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   1. Legal Notice
   2. Analysis & Synthesis Summary
   3. Analysis & Synthesis Settings
-  4. Analysis & Synthesis Source Files Read
-  5. Analysis & Synthesis Resource Usage Summary
-  6. Analysis & Synthesis Resource Utilization by Entity
-  7. Parameter Settings for Inferred Entity Instance: lpm_counter:Ref_rtl_0
-  8. Parameter Settings for Inferred Entity Instance: lpm_add_sub:Add0
-  9. Parameter Settings for Inferred Entity Instance: lpm_add_sub:Add3
- 10. Analysis & Synthesis Messages
- 11. Analysis & Synthesis Suppressed Messages
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Parameter Settings for Inferred Entity Instance: lpm_counter:Ref_rtl_0
+  9. Parameter Settings for Inferred Entity Instance: lpm_add_sub:Add0
+ 10. Parameter Settings for Inferred Entity Instance: lpm_add_sub:Add4
+ 11. Parameter Settings for Inferred Entity Instance: lpm_add_sub:Add3
+ 12. Parameter Settings for Inferred Entity Instance: lpm_add_sub:Add5
+ 13. Analysis & Synthesis Messages
+ 14. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -42,13 +45,13 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Mon Sep 02 20:55:48 2019           ;
-; Quartus II 32-bit Version   ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Analysis & Synthesis Status ; Successful - Tue Sep 03 14:09:16 2019           ;
+; Quartus II 64-Bit Version   ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name               ; GR8RAM                                          ;
 ; Top-level Entity Name       ; GR8RAM                                          ;
 ; Family                      ; MAX7000S                                        ;
-; Total macrocells            ; 102                                             ;
-; Total pins                  ; 63                                              ;
+; Total macrocells            ; 103                                             ;
+; Total pins                  ; 61                                              ;
 +-----------------------------+-------------------------------------------------+
 
 
@@ -116,12 +119,23 @@ applicable agreement for further details.
 +----------------------------------------------------------------------------+-----------------+---------------+
 
 
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 8      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
 +-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Source Files Read                                                                                                                            ;
 +----------------------------------+-----------------+------------------------+---------------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                              ; Library ;
 +----------------------------------+-----------------+------------------------+---------------------------------------------------------------------------+---------+
-; GR8RAM.v                         ; yes             ; User Verilog HDL File  ; Z:/Repos/GR8RAM/cpld/GR8RAM.v                                             ;         ;
+; GR8RAM.v                         ; yes             ; User Verilog HDL File  ; C:/Users/Zane/Documents/GitHub/GR8RAM/cpld/GR8RAM.v                       ;         ;
 ; lpm_counter.tdf                  ; yes             ; Megafunction           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_counter.tdf         ;         ;
 ; lpm_constant.inc                 ; yes             ; Megafunction           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_constant.inc        ;         ;
 ; lpm_decode.inc                   ; yes             ; Megafunction           ; c:/altera/13.0sp1/quartus/libraries/megafunctions/lpm_decode.inc          ;         ;
@@ -151,13 +165,14 @@ applicable agreement for further details.
 +----------------------+----------------------+
 ; Resource             ; Usage                ;
 +----------------------+----------------------+
-; Logic cells          ; 102                  ;
-; Total registers      ; 50                   ;
-; I/O pins             ; 63                   ;
+; Logic cells          ; 103                  ;
+; Total registers      ; 52                   ;
+; I/O pins             ; 61                   ;
+; Shareable expanders  ; 1                    ;
 ; Maximum fan-out node ; nRES                 ;
-; Maximum fan-out      ; 50                   ;
-; Total fan-out        ; 971                  ;
-; Average fan-out      ; 5.88                 ;
+; Maximum fan-out      ; 52                   ;
+; Total fan-out        ; 830                  ;
+; Average fan-out      ; 5.03                 ;
 +----------------------+----------------------+
 
 
@@ -166,7 +181,7 @@ applicable agreement for further details.
 +----------------------------+------------+------+-------------------------------+--------------+
 ; Compilation Hierarchy Node ; Macrocells ; Pins ; Full Hierarchy Name           ; Library Name ;
 +----------------------------+------------+------+-------------------------------+--------------+
-; |GR8RAM                    ; 102        ; 63   ; |GR8RAM                       ; work         ;
+; |GR8RAM                    ; 103        ; 61   ; |GR8RAM                       ; work         ;
 ;    |lpm_counter:Ref_rtl_0| ; 4          ; 0    ; |GR8RAM|lpm_counter:Ref_rtl_0 ; work         ;
 +----------------------------+------------+------+-------------------------------+--------------+
 
@@ -227,11 +242,11 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +-------------------------------------------------------------------+
-; Parameter Settings for Inferred Entity Instance: lpm_add_sub:Add3 ;
+; Parameter Settings for Inferred Entity Instance: lpm_add_sub:Add4 ;
 +------------------------+-------------+----------------------------+
 ; Parameter Name         ; Value       ; Type                       ;
 +------------------------+-------------+----------------------------+
-; LPM_WIDTH              ; 23          ; Untyped                    ;
+; LPM_WIDTH              ; 8           ; Untyped                    ;
 ; LPM_REPRESENTATION     ; UNSIGNED    ; Untyped                    ;
 ; LPM_DIRECTION          ; ADD         ; Untyped                    ;
 ; ONE_INPUT_IS_CONSTANT  ; YES         ; Untyped                    ;
@@ -245,7 +260,63 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; DEVICE_FAMILY          ; MAX7000S    ; Untyped                    ;
 ; USE_WYS                ; OFF         ; Untyped                    ;
 ; STYLE                  ; FAST        ; Untyped                    ;
-; CBXI_PARAMETER         ; add_sub_8ph ; Untyped                    ;
+; CBXI_PARAMETER         ; add_sub_rnh ; Untyped                    ;
+; AUTO_CARRY_CHAINS      ; ON          ; AUTO_CARRY                 ;
+; IGNORE_CARRY_BUFFERS   ; OFF         ; IGNORE_CARRY               ;
+; AUTO_CASCADE_CHAINS    ; ON          ; AUTO_CASCADE               ;
+; IGNORE_CASCADE_BUFFERS ; OFF         ; IGNORE_CASCADE             ;
++------------------------+-------------+----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lpm_add_sub:Add3 ;
++------------------------+-------------+----------------------------+
+; Parameter Name         ; Value       ; Type                       ;
++------------------------+-------------+----------------------------+
+; LPM_WIDTH              ; 8           ; Untyped                    ;
+; LPM_REPRESENTATION     ; UNSIGNED    ; Untyped                    ;
+; LPM_DIRECTION          ; ADD         ; Untyped                    ;
+; ONE_INPUT_IS_CONSTANT  ; YES         ; Untyped                    ;
+; LPM_PIPELINE           ; 0           ; Untyped                    ;
+; MAXIMIZE_SPEED         ; 5           ; Untyped                    ;
+; REGISTERED_AT_END      ; 0           ; Untyped                    ;
+; OPTIMIZE_FOR_SPEED     ; 5           ; Untyped                    ;
+; USE_CS_BUFFERS         ; 1           ; Untyped                    ;
+; CARRY_CHAIN            ; MANUAL      ; Untyped                    ;
+; CARRY_CHAIN_LENGTH     ; 48          ; CARRY_CHAIN_LENGTH         ;
+; DEVICE_FAMILY          ; MAX7000S    ; Untyped                    ;
+; USE_WYS                ; OFF         ; Untyped                    ;
+; STYLE                  ; FAST        ; Untyped                    ;
+; CBXI_PARAMETER         ; add_sub_rnh ; Untyped                    ;
+; AUTO_CARRY_CHAINS      ; ON          ; AUTO_CARRY                 ;
+; IGNORE_CARRY_BUFFERS   ; OFF         ; IGNORE_CARRY               ;
+; AUTO_CASCADE_CHAINS    ; ON          ; AUTO_CASCADE               ;
+; IGNORE_CASCADE_BUFFERS ; OFF         ; IGNORE_CASCADE             ;
++------------------------+-------------+----------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: lpm_add_sub:Add5 ;
++------------------------+-------------+----------------------------+
+; Parameter Name         ; Value       ; Type                       ;
++------------------------+-------------+----------------------------+
+; LPM_WIDTH              ; 7           ; Untyped                    ;
+; LPM_REPRESENTATION     ; UNSIGNED    ; Untyped                    ;
+; LPM_DIRECTION          ; ADD         ; Untyped                    ;
+; ONE_INPUT_IS_CONSTANT  ; YES         ; Untyped                    ;
+; LPM_PIPELINE           ; 0           ; Untyped                    ;
+; MAXIMIZE_SPEED         ; 5           ; Untyped                    ;
+; REGISTERED_AT_END      ; 0           ; Untyped                    ;
+; OPTIMIZE_FOR_SPEED     ; 5           ; Untyped                    ;
+; USE_CS_BUFFERS         ; 1           ; Untyped                    ;
+; CARRY_CHAIN            ; MANUAL      ; Untyped                    ;
+; CARRY_CHAIN_LENGTH     ; 48          ; CARRY_CHAIN_LENGTH         ;
+; DEVICE_FAMILY          ; MAX7000S    ; Untyped                    ;
+; USE_WYS                ; OFF         ; Untyped                    ;
+; STYLE                  ; FAST        ; Untyped                    ;
+; CBXI_PARAMETER         ; add_sub_qnh ; Untyped                    ;
 ; AUTO_CARRY_CHAINS      ; ON          ; AUTO_CARRY                 ;
 ; IGNORE_CARRY_BUFFERS   ; OFF         ; IGNORE_CARRY               ;
 ; AUTO_CASCADE_CHAINS    ; ON          ; AUTO_CASCADE               ;
@@ -258,23 +329,27 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
-Info: Running Quartus II 32-bit Analysis & Synthesis
+Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Mon Sep 02 20:55:40 2019
+    Info: Processing started: Tue Sep 03 14:09:15 2019
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off GR8RAM -c GR8RAM
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file gr8ram.v
     Info (12023): Found entity 1: GR8RAM
 Info (12127): Elaborating entity "GR8RAM" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at GR8RAM.v(33): truncated value with size 32 to match size of target (8)
-Warning (10230): Verilog HDL assignment warning at GR8RAM.v(131): truncated value with size 32 to match size of target (3)
-Warning (10230): Verilog HDL assignment warning at GR8RAM.v(136): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at GR8RAM.v(160): truncated value with size 32 to match size of target (23)
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(30): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(126): truncated value with size 32 to match size of target (3)
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(131): truncated value with size 32 to match size of target (4)
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(163): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(168): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(174): truncated value with size 32 to match size of target (7)
 Info (19000): Inferred 1 megafunctions from design logic
     Info (19001): Inferred lpm_counter megafunction (LPM_WIDTH=4) from the following logic: "Ref_rtl_0"
-Info (278001): Inferred 2 megafunctions from design logic
+Info (278001): Inferred 4 megafunctions from design logic
     Info (278002): Inferred adder/subtractor megafunction ("lpm_add_sub") from the following logic: "Add0"
+    Info (278002): Inferred adder/subtractor megafunction ("lpm_add_sub") from the following logic: "Add4"
     Info (278002): Inferred adder/subtractor megafunction ("lpm_add_sub") from the following logic: "Add3"
+    Info (278002): Inferred adder/subtractor megafunction ("lpm_add_sub") from the following logic: "Add5"
 Info (12130): Elaborated megafunction instantiation "lpm_counter:Ref_rtl_0"
 Info (12133): Instantiated megafunction "lpm_counter:Ref_rtl_0" with the following parameter:
     Info (12134): Parameter "LPM_WIDTH" = "4"
@@ -292,17 +367,19 @@ Info (12131): Elaborated megafunction instantiation "lpm_add_sub:Add0|addcore:ad
 Info (12131): Elaborated megafunction instantiation "lpm_add_sub:Add0|look_add:look_ahead_unit", which is child of megafunction instantiation "lpm_add_sub:Add0"
 Info (12131): Elaborated megafunction instantiation "lpm_add_sub:Add0|altshift:result_ext_latency_ffs", which is child of megafunction instantiation "lpm_add_sub:Add0"
 Info (12131): Elaborated megafunction instantiation "lpm_add_sub:Add0|altshift:carry_ext_latency_ffs", which is child of megafunction instantiation "lpm_add_sub:Add0"
-Info (12130): Elaborated megafunction instantiation "lpm_add_sub:Add3"
-Info (12133): Instantiated megafunction "lpm_add_sub:Add3" with the following parameter:
-    Info (12134): Parameter "LPM_WIDTH" = "23"
+Info (12130): Elaborated megafunction instantiation "lpm_add_sub:Add5"
+Info (12133): Instantiated megafunction "lpm_add_sub:Add5" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTH" = "7"
     Info (12134): Parameter "LPM_DIRECTION" = "ADD"
     Info (12134): Parameter "LPM_REPRESENTATION" = "UNSIGNED"
     Info (12134): Parameter "ONE_INPUT_IS_CONSTANT" = "YES"
-Info (12131): Elaborated megafunction instantiation "lpm_add_sub:Add3|addcore:adder[2]", which is child of megafunction instantiation "lpm_add_sub:Add3"
-Info (12131): Elaborated megafunction instantiation "lpm_add_sub:Add3|look_add:look_ahead_unit", which is child of megafunction instantiation "lpm_add_sub:Add3"
-Info (12131): Elaborated megafunction instantiation "lpm_add_sub:Add3|altshift:result_ext_latency_ffs", which is child of megafunction instantiation "lpm_add_sub:Add3"
-Info (13014): Ignored 31 buffer(s)
-    Info (13019): Ignored 31 SOFT buffer(s)
+Info (12131): Elaborated megafunction instantiation "lpm_add_sub:Add5|addcore:adder", which is child of megafunction instantiation "lpm_add_sub:Add5"
+Info (12131): Elaborated megafunction instantiation "lpm_add_sub:Add5|addcore:adder|a_csnbuffer:oflow_node", which is child of megafunction instantiation "lpm_add_sub:Add5"
+Info (12131): Elaborated megafunction instantiation "lpm_add_sub:Add5|addcore:adder|a_csnbuffer:result_node", which is child of megafunction instantiation "lpm_add_sub:Add5"
+Info (12131): Elaborated megafunction instantiation "lpm_add_sub:Add5|addcore:adder|addcore:adder[0]", which is child of megafunction instantiation "lpm_add_sub:Add5"
+Info (12131): Elaborated megafunction instantiation "lpm_add_sub:Add5|altshift:result_ext_latency_ffs", which is child of megafunction instantiation "lpm_add_sub:Add5"
+Info (13014): Ignored 32 buffer(s)
+    Info (13019): Ignored 32 SOFT buffer(s)
 Info (280013): Promoted pin-driven signal(s) to global signal
     Info (280014): Promoted clock signal driven by pin "C7M" to global clock signal
     Info (280015): Promoted clear signal driven by pin "nRES" to global clear signal
@@ -317,20 +394,21 @@ Warning (21074): Design contains 8 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "A[15]"
 Info (21057): Implemented 165 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 27 input pins
-    Info (21059): Implemented 20 output pins
+    Info (21059): Implemented 18 output pins
     Info (21060): Implemented 16 bidirectional pins
-    Info (21063): Implemented 102 macrocells
-Info (144001): Generated suppressed messages file Z:/Repos/GR8RAM/cpld/output_files/GR8RAM.map.smsg
-Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 14 warnings
-    Info: Peak virtual memory: 303 megabytes
-    Info: Processing ended: Mon Sep 02 20:55:48 2019
-    Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:08
+    Info (21063): Implemented 103 macrocells
+    Info (21073): Implemented 1 shareable expanders
+Info (144001): Generated suppressed messages file C:/Users/Zane/Documents/GitHub/GR8RAM/cpld/output_files/GR8RAM.map.smsg
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 16 warnings
+    Info: Peak virtual memory: 4587 megabytes
+    Info: Processing ended: Tue Sep 03 14:09:16 2019
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
 
 
 +------------------------------------------+
 ; Analysis & Synthesis Suppressed Messages ;
 +------------------------------------------+
-The suppressed messages can be found in Z:/Repos/GR8RAM/cpld/output_files/GR8RAM.map.smsg.
+The suppressed messages can be found in C:/Users/Zane/Documents/GitHub/GR8RAM/cpld/output_files/GR8RAM.map.smsg.
 
 

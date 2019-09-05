@@ -1,8 +1,7 @@
 module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 			  A, RA, nWE, D, RD, nINH,
 			  nDEVSEL, nIOSEL, nIOSTRB,
-			  nRAS, nCAS0, nCAS1, nRCS, nROE, nRWE,
-			  C7Mout, PHI1out);
+			  nRAS, nCAS0, nCAS1, nRCS, nROE, nRWE);
 
 	/* Clock, Reset, Mode */
 	input C7M, C7M_2, Q3, PHI0in, PHI1in; // Clock inputs
@@ -21,8 +20,6 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 	LCELL PHI1b7_MC (.in(PHI1b[6]), .out(PHI1b[7]));
 	LCELL PHI1b8_MC (.in(PHI1b[7]), .out(PHI1b[8]));
 	LCELL PHI1b9_MC (.in(PHI1b[8] & PHI1in), .out(PHI1));
-	output C7Mout = C7M_2;
-	output PHI1out = PHI1;
 
 	/* Address Bus, etc. */
 	input nDEVSEL, nIOSEL, nIOSTRB; // Card select signals
@@ -31,7 +28,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 	output [10:0] RA; // DRAM/ROM address
 	assign RA[10:8] = ASel ? Addr[21:19] : Addr[10:8];
 	assign RA[7:0] = (~nIOSTRB & FullIOEN) ? Bank+1 :
-		(~nIOSTRB & ~FullIOEN) ? {7'b0000001, Bank[0]} :
+		(~nIOSTRB & ~FullIOEN) ? {7'b0000001, Bank[0]} : 
 		(~ASel & nIOSEL & nIOSTRB) ? Addr[18:11] :
 		(ASel & nIOSEL & nIOSTRB) ? Addr[7:0] : 8'h00;
 
@@ -51,7 +48,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 	/* Inhibit output */
 	wire AROMSEL;
 	LCELL AROMSEL_MC (.in(/*(A[15:12]==4'hD | A[15:12]==4'hE | A[15:12]==4'hF) & nWE & ~MODE*/0), .out(AROMSEL));
-	output nINH = AROMSEL ? 1'b0 : 1'bZ;
+	output nINH = AROMSEL ? 1'b0 :  1'bZ;
 
 	/* DRAM and ROM Control Signals */
 	output nRCS = ~((~nIOSEL | (~nIOSTRB & IOROMEN)) & CSDBEN); // ROM chip select
@@ -64,6 +61,9 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
   	/* 6502-accessible Registers */
 	reg [7:0] Bank = 8'h00; // Bank register for ROM access
 	reg [22:0] Addr = 23'h00000; // RAM address register
+	
+	/* Increment Control */
+	reg IncAddrL = 0, IncAddrM = 0, IncAddrH = 0;
 
 	/* CAS rising/falling edge components */
 	// These are combined to create the CAS outputs.
@@ -79,7 +79,6 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 	reg [3:0] Ref = 4'h0; // Refresh skip counter
 
 	/* Select Signals */
-	reg RAMSELreg = 1'b0; // RAMSEL registered at end of S4
 	wire BankSELA = A[3:0]==4'hF;
 	wire SetSELA = A[3:0]==4'hE;
 	wire RAMSELA = A[3:0]==4'h3;
@@ -120,10 +119,6 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 			REGEN <= 1'b0;
 			IOROMEN <= 1'b0;
 			CSDBEN <= 1'b0;
-			Addr <= 23'h000000;
-			Bank <= 8'h00;
-			FullIOEN <= 1'b0;
-			RAMSELreg <= 1'b0;
 		end else begin
 			// Synchronize state counter to S1 when just entering PHI1
 			PHI1reg <= PHI1; // Save old PHI1
@@ -144,9 +139,6 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 			// Enable IOSTRB ROM when accessing CnXX in IOSEL ROM.
 			if (S==4 & ~nIOSEL) IOROMEN <= 1'b1;
 
-			// Register RAM "register" selected at end of S4.
-			if (S==4) RAMSELreg <= RAMSEL;
-
 			// Only drive Apple II data bus after state 4 to avoid bus fight.
 			// Thus we wait 1.5 7M cycles (210 ns) into PHI0 before driving.
 			// Same for driving the ROM/SRAM data bus (RD).
@@ -154,17 +146,43 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 			// This provides address setup time for write operations and 
 			// minimizes power consumption.
 			CSDBEN <= S==4 | S==5 | S==6 | S==7;
-
-			// Increment address register after RAM access.
-			if (S==2 & RAMSELreg) begin
-				Addr <= Addr+1;
-				RAMSELreg <= 1'b0;
+		end
+	end
+	
+	always @(negedge C7M, negedge nRES) begin
+		if (~nRES) begin
+			Addr <= 23'h000000;
+			Bank <= 8'h00;
+			FullIOEN <= 1'b0;
+			IncAddrL <= 1'b0;
+			IncAddrM <= 1'b0;
+			IncAddrH <= 1'b0;
+		end else begin
+			// Increment address register
+			if (S==1 & IncAddrL) begin
+				Addr[7:0] <= Addr[7:0]+1;
+				IncAddrL <= 0;
+				IncAddrM <= Addr[7:0] == 8'hFF;
+			end
+			if (S==2 & IncAddrM) begin
+				Addr[15:8] <= Addr[15:8]+1;
+				IncAddrM <= 0;
+				IncAddrH <= Addr[15:8] == 8'hFF;
+			end
+			if (S==3 & IncAddrH) begin
+				IncAddrH <= 0;
+				Addr[22:16] <= Addr[22:16]+1;
 			end
 			
 			// Set register during S6 if accessed.
 			if (S==6) begin
 				if (BankWR) Bank[7:0] <= D[7:0]; // Bank
 				if (SetWR) FullIOEN <= D[7:0] == 8'hE5;
+				
+				IncAddrL <= RAMSEL;
+				IncAddrM <= AddrLWR & Addr[7] & ~D[7];
+				IncAddrH <= AddrMWR & Addr[15] & ~D[7];
+				
 				if (AddrHWR) Addr[22:16] <= D[6:0]; // Addr hi
 				if (AddrMWR) Addr[15:8] <= D[7:0]; // Addr mid
 				if (AddrLWR) Addr[7:0] <= D[7:0]; // Addr lo
