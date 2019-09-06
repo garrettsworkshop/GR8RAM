@@ -1,6 +1,6 @@
 Fitter report for GR8RAM
-Tue Sep 03 14:09:17 2019
-Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+Thu Sep 05 21:45:07 2019
+Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
 ---------------------
@@ -9,27 +9,26 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   1. Legal Notice
   2. Fitter Summary
   3. Fitter Settings
-  4. Parallel Compilation
-  5. Pin-Out File
-  6. Fitter Resource Usage Summary
-  7. Input Pins
-  8. Output Pins
-  9. Bidir Pins
- 10. All Package Pins
- 11. I/O Standard
- 12. Dedicated Inputs I/O
- 13. Output Pin Default Load For Reported TCO
- 14. Fitter Resource Utilization by Entity
- 15. Control Signals
- 16. Global & Other Fast Signals
- 17. Non-Global High Fan-Out Signals
- 18. Other Routing Usage Summary
- 19. LAB External Interconnect
- 20. LAB Macrocells
- 21. Shareable Expander
- 22. Logic Cell Interconnection
- 23. Fitter Device Options
- 24. Fitter Messages
+  4. Pin-Out File
+  5. Fitter Resource Usage Summary
+  6. Input Pins
+  7. Output Pins
+  8. Bidir Pins
+  9. All Package Pins
+ 10. I/O Standard
+ 11. Dedicated Inputs I/O
+ 12. Output Pin Default Load For Reported TCO
+ 13. Fitter Resource Utilization by Entity
+ 14. Control Signals
+ 15. Global & Other Fast Signals
+ 16. Non-Global High Fan-Out Signals
+ 17. Other Routing Usage Summary
+ 18. LAB External Interconnect
+ 19. LAB Macrocells
+ 20. Shareable Expander
+ 21. Logic Cell Interconnection
+ 22. Fitter Device Options
+ 23. Fitter Messages
 
 
 
@@ -55,8 +54,8 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------+
 ; Fitter Summary                                                              ;
 +---------------------------+-------------------------------------------------+
-; Fitter Status             ; Successful - Tue Sep 03 14:09:17 2019           ;
-; Quartus II 64-Bit Version ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Fitter Status             ; Successful - Thu Sep 05 21:45:07 2019           ;
+; Quartus II 32-bit Version ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name             ; GR8RAM                                          ;
 ; Top-level Entity Name     ; GR8RAM                                          ;
 ; Family                    ; MAX7000S                                        ;
@@ -87,21 +86,10 @@ applicable agreement for further details.
 +----------------------------------------------------------------------------+-----------------------+---------------+
 
 
-Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
-+-------------------------------------+
-; Parallel Compilation                ;
-+----------------------------+--------+
-; Processors                 ; Number ;
-+----------------------------+--------+
-; Number detected on machine ; 8      ;
-; Maximum allowed            ; 1      ;
-+----------------------------+--------+
-
-
 +--------------+
 ; Pin-Out File ;
 +--------------+
-The pin-out file can be found in C:/Users/Zane/Documents/GitHub/GR8RAM/cpld/output_files/GR8RAM.pin.
+The pin-out file can be found in Z:/Repos/GR8RAM/cpld/output_files/GR8RAM.pin.
 
 
 +---------------------------------------------------+
@@ -119,7 +107,7 @@ The pin-out file can be found in C:/Users/Zane/Documents/GitHub/GR8RAM/cpld/outp
 ; Global signals               ; 2                  ;
 ; Shareable expanders          ; 1 / 128 ( < 1 % )  ;
 ; Parallel expanders           ; 0 / 120 ( 0 % )    ;
-; Cells using turbo bit        ; 59 / 128 ( 46 % )  ;
+; Cells using turbo bit        ; 43 / 128 ( 34 % )  ;
 ; Maximum fan-out              ; 52                 ;
 ; Highest non-global fan-out   ; 51                 ;
 ; Total fan-out                ; 830                ;
@@ -724,10 +712,10 @@ Note: User assignments will override these defaults. The user specified values a
 +-----------------+
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (119006): Selected device EPM7128SLC84-15 for design "GR8RAM"
-Info: Quartus II 64-Bit Fitter was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 4708 megabytes
-    Info: Processing ended: Tue Sep 03 14:09:17 2019
-    Info: Elapsed time: 00:00:00
-    Info: Total CPU time (on all processors): 00:00:01
+Info: Quartus II 32-bit Fitter was successful. 0 errors, 1 warning
+    Info: Peak virtual memory: 287 megabytes
+    Info: Processing ended: Thu Sep 05 21:45:07 2019
+    Info: Elapsed time: 00:00:06
+    Info: Total CPU time (on all processors): 00:00:06
 
 
