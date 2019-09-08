@@ -1,11 +1,11 @@
-module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
-			  A, RA, nWE, D, RD, nINH,
-			  nDEVSEL, nIOSEL, nIOSTRB,
+module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
+			  A, RA, nWE, D, RD,
+			  nDEVSEL, nIOSEL, nIOSTRB, nINH,
 			  nRAS, nCAS0, nCAS1, nRCS, nROE, nRWE);
 
 	/* Clock, Reset, Mode */
 	input C7M, C7M_2, Q3, PHI0in, PHI1in; // Clock inputs
-	input nRES, MODE; // Reset, mode
+	input nRES, nMode; // Reset, mode
 
 	/* PHI1 Delay */
 	wire [8:0] PHI1b;
@@ -32,6 +32,20 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 		(~ASel & nIOSEL & nIOSTRB) ? Addr[18:11] :
 		(ASel & nIOSEL & nIOSTRB) ? Addr[7:0] : 8'h00;
 
+	/* Select Signals */
+	wire BankSELA = A[3:0]==4'hF;
+	wire SetSELA = A[3:0]==4'hE;
+	wire RAMSELA = A[3:0]==4'h3;
+	wire AddrHSELA = A[3:0]==4'h2;
+	wire AddrMSELA = A[3:0]==4'h1;
+	wire AddrLSELA = A[3:0]==4'h0;
+	LCELL BankWR_MC (.in(BankSELA & ~nWE & ~nDEVSEL & REGEN), .out(BankWR)); wire BankWR;
+	wire SetWR = SetSELA & ~nWE & ~nDEVSEL & REGEN;
+	LCELL RAMSEL_MC (.in(RAMSELA & ~nDEVSEL & REGEN), .out(RAMSEL)); wire RAMSEL;
+	LCELL AddrHWR_MC (.in(AddrHSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrHWR)); wire AddrHWR;
+	LCELL AddrMWR_MC (.in(AddrMSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrMWR)); wire AddrMWR;
+	LCELL AddrLWR_MC (.in(AddrLSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrLWR)); wire AddrLWR;
+
 	/* Data Bus Routing */
 	// DRAM/ROM data bus
 	wire RDOE = CSDBEN & ~nWE;
@@ -40,7 +54,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 	wire DOE = CSDBEN & nWE & 
 		((~nDEVSEL & REGEN) | ~nIOSEL | (~nIOSTRB & IOROMEN));
 	wire [7:0] Dout = (nDEVSEL | RAMSELA) ? RD[7:0] :
-        AddrHSELA ? {1'b1, Addr[22:16]} : 
+        AddrHSELA ? {nMode, Addr[22:16]} : 
         AddrMSELA ? Addr[15:8] : 
         AddrLSELA ? Addr[7:0] : 8'h00;
 	inout [7:0] D = DOE ? Dout : 8'bZ;
@@ -77,20 +91,6 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, MODE,
 	reg PHI0seen = 1'b0; // Have we seen PHI0 since reset?
 	reg [2:0] S = 3'h0; // State counter
 	reg [3:0] Ref = 4'h0; // Refresh skip counter
-
-	/* Select Signals */
-	wire BankSELA = A[3:0]==4'hF;
-	wire SetSELA = A[3:0]==4'hE;
-	wire RAMSELA = A[3:0]==4'h3;
-	wire AddrHSELA = A[3:0]==4'h2;
-	wire AddrMSELA = A[3:0]==4'h1;
-	wire AddrLSELA = A[3:0]==4'h0;
-	LCELL BankWR_MC (.in(BankSELA & ~nWE & ~nDEVSEL & REGEN), .out(BankWR)); wire BankWR;
-	wire SetWR = SetSELA & ~nWE & ~nDEVSEL & REGEN;
-	LCELL RAMSEL_MC (.in(RAMSELA & ~nDEVSEL & REGEN), .out(RAMSEL)); wire RAMSEL;
-	LCELL AddrHWR_MC (.in(AddrHSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrHWR)); wire AddrHWR;
-	LCELL AddrMWR_MC (.in(AddrMSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrMWR)); wire AddrMWR;
-	LCELL AddrLWR_MC (.in(AddrLSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrLWR)); wire AddrLWR;
 
 	/* Misc. */
 	reg REGEN = 0; // Register enable

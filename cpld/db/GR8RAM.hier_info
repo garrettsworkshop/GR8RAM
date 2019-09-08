@@ -21,7 +21,7 @@ PHI0in => ~NO_FANOUT~
 PHI1in => comb.IN0
 PHI1in => PHI1b0_MC.DATAIN
 nRES => always0.IN0
-MODE => ~NO_FANOUT~
+nMode => comb.DATAB
 A[0] => Equal0.IN7
 A[0] => Equal1.IN7
 A[0] => Equal2.IN7
@@ -75,11 +75,11 @@ RA[9] <= RA.DB_MAX_OUTPUT_PORT_TYPE
 RA[10] <= RA.DB_MAX_OUTPUT_PORT_TYPE
 nWE => comb.IN0
 nWE => comb.IN0
+nWE => comb.IN0
+nWE => comb.IN0
+nWE => comb.IN0
+nWE => comb.IN0
 nWE => comb.IN1
-nWE => comb.IN0
-nWE => comb.IN0
-nWE => comb.IN0
-nWE => comb.IN0
 nWE => CASf.IN1
 D[0] <> D[0]
 D[1] <> D[1]
@@ -97,7 +97,6 @@ RD[4] <> RD[4]
 RD[5] <> RD[5]
 RD[6] <> RD[6]
 RD[7] <> RD[7]
-nINH <= nINH.DB_MAX_OUTPUT_PORT_TYPE
 nDEVSEL => comb.IN0
 nDEVSEL => comb.IN0
 nDEVSEL => comb.IN0
@@ -114,6 +113,7 @@ nIOSTRB => RA.IN0
 nIOSTRB => RA.IN1
 nIOSTRB => RA.IN1
 nIOSTRB => comb.IN1
+nINH <= nINH.DB_MAX_OUTPUT_PORT_TYPE
 nRAS <= comb.DB_MAX_OUTPUT_PORT_TYPE
 nCAS0 <= comb.DB_MAX_OUTPUT_PORT_TYPE
 nCAS1 <= comb.DB_MAX_OUTPUT_PORT_TYPE

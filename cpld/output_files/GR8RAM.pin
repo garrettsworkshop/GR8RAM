@@ -97,14 +97,14 @@ D[3]                         : 33        : bidir  : TTL               :         
 D[2]                         : 34        : bidir  : TTL               :         :           : Y              
 D[1]                         : 35        : bidir  : TTL               :         :           : Y              
 D[0]                         : 36        : bidir  : TTL               :         :           : Y              
-RESERVED                     : 37        :        :                   :         :           :                
+nMode                        : 37        : input  : TTL               :         :           : N              
 VCCIO                        : 38        : power  :                   : 5.0V    :           :                
 nCAS0                        : 39        : output : TTL               :         :           : Y              
 nCAS1                        : 40        : output : TTL               :         :           : Y              
 nRCS                         : 41        : output : TTL               :         :           : Y              
 GND                          : 42        : gnd    :                   :         :           :                
 VCCINT                       : 43        : power  :                   : 5.0V    :           :                
-MODE                         : 44        : input  : TTL               :         :           : Y              
+RESERVED                     : 44        :        :                   :         :           :                
 nROE                         : 45        : output : TTL               :         :           : Y              
 RA[9]                        : 46        : output : TTL               :         :           : Y              
 GND                          : 47        : gnd    :                   :         :           :                

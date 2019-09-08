@@ -161,3 +161,4 @@ set_instance_assignment -name MAX7000_INDIVIDUAL_TURBO_BIT ON -to PHI0seen
 set_instance_assignment -name MAX7000_INDIVIDUAL_TURBO_BIT ON -to PHI1reg
 set_instance_assignment -name MAX7000_INDIVIDUAL_TURBO_BIT ON -to S
 set_instance_assignment -name MAX7000_INDIVIDUAL_TURBO_BIT ON -to PHI1b0_MC
+set_instance_assignment -name MAX7000_INDIVIDUAL_TURBO_BIT ON -to IOROMEN
