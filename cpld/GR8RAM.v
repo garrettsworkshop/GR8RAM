@@ -54,7 +54,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	wire DOE = CSDBEN & nWE & 
 		((~nDEVSEL & REGEN) | ~nIOSEL | (~nIOSTRB & IOROMEN));
 	wire [7:0] Dout = (nDEVSEL | RAMSELA) ? RD[7:0] :
-        AddrHSELA ? {nMode, Addr[22:16]} : 
+        AddrHSELA ? {Addr[23:16]} : 
         AddrMSELA ? Addr[15:8] : 
         AddrLSELA ? Addr[7:0] : 8'h00;
 	inout [7:0] D = DOE ? Dout : 8'bZ;
@@ -69,19 +69,20 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	output nROE = ~nWE; // need this for flash ROM
 	output nRWE = nWE | (nDEVSEL & nIOSEL & nIOSTRB); // for ROM & DRAM
 	output nRAS = ~(RASr | RASf);
-	output nCAS0 = ~(CASr | (CASf & RAMSEL & ~Addr[22])); // DRAM CAS bank 0
-	output nCAS1 = ~(CASr | (CASf & RAMSEL & Addr[22])); // DRAM CAS bank 1
+	output nCAS0 = ~(CAS0r | (CASf & RAMSEL & ~Addr[22])); // DRAM CAS bank 0
+	output nCAS1 = ~(CAS1r | (CASf & RAMSEL & Addr[22])); // DRAM CAS bank 1
 
   	/* 6502-accessible Registers */
 	reg [7:0] Bank = 8'h00; // Bank register for ROM access
-	reg [22:0] Addr = 23'h00000; // RAM address register
+	reg [23:0] Addr = 24'h00000; // RAM address register
 	
 	/* Increment Control */
 	reg IncAddrL = 0, IncAddrM = 0, IncAddrH = 0;
 
 	/* CAS rising/falling edge components */
 	// These are combined to create the CAS outputs.
-	reg CASr = 1'b0;
+	reg CAS0r = 1'b0;
+	reg CAS1r = 1'b0;
 	reg CASf = 1'b0;
 	reg RASr = 1'b0;
 	reg RASf = 1'b0;
@@ -119,6 +120,12 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 			REGEN <= 1'b0;
 			IOROMEN <= 1'b0;
 			CSDBEN <= 1'b0;
+			Addr <= 24'hF00000;
+			Bank <= 8'h00;
+			FullIOEN <= 1'b0;
+			IncAddrL <= 1'b0;
+			IncAddrM <= 1'b0;
+			IncAddrH <= 1'b0;
 		end else begin
 			// Synchronize state counter to S1 when just entering PHI1
 			PHI1reg <= PHI1; // Save old PHI1
@@ -146,18 +153,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 			// This provides address setup time for write operations and 
 			// minimizes power consumption.
 			CSDBEN <= S==4 | S==5 | S==6 | S==7;
-		end
-	end
-	
-	always @(negedge C7M, negedge nRES) begin
-		if (~nRES) begin
-			Addr <= 23'h000000;
-			Bank <= 8'h00;
-			FullIOEN <= 1'b0;
-			IncAddrL <= 1'b0;
-			IncAddrM <= 1'b0;
-			IncAddrH <= 1'b0;
-		end else begin
+			
 			// Increment address register
 			if (S==1 & IncAddrL) begin
 				Addr[7:0] <= Addr[7:0]+1;
@@ -171,11 +167,11 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 			end
 			if (S==3 & IncAddrH) begin
 				IncAddrH <= 0;
-				Addr[22:16] <= Addr[22:16]+1;
+				Addr[23:16] <= Addr[23:16]+1;
 			end
 			
-			// Set register during S6 if accessed.
-			if (S==6) begin
+			// Set register at end of S5 if accessed.
+			if (S==5) begin
 				if (BankWR) Bank[7:0] <= D[7:0]; // Bank
 				if (SetWR) FullIOEN <= D[7:0] == 8'hE5;
 				
@@ -183,7 +179,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 				IncAddrM <= AddrLWR & Addr[7] & ~D[7];
 				IncAddrH <= AddrMWR & Addr[15] & ~D[7];
 				
-				if (AddrHWR) Addr[22:16] <= D[6:0]; // Addr hi
+				if (AddrHWR) Addr[23:16] <= D[7:0]; // Addr hi
 				if (AddrMWR) Addr[15:8] <= D[7:0]; // Addr mid
 				if (AddrLWR) Addr[7:0] <= D[7:0]; // Addr lo
 			end
@@ -192,7 +188,11 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 
 	/* DRAM RAS/CAS */
 	always @(posedge C7M, negedge nRES) begin
-		if (~nRES) begin RASr <= 1'b0; CASr <= 1'b0; ASel <= 1'b0;
+		if (~nRES) begin
+			RASr <= 1'b0;
+			ASel <= 1'b0;
+			CAS0r <= 1'b0;
+			CAS1r <= 1'b0;
 		end else begin
 			// RAS already asserted in middle of S4,
 			// so hold RAS through S5
@@ -203,7 +203,11 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 
 			// Refresh at end of S1 (i.e. through S2) 
 			// CAS whenever RAM seleced
-			CASr <= (S==1 & Ref==0) | (S==5 & RAMSEL);
+			CAS0r <= (S==1 & Ref==0) | (S==5 & RAMSEL & ~Addr[22]);
+
+			// Refresh at end of S1 (i.e. through S2) 
+			// CAS whenever RAM seleced
+			CAS1r <= (S==1 & Ref==0) | (S==5 & RAMSEL & Addr[22]);
 		end
 	end
 	always @(negedge C7M_2, negedge nRES) begin

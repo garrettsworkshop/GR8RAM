@@ -85,7 +85,6 @@ set_location_assignment PIN_36 -to D[0]
 set_location_assignment PIN_39 -to nCAS0
 set_location_assignment PIN_40 -to nCAS1
 set_location_assignment PIN_41 -to nRCS
-set_location_assignment PIN_44 -to MODE
 set_location_assignment PIN_45 -to nROE
 set_location_assignment PIN_46 -to RA[9]
 set_location_assignment PIN_48 -to RA[10]
@@ -162,3 +161,4 @@ set_instance_assignment -name MAX7000_INDIVIDUAL_TURBO_BIT ON -to PHI1reg
 set_instance_assignment -name MAX7000_INDIVIDUAL_TURBO_BIT ON -to S
 set_instance_assignment -name MAX7000_INDIVIDUAL_TURBO_BIT ON -to PHI1b0_MC
 set_instance_assignment -name MAX7000_INDIVIDUAL_TURBO_BIT ON -to IOROMEN
+set_location_assignment PIN_44 -to nMode
