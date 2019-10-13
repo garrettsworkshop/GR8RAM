@@ -6,8 +6,8 @@ $Descr USLetter 11000 8500
 encoding utf-8
 Sheet 2 2
 Title "GR8RAM"
-Date "2019-07-23"
-Rev "0.1"
+Date "2019-10-13"
+Rev "0.9"
 Comp "Garrett's Workshop"
 Comment1 ""
 Comment2 ""
@@ -273,12 +273,6 @@ Wire Wire Line
 Text Notes 800  2000 2    50   ~ 0
 D (wr)
 Wire Wire Line
-	4800 1900 4750 1950
-Wire Wire Line
-	4800 2000 4750 1950
-Wire Wire Line
-	4750 1950 1650 1950
-Wire Wire Line
 	4800 1900 6400 1900
 Wire Wire Line
 	4800 2000 6400 2000
@@ -286,10 +280,6 @@ Wire Wire Line
 	9600 1900 9550 1950
 Wire Wire Line
 	9600 2000 9550 1950
-Wire Wire Line
-	1600 1900 1650 1950
-Wire Wire Line
-	1600 2000 1650 1950
 Wire Wire Line
 	9600 1900 10400 1900
 Wire Wire Line
@@ -471,27 +461,15 @@ Wire Wire Line
 Wire Wire Line
 	1350 1450 1300 1550
 Wire Wire Line
-	4650 2600 5250 2600
-Wire Wire Line
-	9450 2600 10050 2600
-Wire Wire Line
-	4650 2750 4950 2750
-Wire Wire Line
-	9450 2750 9750 2750
-Wire Wire Line
 	2500 2350 2550 2450
 Wire Wire Line
 	2550 2450 3100 2450
-Wire Wire Line
-	4050 2900 4900 2900
 Wire Wire Line
 	10000 2900 10050 2800
 Wire Wire Line
 	8850 2900 8800 2800
 Wire Wire Line
 	5200 2900 5250 2800
-Wire Wire Line
-	4050 2900 4000 2800
 Wire Wire Line
 	3400 2900 3450 2800
 Wire Wire Line
@@ -510,12 +488,8 @@ Wire Wire Line
 	1000 2900 1050 2800
 Text Notes 800  2900 2    50   ~ 0
 ~RAS~
-Wire Wire Line
-	900  2500 2250 2500
 Text Notes 7100 3800 0    50   ~ 0
 RA[10:8] = (RAMSEL & (S4 | S5)) ? Addr[10:8] : Addr[21:19] @ C7M\nRA[7:1] = RAMSEL ? (S4 ? Addr[7:1] : Addr[18:12]) : Bank[6:0] @ C7M\nRA[0] = RAMSEL ? (S4 ? Addr[0] : Addr[11]) : A[11] @ C7M
-Wire Wire Line
-	8850 2900 9700 2900
 Text Notes 3700 4850 0    50   ~ 0
 DBEN = ~S2~ & ~S3~ @ C7M\nRCS = IOSEL  | (IOSTRB & IOROMEN)\nROE = R~W~\nRWE = ~R~W & (DEVSEL | IOSEL | IOSTRB)\n\nCASr = (S1 & Ref[3:0]==0) | (S5 & RAMSEL) @ C7M\nCASf = ((S5 & R~W~) | S6 | S7) & RAMSEL @ ~C7M~\n\nRASf = (S4 & RAMSEL) | (S5 & RAMSEL & ~R~W) | (S2 & Ref[3:0]==0) @ ~C7M~\nCAS0 = CASr | (CASf & DEVSEL & ~Addr[22]~)\nCAS1 = CASr | (CASf & DEVSEL & Addr[22])
 Text Notes 7100 5200 0    50   ~ 0
@@ -531,12 +505,6 @@ Wire Wire Line
 Wire Wire Line
 	9700 2900 9750 2800
 Wire Wire Line
-	900  2350 2500 2350
-Wire Wire Line
-	900  2650 1350 2650
-Wire Wire Line
-	900  2800 1050 2800
-Wire Wire Line
 	900  1550 1300 1550
 Wire Wire Line
 	3400 1450 3450 1550
@@ -545,148 +513,9 @@ Wire Wire Line
 Wire Wire Line
 	6350 1550 6400 1450
 Wire Wire Line
-	3450 1550 6100 1550
-Wire Wire Line
-	6100 1550 6350 1550
-Wire Wire Line
 	6150 1450 7300 1450
-Connection ~ 1050 2800
-Wire Wire Line
-	1050 2800 2800 2800
-Connection ~ 1350 2650
-Wire Wire Line
-	1350 2650 2500 2650
-Connection ~ 1650 1950
-Connection ~ 1650 2100
-Connection ~ 2250 2500
-Wire Wire Line
-	2250 2500 4600 2500
-Connection ~ 2500 2350
-Wire Wire Line
-	2500 2350 3150 2350
-Connection ~ 2500 2650
-Wire Wire Line
-	2500 2650 3150 2650
-Connection ~ 2800 2800
-Wire Wire Line
-	2800 2800 3450 2800
-Connection ~ 3150 2350
-Wire Wire Line
-	3150 2350 4900 2350
-Connection ~ 3150 2650
-Wire Wire Line
-	3150 2650 4600 2650
-Connection ~ 3450 2800
-Wire Wire Line
-	3450 2800 4000 2800
-Connection ~ 4000 2800
-Wire Wire Line
-	4000 2800 4950 2800
-Connection ~ 4600 2500
-Wire Wire Line
-	4600 2500 5200 2500
-Connection ~ 4600 2650
-Wire Wire Line
-	4600 2650 4900 2650
-Connection ~ 4750 1950
-Connection ~ 4900 2350
-Wire Wire Line
-	4900 2350 5550 2350
-Connection ~ 4900 2650
-Wire Wire Line
-	4900 2650 6150 2650
-Connection ~ 4900 2900
-Wire Wire Line
-	4900 2900 5200 2900
-Connection ~ 4950 2750
-Wire Wire Line
-	4950 2750 6100 2750
-Connection ~ 4950 2800
-Wire Wire Line
-	4950 2800 5250 2800
-Connection ~ 5000 2100
-Connection ~ 5200 2500
-Wire Wire Line
-	5200 2500 6450 2500
-Connection ~ 5250 2600
-Wire Wire Line
-	5250 2600 6400 2600
-Connection ~ 5250 2800
-Wire Wire Line
-	5250 2800 7600 2800
-Connection ~ 5550 2350
-Wire Wire Line
-	5550 2350 7300 2350
-Connection ~ 6100 1550
 Wire Bus Line
 	6100 1550 6100 2250
-Connection ~ 6150 2650
-Wire Wire Line
-	6150 2650 7300 2650
-Connection ~ 6450 1950
-Connection ~ 6450 2100
-Connection ~ 6450 2500
-Wire Wire Line
-	6450 2500 9400 2500
-Connection ~ 7300 2350
-Wire Wire Line
-	7300 2350 7950 2350
-Connection ~ 7300 2650
-Wire Wire Line
-	7300 2650 7950 2650
-Connection ~ 7600 2800
-Wire Wire Line
-	7600 2800 8250 2800
-Connection ~ 7950 2350
-Wire Wire Line
-	7950 2350 9700 2350
-Connection ~ 7950 2650
-Wire Wire Line
-	7950 2650 9400 2650
-Connection ~ 8250 2800
-Wire Wire Line
-	8250 2800 8800 2800
-Connection ~ 8800 2800
-Wire Wire Line
-	8800 2800 9750 2800
-Connection ~ 9400 2500
-Wire Wire Line
-	9400 2500 10000 2500
-Connection ~ 9400 2650
-Wire Wire Line
-	9400 2650 9700 2650
-Connection ~ 9550 1950
-Connection ~ 9700 2350
-Wire Wire Line
-	9700 2350 10350 2350
-Connection ~ 9700 2650
-Wire Wire Line
-	9700 2650 10350 2650
-Connection ~ 9700 2900
-Wire Wire Line
-	9700 2900 10000 2900
-Connection ~ 9750 2750
-Wire Wire Line
-	9750 2750 10300 2750
-Connection ~ 9750 2800
-Wire Wire Line
-	9750 2800 10050 2800
-Connection ~ 9800 2100
-Connection ~ 10000 2500
-Wire Wire Line
-	10000 2500 10400 2500
-Connection ~ 10050 2600
-Wire Wire Line
-	10050 2600 10400 2600
-Connection ~ 10050 2800
-Wire Wire Line
-	10050 2800 10400 2800
-Connection ~ 10350 2350
-Wire Wire Line
-	10350 2350 10400 2350
-Connection ~ 10350 2650
-Wire Wire Line
-	10350 2650 10400 2650
 Wire Wire Line
 	1350 1450 3400 1450
 Wire Bus Line
@@ -734,11 +563,7 @@ Wire Wire Line
 Wire Wire Line
 	6600 1600 6650 1700
 Wire Wire Line
-	3450 1600 6150 1600
-Wire Wire Line
 	6150 1600 6200 1700
-Wire Wire Line
-	6200 1700 6650 1700
 Wire Wire Line
 	3400 1700 1350 1700
 Wire Wire Line
@@ -746,15 +571,9 @@ Wire Wire Line
 Wire Wire Line
 	900  1600 1300 1600
 Wire Wire Line
-	6650 1700 8200 1700
-Connection ~ 6650 1700
-Wire Wire Line
 	8200 1700 8250 1600
 Wire Wire Line
 	8250 1600 10300 1600
-Connection ~ 6150 1600
-Wire Wire Line
-	6150 1600 6600 1600
 Wire Wire Line
 	10400 1650 10450 1650
 Wire Wire Line
@@ -765,4 +584,58 @@ Wire Wire Line
 	4600 1000 4600 1100
 Text Notes 6300 1100 0    40   ~ 0
 S7
+Text Notes 1200 6100 0    200  ~ 0
+Information here may be out of date,\nsuperseded by ./cpld/GR8RAM.v
+Wire Wire Line
+	1600 2000 1650 1950
+Wire Wire Line
+	1600 1900 1650 1950
+Wire Wire Line
+	4750 1950 1650 1950
+Wire Wire Line
+	4800 2000 4750 1950
+Wire Wire Line
+	4800 1900 4750 1950
+Wire Wire Line
+	3450 1550 6350 1550
+Wire Wire Line
+	3450 1600 6600 1600
+Wire Wire Line
+	6200 1700 8200 1700
+Wire Wire Line
+	9450 2600 10400 2600
+Wire Wire Line
+	4650 2600 6400 2600
+Wire Wire Line
+	900  2500 10400 2500
+Wire Wire Line
+	4050 2900 4000 2800
+Wire Wire Line
+	1350 2650 2500 2650
+Wire Wire Line
+	4000 2800 3450 2800
+Wire Wire Line
+	2800 2800 1050 2800
+Wire Wire Line
+	4650 2750 6100 2750
+Wire Wire Line
+	4050 2900 5200 2900
+Wire Wire Line
+	4950 2800 7600 2800
+Wire Wire Line
+	3150 2650 7300 2650
+Wire Wire Line
+	9450 2750 10300 2750
+Wire Wire Line
+	8850 2900 10000 2900
+Wire Wire Line
+	7950 2650 10400 2650
+Wire Wire Line
+	8250 2800 10400 2800
+Wire Wire Line
+	900  2350 2500 2350
+Wire Wire Line
+	7950 2350 10400 2350
+Wire Wire Line
+	3150 2350 7300 2350
 $EndSCHEMATC

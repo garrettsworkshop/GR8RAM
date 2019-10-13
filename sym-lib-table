@@ -1,3 +1,6 @@
 (sym_lib_table
   (lib (name stdparts)(type Legacy)(uri "$(KIPRJMOD)/../stdparts/stdparts.lib")(options "")(descr ""))
+  (lib (name GR8RAM-rescue)(type Legacy)(uri ${KIPRJMOD}/GR8RAM-rescue.lib)(options "")(descr ""))
+  (lib (name GW_RAM)(type Legacy)(uri ${KIPRJMOD}/../stdparts/GW_RAM.lib)(options "")(descr ""))
+  (lib (name GW_PLD)(type Legacy)(uri ${KIPRJMOD}/../stdparts/GW_PLD.lib)(options "")(descr ""))
 )
