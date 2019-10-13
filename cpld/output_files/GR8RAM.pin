@@ -56,7 +56,7 @@
  -- Pin directions (input, output or bidir) are based on device operating in user mode.
  ---------------------------------------------------------------------------------
 
-Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 CHIP  "GR8RAM"  ASSIGNED TO AN: EPM7128SLC84-15
 
 Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment
@@ -97,14 +97,14 @@ D[3]                         : 33        : bidir  : TTL               :         
 D[2]                         : 34        : bidir  : TTL               :         :           : Y              
 D[1]                         : 35        : bidir  : TTL               :         :           : Y              
 D[0]                         : 36        : bidir  : TTL               :         :           : Y              
-nMode                        : 37        : input  : TTL               :         :           : N              
+RESERVED                     : 37        :        :                   :         :           :                
 VCCIO                        : 38        : power  :                   : 5.0V    :           :                
 nCAS0                        : 39        : output : TTL               :         :           : Y              
 nCAS1                        : 40        : output : TTL               :         :           : Y              
 nRCS                         : 41        : output : TTL               :         :           : Y              
 GND                          : 42        : gnd    :                   :         :           :                
 VCCINT                       : 43        : power  :                   : 5.0V    :           :                
-RESERVED                     : 44        :        :                   :         :           :                
+nMode                        : 44        : input  : TTL               :         :           : Y              
 nROE                         : 45        : output : TTL               :         :           : Y              
 RA[9]                        : 46        : output : TTL               :         :           : Y              
 GND                          : 47        : gnd    :                   :         :           :                
