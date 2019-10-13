@@ -272,7 +272,7 @@ P 6200 3600
 F 0 "U2" H 6200 4650 50  0000 C CNN
 F 1 "512Kx8 Flash" V 6200 3600 50  0000 C CNN
 F 2 "stdpads:PLCC-32_SMDSocket" H 6200 3600 50  0001 C CNN
-F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/25022B.pdf" H 6200 3600 50  0001 C CNN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/20005022C.pdf" H 6200 3600 50  0001 C CNN
 	1    6200 3600
 	1    0    0    -1  
 $EndComp
@@ -930,7 +930,7 @@ P 9600 3850
 F 0 "U6" H 9600 4500 50  0000 C CNN
 F 1 "4Mx4 DRAM" V 9600 3850 50  0000 C CNN
 F 2 "stdpads:SOP-24-26-300mil" H 9600 2950 50  0001 C CNN
-F 3 "https://www.alliancememory.com/wp-content/uploads/pdf/AS6C8008.pdf" H 9600 3400 50  0001 C CNN
+F 3 "https://shop.micross.com/pdf/AS4C4M4.pdf" H 9600 3400 50  0001 C CNN
 	1    9600 3850
 	1    0    0    -1  
 $EndComp
@@ -941,7 +941,7 @@ P 9600 2300
 F 0 "U5" H 9600 2950 50  0000 C CNN
 F 1 "4Mx4 DRAM" V 9600 2300 50  0000 C CNN
 F 2 "stdpads:SOP-24-26-300mil" H 9600 1400 50  0001 C CNN
-F 3 "https://www.alliancememory.com/wp-content/uploads/pdf/AS6C8008.pdf" H 9600 1850 50  0001 C CNN
+F 3 "https://shop.micross.com/pdf/AS4C4M4.pdf" H 9600 1850 50  0001 C CNN
 	1    9600 2300
 	1    0    0    -1  
 $EndComp
@@ -952,7 +952,7 @@ P 8000 3850
 F 0 "U4" H 8000 4500 50  0000 C CNN
 F 1 "4Mx4 DRAM" V 8000 3850 50  0000 C CNN
 F 2 "stdpads:SOP-24-26-300mil" H 8000 2950 50  0001 C CNN
-F 3 "https://www.alliancememory.com/wp-content/uploads/pdf/AS6C8008.pdf" H 8000 3400 50  0001 C CNN
+F 3 "https://shop.micross.com/pdf/AS4C4M4.pdf" H 8000 3400 50  0001 C CNN
 	1    8000 3850
 	1    0    0    -1  
 $EndComp
@@ -963,7 +963,7 @@ P 8000 2300
 F 0 "U3" H 8000 2950 50  0000 C CNN
 F 1 "4Mx4 DRAM" V 8000 2300 50  0000 C CNN
 F 2 "stdpads:SOP-24-26-300mil" H 8000 1400 50  0001 C CNN
-F 3 "https://www.alliancememory.com/wp-content/uploads/pdf/AS6C8008.pdf" H 8000 1850 50  0001 C CNN
+F 3 "https://shop.micross.com/pdf/AS4C4M4.pdf" H 8000 1850 50  0001 C CNN
 	1    8000 2300
 	1    0    0    -1  
 $EndComp
@@ -1368,7 +1368,7 @@ P 3450 3450
 F 0 "U1" H 3450 3500 50  0000 C CNN
 F 1 "EPM7128SL84" H 3450 3400 50  0000 C CNN
 F 2 "stdpads:PLCC-84_SMDSocket" H 3300 3650 50  0001 C CNN
-F 3 "" H 3300 3650 50  0001 C CNN
+F 3 "https://www.intel.com/content/dam/www/programmable/us/en/pdfs/literature/ds/archives/m7000.pdf" H 3300 3650 50  0001 C CNN
 	1    3450 3450
 	1    0    0    -1  
 $EndComp
