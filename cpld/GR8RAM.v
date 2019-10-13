@@ -73,24 +73,24 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	output nCAS1 = ~(CASr | (CASf & RAMSEL & Addr[22])); // DRAM CAS bank 1
 
   	/* 6502-accessible Registers */
-	reg [7:0] Bank = 8'h00; // Bank register for ROM access
-	reg [22:0] Addr = 23'h00000; // RAM address register
+	reg [7:0] Bank = 0; // Bank register for ROM access
+	reg [22:0] Addr = 0; // RAM address register
 	
 	/* Increment Control */
 	reg IncAddrL = 0, IncAddrM = 0, IncAddrH = 0;
 
 	/* CAS rising/falling edge components */
 	// These are combined to create the CAS outputs.
-	reg CASr = 1'b0;
-	reg CASf = 1'b0;
-	reg RASr = 1'b0;
-	reg RASf = 1'b0;
+	reg CASr = 0;
+	reg CASf = 0;
+	reg RASr = 0;
+	reg RASf = 0;
 
 	/* State Counters */
-	reg PHI1reg = 1'b0; // Saved PHI1 at last rising clock edge
-	reg PHI0seen = 1'b0; // Have we seen PHI0 since reset?
-	reg [2:0] S = 3'h0; // State counter
-	reg [3:0] Ref = 4'h0; // Refresh skip counter
+	reg PHI1reg = 0; // Saved PHI1 at last rising clock edge
+	reg PHI0seen = 0; // Have we seen PHI0 since reset?
+	reg [2:0] S = 0; // State counter
+	reg [3:0] Ref = 0; // Refresh skip counter
 
 	/* Misc. */
 	reg REGEN = 0; // Register enable
@@ -112,13 +112,13 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 
 	always @(posedge C7M, negedge nRES) begin
 		if (~nRES) begin // Reset
-			PHI1reg <= 1'b0;
-			PHI0seen <= 1'b0;
-			S <= 3'h0;
-			Ref <= 3'b000;
-			REGEN <= 1'b0;
-			IOROMEN <= 1'b0;
-			CSDBEN <= 1'b0;
+			PHI1reg <= 0;
+			PHI0seen <= 0;
+			S <= 0;
+			Ref <= 0;
+			REGEN <= 0;
+			IOROMEN <= 0;
+			CSDBEN <= 0;
 		end else begin
 			// Synchronize state counter to S1 when just entering PHI1
 			PHI1reg <= PHI1; // Save old PHI1
@@ -151,12 +151,12 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	
 	always @(negedge C7M, negedge nRES) begin
 		if (~nRES) begin
-			Addr <= 23'h000000;
-			Bank <= 8'h00;
-			FullIOEN <= 1'b0;
-			IncAddrL <= 1'b0;
-			IncAddrM <= 1'b0;
-			IncAddrH <= 1'b0;
+			Addr <= 0;
+			Bank <= 0;
+			FullIOEN <= 0;
+			IncAddrL <= 0;
+			IncAddrM <= 0;
+			IncAddrH <= 0;
 		end else begin
 			// Increment address register
 			if (S==1 & IncAddrL) begin
