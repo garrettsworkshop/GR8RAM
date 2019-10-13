@@ -424,11 +424,6 @@
       (net 2 GND))
     (pad 2 smd roundrect (at 2.52 -5.08) (size 3 1) (layers F.Cu F.Paste F.Mask) (roundrect_rratio 0.25)
       (net 2 GND))
-    (model ${KISYS3DMOD}/Connector_IDC.3dshapes/IDC-Header_2x05_P2.54mm_Vertical.wrl
-      (offset (xyz -1.27 5.08 0))
-      (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
-    )
   )
 
   (module stdpads:Fiducial (layer F.Cu) (tedit 5CFD71CD) (tstamp 5D31242C)
@@ -830,11 +825,6 @@
       (net 2 GND))
     (pad 2 smd roundrect (at 1.655 1.27) (size 2.51 1) (layers F.Cu F.Paste F.Mask) (roundrect_rratio 0.25)
       (net 85 /~MODE~))
-    (model ${KISYS3DMOD}/Connector_PinHeader_2.54mm.3dshapes/PinHeader_1x02_P2.54mm_Vertical_SMD_Pin1Left.wrl
-      (at (xyz 0 0 0))
-      (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
-    )
   )
 
   (module stdpads:SOP-24-26-300mil (layer F.Cu) (tedit 5CC286F9) (tstamp 5D31247D)
@@ -1556,11 +1546,6 @@
       (net 2 GND))
     (pad 1 smd roundrect (at -1.5375 0 180) (size 1.325 2.35) (layers F.Cu F.Paste F.Mask) (roundrect_rratio 0.188679)
       (net 1 +5V))
-    (model ${KISYS3DMOD}/Capacitor_Tantalum_SMD.3dshapes/CP_EIA-3528-21_Kemet-B.wrl
-      (at (xyz 0 0 0))
-      (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
-    )
   )
 
   (module stdpads:CP_EIA-3528 (layer F.Cu) (tedit 5CC268A8) (tstamp 5D311FCC)
@@ -1594,11 +1579,6 @@
       (net 1 +5V))
     (pad 2 smd roundrect (at 1.5375 0 180) (size 1.325 2.35) (layers F.Cu F.Paste F.Mask) (roundrect_rratio 0.188679)
       (net 2 GND))
-    (model ${KISYS3DMOD}/Capacitor_Tantalum_SMD.3dshapes/CP_EIA-3528-21_Kemet-B.wrl
-      (at (xyz 0 0 0))
-      (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
-    )
   )
 
   (module stdpads:PLCC-32_SMDSocket (layer F.Cu) (tedit 5D0DA848) (tstamp 5D311EF4)
@@ -2712,11 +2692,6 @@
       (net 2 GND))
     (pad 1 smd roundrect (at -1.5375 0) (size 1.325 2.35) (layers F.Cu F.Paste F.Mask) (roundrect_rratio 0.188679)
       (net 1 +5V))
-    (model ${KISYS3DMOD}/Capacitor_Tantalum_SMD.3dshapes/CP_EIA-3528-21_Kemet-B.wrl
-      (at (xyz 0 0 0))
-      (scale (xyz 1 1 1))
-      (rotate (xyz 0 0 0))
-    )
   )
 
   (module stdpads:R_0805 (layer F.Cu) (tedit 5CC267AA) (tstamp 5D3126B7)
