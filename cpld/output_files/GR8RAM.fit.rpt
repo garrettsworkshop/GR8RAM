@@ -1,5 +1,5 @@
 Fitter report for GR8RAM
-Sat Sep 07 22:26:04 2019
+Sun Oct 13 20:54:37 2019
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -55,7 +55,7 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------+
 ; Fitter Summary                                                              ;
 +---------------------------+-------------------------------------------------+
-; Fitter Status             ; Successful - Sat Sep 07 22:26:04 2019           ;
+; Fitter Status             ; Successful - Sun Oct 13 20:54:37 2019           ;
 ; Quartus II 64-Bit Version ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name             ; GR8RAM                                          ;
 ; Top-level Entity Name     ; GR8RAM                                          ;
@@ -731,8 +731,8 @@ Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (119006): Selected device EPM7128SLC84-15 for design "GR8RAM"
 Info: Quartus II 64-Bit Fitter was successful. 0 errors, 1 warning
     Info: Peak virtual memory: 4708 megabytes
-    Info: Processing ended: Sat Sep 07 22:26:04 2019
-    Info: Elapsed time: 00:00:00
+    Info: Processing ended: Sun Oct 13 20:54:37 2019
+    Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 
 
