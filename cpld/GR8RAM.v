@@ -69,8 +69,8 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	output nROE = ~nWE; // need this for flash ROM
 	output nRWE = nWE | (nDEVSEL & nIOSEL & nIOSTRB); // for ROM & DRAM
 	output nRAS = ~(RASr | RASf);
-	output nCAS0 = ~(CAS0r | (CASf & RAMSEL & ~Addr[22])); // DRAM CAS bank 0
-	output nCAS1 = ~(CAS1r | (CASf & RAMSEL & Addr[22])); // DRAM CAS bank 1
+	output nCAS0 = ~(CAS0f | (CASr & RAMSEL & ~Addr[22])); // DRAM CAS bank 0
+	output nCAS1 = ~(CAS1f | (CASr & RAMSEL & Addr[22])); // DRAM CAS bank 1
 
   	/* 6502-accessible Registers */
 	reg [7:0] Bank = 0; // Bank register for ROM access
@@ -80,12 +80,8 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	reg IncAddrL = 0, IncAddrM = 0, IncAddrH = 0;
 
 	/* CAS rising/falling edge components */
-	// These are combined to create the CAS outputs.
-	reg CAS0r = 1'b0;
-	reg CAS1r = 1'b0;
-	reg CASf = 0;
-	reg RASr = 0;
-	reg RASf = 0;
+	reg CASr = 0, CAS0f = 0, CAS1f = 0;
+	reg RASr = 0, RASf = 0;
 
 	/* State Counters */
 	reg PHI1reg = 0; // Saved PHI1 at last rising clock edge
@@ -129,7 +125,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 				S==7 ? 3'h7 : S+1;
 			
 			// Refresh counter allows DRAM refresh once every 13 cycles
-			if (S==3) Ref <= (Ref[3:2] == 2'b11) ? 4'h0 : Ref+1;
+			if (S==3) Ref <= (Ref[3:2]==2'b11) ? 4'h0 : Ref+1;
 
 			// Disable IOSTRB ROM when accessing 0xCFFF.
 			if (S==3 & ~nIOSTRB & A[10:0]==11'h7FF) IOROMEN <= 1'b0;
@@ -175,8 +171,8 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 				Addr[23:16] <= Addr[23:16]+1;
 			end
 			
-			// Set register in middle of S5 if accessed.
-			if (S==5) begin
+			// Set register in middle of S6 if accessed.
+			if (S==6) begin
 				if (BankWR) Bank[7:0] <= D[7:0]; // Bank
 				if (SetWR) FullIOEN <= D[7:0] == 8'hE5;
 				
@@ -194,38 +190,30 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	/* DRAM RAS/CAS */
 	always @(posedge C7M, negedge nRES) begin
 		if (~nRES) begin
-			RASr <= 1'b0;
-			ASel <= 1'b0;
-			CAS0r <= 1'b0;
-			CAS1r <= 1'b0;
+			RASr <= 1'b0; ASel <= 1'b0; CASr <= 1'b0;
 		end else begin
-			// RAS already asserted in middle of S4,
-			// so hold RAS through S5
-			RASr <= (S==4 & RAMSEL);
+			RASr <= (S==1 & Ref==0) | // Refresh
+					(S==4 & RAMSEL & nWE) | // Read: Early RAS
+					(S==5 & RAMSEL & ~nWE); // Write: Late RAS
 
 			// Multiplex DRAM address in at end of S4 through S6.
-			ASel = RAMSEL & (S==4 | S==5);
+			ASel =  (RAMSEL & nWE & S==4) | // Read: mux address early
+					(RAMSEL & ~nWE & S==5); // Write: mux address late
 
-			// Refresh at end of S1 (i.e. through S2) 
-			// CAS whenever RAM seleced
-			CAS0r <= (S==1 & Ref==0) | (S==5 & RAMSEL & ~Addr[22]);
-
-			// Refresh at end of S1 (i.e. through S2) 
-			// CAS whenever RAM seleced
-			CAS1r <= (S==1 & Ref==0) | (S==5 & RAMSEL & Addr[22]);
+			// Read: long, early CAS, gated later by RAMSEL
+			CASr <= (RAMSEL & ~nWE & (S==5 | S==6 | S==7));
 		end
 	end
-	always @(negedge C7M_2, negedge nRES) begin
-		if (~nRES) begin RASf <= 1'b0; CASf <= 1'b0;
+	always @(negedge C7M, negedge nRES) begin
+		if (~nRES) begin RASf <= 1'b0; CAS0f <= 1'b0; CAS1f <= 1'b0;
 		end else begin
-			// Refresh in S2
-			// Row activate in S4 when accessing RAM
-			// Hold RAS in S5 when not doing late CAS for write.
-			RASf <= (S==2 & Ref==0) | (RAMSEL & (S==4 | (S==5 /*& ~nWE*/)));
+			RASf <= (S==4 & RAMSEL & nWE) | // Read: Early RAS
+					(S==5 & RAMSEL & ~nWE); // Write: Late RAS
 
-			// CASf gated by nDEVSEL; no need to predicate on RAMSEL.
-			// Early CAS in S5 for read operations.
-			CASf <= (S==5 & nWE) | (S==6) | (S==7);
+			CAS0f <= (S==1 & Ref==0) | // Refresh
+					 (S==6 & RAMSEL & ~Addr[22] & ~nWE); // Write: Late CAS
+			CAS1f <= (S==1 & Ref==0) | // Refresh
+					 (S==6 & RAMSEL & Addr[22] & ~nWE); // Write: Late CAS
 		end
 	end
 endmodule

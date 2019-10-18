@@ -1,7 +1,6 @@
 |GR8RAM
 C7M => always1.IN0
-C7M => CAS1r.CLK
-C7M => CAS0r.CLK
+C7M => CASr.CLK
 C7M => RASr.CLK
 C7M => ASel.CLK
 C7M => CSDBEN.CLK
@@ -16,7 +15,7 @@ C7M => S[1].CLK
 C7M => S[2].CLK
 C7M => PHI0seen.CLK
 C7M => PHI1reg.CLK
-C7M_2 => always3.IN0
+C7M_2 => ~NO_FANOUT~
 Q3 => ~NO_FANOUT~
 PHI0in => ~NO_FANOUT~
 PHI1in => comb.IN0
@@ -81,7 +80,8 @@ nWE => comb.IN0
 nWE => comb.IN0
 nWE => comb.IN0
 nWE => comb.IN1
-nWE => CASf.IN1
+nWE => RASr.IN1
+nWE => ASel.IN0
 D[0] <> D[0]
 D[1] <> D[1]
 D[2] <> D[2]
