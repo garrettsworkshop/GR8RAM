@@ -40,7 +40,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	wire AddrMSELA = A[3:0]==4'h1;
 	wire AddrLSELA = A[3:0]==4'h0;
 	LCELL BankWR_MC (.in(BankSELA & ~nWE & ~nDEVSEL & REGEN), .out(BankWR)); wire BankWR;
-	wire SetWR = SetSELA & ~nWE & ~nDEVSEL & REGEN;
+	LCELL SetWR_MC (.in(SetSELA & ~nWE & ~nDEVSEL & REGEN), .out(SetWR)); wire SetWR;
 	LCELL RAMSEL_MC (.in(RAMSELA & ~nDEVSEL & REGEN), .out(RAMSEL)); wire RAMSEL;
 	LCELL AddrHWR_MC (.in(AddrHSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrHWR)); wire AddrHWR;
 	LCELL AddrMWR_MC (.in(AddrMSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrMWR)); wire AddrMWR;
@@ -59,15 +59,13 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
         AddrLSELA ? Addr[7:0] : 8'h00;
 	inout [7:0] D = DOE ? Dout : 8'bZ;
 	
-	/* Inhibit output */
-	wire AROMSEL;
-	LCELL AROMSEL_MC (.in(/*(A[15:12]==4'hD | A[15:12]==4'hE | A[15:12]==4'hF) & nWE & ~MODE*/0), .out(AROMSEL));
-	output nINH = AROMSEL ? 1'b0 :  1'bZ;
+	/* Inhibit output */	
+	output nINH = 1'bZ;
 
 	/* DRAM and ROM Control Signals */
 	output nRCS = ~((~nIOSEL | (~nIOSTRB & IOROMEN)) & CSDBEN); // ROM chip select
 	output nROE = ~nWE; // need this for flash ROM
-	output nRWE = nWE | (nDEVSEL & nIOSEL & nIOSTRB); // for ROM & DRAM
+	output nRWE = nWE | S==0 | S==1 | S==2 | S==3; // for ROM & DRAM
 	output nRAS = ~(RASr | RASf);
 	output nCAS0 = ~(CAS0f | (CASr & RAMSEL & ~Addr[22])); // DRAM CAS bank 0
 	output nCAS1 = ~(CAS1f | (CASr & RAMSEL & Addr[22])); // DRAM CAS bank 1
@@ -80,6 +78,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	reg IncAddrL = 0, IncAddrM = 0, IncAddrH = 0;
 
 	/* CAS rising/falling edge components */
+	// These are combined to create the CAS outputs.
 	reg CASr = 0, CAS0f = 0, CAS1f = 0;
 	reg RASr = 0, RASf = 0;
 
@@ -125,7 +124,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 				S==7 ? 3'h7 : S+1;
 			
 			// Refresh counter allows DRAM refresh once every 13 cycles
-			if (S==3) Ref <= (Ref[3:2]==2'b11) ? 4'h0 : Ref+1;
+			if (S==3) Ref <= (Ref[3:2] == 2'b11) ? 4'h0 : Ref+1;
 
 			// Disable IOSTRB ROM when accessing 0xCFFF.
 			if (S==3 & ~nIOSTRB & A[10:0]==11'h7FF) IOROMEN <= 1'b0;
@@ -189,31 +188,28 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 
 	/* DRAM RAS/CAS */
 	always @(posedge C7M, negedge nRES) begin
-		if (~nRES) begin
-			RASr <= 1'b0; ASel <= 1'b0; CASr <= 1'b0;
+		if (~nRES) begin RASr <= 1'b0; ASel <= 1'b0; CASr <= 1'b0;
 		end else begin
-			RASr <= (S==1 & Ref==0) | // Refresh
-					(S==4 & RAMSEL & nWE) | // Read: Early RAS
-					(S==5 & RAMSEL & ~nWE); // Write: Late RAS
-
-			// Multiplex DRAM address in at end of S4 through S6.
-			ASel =  (RAMSEL & nWE & S==4) | // Read: mux address early
-					(RAMSEL & ~nWE & S==5); // Write: mux address late
-
-			// Read: long, early CAS, gated later by RAMSEL
-			CASr <= (RAMSEL & ~nWE & (S==5 | S==6 | S==7));
+			RASr <= 	(S==1 & Ref==0) | // Refresh
+						(S==4 & RAMSEL & nWE) | // Read: Early RAS
+						(S==5 & RAMSEL & ~nWE); // Write: Late RAS
+			ASel = 	(RAMSEL & nWE & S==4) | // Read: mux address early
+						(RAMSEL & ~nWE & S==5); // Write: mux address late
+			// Read: long, early CAS, gated combinationally by RAMSEL
+			CASr <= 	(nWE & (S==5 | S==6 | S==7));
 		end
 	end
 	always @(negedge C7M, negedge nRES) begin
 		if (~nRES) begin RASf <= 1'b0; CAS0f <= 1'b0; CAS1f <= 1'b0;
 		end else begin
-			RASf <= (S==4 & RAMSEL & nWE) | // Read: Early RAS
-					(S==5 & RAMSEL & ~nWE); // Write: Late RAS
-
+			RASf <= 	(S==4 & RAMSEL & nWE) | // Read: Early RAS
+						(S==5 & RAMSEL & ~nWE); // Write: Late RAS
 			CAS0f <= (S==1 & Ref==0) | // Refresh
-					 (S==6 & RAMSEL & ~Addr[22] & ~nWE); // Write: Late CAS
+						(S==5 & RAMSEL & ~Addr[22] & nWE) | // Read: Early CAS
+						(S==6 & RAMSEL & ~Addr[22] & ~nWE); // Write: Late CAS
 			CAS1f <= (S==1 & Ref==0) | // Refresh
-					 (S==6 & RAMSEL & Addr[22] & ~nWE); // Write: Late CAS
+						(S==5 & RAMSEL & Addr[22] & nWE) | // Read: Early CAS
+						(S==6 & RAMSEL & Addr[22] & ~nWE); // Write: Late CAS
 		end
 	end
 endmodule

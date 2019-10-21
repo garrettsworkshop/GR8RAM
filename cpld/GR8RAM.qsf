@@ -162,3 +162,4 @@ set_instance_assignment -name MAX7000_INDIVIDUAL_TURBO_BIT ON -to S
 set_instance_assignment -name MAX7000_INDIVIDUAL_TURBO_BIT ON -to PHI1b0_MC
 set_instance_assignment -name MAX7000_INDIVIDUAL_TURBO_BIT ON -to IOROMEN
 set_location_assignment PIN_44 -to nMode
+set_instance_assignment -name MAX7000_INDIVIDUAL_TURBO_BIT ON -to RAMSEL_MC
