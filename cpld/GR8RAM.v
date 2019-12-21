@@ -60,9 +60,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	inout [7:0] D = DOE ? Dout : 8'bZ;
 	
 	/* Inhibit output */
-	wire AROMSEL;
-	LCELL AROMSEL_MC (.in(/*(A[15:12]==4'hD | A[15:12]==4'hE | A[15:12]==4'hF) & nWE & ~MODE*/0), .out(AROMSEL));
-	output nINH = AROMSEL ? 1'b0 :  1'bZ;
+	output nINH = 1'bZ;
 
 	/* DRAM and ROM Control Signals */
 	output nRCS = ~((~nIOSEL | (~nIOSTRB & IOROMEN)) & CSDBEN); // ROM chip select
@@ -108,25 +106,30 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	//		1st rising edge of C7M in PHI0 (S3)
 
 	always @(posedge C7M, negedge nRES) begin
-		if (~nRES) begin // Reset
-			PHI1reg <= 0;
-			PHI0seen <= 0;
-			S <= 0;
-			Ref <= 0;
+		// Synchronize state counter to S1 when just entering PHI1
+		PHI1reg <= PHI1; // Save old PHI1
+		if (~PHI1) PHI0seen <= 1; // PHI0seen set in PHI0
+		S <= (PHI1 & ~PHI1reg & PHI0seen) ? 4'h1 : 
+			S==0 ? 3'h0 :
+			S==7 ? 3'h7 : S+1;
+		
+		// Refresh counter allows DRAM refresh once every 13 cycles
+		if (S==3) Ref <= (Ref[3:2]==2'b11) ? 4'h0 : Ref+1;
+
+		// Only drive Apple II data bus after state 4 to avoid bus fight.
+		// Thus we wait 1.5 7M cycles (210 ns) into PHI0 before driving.
+		// Same for driving the ROM/SRAM data bus (RD).
+		// Similarly, only select the ROM chip starting at the end of S4.
+		// This provides address setup time for write operations and 
+		// minimizes power consumption.
+		CSDBEN <= S==4 | S==5 | S==6 | S==7;
+	end
+
+	always @(posedge C7M, negedge nRES) begin
+		if (~nRES) begin
 			REGEN <= 0;
 			IOROMEN <= 0;
-			CSDBEN <= 0;
 		end else begin
-			// Synchronize state counter to S1 when just entering PHI1
-			PHI1reg <= PHI1; // Save old PHI1
-			if (~PHI1) PHI0seen <= 1; // PHI0seen set in PHI0
-			S <= (PHI1 & ~PHI1reg & PHI0seen) ? 4'h1 : 
-				S==0 ? 3'h0 :
-				S==7 ? 3'h7 : S+1;
-			
-			// Refresh counter allows DRAM refresh once every 13 cycles
-			if (S==3) Ref <= (Ref[3:2]==2'b11) ? 4'h0 : Ref+1;
-
 			// Disable IOSTRB ROM when accessing 0xCFFF.
 			if (S==3 & ~nIOSTRB & A[10:0]==11'h7FF) IOROMEN <= 1'b0;
 
@@ -135,14 +138,6 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 
 			// Enable IOSTRB ROM when accessing CnXX in IOSEL ROM.
 			if (S==4 & ~nIOSEL) IOROMEN <= 1'b1;
-
-			// Only drive Apple II data bus after state 4 to avoid bus fight.
-			// Thus we wait 1.5 7M cycles (210 ns) into PHI0 before driving.
-			// Same for driving the ROM/SRAM data bus (RD).
-			// Similarly, only select the ROM chip starting at the end of S4.
-			// This provides address setup time for write operations and 
-			// minimizes power consumption.
-			CSDBEN <= S==4 | S==5 | S==6 | S==7;
 		end
 	end
 	
@@ -189,31 +184,24 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 
 	/* DRAM RAS/CAS */
 	always @(posedge C7M, negedge nRES) begin
-		if (~nRES) begin
-			RASr <= 1'b0; ASel <= 1'b0; CASr <= 1'b0;
-		end else begin
-			RASr <= (S==1 & Ref==0) | // Refresh
-					(S==4 & RAMSEL & nWE) | // Read: Early RAS
-					(S==5 & RAMSEL & ~nWE); // Write: Late RAS
+		RASr <= (S==1 & Ref==0) | // Refresh
+				(S==4 & RAMSEL & nWE) | // Read: Early RAS
+				(S==5 & RAMSEL & ~nWE); // Write: Late RAS
 
-			// Multiplex DRAM address in at end of S4 through S6.
-			ASel =  (RAMSEL & nWE & S==4) | // Read: mux address early
-					(RAMSEL & ~nWE & S==5); // Write: mux address late
+		// Multiplex DRAM address in at end of S4 through S6.
+		ASel =  (RAMSEL & nWE & S==4) | // Read: mux address early
+				(RAMSEL & ~nWE & S==5); // Write: mux address late
 
-			// Read: long, early CAS, gated later by RAMSEL
-			CASr <= (RAMSEL & ~nWE & (S==5 | S==6 | S==7));
-		end
+		// Read: long, early CAS, gated later by RAMSEL
+		CASr <= (RAMSEL & ~nWE & (S==5 | S==6 | S==7));
 	end
 	always @(negedge C7M, negedge nRES) begin
-		if (~nRES) begin RASf <= 1'b0; CAS0f <= 1'b0; CAS1f <= 1'b0;
-		end else begin
-			RASf <= (S==4 & RAMSEL & nWE) | // Read: Early RAS
-					(S==5 & RAMSEL & ~nWE); // Write: Late RAS
+		RASf <= (S==4 & RAMSEL & nWE) | // Read: Early RAS
+				(S==5 & RAMSEL & ~nWE); // Write: Late RAS
 
-			CAS0f <= (S==1 & Ref==0) | // Refresh
-					 (S==6 & RAMSEL & ~Addr[22] & ~nWE); // Write: Late CAS
-			CAS1f <= (S==1 & Ref==0) | // Refresh
-					 (S==6 & RAMSEL & Addr[22] & ~nWE); // Write: Late CAS
-		end
+		CAS0f <= (S==1 & Ref==0) | // Refresh
+				 (S==6 & RAMSEL & ~Addr[22] & ~nWE); // Write: Late CAS
+		CAS1f <= (S==1 & Ref==0) | // Refresh
+				 (S==6 & RAMSEL & Addr[22] & ~nWE); // Write: Late CAS
 	end
 endmodule
