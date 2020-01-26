@@ -39,7 +39,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	wire AddrMSELA = A[3:0]==4'h1;
 	wire AddrLSELA = A[3:0]==4'h0;
 	LCELL BankWR_MC (.in(BankSELA & ~nWE & ~nDEVSEL & REGEN), .out(BankWR)); wire BankWR;
-	wire SetWR = SetSELA & ~nWE & ~nDEVSEL & REGEN;
+	LCELL SetWR_MC (.in(SetSELA & ~nWE & ~nDEVSEL & REGEN), .out(SetWR)); wire SetWR;
 	LCELL RAMSEL_MC (.in(RAMSELA & ~nDEVSEL & REGEN), .out(RAMSEL)); wire RAMSEL;
 	LCELL AddrHWR_MC (.in(AddrHSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrHWR)); wire AddrHWR;
 	LCELL AddrMWR_MC (.in(AddrMSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrMWR)); wire AddrMWR;
@@ -77,6 +77,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	reg IncAddrL = 0, IncAddrM = 0, IncAddrH = 0;
 
 	/* CAS rising/falling edge components */
+	// These are combined to create the CAS outputs.
 	reg CASr = 0, CAS0f = 0, CAS1f = 0;
 	reg RASr = 0, RASf = 0;
 	reg ASel = 0; // DRAM address multiplexer select
@@ -136,6 +137,15 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 			REGEN <= 0;
 			IOROMEN <= 0;
 		end else begin
+			// Synchronize state counter to S1 when just entering PHI1
+			PHI1reg <= PHI1; // Save old PHI1
+			if (~PHI1) PHI0seen <= 1; // PHI0seen set in PHI0
+			S <= (PHI1 & ~PHI1reg & PHI0seen) ? 4'h1 : 
+				S==0 ? 3'h0 :
+				S==7 ? 3'h7 : S+1;
+			
+			// Refresh counter allows DRAM refresh once every 13 cycles
+			if (S==3) Ref <= (Ref[3:2] == 2'b11) ? 4'h0 : Ref+1;
 			// Disable IOSTRB ROM when accessing 0xCFFF.
 			if (S==3 & ~nIOSTRB & A[10:0]==11'h7FF) IOROMEN <= 1'b0;
 
