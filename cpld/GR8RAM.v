@@ -8,8 +8,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	input nRES, nMode; // Reset, mode
 
 	/* PHI1 Delay */
-	wire [8:0] PHI1b;
-	wire PHI1;
+	wire [8:0] PHI1b; wire PHI1;
 	LCELL PHI1b0_MC (.in(PHI1in), .out(PHI1b[0]));
 	LCELL PHI1b1_MC (.in(PHI1b[0]), .out(PHI1b[1]));
 	LCELL PHI1b2_MC (.in(PHI1b[1]), .out(PHI1b[2]));
@@ -48,10 +47,10 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 
 	/* Data Bus Routing */
 	// DRAM/ROM data bus
-	wire RDOE = CSDBEN & ~nWE;
+	wire RDOE = DBEN & ~nWE;
 	inout [7:0] RD = RDOE ? D[7:0] : 8'bZ;
 	// Apple II data bus
-	wire DOE = CSDBEN & nWE & 
+	wire DOE = DBEN & nWE & 
 		((~nDEVSEL & REGEN) | ~nIOSEL | (~nIOSTRB & IOROMEN));
 	wire [7:0] Dout = (nDEVSEL | RAMSELA) ? RD[7:0] :
         AddrHSELA ? {Addr[23:16]} : 
@@ -63,9 +62,9 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	output nINH = 1'bZ;
 
 	/* DRAM and ROM Control Signals */
-	output nRCS = ~((~nIOSEL | (~nIOSTRB & IOROMEN)) & CSDBEN); // ROM chip select
+	output nRCS = ~((~nIOSEL | (~nIOSTRB & IOROMEN)) & CSDBEN & nRES); // ROM chip select
 	output nROE = ~nWE; // need this for flash ROM
-	output nRWE = nWE | (nDEVSEL & nIOSEL & nIOSTRB); // for ROM & DRAM
+	output reg nRWE; // for ROM & DRAM
 	output nRAS = ~(RASr | RASf);
 	output nCAS0 = ~(CAS0f | (CASr & RAMSEL & ~Addr[22])); // DRAM CAS bank 0
 	output nCAS1 = ~(CAS1f | (CASr & RAMSEL & Addr[22])); // DRAM CAS bank 1
@@ -80,6 +79,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	/* CAS rising/falling edge components */
 	reg CASr = 0, CAS0f = 0, CAS1f = 0;
 	reg RASr = 0, RASf = 0;
+	reg ASel = 0; // DRAM address multiplexer select
 
 	/* State Counters */
 	reg PHI1reg = 0; // Saved PHI1 at last rising clock edge
@@ -90,9 +90,10 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	/* Misc. */
 	reg REGEN = 0; // Register enable
 	reg IOROMEN = 0; // IOSTRB ROM enable
-	reg CSDBEN = 0; // ROM CS, data bus driver gating
-	reg ASel = 0; // DRAM address multiplexer select
-	reg FullIOEN = 0;
+	reg FullIOEN = 0; // Set to enable full IOROM space
+	reg DBEN = 0; // data bus driver gating
+	reg RDCSEN = 0; // ROM CS enable for reads
+	reg WRCSEN = 0; // ROM CS gating for writes
 
 	// Apple II Bus Compatibiltiy Rules:
 	// Synchronize to PHI0 or PHI1. (PHI1 here)
@@ -105,7 +106,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	// Can sample /IOSTRB at same times as /IOSEL, plus:
 	//		1st rising edge of C7M in PHI0 (S3)
 
-	always @(posedge C7M, negedge nRES) begin
+	always @(posedge C7M) begin
 		// Synchronize state counter to S1 when just entering PHI1
 		PHI1reg <= PHI1; // Save old PHI1
 		if (~PHI1) PHI0seen <= 1; // PHI0seen set in PHI0
@@ -119,10 +120,15 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 		// Only drive Apple II data bus after state 4 to avoid bus fight.
 		// Thus we wait 1.5 7M cycles (210 ns) into PHI0 before driving.
 		// Same for driving the ROM/SRAM data bus (RD).
-		// Similarly, only select the ROM chip starting at the end of S4.
-		// This provides address setup time for write operations and 
-		// minimizes power consumption.
-		CSDBEN <= S==4 | S==5 | S==6 | S==7;
+		DBEN <= S==4 | S==5 | S==6 | S==7;
+		
+		// Similarly, only select the ROM chip starting at
+		// the end of S4 for reads and the end of S5 for writes.
+		// This ensures that write data is valid for
+		// the entire time that the ROM is selected,
+		// and minimizes power consumption for reads.
+		RDCSEN <= S==4 | S==5 | S==6 | S==7;
+		WRCSEN <= S==5 | S==6 | S==7;
 	end
 
 	always @(posedge C7M, negedge nRES) begin
@@ -183,7 +189,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	end
 
 	/* DRAM RAS/CAS */
-	always @(posedge C7M, negedge nRES) begin
+	always @(posedge C7M) begin
 		RASr <= (S==1 & Ref==0) | // Refresh
 				(S==4 & RAMSEL & nWE) | // Read: Early RAS
 				(S==5 & RAMSEL & ~nWE); // Write: Late RAS
@@ -195,7 +201,10 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 		// Read: long, early CAS, gated later by RAMSEL
 		CASr <= (RAMSEL & ~nWE & (S==5 | S==6 | S==7));
 	end
-	always @(negedge C7M, negedge nRES) begin
+	always @(negedge C7M) begin
+		if (S==0 | S==1) nRWE <= 1;
+		if (S==3) nRWE <= nWE;
+
 		RASf <= (S==4 & RAMSEL & nWE) | // Read: Early RAS
 				(S==5 & RAMSEL & ~nWE); // Write: Late RAS
 
