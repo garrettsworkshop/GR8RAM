@@ -1,6 +1,5 @@
 EESchema Schematic File Version 4
-LIBS:GR8RAM-cache
-EELAYER 29 0
+EELAYER 30 0
 EELAYER END
 $Descr USLetter 11000 8500
 encoding utf-8
@@ -320,17 +319,6 @@ Text Label 5800 3700 2    50   ~ 0
 A10
 Text Label 5800 3600 2    50   ~ 0
 A9
-$Comp
-L power:+5V #PWR0118
-U 1 1 5DCF4586
-P 9450 5200
-F 0 "#PWR0118" H 9450 5050 50  0001 C CNN
-F 1 "+5V" H 9450 5350 50  0000 C CNN
-F 2 "" H 9450 5200 50  0001 C CNN
-F 3 "" H 9450 5200 50  0001 C CNN
-	1    9450 5200
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	3400 6400 3100 6400
 Connection ~ 3400 6400
@@ -503,37 +491,6 @@ F 3 "" H 3100 1450 50  0001 C CNN
 	1    3100 1450
 	1    0    0    -1  
 $EndComp
-Text Label 10050 5700 0    50   ~ 0
-TCK
-Text Label 10050 5800 0    50   ~ 0
-TMS
-Text Label 10050 5900 0    50   ~ 0
-TDO
-Text Label 10050 6000 0    50   ~ 0
-TDI
-$Comp
-L power:GND #PWR0122
-U 1 1 5DCF4205
-P 9550 6400
-F 0 "#PWR0122" H 9550 6150 50  0001 C CNN
-F 1 "GND" H 9550 6250 50  0000 C CNN
-F 2 "" H 9550 6400 50  0001 C CNN
-F 3 "" H 9550 6400 50  0001 C CNN
-	1    9550 6400
-	1    0    0    -1  
-$EndComp
-$Comp
-L Connector:AVR-JTAG-10 J2
-U 1 1 5DCF2B5F
-P 9550 5800
-F 0 "J2" H 9550 5850 50  0000 C BNN
-F 1 "JTAG" H 9550 5800 50  0000 C CNN
-F 2 "stdpads:IDC_SMD_2x05_P2.54mm_Vertical" V 9400 5950 50  0001 C CNN
-F 3 " ~" H 8275 5250 50  0001 C CNN
-	1    9550 5800
-	1    0    0    -1  
-$EndComp
-NoConn ~ 9550 5200
 $Comp
 L power:+5V #PWR0109
 U 1 1 5D120CE1
@@ -839,8 +796,6 @@ Text Label 2700 2050 2    50   ~ 0
 A13
 Text Label 2700 1950 2    50   ~ 0
 A12
-NoConn ~ 10050 5600
-NoConn ~ 10050 5500
 Text Label 9200 3450 2    50   ~ 0
 RA2
 Text Label 9200 3850 2    50   ~ 0
@@ -2165,10 +2120,10 @@ PHI1out
 Wire Wire Line
 	10000 4250 10000 4350
 $Comp
-L power:GND #PWR?
+L power:GND #PWR0106
 U 1 1 5E6DB0A3
 P 10000 4350
-F 0 "#PWR?" H 10000 4100 50  0001 C CNN
+F 0 "#PWR0106" H 10000 4100 50  0001 C CNN
 F 1 "GND" H 10000 4200 50  0000 C CNN
 F 2 "" H 10000 4350 50  0001 C CNN
 F 3 "" H 10000 4350 50  0001 C CNN
@@ -2190,6 +2145,61 @@ Wire Bus Line
 	6900 4800 4500 4800
 Wire Bus Line
 	6900 4800 8700 4800
+Text Label 9350 5300 2    50   ~ 0
+TCK
+Text Label 9350 5500 2    50   ~ 0
+TMS
+Text Label 9350 5400 2    50   ~ 0
+TDO
+Text Label 9350 5700 2    50   ~ 0
+TDI
+$Comp
+L power:+5V #PWR0129
+U 1 1 5E41A4F5
+P 10000 5500
+F 0 "#PWR0129" H 10000 5350 50  0001 C CNN
+F 1 "+5V" H 10000 5650 50  0000 C CNN
+F 2 "" H 10000 5500 50  0001 C CNN
+F 3 "" H 10000 5500 50  0001 C CNN
+	1    10000 5500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9950 5500 9850 5400
+$Comp
+L power:GND #PWR0130
+U 1 1 5E4376C1
+P 9850 5700
+F 0 "#PWR0130" H 9850 5450 50  0001 C CNN
+F 1 "GND" H 9850 5550 50  0000 C CNN
+F 2 "" H 9850 5700 50  0001 C CNN
+F 3 "" H 9850 5700 50  0001 C CNN
+	1    9850 5700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10000 5500 9950 5500
+NoConn ~ 9350 5600
+NoConn ~ 9850 5500
+NoConn ~ 9850 5600
+$Comp
+L Connector_Generic:Conn_02x05_Odd_Even J2
+U 1 1 5E4199B1
+P 9550 5500
+F 0 "J2" H 9600 5800 50  0000 C CNN
+F 1 "JTAG" H 9600 5200 50  0000 C CNN
+F 2 "stdpads:IDC_SMD_2x05_P2.54mm_Vertical" H 9550 5500 50  0001 C CNN
+F 3 "~" H 9550 5500 50  0001 C CNN
+	1    9550 5500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10100 5300 10100 5700
+Wire Wire Line
+	10100 5700 9850 5700
+Wire Wire Line
+	10100 5300 9850 5300
+Connection ~ 9850 5700
 Wire Bus Line
 	2400 1150 2400 2150
 Wire Bus Line
@@ -2199,15 +2209,15 @@ Wire Bus Line
 Wire Bus Line
 	2400 4650 2400 5850
 Wire Bus Line
-	8700 2000 8700 4800
-Wire Bus Line
-	10300 2000 10300 4800
-Wire Bus Line
 	4500 3550 4500 4800
 Wire Bus Line
 	2300 2950 2300 4450
 Wire Bus Line
 	4500 1150 4500 3250
+Wire Bus Line
+	10300 2000 10300 4800
+Wire Bus Line
+	8700 2000 8700 4800
 Wire Bus Line
 	6900 3000 6900 4800
 Wire Bus Line
