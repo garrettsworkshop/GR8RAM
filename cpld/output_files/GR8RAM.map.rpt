@@ -1,5 +1,5 @@
 Analysis & Synthesis report for GR8RAM
-Sun Oct 20 22:22:00 2019
+Sun Feb 16 00:10:45 2020
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -45,12 +45,12 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Sun Oct 20 22:22:00 2019           ;
+; Analysis & Synthesis Status ; Successful - Sun Feb 16 00:10:45 2020           ;
 ; Quartus II 64-Bit Version   ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name               ; GR8RAM                                          ;
 ; Top-level Entity Name       ; GR8RAM                                          ;
 ; Family                      ; MAX7000S                                        ;
-; Total macrocells            ; 106                                             ;
+; Total macrocells            ; 107                                             ;
 ; Total pins                  ; 61                                              ;
 +-----------------------------+-------------------------------------------------+
 
@@ -165,14 +165,14 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------+----------------------+
 ; Resource             ; Usage                ;
 +----------------------+----------------------+
-; Logic cells          ; 106                  ;
-; Total registers      ; 54                   ;
+; Logic cells          ; 107                  ;
+; Total registers      ; 55                   ;
 ; I/O pins             ; 61                   ;
 ; Shareable expanders  ; 1                    ;
-; Maximum fan-out node ; S[2]                 ;
-; Maximum fan-out      ; 54                   ;
-; Total fan-out        ; 864                  ;
-; Average fan-out      ; 5.14                 ;
+; Maximum fan-out node ; C7M                  ;
+; Maximum fan-out      ; 55                   ;
+; Total fan-out        ; 855                  ;
+; Average fan-out      ; 5.06                 ;
 +----------------------+----------------------+
 
 
@@ -181,7 +181,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+------------+------+-------------------------------+--------------+
 ; Compilation Hierarchy Node ; Macrocells ; Pins ; Full Hierarchy Name           ; Library Name ;
 +----------------------------+------------+------+-------------------------------+--------------+
-; |GR8RAM                    ; 106        ; 61   ; |GR8RAM                       ; work         ;
+; |GR8RAM                    ; 107        ; 61   ; |GR8RAM                       ; work         ;
 ;    |lpm_counter:Ref_rtl_0| ; 4          ; 0    ; |GR8RAM|lpm_counter:Ref_rtl_0 ; work         ;
 +----------------------------+------------+------+-------------------------------+--------------+
 
@@ -331,18 +331,18 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Sun Oct 20 22:21:59 2019
+    Info: Processing started: Sun Feb 16 00:10:44 2020
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off GR8RAM -c GR8RAM
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file gr8ram.v
     Info (12023): Found entity 1: GR8RAM
 Info (12127): Elaborating entity "GR8RAM" for the top level hierarchy
 Warning (10230): Verilog HDL assignment warning at GR8RAM.v(30): truncated value with size 32 to match size of target (8)
-Warning (10230): Verilog HDL assignment warning at GR8RAM.v(122): truncated value with size 32 to match size of target (3)
-Warning (10230): Verilog HDL assignment warning at GR8RAM.v(127): truncated value with size 32 to match size of target (4)
-Warning (10230): Verilog HDL assignment warning at GR8RAM.v(159): truncated value with size 32 to match size of target (8)
-Warning (10230): Verilog HDL assignment warning at GR8RAM.v(164): truncated value with size 32 to match size of target (8)
-Warning (10230): Verilog HDL assignment warning at GR8RAM.v(170): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(115): truncated value with size 32 to match size of target (3)
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(120): truncated value with size 32 to match size of target (4)
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(169): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(174): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(180): truncated value with size 32 to match size of target (8)
 Info (19000): Inferred 1 megafunctions from design logic
     Info (19001): Inferred lpm_counter megafunction (LPM_WIDTH=4) from the following logic: "Ref_rtl_0"
 Info (278001): Inferred 4 megafunctions from design logic
@@ -382,16 +382,16 @@ Warning (21074): Design contains 9 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "A[13]"
     Warning (15610): No output dependent on input pin "A[14]"
     Warning (15610): No output dependent on input pin "A[15]"
-Info (21057): Implemented 168 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 169 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 27 input pins
     Info (21059): Implemented 18 output pins
     Info (21060): Implemented 16 bidirectional pins
-    Info (21063): Implemented 106 macrocells
+    Info (21063): Implemented 107 macrocells
     Info (21073): Implemented 1 shareable expanders
 Info (144001): Generated suppressed messages file C:/Users/Zane/Documents/GitHub/GR8RAM/cpld/output_files/GR8RAM.map.smsg
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 17 warnings
     Info: Peak virtual memory: 4587 megabytes
-    Info: Processing ended: Sun Oct 20 22:22:00 2019
+    Info: Processing ended: Sun Feb 16 00:10:45 2020
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 
