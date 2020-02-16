@@ -25,11 +25,11 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	input [15:0] A; // 6502 address bus
 	input nWE; // 6502 R/W
 	output [10:0] RA; // DRAM/ROM address
-	assign RA[10:8] = ASel ? Addr[21:19] : Addr[10:8];
+	assign RA[10:8] = ColAddrSel ? Addr[21:19] : Addr[10:8];
 	assign RA[7:0] = (~nIOSTRB & FullIOEN) ? Bank+1 :
 		(~nIOSTRB & ~FullIOEN) ? {7'b0000001, Bank[0]} : 
-		(~ASel & nIOSEL & nIOSTRB) ? Addr[18:11] :
-		(ASel & nIOSEL & nIOSTRB) ? Addr[7:0] : 8'h00;
+		(~ColAddrSel & nIOSEL & nIOSTRB) ? Addr[18:11] :
+		(ColAddrSel & nIOSEL & nIOSTRB) ? Addr[7:0] : 8'h00;
 
 	/* Select Signals */
 	wire BankSELA = A[3:0]==4'hF;
@@ -48,7 +48,8 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	/* Data Bus Routing */
 	// DRAM/ROM data bus
 	wire RDOE = DBEN & ~nWE;
-	inout [7:0] RD = RDOE ? D[7:0] : 8'bZ;
+	inout [7:0] RD = RDOE ? RDout : 8'bZ;
+	reg [7:0] RDout;
 	// Apple II data bus
 	wire DOE = DBEN & nWE & 
 		((~nDEVSEL & REGEN) | ~nIOSEL | (~nIOSTRB & IOROMEN));
@@ -62,9 +63,9 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	output nINH = 1'bZ;
 
 	/* DRAM and ROM Control Signals */
-	output nRCS = ~((~nIOSEL | (~nIOSTRB & IOROMEN)) & CSDBEN & nRES); // ROM chip select
+	output nRCS = ~((~nIOSEL | (~nIOSTRB & IOROMEN)) & CSEN); // ROM chip select
 	output nROE = ~nWE; // need this for flash ROM
-	output reg nRWE; // for ROM & DRAM
+	output nRWE = ColAddrSel ? nWE : 1'b1; // for ROM & DRAM
 	output nRAS = ~(RASr | RASf);
 	output nCAS0 = ~(CAS0f | (CASr & RAMSEL & ~Addr[22])); // DRAM CAS bank 0
 	output nCAS1 = ~(CAS1f | (CASr & RAMSEL & Addr[22])); // DRAM CAS bank 1
@@ -80,7 +81,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	// These are combined to create the CAS outputs.
 	reg CASr = 0, CAS0f = 0, CAS1f = 0;
 	reg RASr = 0, RASf = 0;
-	reg ASel = 0; // DRAM address multiplexer select
+	reg ColAddrSel = 0; // DRAM address multiplexer select
 
 	/* State Counters */
 	reg PHI1reg = 0; // Saved PHI1 at last rising clock edge
@@ -92,9 +93,8 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	reg REGEN = 0; // Register enable
 	reg IOROMEN = 0; // IOSTRB ROM enable
 	reg FullIOEN = 0; // Set to enable full IOROM space
-	reg DBEN = 0; // data bus driver gating
-	reg RDCSEN = 0; // ROM CS enable for reads
-	reg WRCSEN = 0; // ROM CS gating for writes
+	reg DBEN = 0; // Data bus driver gating
+	reg CSEN = 0; // ROM CS enable gating
 
 	// Apple II Bus Compatibiltiy Rules:
 	// Synchronize to PHI0 or PHI1. (PHI1 here)
@@ -106,7 +106,8 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	//		all 3 falling edges of C7M in PHI0 (S4, S5, S6)
 	// Can sample /IOSTRB at same times as /IOSEL, plus:
 	//		1st rising edge of C7M in PHI0 (S3)
-
+	
+	/* State counters */
 	always @(posedge C7M) begin
 		// Synchronize state counter to S1 when just entering PHI1
 		PHI1reg <= PHI1; // Save old PHI1
@@ -117,46 +118,45 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 		
 		// Refresh counter allows DRAM refresh once every 13 cycles
 		if (S==3) Ref <= (Ref[3:2]==2'b11) ? 4'h0 : Ref+1;
-
-		// Only drive Apple II data bus after state 4 to avoid bus fight.
-		// Thus we wait 1.5 7M cycles (210 ns) into PHI0 before driving.
-		// Same for driving the ROM/SRAM data bus (RD).
-		DBEN <= S==4 | S==5 | S==6 | S==7;
-		
-		// Similarly, only select the ROM chip starting at
-		// the end of S4 for reads and the end of S5 for writes.
-		// This ensures that write data is valid for
-		// the entire time that the ROM is selected,
-		// and minimizes power consumption for reads.
-		RDCSEN <= S==4 | S==5 | S==6 | S==7;
-		WRCSEN <= S==5 | S==6 | S==7;
 	end
-
+	
+	/* State-based data bus and ROM CS gating */
+	always @(posedge C7M, negedge nRES) begin
+		if (~nRES) begin
+			DBEN <= 0;
+			CSEN <= 0;
+		end else begin
+			// Only drive Apple II data bus after S4 to avoid bus fight.
+			// Thus we wait 1.5 7M cycles (210 ns) into PHI0 before driving.
+			// Same for driving the ROM/SRAM data bus (RD).
+			DBEN <= S==4 | S==5 | S==6 | S==7;
+			
+			// Similarly, only select the ROM chip starting at
+			// the end of S4 for reads and the end of S5 for writes.
+			// This ensures that write data is valid for
+			// the entire time that the ROM is selected,
+			// and minimizes power consumption.
+			CSEN <= (S==4 & nWE) | S==5 | S==6 | S==7;
+		end
+	end
+	
+	/* State-based data bus and ROM CS gating */
 	always @(posedge C7M, negedge nRES) begin
 		if (~nRES) begin
 			REGEN <= 0;
 			IOROMEN <= 0;
 		end else begin
-			// Synchronize state counter to S1 when just entering PHI1
-			PHI1reg <= PHI1; // Save old PHI1
-			if (~PHI1) PHI0seen <= 1; // PHI0seen set in PHI0
-			S <= (PHI1 & ~PHI1reg & PHI0seen) ? 4'h1 : 
-				S==0 ? 3'h0 :
-				S==7 ? 3'h7 : S+1;
-			
-			// Refresh counter allows DRAM refresh once every 13 cycles
-			if (S==3) Ref <= (Ref[3:2] == 2'b11) ? 4'h0 : Ref+1;
-			// Disable IOSTRB ROM when accessing 0xCFFF.
-			if (S==3 & ~nIOSTRB & A[10:0]==11'h7FF) IOROMEN <= 1'b0;
-
-			// Registers enabled at end of S4 by any IOSEL access (Cn00-CnFF).
+			// Enable registers at end of S4 when IOSEL accessed (Cn00-CnFF).
 			if (S==4 & ~nIOSEL) REGEN <= 1;
 
 			// Enable IOSTRB ROM when accessing CnXX in IOSEL ROM.
 			if (S==4 & ~nIOSEL) IOROMEN <= 1'b1;
+			// Disable IOSTRB ROM when accessing 0xCFFF.
+			if (S==4 & ~nIOSTRB & A[10:0]==11'h7FF) IOROMEN <= 1'b0;
 		end
 	end
 	
+	/* Set memory-mapped registers */
 	always @(negedge C7M, negedge nRES) begin
 		if (~nRES) begin
 			Addr <= 0;
@@ -182,6 +182,11 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 				Addr[23:16] <= Addr[23:16]+1;
 			end
 			
+			// Latch 6502 write data to RD in middle of S5
+			if (S==5) begin
+				RDout[7:0] <= D[7:0];
+			end
+			
 			// Set register in middle of S6 if accessed.
 			if (S==6) begin
 				if (BankWR) Bank[7:0] <= D[7:0]; // Bank
@@ -204,17 +209,14 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 				(S==4 & RAMSEL & nWE) | // Read: Early RAS
 				(S==5 & RAMSEL & ~nWE); // Write: Late RAS
 
-		// Multiplex DRAM address in at end of S4 through S6.
-		ASel =  (RAMSEL & nWE & S==4) | // Read: mux address early
+		// Multiplex DRAM address
+		ColAddrSel =  (RAMSEL & nWE & S==4) | // Read: mux address early
 				(RAMSEL & ~nWE & S==5); // Write: mux address late
 
 		// Read: long, early CAS, gated later by RAMSEL
 		CASr <= (RAMSEL & ~nWE & (S==5 | S==6 | S==7));
 	end
 	always @(negedge C7M) begin
-		if (S==0 | S==1) nRWE <= 1;
-		if (S==3) nRWE <= nWE;
-
 		RASf <= (S==4 & RAMSEL & nWE) | // Read: Early RAS
 				(S==5 & RAMSEL & ~nWE); // Write: Late RAS
 
