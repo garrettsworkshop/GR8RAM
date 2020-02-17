@@ -140,13 +140,14 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 		end
 	end
 
+	/* DEVSEL register and IOSTRB ROM enable */
 	always @(posedge C7M, negedge nRES) begin
 		if (~nRES) begin
 			REGEN <= 0;
 			IOROMEN <= 0;
 		end else begin
 			// Enable registers at end of S4 when IOSEL accessed (Cn00-CnFF).
-			if (S==4 & ~nIOSEL) REGEN <= 1;
+			if (S==4 & ~nIOSEL) REGEN <= 1'b1;
 
 			// Enable IOSTRB ROM when accessing CnXX in IOSEL ROM.
 			if (S==4 & ~nIOSEL) IOROMEN <= 1'b1;
