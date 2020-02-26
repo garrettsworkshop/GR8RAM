@@ -72,6 +72,10 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	
 	/* Increment Control */
 	reg IncAddrL = 0, IncAddrM = 0, IncAddrH = 0;
+	
+	/* Transfer Counters */
+	reg [15:0] TCnt = 0;
+	reg [15:0] Dest = 0;
 
 	/* CAS rising/falling edge components */
 	// These are combined to create the CAS outputs.
