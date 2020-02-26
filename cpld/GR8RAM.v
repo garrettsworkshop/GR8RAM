@@ -34,7 +34,6 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 
 	/* Select Signals */
 	wire BankSELA = A[3:0]==4'hF;
-	wire SetSELA = A[3:0]==4'hE;
 	wire RAMSELA = A[3:0]==4'h3;
 	wire AddrHSELA = A[3:0]==4'h2;
 	wire AddrMSELA = A[3:0]==4'h1;
@@ -53,7 +52,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	wire DOE = DBEN & nWE & 
 		((~nDEVSEL & REGEN) | ~nIOSEL | (~nIOSTRB & IOROMEN));
 	wire [7:0] Dout = (nDEVSEL | RAMSELA) ? RD[7:0] :
-        AddrHSELA ? {Addr[23:16]} : 
+        AddrHSELA ? Addr[23:16] : 
         AddrMSELA ? Addr[15:8] : 
         AddrLSELA ? Addr[7:0] : 8'h00;
 	inout [7:0] D = DOE ? Dout : 8'bZ;
