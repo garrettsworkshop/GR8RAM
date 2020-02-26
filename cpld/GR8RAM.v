@@ -5,8 +5,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 
 	/* Clock, Reset, Mode */
 	input C7M, C7M_2, Q3, PHI0in, PHI1in; // Clock inputs
-	input nRES, Mode;
-	input Mode;
+	input nRES;
 
 	/* PHI1 Delay */
 	wire [8:0] PHI1b;
@@ -88,6 +87,9 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	reg DBEN = 0; // Data bus driver gating
 	reg CSEN = 0; // ROM CS enable gating
 
+	/* Configuration */
+	input Mode;
+
 	// Apple II Bus Compatibiltiy Rules:
 	// Synchronize to PHI0 or PHI1. (PHI1 here)
 	// PHI1's edge may be -20ns,+10ns relative to C7M.
@@ -148,6 +150,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 		end
 	end
 	
+	/* Set registers */
 	always @(negedge C7M, negedge nRES) begin
 		if (~nRES) begin
 			Addr <= 0;
