@@ -69,6 +69,8 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	output nCAS1 = ~(CAS1f | (CASr & RAMSEL & Addr[22])); // DRAM CAS bank 1
 
   	/* 6502-accessible Registers */
+	reg REGEN = 0; // Register enable
+	reg IOROMEN = 0; // IOSTRB ROM enable
 	reg [7:0] Bank = 0; // Bank register for ROM access
 	reg [23:0] Addr = 0; // RAM address register
 	
@@ -86,10 +88,6 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	reg PHI0seen = 0; // Have we seen PHI0 since reset?
 	reg [2:0] S = 0; // State counter
 	reg [3:0] Ref = 0; // Refresh skip counter
-
-	/* Misc. */
-	reg REGEN = 0; // Register enable
-	reg IOROMEN = 0; // IOSTRB ROM enable
 	reg DBEN = 0; // Data bus driver gating
 	reg CSEN = 0; // ROM CS enable gating
 
