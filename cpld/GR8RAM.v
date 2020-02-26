@@ -27,9 +27,11 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	input nWE; // 6502 R/W
 	output [10:0] RA; // DRAM/ROM address
 	assign RA[10:8] = CASel ? Addr[21:19] : Addr[10:8];
-	assign RA[7:0] = ~nIOSTRB ? Bank+1 :
-		(~CASel & nIOSEL & nIOSTRB) ? Addr[18:11] :
-		(CASel & nIOSEL & nIOSTRB) ? Addr[7:0] : 8'h00;
+	assign RA[7:0] = 
+		(~nIOSTRB & ~FullIOEN) ? {7'b0000001, Bank[0]} :
+		(~nIOSTRB &  FullIOEN) ? Bank+1 : 
+		( nIOSTRB & ~CASel & nIOSEL) ? Addr[18:11] :
+		( nIOSTRB &  CASel & nIOSEL) ? Addr[7:0] : 8'h00;
 
 	/* Select Signals */
 	wire BankSELA = A[3:0]==4'hF;
@@ -38,6 +40,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	wire AddrMSELA = A[3:0]==4'h1;
 	wire AddrLSELA = A[3:0]==4'h0;
 	LCELL BankWR_MC (.in(BankSELA & ~nWE & ~nDEVSEL & REGEN), .out(BankWR)); wire BankWR;
+	LCELL SetWR_MC (.in(SetSELA & ~nWE & ~nDEVSEL & REGEN), .out(SetWR)); wire SetWR;
 	LCELL RAMSEL_MC (.in(RAMSELA & ~nDEVSEL & REGEN), .out(RAMSEL)); wire RAMSEL;
 	LCELL AddrHWR_MC (.in(AddrHSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrHWR)); wire AddrHWR;
 	LCELL AddrMWR_MC (.in(AddrMSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrMWR)); wire AddrMWR;
@@ -67,6 +70,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
   	/* 6502-accessible Registers */
 	reg REGEN = 0; // Register enable
 	reg IOROMEN = 0; // IOSTRB ROM enable
+	reg FullIOEN = 0; // Set to enable full I/O ROM space
 	reg [7:0] Bank = 0; // Bank register for ROM access
 	reg [23:0] Addr = 0; // RAM address register
 	
@@ -183,6 +187,7 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 			// Set register in middle of S6 if accessed.
 			if (S==6) begin
 				if (BankWR) Bank[7:0] <= D[7:0]; // Bank
+				if (SetWR) FullIOEN <= D[7:0] == 8'hE5;
 				
 				IncAddrL <= RAMSEL;
 				IncAddrM <= AddrLWR & Addr[7] & ~D[7];
