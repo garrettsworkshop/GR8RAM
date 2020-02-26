@@ -1,11 +1,12 @@
 module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 			  A, RA, nWE, D, RD,
-			  nDEVSEL, nIOSEL, nIOSTRB, nINH,
+			  nDEVSEL, nIOSEL, nIOSTRB,
 			  nRAS, nCAS0, nCAS1, nRCS, nROE, nRWE);
 
 	/* Clock, Reset, Mode */
 	input C7M, C7M_2, Q3, PHI0in, PHI1in; // Clock inputs
-	input nRES, nMode; // Reset, mode
+	input nRES, Mode;
+	input Mode;
 
 	/* PHI1 Delay */
 	wire [8:0] PHI1b;
@@ -56,9 +57,6 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
         AddrMSELA ? Addr[15:8] : 
         AddrLSELA ? Addr[7:0] : 8'h00;
 	inout [7:0] D = DOE ? Dout : 8'bZ;
-	
-	/* Inhibit output */	
-	output nINH = 1'bZ;
 
 	/* DRAM and ROM Control Signals */
 	output nRCS = ~((~nIOSEL | (~nIOSTRB & IOROMEN)) & CSEN); // ROM chip select
