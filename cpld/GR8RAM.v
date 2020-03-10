@@ -34,17 +34,26 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 		( nIOSTRB &  CASel & nIOSEL) ? Addr[7:0] : 8'h00;
 
 	/* Select Signals */
-	wire BankSELA = A[3:0]==4'hF;
-	wire RAMSELA = A[3:0]==4'h3;
-	wire AddrHSELA = A[3:0]==4'h2;
-	wire AddrMSELA = A[3:0]==4'h1;
-	wire AddrLSELA = A[3:0]==4'h0;
-	LCELL BankWR_MC (.in(BankSELA & ~nWE & ~nDEVSEL & REGEN), .out(BankWR)); wire BankWR;
-	LCELL SetWR_MC (.in(SetSELA & ~nWE & ~nDEVSEL & REGEN), .out(SetWR)); wire SetWR;
-	LCELL RAMSEL_MC (.in(RAMSELA & ~nDEVSEL & REGEN), .out(RAMSEL)); wire RAMSEL;
-	LCELL AddrHWR_MC (.in(AddrHSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrHWR)); wire AddrHWR;
-	LCELL AddrMWR_MC (.in(AddrMSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrMWR)); wire AddrMWR;
-	LCELL AddrLWR_MC (.in(AddrLSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrLWR)); wire AddrLWR;
+	wire BankSELA 	= A[3:0]==4'hF;
+	wire MagicSELA 	= A[3:0]==4'hE;
+	wire TCntHSELA 	= A[3:0]==4'hB;
+	wire TCntLSELA 	= A[3:0]==4'hA;
+	wire DestHSELA 	= A[3:0]==4'h9;
+	wire DestLSELA 	= A[3:0]==4'h8;
+	wire RAMSELA 	= A[3:0]==4'h3;
+	wire AddrHSELA 	= A[3:0]==4'h2;
+	wire AddrMSELA 	= A[3:0]==4'h1;
+	wire AddrLSELA 	= A[3:0]==4'h0;
+	LCELL BankWR_MC 	(.in(BankSELA  & ~nWE & ~nDEVSEL & REGEN), .out(BankWR));  wire BankWR;
+	LCELL MagicWR_MC 	(.in(MagicSELA & ~nWE & ~nDEVSEL & REGEN), .out(MagicWR)); wire MagicWR;
+	LCELL TCntHWR_MC 	(.in(TCntHSELA & ~nWE & ~nDEVSEL & REGEN), .out(TCntHWR)); wire TCntHWR;
+	LCELL TCntLWR_MC 	(.in(TCntLSELA & ~nWE & ~nDEVSEL & REGEN), .out(TCntLWR)); wire TCntLWR;
+	LCELL DestHWR_MC 	(.in(DestHSELA & ~nWE & ~nDEVSEL & REGEN), .out(DestHWR)); wire DestHWR;
+	LCELL DestLWR_MC 	(.in(DestLSELA & ~nWE & ~nDEVSEL & REGEN), .out(DestLWR)); wire DestLWR;
+	LCELL RAMSEL_MC 	(.in(RAMSELA   &        ~nDEVSEL & REGEN), .out(RAMSEL));  wire RAMSEL;
+	LCELL AddrHWR_MC 	(.in(AddrHSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrHWR)); wire AddrHWR;
+	LCELL AddrMWR_MC 	(.in(AddrMSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrMWR)); wire AddrMWR;
+	LCELL AddrLWR_MC 	(.in(AddrLSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrLWR)); wire AddrLWR;
 
 	/* Data Bus Routing */
 	// DRAM/ROM data bus
@@ -71,15 +80,20 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 	reg REGEN = 0; // Register enable
 	reg IOROMEN = 0; // IOSTRB ROM enable
 	reg FullIOEN = 0; // Set to enable full I/O ROM space
+	reg PDMARDEN = 0;
+	reg PDMAWREN = 0;
 	reg [7:0] Bank = 0; // Bank register for ROM access
 	reg [23:0] Addr = 0; // RAM address register
 	
-	/* Increment Control */
+	/* RAM Address Register Increment Control */
 	reg IncAddrL = 0, IncAddrM = 0, IncAddrH = 0;
 	
-	/* Transfer Counters */
-	reg [15:0] TCnt = 0;
+	/* Pseudo-DMA Transfer Counters */
+	reg [9:0] TCnt = 0;
 	reg [15:0] Dest = 0;
+	
+	/* Transfer Counter Increment Control */
+	reg PDMANext = 0, IncDestH = 0;
 
 	/* CAS rising/falling edge components */
 	// These are combined to create the CAS outputs.
@@ -164,19 +178,21 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 			Addr <= 0;
 			Bank <= 0;
 			FullIOEN <= 0;
+			PDMARDEN <= 0;
+			PDMAWREN <= 0;
 			IncAddrL <= 0;
 			IncAddrM <= 0;
 			IncAddrH <= 0;
 		end else begin
 			// Increment address register
 			if (S==1 & IncAddrL) begin
-				Addr[7:0] <= Addr[7:0]+1;
 				IncAddrL <= 0;
+				Addr[7:0] <= Addr[7:0]+1;
 				IncAddrM <= Addr[7:0] == 8'hFF;
 			end
 			if (S==2 & IncAddrM) begin
-				Addr[15:8] <= Addr[15:8]+1;
 				IncAddrM <= 0;
+				Addr[15:8] <= Addr[15:8]+1;
 				IncAddrH <= Addr[15:8] == 8'hFF;
 			end
 			if (S==3 & IncAddrH) begin
@@ -186,8 +202,12 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 			
 			// Set register in middle of S6 if accessed.
 			if (S==6) begin
-				if (BankWR) Bank[7:0] <= D[7:0]; // Bank
-				if (SetWR) FullIOEN <= D[7:0] == 8'hE5;
+				if (BankWR) begin
+					Bank[7:0] <= D[7:0];
+					PDMARDEN <= D[7:0]==8'h10 & FullIOEN;
+					PDMAWREN <= D[7:0]==8'h10 & FullIOEN;
+				end
+				if (MagicWR) FullIOEN <= D[7:0] == 8'hE5;
 				
 				IncAddrL <= RAMSEL;
 				IncAddrM <= AddrLWR & Addr[7] & ~D[7];
@@ -196,6 +216,38 @@ module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
 				if (AddrHWR) Addr[23:16] <= D[7:0]; // Addr hi
 				if (AddrMWR) Addr[15:8] <= D[7:0]; // Addr mid
 				if (AddrLWR) Addr[7:0] <= D[7:0]; // Addr lo
+			end
+		end
+	end
+
+	/* Pseudo-DMA transfer counters */
+	always @(negedge C7M, negedge nRES) begin
+		if (~nRES) begin
+			TCnt <= 0;
+			Dest <= 0;
+			PDMANext <= 0;
+			IncDestH <= 0;
+		end else begin
+			// Increment destination pointer and decrement transfer counter
+			if (S==1 & PDMANext) begin
+				PDMANext <= 0;
+				Dest[7:0] <= Dest[7:0]+1;
+				IncDestH <= Dest[7:0] == 8'hFF;
+				TCnt <= TCnt-1;
+			end
+			if (S==2 & IncDestH) begin
+				IncDestH <= 0;
+				Dest[15:8] <= Dest[15:8]+1;
+			end
+			
+			// Set register in middle of S6 if accessed.
+			if (S==6) begin
+				PDMANext <= RAMSEL;
+
+				if (TCntHWR) TCnt[15:8] <= D[7:0]; // TCnt hi
+				if (TCntLWR) TCnt[7:0] <= D[7:0]; // TCnt lo
+				if (DestHWR) Dest[15:8] <= D[7:0]; // Dest hi
+				if (DestLWR) Dest[7:0] <= D[7:0]; // Dest lo
 			end
 		end
 	end
