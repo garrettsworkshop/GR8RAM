@@ -1,275 +1,599 @@
-module GR8RAM(C7M, C7M_2, Q3, PHI0in, PHI1in, nRES, nMode,
-			  A, RA, nWE, D, RD,
-			  nDEVSEL, nIOSEL, nIOSTRB,
-			  nRAS, nCAS0, nCAS1, nRCS, nROE, nRWE);
+module GR8RAM(C25M, PHI1, nIOSEL, nDEVSEL, nIOSTRB,
+			  RA, RB6, nRWE, nROE, nAOE, Adir, nRCS,
+			  RD, nDOE, Ddir,
+			  SBA, SA, nSCS, nRAS, nCAS, nSWE, DQML, DQMH, SCKE, SD,
+			  nRST, nPreBOD,
+			  DMAin, DMAout, INTin, INTout,
+			  nIRQout, nINHout, nDMAout, nNMIout);
 
-	/* Clock, Reset, Mode */
-	input C7M, C7M_2, Q3, PHI0in, PHI1in; // Clock inputs
-	input nRES;
+	/* Clock inputs */
+	input C25M, PHI1;
+	wire PHI0 = ~PHI1;
 
-	/* PHI1 Delay */
-	wire [8:0] PHI1b;
-	wire PHI1;
-	LCELL PHI1b0_MC (.in(PHI1in), .out(PHI1b[0]));
-	LCELL PHI1b1_MC (.in(PHI1b[0]), .out(PHI1b[1]));
-	LCELL PHI1b2_MC (.in(PHI1b[1]), .out(PHI1b[2]));
-	LCELL PHI1b3_MC (.in(PHI1b[2]), .out(PHI1b[3]));
-	LCELL PHI1b4_MC (.in(PHI1b[3]), .out(PHI1b[4]));
-	LCELL PHI1b5_MC (.in(PHI1b[4]), .out(PHI1b[5]));
-	LCELL PHI1b6_MC (.in(PHI1b[5]), .out(PHI1b[6]));
-	LCELL PHI1b7_MC (.in(PHI1b[6]), .out(PHI1b[7]));
-	LCELL PHI1b8_MC (.in(PHI1b[7]), .out(PHI1b[8]));
-	LCELL PHI1b9_MC (.in(PHI1b[8] & PHI1in), .out(PHI1));
-
-	/* Address Bus, etc. */
-	input nDEVSEL, nIOSEL, nIOSTRB; // Card select signals
-	input [15:0] A; // 6502 address bus
-	input nWE; // 6502 R/W
-	output [10:0] RA; // DRAM/ROM address
-	assign RA[10:8] = CASel ? Addr[21:19] : Addr[10:8];
-	assign RA[7:0] = 
-		(~nIOSTRB & ~FullIOEN) ? {7'b0000001, Bank[0]} :
-		(~nIOSTRB &  FullIOEN) ? Bank+1 : 
-		( nIOSTRB & ~CASel & nIOSEL) ? Addr[18:11] :
-		( nIOSTRB &  CASel & nIOSEL) ? Addr[7:0] : 8'h00;
-
-	/* Select Signals */
-	wire BankSELA 	= A[3:0]==4'hF;
-	wire MagicSELA 	= A[3:0]==4'hE;
-	wire TCntHSELA 	= A[3:0]==4'hB;
-	wire TCntLSELA 	= A[3:0]==4'hA;
-	wire DestHSELA 	= A[3:0]==4'h9;
-	wire DestLSELA 	= A[3:0]==4'h8;
-	wire RAMSELA 	= A[3:0]==4'h3;
-	wire AddrHSELA 	= A[3:0]==4'h2;
-	wire AddrMSELA 	= A[3:0]==4'h1;
-	wire AddrLSELA 	= A[3:0]==4'h0;
-	LCELL BankWR_MC 	(.in(BankSELA  & ~nWE & ~nDEVSEL & REGEN), .out(BankWR));  wire BankWR;
-	LCELL MagicWR_MC 	(.in(MagicSELA & ~nWE & ~nDEVSEL & REGEN), .out(MagicWR)); wire MagicWR;
-	LCELL TCntHWR_MC 	(.in(TCntHSELA & ~nWE & ~nDEVSEL & REGEN), .out(TCntHWR)); wire TCntHWR;
-	LCELL TCntLWR_MC 	(.in(TCntLSELA & ~nWE & ~nDEVSEL & REGEN), .out(TCntLWR)); wire TCntLWR;
-	LCELL DestHWR_MC 	(.in(DestHSELA & ~nWE & ~nDEVSEL & REGEN), .out(DestHWR)); wire DestHWR;
-	LCELL DestLWR_MC 	(.in(DestLSELA & ~nWE & ~nDEVSEL & REGEN), .out(DestLWR)); wire DestLWR;
-	LCELL RAMSEL_MC 	(.in(RAMSELA   &        ~nDEVSEL & REGEN), .out(RAMSEL));  wire RAMSEL;
-	LCELL AddrHWR_MC 	(.in(AddrHSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrHWR)); wire AddrHWR;
-	LCELL AddrMWR_MC 	(.in(AddrMSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrMWR)); wire AddrMWR;
-	LCELL AddrLWR_MC 	(.in(AddrLSELA & ~nWE & ~nDEVSEL & REGEN), .out(AddrLWR)); wire AddrLWR;
-
-	/* Data Bus Routing */
-	// DRAM/ROM data bus
-	wire RDOE = DBEN & ~nWE;
-	inout [7:0] RD = RDOE ? D[7:0] : 8'bZ;
-	// Apple II data bus
-	wire DOE = DBEN & nWE & 
-		((~nDEVSEL & REGEN) | ~nIOSEL | (~nIOSTRB & IOROMEN));
-	wire [7:0] Dout = (nDEVSEL | RAMSELA) ? RD[7:0] :
-        AddrHSELA ? Addr[23:16] : 
-        AddrMSELA ? Addr[15:8] : 
-        AddrLSELA ? Addr[7:0] : 8'h00;
-	inout [7:0] D = DOE ? Dout : 8'bZ;
-
-	/* DRAM and ROM Control Signals */
-	output nRCS = ~((~nIOSEL | (~nIOSTRB & IOROMEN)) & CSEN); // ROM chip select
-	output nROE = ~nWE; // need this for flash ROM
-	output nRWE = CASel ? nWE : 1'b1; // for ROM & DRAM
-	output nRAS = ~(RASr | RASf);
-	output nCAS0 = ~(CAS0f | (CASr & RAMSEL & ~Addr[22])); // DRAM CAS bank 0
-	output nCAS1 = ~(CAS1f | (CASr & RAMSEL & Addr[22])); // DRAM CAS bank 1
-
-  	/* 6502-accessible Registers */
-	reg REGEN = 0; // Register enable
-	reg IOROMEN = 0; // IOSTRB ROM enable
-	reg FullIOEN = 0; // Set to enable full I/O ROM space
-	reg PDMARDEN = 0;
-	reg PDMAWREN = 0;
-	reg [7:0] Bank = 0; // Bank register for ROM access
-	reg [23:0] Addr = 0; // RAM address register
-	
-	/* RAM Address Register Increment Control */
-	reg IncAddrL = 0, IncAddrM = 0, IncAddrH = 0;
-	
-	/* Pseudo-DMA Transfer Counters */
-	reg [9:0] TCnt = 0;
-	reg [15:0] Dest = 0;
-	
-	/* Transfer Counter Increment Control */
-	reg PDMANext = 0, IncDestH = 0;
-
-	/* CAS rising/falling edge components */
-	// These are combined to create the CAS outputs.
-	reg CASr = 0, CAS0f = 0, CAS1f = 0;
-	reg RASr = 0, RASf = 0;
-	reg CASel = 0; // DRAM address multiplexer select
-
-	/* State Counters */
-	reg PHI1reg = 0; // Saved PHI1 at last rising clock edge
-	reg PHI0seen = 0; // Have we seen PHI0 since reset?
-	reg [2:0] S = 0; // State counter
-	reg [3:0] Ref = 0; // Refresh skip counter
-	reg DBEN = 0; // Data bus driver gating
-	reg CSEN = 0; // ROM CS enable gating
-
-	/* Configuration */
-	input Mode;
-
-	// Apple II Bus Compatibiltiy Rules:
-	// Synchronize to PHI0 or PHI1. (PHI1 here)
-	// PHI1's edge may be -20ns,+10ns relative to C7M.
-	// Delay the rising edge of PHI1 to get enough hold time:
-	// 		PHI1modified = PHI1 & PHI1delayed;
-	// Only sample /DEVSEL, /IOSEL at these times:
-	// 		2nd and 3rd rising edge of C7M in PHI0 (S4, S5)
-	//		all 3 falling edges of C7M in PHI0 (S4, S5, S6)
-	// Can sample /IOSTRB at same times as /IOSEL, plus:
-	//		1st rising edge of C7M in PHI0 (S3)
-
-	/* State counters */
-	always @(posedge C7M) begin
-		// Synchronize state counter to S1 when just entering PHI1
-		PHI1reg <= PHI1; // Save old PHI1
-		if (~PHI1) PHI0seen <= 1; // PHI0seen set in PHI0
-		S <= (PHI1 & ~PHI1reg & PHI0seen) ? 4'h1 : 
-			S==0 ? 3'h0 :
-			S==7 ? 3'h7 : S+1;
-		
-		// Refresh counter allows DRAM refresh once every 13 cycles
-		if (S==3) Ref <= (Ref[3:2]==2'b11) ? 4'h0 : Ref+1;
+	/* Reset inputs */
+	input nRST, nPreBOD;
+	reg nRSTr0;
+	always @(posedge C25M) begin
+		nRSTr0 <= nRST;
 	end
 
-	/* State-based data bus and ROM CS gating */
-	always @(posedge C7M, negedge nRES) begin
-		if (~nRES) begin
-			DBEN <= 0;
-			CSEN <= 0;
-		end else begin
-			// Only drive Apple II data bus after S4 to avoid bus fight.
-			// Thus we wait 1.5 7M cycles (210 ns) into PHI0 before driving.
-			// Same for driving the ROM/SRAM data bus (RD).
-			DBEN <= S==4 | S==5 | S==6 | S==7;
-			
-			// Similarly, only select the ROM chip starting at
-			// the end of S4 for reads and the end of S5 for writes.
-			// This ensures that write data is valid for
-			// the entire time that the ROM is selected,
-			// and minimizes power consumption.
-			CSEN <= (S==4 & nWE) | S==5 | S==6 | S==7;
-		end
+	/* Select inputs */
+	input nIOSEL, nDEVSEL, nIOSTRB;
+	/* Synchronized select inputs */
+	reg nDEVSELr0, nDEVSELr1;
+	reg nIOSELr0;
+	reg nIOSTRBr0;
+	always @(posedge C25M) begin
+		nDEVSELr0 <= nDEVSEL;
+		nDEVSELr1 <= nDEVSELr0;
+		nIOSELr0 <= nIOSEL;
+		nIOSTRBr0 <= nIOSTRB;
+	end
+	/* DEVSEL-based state counter */
+	wire [9:0] DEVSELe = {DEVSELer[9:1], nDEVSELr1 && ~nDEVSELr0 && nRSTr0}
+	reg [9:1] DEVSELer;
+	always @(posedge C25M) begin
+		DEVSELer[9:1] <= DEVSELe[8:0];
 	end
 
-	/* DEVSEL register and IOSTRB ROM enable */
-	always @(posedge C7M, negedge nRES) begin
-		if (~nRES) begin
-			REGEN <= 0;
-			IOROMEN <= 0;
-		end else begin
-			// Enable registers at end of S4 when IOSEL accessed (Cn00-CnFF).
-			if (S==4 & ~nIOSEL) REGEN <= 1'b1;
+	/* Flash Control */
+	output nRCS = ~((~nIOSEL || (~nIOSTRB && IOROMEN)) && CSDBEN && nRST);
+	output nROE = ~nRWE;
 
-			// Enable IOSTRB ROM when accessing CnXX in IOSEL ROM.
-			if (S==4 & ~nIOSEL) IOROMEN <= 1'b1;
-			// Disable IOSTRB ROM when accessing 0xCFFF.
-			if (S==4 & ~nIOSTRB & A[10:0]==11'h7FF) IOROMEN <= 1'b0;
-		end
+	/* 6502/Flash Data Bus */
+	inout RD = RDOE ? Rdout : 8'bZ;
+	wire RDOE = ~nDEVSEL && nRST;
+	wire RDout = 
+		AddrLSelA ? Addr[7:0] :
+		AddrMSelA ? Addr[15:8] :
+		AddrHSelA ? Addr[23:16] :
+		DataSelA ? Addr==0 ? Data0[7:0] : Data[7:0] : 
+		8'h57;
+	output nDOE = ~((~nDEVSEL || ~nIOSEL || (~nIOSTRB && IOROMEN)) && CSDBEN && nRST);
+	output Ddir = ~nRWE;
+
+	/* Data bus / ROM chip select delay */
+	reg CSDBEN = 0;
+	always @(posedge C25M, negedge nRST) begin
+		if (~nRST) CSDBEN <= 1'b0;
+		else CSDBEN <= ~nDEVSELr0 || ~nIOSELr0 || ~nIOSTRBr0;
 	end
-	
-	/* Set registers */
-	always @(negedge C7M, negedge nRES) begin
-		if (~nRES) begin
+
+	/* IOROMEN control */
+	wire IOROMEN = IOROMEN0 ^ IOROMEN1;
+	reg IOROMEN0 = 0;
+	reg IOROMEN1 = 0;
+	always @(negedge nIOSEL, negedge nRST) begin
+		if (~nRST) IOROMEN0 <= 1'b0; // On reset, set both to 0; 0 ^ 0 == 0
+		else IOROMEN0 <= ~IOROMEN1; // Enable; X ^ ~X == 1
+	end
+	always @(negedge nIOSTRB, negedge nRST) begin
+		if (~nRST) IOROMEN1 <= 1'b0; // On reset, set both to 0; 0 ^ 0 == 0
+		else if (RA[10:0] == 11'h7FF) IOROMEN1 <= IOROMEN0; // Disable; X^X==0
+	end
+
+	/* 6502/Flash Address Bus */
+	input [15:0] RA;
+	input nRWE;
+	output nAOE = 0;
+	output Adir = 1;
+	reg [3:0] RAr;
+	reg nRWEr;
+	always @(posedge nDEVSEL) begin
+		// Latch RA and nRWE at end of DEVSEL access
+		RAr[3:0] <= RA[3:0];
+		nRWEr <= nRWE;
+	end
+
+	/* Register Select Signals */
+	wire AddrLSelA =	RA[3:0] == 4'h0;
+	wire AddrMSelA =	RA[3:0] == 4'h1;
+	wire AddrHSelA =	RA[3:0] == 4'h2;
+	wire DataSelA =		RA[3:0] == 4'h3;
+	wire DMAAddrLSelA =	RA[3:0] == 4'h4;
+	wire DMAAddrHSelA =	RA[3:0] == 4'h5;
+	wire DMALenLSelA =	RA[3:0] == 4'h6;
+	wire DMALenHSelA =	RA[3:0] == 4'h7;
+
+	wire MagicSelA =	RA[3:0] == 4'h8;
+	wire CfgSelA 	=	RA[3:0] == 4'h9;
+	wire RAMMaskSelA =	RA[3:0] == 4'hB;
+	wire BankHSelA =	RA[3:0] == 4'hE;
+	wire BankLSelA =	RA[3:0] == 4'hF;
+
+	/* SDRAM Address / Flash Bank Bus */
+	output [1:0] SBA = SAmux ? SBAreg[1:0] :
+		~nIOSTRB ? {
+			BankC8[4],	// SBA0, Bank4
+			BankC8[2]	// SBA1, Bank2
+		} : {  // IOSEL
+			1'b1,	// SBA0, Bank4
+			1'b1	// SBA1, Bank2
+		};
+	output [12:0] SA = SAmux ? SAreg[12:0] :
+		~nIOSTRB ? { 
+			SAreg[0],	// SA0
+			BankC8[11],	// SA1,  Bank11
+			BankC8[8] ^ BankCX[8], // SA2, Bank8
+			SAreg[3],	// SA3
+			SAreg[4], 	// SA4
+			ExtBankEN ? BankC8[7] : 1'b0, // SA5, Bank7
+			SAreg[6], 	// SA6
+			BankC8[10], // SA7,  Bank10
+			BankC8[9] ^ BankCX[9], // SA8, Bank9
+			BankC8[1],	// SA9,  Bank1
+			BankC8[0],	// SA10, Bank0
+			BankC8[3],	// SA11, Bank3
+			BankC8[5]	// SA12, Bank5
+		} : { // IOSEL
+			SAreg[0],	// SA0
+			1'b0,	 	// SA1,  Bank11
+			BankCX[8],	// SA2,  Bank8
+			SAreg[3],	// SA3
+			SAreg[4], 	// SA4
+			1'b1, 		// SA5,  Bank7
+			SAreg[6], 	// SA6
+			1'b0, 		// SA7,  Bank10
+			BankCX[9], 	// SA8,  Bank9
+			1'b1,		// SA9,  Bank1
+			1'b1,		// SA10, Bank0
+			1'b1,		// SA11, Bank3
+			1'b1		// SA12, Bank5
+		};
+	output RB6 = ~nIOSEL ? 1'b1 : BankC8[6];
+	reg SAmux = 1'b0;
+	reg [1:0] SBAreg;
+	reg [12:0] SAreg;
+
+	/* SDRAM Data Bus */
+	inout [7:0] SD = SDOE ? WRD : 8'bZ;
+	reg SDOE = 0;
+	reg [7:0] WRD = 0;
+	always @(posedge nDEVSEL) begin
+		WRD[7:0] <= RD[7:0];
+		if (nRSTr0 && DataSelA && ~nRWE && Addr==0) Data0[7:0] <= RD[7:0];
+	end
+
+	/* SDRAM Control Bus */
+	output reg nSCS = 1;
+	output reg nRAS = 1;
+	output reg nCAS = 1;
+	output reg nSWE = 1;
+	output reg DQML = 1;
+	output reg DQMH = 1;
+	output reg SCKE = 1;
+
+	/* INT/DMA in/out */
+	input DMAin;
+	input INTin;
+	output DMAout = DMAin;
+	output INTout = INTin;
+
+	/* IRQ, NMI, DMA, INH outputs (open-drain is external) */
+	output nIRQ = 1;
+	output nNMI = 1;
+	output nDMA = 1;
+	output nINH = 1;
+
+	/* Refresh/Init Counter */
+	reg [19:0] Tick;
+	always @(posedge C25M) begin
+		Tick <= Tick+1;
+	end
+	reg InitDone = 0;
+	always @(posedge C25M) begin
+		if (Tick[19:0]==20'hFFFFF) InitDone <= 1'b1;
+	end
+	reg RefWake = 0;
+	reg RefDone = 0;
+
+	/* User-Accessible Registers */
+	reg [23:0] Addr = 0;
+	reg [7:0] Data = 0;
+	reg [7:0] Data0 = 0;
+	reg [11:0] BankC8 = 0; // Bits 9:8 are XORed with BankCX
+	reg [9:8] BankCX = 0; // Bank CX is init value
+	reg ExtBankEN = 0;
+
+	/* Set/Increment Address Register */
+	always @(posedge C25M, negedge nRST) begin
+		if (~nRST) begin
 			Addr <= 0;
-			Bank <= 0;
-			FullIOEN <= 0;
-			PDMARDEN <= 0;
-			PDMAWREN <= 0;
-			IncAddrL <= 0;
-			IncAddrM <= 0;
-			IncAddrH <= 0;
 		end else begin
-			// Increment address register
-			if (S==1 & IncAddrL) begin
-				IncAddrL <= 0;
-				Addr[7:0] <= Addr[7:0]+1;
-				IncAddrM <= Addr[7:0] == 8'hFF;
-			end
-			if (S==2 & IncAddrM) begin
-				IncAddrM <= 0;
-				Addr[15:8] <= Addr[15:8]+1;
-				IncAddrH <= Addr[15:8] == 8'hFF;
-			end
-			if (S==3 & IncAddrH) begin
-				IncAddrH <= 0;
-				Addr[23:16] <= Addr[23:16]+1;
-			end
-			
-			// Set register in middle of S6 if accessed.
-			if (S==6) begin
-				if (BankWR) begin
-					Bank[7:0] <= D[7:0];
-					PDMARDEN <= D[7:0]==8'h10 & FullIOEN;
-					PDMAWREN <= D[7:0]==8'h10 & FullIOEN;
+			if (DEVSELe[0] && ~nRWEr) begin // Write address register
+				if (RAr[3:0]==4'h0) begin // AddrL
+					Addr[7:0] <= WRD[7:0];
+					if (Addr[7] & ~WRD[7]) Addr[23:8] <= Addr[23:8]+1;
+				end else if (RAr[3:0]==4'h1) begin // AddrM
+					Addr[15:8] <= WRD[7:0];
+					if (Addr[15] & ~WRD[7]) Addr[23:16] <= Addr[23:16]+1;
+				end else if (RAr[3:0]==4'h2) begin // AddrH
+					Addr[23:16] <= WRD[7:0];
 				end
-				if (MagicWR) FullIOEN <= D[7:0] == 8'hE5;
-				
-				IncAddrL <= RAMSEL;
-				IncAddrM <= AddrLWR & Addr[7] & ~D[7];
-				IncAddrH <= AddrMWR & Addr[15] & ~D[7];
-				
-				if (AddrHWR) Addr[23:16] <= D[7:0]; // Addr hi
-				if (AddrMWR) Addr[15:8] <= D[7:0]; // Addr mid
-				if (AddrLWR) Addr[7:0] <= D[7:0]; // Addr lo
+			end else if (DEVSELe[2] && RAr[3:0]==4'h3) begin // R/W data
+				Addr[23:0] <= Addr[23:0]+1;
 			end
 		end
 	end
 
-	/* Pseudo-DMA transfer counters */
-	always @(negedge C7M, negedge nRES) begin
-		if (~nRES) begin
-			TCnt <= 0;
-			Dest <= 0;
-			PDMANext <= 0;
-			IncDestH <= 0;
+	/* Set bank */
+	always @(posedge nDEVSEL, negedge nRST) begin
+		if (~nRST) begin
+			BankC8 <= 0;
 		end else begin
-			// Increment destination pointer and decrement transfer counter
-			if (S==1 & PDMANext) begin
-				PDMANext <= 0;
-				Dest[7:0] <= Dest[7:0]+1;
-				IncDestH <= Dest[7:0] == 8'hFF;
-				TCnt <= TCnt-1;
-			end
-			if (S==2 & IncDestH) begin
-				IncDestH <= 0;
-				Dest[15:8] <= Dest[15:8]+1;
-			end
-			
-			// Set register in middle of S6 if accessed.
-			if (S==6) begin
-				PDMANext <= RAMSEL;
-
-				if (TCntHWR) TCnt[15:8] <= D[7:0]; // TCnt hi
-				if (TCntLWR) TCnt[7:0] <= D[7:0]; // TCnt lo
-				if (DestHWR) Dest[15:8] <= D[7:0]; // Dest hi
-				if (DestLWR) Dest[7:0] <= D[7:0]; // Dest lo
+			if (~nRWE) begin
+				if (RAr[3:0]==4'hE && ExtBankEN) begin
+					BankC8[11:10] <= WRD[3:2];
+					BankC8[9:8] <= WRD[1:0] ^ BankCX[9:8];
+				end else if (RAr[3:0]==4'hF) begin
+					BankC8[7] <= WRD[7] & ExtBankEN;
+					BankC8[6:0] <= WRD[6:0];
+				end
 			end
 		end
 	end
 
-	/* DRAM RAS/CAS */
-	always @(posedge C7M) begin
-			RASr <= 	(S==1 & Ref==0) | // Refresh
-						(S==4 & RAMSEL & nWE) | // Read: Early RAS
-						(S==5 & RAMSEL & ~nWE); // Write: Late RAS
-			CASel = 	(RAMSEL & nWE & S==4) | // Read: mux address early
-						(RAMSEL & ~nWE & S==5); // Write: mux address late
-			// Read: long, early CAS, gated later by RAMSEL
-			CASr <= 	(nWE & (S==5 | S==6 | S==7));
+	/* Latch read data */
+	always @(posedge C25M) begin
+		if (DEVSELe[9]) Data[7:0] <= SDD[7:0];
 	end
-	always @(negedge C7M) begin
-			RASf <= 	(S==4 & RAMSEL & nWE) | // Read: Early RAS
-						(S==5 & RAMSEL & ~nWE); // Write: Late RAS
-			CAS0f <= (S==1 & Ref==0) | // Refresh
-						(S==5 & RAMSEL & ~Addr[22] & nWE) | // Read: Early CAS
-						(S==6 & RAMSEL & ~Addr[22] & ~nWE); // Write: Late CAS
-			CAS1f <= (S==1 & Ref==0) | // Refresh
-						(S==5 & RAMSEL & Addr[22] & nWE) | // Read: Early CAS
-						(S==6 & RAMSEL & Addr[22] & ~nWE); // Write: Late CAS
+
+	/* SDRAM Control */
+	always @(posedge C25M) begin
+		if (~InitDone) begin
+			if (Tick[19:8]==12'hFFF) begin
+				if (Tick[3:0]==4'h8) begin
+					if (Tick[7:4]==4'h0) begin
+						// PC all
+						SCKE <= 1'b1;
+						nSCS <= 1'b0;
+						nRAS <= 1'b0;
+						nCAS <= 1'b1;
+						nSWE <= 1'b0;
+						DQML <= 1'b1;
+						DQMH <= 1'b1;
+
+						SAreg[10] <= 1'b1; // "all"
+					end else if (Tick[7:4]==4'h7) begin
+						// Load mode register
+						SCKE <= 1'b1;
+						nSCS <= 1'b0;
+						nRAS <= 1'b0;
+						nCAS <= 1'b0;
+						nSWE <= 1'b0;
+						DQML <= 1'b1;
+						DQMH <= 1'b1;
+
+						SAreg[11] <= 1'b0; // Reserved in mode register
+					end else begin
+						// AREF
+						SCKE <= 1'b1;
+						nSCS <= 1'b0;
+						nRAS <= 1'b0;
+						nCAS <= 1'b0;
+						nSWE <= 1'b1;
+						DQML <= 1'b1;
+						DQMH <= 1'b1;
+					end
+				end else begin
+					// NOP
+					SCKE <= 1'b1;
+					nSCS <= 1'b1;
+					nRAS <= 1'b1;
+					nCAS <= 1'b1;
+					nSWE <= 1'b1;
+					DQML <= 1'b1;
+					DQMH <= 1'b1;
+				end
+			end else begin
+				// NOP ckdis
+				SCKE <= 1'b0;
+				nSCS <= 1'b1;
+				nRAS <= 1'b1;
+				nCAS <= 1'b1;
+				nSWE <= 1'b1;
+				DQML <= 1'b1;
+				DQMH <= 1'b1;
+			end
+
+			// Mode register contents
+			SBAreg[1:0] <= 2'b00;	// Reserved
+			SAreg[11] <= 1'b0;		// Reserved
+			SAreg[9] <= 1'b1;		// "1" for single write mode
+			SAreg[8] <= 1'b0;		// Reserved
+			SAreg[7] <= 1'b0;		// "0" for not test mode
+			SAreg[6:4] <= 3'b010;	// "2" for CAS latency 2
+			SAreg[3] <= 1'b0;		// "0" for sequential burst (not used)
+			SAreg[2:0] <= 3'b000;	// "0" for burst length 1 (no burst)
+
+			SAmux <= 1'b1;
+			RefDone <= 1'b0;
+			RefWake <= 1'b0;
+		end else if (DEVSELe[0] && RAr[3:0]==4'h3) begin
+			// NOP
+			SCKE <= ~nRWEr;
+			nSCS <= 1'b1;
+			nRAS <= 1'b1;
+			nCAS <= 1'b1;
+			nSWE <= 1'b1;
+			DQML <= 1'b1;
+			DQMH <= 1'b1;
+
+			SAmux <= 1'b1;
+			RefWake <= 1'b0;
+		end else if (DEVSELe[1] && RAr[3:0]==4'h3) begin
+			// ACT
+			SCKE <= ~nRWEr;
+			nSCS <= nRWEr;
+			nRAS <= 1'b0;
+			nCAS <= 1'b1;
+			nSWE <= 1'b1;
+			DQML <= 1'b1;
+			DQMH <= 1'b1;
+
+			// Row address
+			SBAreg[1:0] <= Addr[23:22];
+			SAreg[12] <= 1'b0;
+			SAreg[11:0] <= Addr[21:10];
+			
+			SAmux <= 1'b1;
+			RefWake <= 1'b0;
+		end else if (DEVSELe[2] && RAr[3:0]==4'h3) begin
+			// WR/NOP
+			SCKE <= ~nRWEr;
+			nSCS <= nRWEr;
+			nRAS <= 1'b1;
+			nCAS <= 1'b0;
+			nSWE <= 1'b0;
+			DQML <= Addr[0];
+			DQMH <= ~Addr[0];
+
+			// Column address
+			SBAreg[1:0] <= Addr[23:22];
+			SAreg[12:11] <= 2'b00;
+			SAreg[9] <= 1'b0;
+			SAreg[8:0] <= Addr[9:1];
+
+			// Auto-precharge only if row will increment
+			SAreg[10] <= Addr[9:0]==10'h3FF;
+
+			SAmux <= 1'b1;
+			RefWake <= 1'b0;
+		end else if (DEVSELe[3] && RAr[3:0]==4'h3) begin
+			// NOP
+			SCKE <= ~nRWEr;
+			nSCS <= nRWEr;
+			nRAS <= 1'b1;
+			nCAS <= 1'b1;
+			nSWE <= 1'b1;
+			DQML <= 1'b1;
+			DQMH <= 1'b1;
+
+			SAmux <= 1'b0;
+			RefWake <= 1'b0;
+		end else if (DEVSELe[4] && RAr[3:0]==4'h3) begin
+			// NOP (auto-precharge from previous write)
+			SCKE <= 1'b1;
+			nSCS <= 1'b1;
+			nRAS <= 1'b1;
+			nCAS <= 1'b1;
+			nSWE <= 1'b1;
+			DQML <= 1'b1;
+			DQMH <= 1'b1;
+
+			SAmux <= 1'b0;
+			RefWake <= 1'b0;
+		end else if (DEVSELe[5] && RAr[3:0]==4'h3) begin
+			// ACT only if WR AP just occurred / NOP
+			SCKE <= 1'b1;
+			nSCS <= ~nRWEr && ~SAreg[10];
+			nRAS <= 1'b0;
+			nCAS <= 1'b1;
+			nSWE <= 1'b1;
+			DQML <= 1'b1;
+			DQMH <= 1'b1;
+
+			// Row address
+			SBAreg[1:0] <= Addr[23:22];
+			SAreg[12] <= 1'b0;
+			SAreg[11:0] <= Addr[21:10];
+			
+			SAmux <= 1'b1;
+			RefWake <= 1'b0;
+		end else if (DEVSELe[6] && RAr[3:0]==4'h3) begin
+			// RD
+			SCKE <= 1'b1;
+			nSCS <= 1'b0;
+			nRAS <= 1'b1;
+			nCAS <= 1'b0;
+			nSWE <= 1'b1;
+			DQML <= Addr[0];
+			DQMH <= ~Addr[0];
+
+			// Column address
+			SBAreg[1:0] <= Addr[23:22];
+			SAreg[12:11] <= 2'b00;
+			SAreg[10] <= 1'b1; // auto-precharge
+			SAreg[9] <= 1'b0;
+			SAreg[8:0] <= Addr[9:1];
+
+			SAmux <= 1'b1;
+			RefWake <= 1'b0;
+		end else if (DEVSELe[7] && RAr[3:0]==4'h3) begin
+			// NOP
+			SCKE <= 1'b1;
+			nSCS <= 1'b1;
+			nRAS <= 1'b1;
+			nCAS <= 1'b1;
+			nSWE <= 1'b1;
+			DQML <= 1'b1;
+			DQMH <= 1'b1;
+
+			SAmux <= 1'b0;
+			RefWake <= 1'b0;
+		end else begin
+			if (Tick[5] && ~RefDone) begin
+				if (~RefWake) begin
+					// NOP
+					SCKE <= 1'b1;
+					nSCS <= 1'b1;
+					nRAS <= 1'b1;
+					nCAS <= 1'b1;
+					nSWE <= 1'b1;
+					DQML <= 1'b1;
+					DQMH <= 1'b1;
+
+					RefWake <= 1'b1;
+				end else begin
+					// AREF
+					SCKE <= 1'b1;
+					nSCS <= 1'b0;
+					nRAS <= 1'b0;
+					nCAS <= 1'b0;
+					nSWE <= 1'b1;
+					DQML <= 1'b1;
+					DQMH <= 1'b1;
+
+					RefWake <= 1'b0;
+					RefDone <= 1'b1;
+				end
+			end else begin
+				// NOP ckdis
+				SCKE <= 1'b0;
+				nSCS <= 1'b1;
+				nRAS <= 1'b1;
+				nCAS <= 1'b1;
+				nSWE <= 1'b1;
+				DQML <= 1'b1;
+				DQMH <= 1'b1;
+
+				RefWake <= 1'b0;
+				if (Tick[5]) RefDone <= 1'b0;
+			end
+
+			SAmux <= 1'b0;
+		end
+	end
+
+	/* UFM Interface */
+	reg ARCLK = 0; // UFM address register clock
+	// UFM address register data input tied to 0
+	reg ARShift = 0; // 1 to Shift UFM address in, 0 to increment
+	reg DRCLK = 0; // UFM data register clock
+	reg DRDIn = 0; // UFM data register input
+	reg DRShift = 0; // 1 to shift UFM out, 0 to load from current address
+	reg UFMErase = 0; // Rising edge starts erase. UFM+RTP must not be busy
+	reg UFMProgram = 0; // Rising edge starts program. UFM+RTP must not be busy
+	wire UFMBusy; // 1 if UFM is doing user operation. Asynchronous
+	wire RTPBusy; // 1 if real-time programming in progress. Asynchronous
+	wire DRDOut; // UFM data output
+	// UFM oscillator always enabled
+	wire UFMOsc; // UFM oscillator output (3.3-5.5 MHz)
+	UFM UFM_inst ( // UFM IP block (for Altera MAX II and MAX V)
+		.arclk (ARCLK),
+		.ardin (1'b0),
+		.arshft (ARShift),
+		.drclk (DRCLK),
+		.drdin (DRDIn),
+		.drshft (DRShift),
+		.erase (UFMErase),
+		.oscena (1'b1),
+		.program (UFMProgram),
+		.busy (UFMBusy),
+		.drdout (DRDOut),
+		.osc (UFMOsc),
+		.rtpbusy (RTPBusy));
+	reg UFMBr = 0; // UFMBusy registered to sync with C14M
+	reg RTPBr = 0; // RTPBusy registered to sync with C14M
+
+	reg [15:0] Cfg;
+	reg CfgLoaded = 0;
+	// Do nothing when Tick15:14==2'h0
+	// Get ready when Tick15:14==2'h1
+	// 	Zero AR
+	// Load Cfg when Tick15:14==2'h2
+	// 	Tick13:6 (256) - first half of UFM looked at
+	// 	Tick5:2 (16) - 16 bits loaded from UFM
+	//		0: set CfgLoaded if DRDout==1, otherwise shift DRDout into Cfg
+	//		1-14: continue shifting DRDout into Cfg[15:0]
+	//		15: shift last DRDout bit into Cfg[15:0] and increment AR
+	// 	Tick1:0 (4) - 1 bit shifted
+	// Do nothing when Tick15:14==2'h3
+	//	Set CfgLoaded too
+	always @(posedge C25M) begin
+		if (~CfgLoaded) begin
+			if (Tick[15:14]==2'h0) begin
+				// Do nothing
+				ARShift <= 1;
+				ARCLK <= 0;
+				DRCLK <= 0;
+			end else if (Tick[15:14]==2'h1) begin
+				// Shift zeros into AR during first half
+				if (~Tick[13]) begin
+					ARShift <= 1;
+					ARCLK <= Tick[1];
+				end else begin
+					ARShift <= 0;
+					ARCLK <= 0;
+				end
+
+				// Load default config
+				Cfg[15:0] <= 16'hFFFF;
+
+				// Load indirect into DR at end
+				if (Tick[13:0]==14'h3FFC || 
+					Tick[13:0]==14'h3FFD || 
+					Tick[13:0]==14'h3FFE || 
+					Tick[13:0]==14'h3FFF || ) begin
+					DRCLK <= 1;
+				end else DRCLK <= 0;
+			end else if (Tick[15:14]==2'h2) begin
+				// Load 16 bits into Cfg register
+				if (Tick[5:2]==4'h0 && Tick[1:0]==0 && DRDout) begin
+					CfgLoaded <= 1;
+				end else if (Tick[1:0]==0) begin
+					Cfg[15:0] <= {Cfg[14:1], DRDout};
+				end
+
+				// Increment AR
+				if (Tick[5:2]==4'hE) begin
+					ARCLK <= 1;
+				end else begin
+					ARCLK <= 0;
+				end
+
+				// Load indirect into DR
+				if (Tick[5:2]==4'hF) begin
+					DRCLK <= 1;
+				end else begin
+					DRCLK <= 0;
+				end
+
+				ARShift <= 1'b0; // Only incrementing AR now
+			end else if (Tick[15:14]==2'h3) begin
+				// Do nothing
+				ARShift <= 1;
+				ARCLK <= 0;
+				DRCLK <= 0;
+				CfgLoaded <= 1; // in case setting at address 0xFF
+			end
+
+			DRShift <= 0; // Only reading DR during init, not writing UFM
+			DRDIn <= 0;
+		end else if (DEVSELe[0] && RAr[3:0]==4'h8) begin
+			
+		end else begin
+			// Do nothing
+			ARShift <= 1;
+			ARCLK <= 0;
+			DRCLK <= 0;
+			DRShift <= 0;
+			DRDIn <= 0;
+		end
+	end
+
+	
+	always @(posedge nDEVSEL, negedge nRST) begin
+		if (~nRST) 
 	end
 endmodule
