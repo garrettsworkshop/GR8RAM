@@ -455,7 +455,7 @@ F 3 "" H 4650 9700 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 Text Label 1400 2450 0    50   ~ 0
-RDY
+~RDY~
 Text Label 1250 1700 0    50   ~ 0
 INTout
 Text Label 1250 1450 0    50   ~ 0
@@ -541,12 +541,12 @@ $EndComp
 $Comp
 L power:GND #PWR0139
 U 1 1 612A2608
-P 6400 6550
-F 0 "#PWR0139" H 6400 6300 50  0001 C CNN
-F 1 "GND" H 6400 6400 50  0000 C CNN
-F 2 "" H 6400 6550 50  0001 C CNN
-F 3 "" H 6400 6550 50  0001 C CNN
-	1    6400 6550
+P 7100 6550
+F 0 "#PWR0139" H 7100 6300 50  0001 C CNN
+F 1 "GND" H 7100 6400 50  0000 C CNN
+F 2 "" H 7100 6550 50  0001 C CNN
+F 3 "" H 7100 6550 50  0001 C CNN
+	1    7100 6550
 	1    0    0    -1  
 $EndComp
 Text Label 5800 6050 2    50   ~ 0
@@ -995,14 +995,6 @@ F 4 "C10041" H 6800 4150 50  0001 C CNN "LCSC Part"
 	1    6800 4150
 	1    0    0    -1  
 $EndComp
-Text Label 7800 4850 0    50   ~ 0
-R~OE~
-Text Label 7800 4950 0    50   ~ 0
-R~CS~
-Text Label 7800 5950 0    50   ~ 0
-R~WE~
-Text Label 5800 2950 2    50   ~ 0
-RB6
 Text Label 5800 3050 2    50   ~ 0
 RA0
 Text Label 5800 3850 2    50   ~ 0
@@ -1050,17 +1042,6 @@ F 1 "+3V3" H 4000 950 50  0000 C CNN
 F 2 "" H 4000 800 50  0001 C CNN
 F 3 "" H 4000 800 50  0001 C CNN
 	1    4000 800 
-	-1   0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0135
-U 1 1 62391583
-P 5400 1550
-F 0 "#PWR0135" H 5400 1300 50  0001 C CNN
-F 1 "GND" H 5400 1400 50  0000 C CNN
-F 2 "" H 5400 1550 50  0001 C CNN
-F 3 "" H 5400 1550 50  0001 C CNN
-	1    5400 1550
 	-1   0    0    -1  
 $EndComp
 Wire Wire Line
@@ -1150,47 +1131,6 @@ Wire Wire Line
 Connection ~ 1800 6350
 Wire Wire Line
 	1800 6050 1800 6350
-NoConn ~ 1800 7550
-Connection ~ 1800 7350
-Wire Wire Line
-	1800 7350 1800 7450
-Wire Wire Line
-	1900 7350 1800 7350
-$Comp
-L power:GND #PWR0131
-U 1 1 6150ABA1
-P 1900 7350
-F 0 "#PWR0131" H 1900 7100 50  0001 C CNN
-F 1 "GND" H 1900 7200 50  0000 C CNN
-F 2 "" H 1900 7350 50  0001 C CNN
-F 3 "" H 1900 7350 50  0001 C CNN
-	1    1900 7350
-	-1   0    0    -1  
-$EndComp
-Text Label 3500 3950 0    50   ~ 0
-RB6
-Wire Wire Line
-	3500 3950 3900 3950
-Text Label 3900 3650 2    50   ~ 0
-SA11
-Wire Wire Line
-	3500 4250 3900 4250
-Wire Wire Line
-	3500 4150 3900 4150
-Wire Wire Line
-	3500 4450 3900 4450
-Wire Wire Line
-	3500 4350 3900 4350
-Text Label 3900 4450 2    50   ~ 0
-SA1
-Text Label 3900 4350 2    50   ~ 0
-SA7
-Text Label 3900 4250 2    50   ~ 0
-SA8
-Text Label 3900 4150 2    50   ~ 0
-SA2
-Text Label 4900 4550 0    50   ~ 0
-R~WE~
 Text Label 1800 7150 0    50   ~ 0
 RR~W~out
 Text Label 1800 7050 0    50   ~ 0
@@ -1209,138 +1149,6 @@ Wire Wire Line
 	3000 4950 3200 4950
 Text Label 3000 4950 0    50   ~ 0
 RD0
-Entry Wire Line
-	3400 4550 3500 4450
-Entry Wire Line
-	3400 4350 3500 4250
-Entry Wire Line
-	3400 4250 3500 4150
-Entry Wire Line
-	3400 4450 3500 4350
-Wire Wire Line
-	5100 3950 4900 3950
-$Comp
-L power:GND #PWR0146
-U 1 1 600BBD4F
-P 5100 3950
-F 0 "#PWR0146" H 5100 3700 50  0001 C CNN
-F 1 "GND" H 5100 3800 50  0000 C CNN
-F 2 "" H 5100 3950 50  0001 C CNN
-F 3 "" H 5100 3950 50  0001 C CNN
-	1    5100 3950
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+3V3 #PWR0143
-U 1 1 600BAFBC
-P 4900 4150
-F 0 "#PWR0143" H 4900 4000 50  0001 C CNN
-F 1 "+3V3" H 4900 4300 50  0000 C CNN
-F 2 "" H 4900 4150 50  0001 C CNN
-F 3 "" H 4900 4150 50  0001 C CNN
-	1    4900 4150
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+3V3 #PWR0142
-U 1 1 600BAB7D
-P 4900 3850
-F 0 "#PWR0142" H 4900 3700 50  0001 C CNN
-F 1 "+3V3" H 4900 4000 50  0000 C CNN
-F 2 "" H 4900 3850 50  0001 C CNN
-F 3 "" H 4900 3850 50  0001 C CNN
-	1    4900 3850
-	1    0    0    -1  
-$EndComp
-NoConn ~ 4900 3550
-NoConn ~ 4900 3450
-NoConn ~ 4900 3350
-NoConn ~ 4900 3250
-NoConn ~ 4900 3150
-NoConn ~ 4900 3050
-NoConn ~ 4900 2950
-$Comp
-L power:+3V3 #PWR0113
-U 1 1 5FFC5A3C
-P 3900 2150
-F 0 "#PWR0113" H 3900 2000 50  0001 C CNN
-F 1 "+3V3" H 3900 2300 50  0000 C CNN
-F 2 "" H 3900 2150 50  0001 C CNN
-F 3 "" H 3900 2150 50  0001 C CNN
-	1    3900 2150
-	1    0    0    -1  
-$EndComp
-Entry Wire Line
-	3300 2250 3400 2350
-NoConn ~ 4900 4250
-Text Label 4900 2850 0    50   ~ 0
-RD7
-Text Label 4900 2750 0    50   ~ 0
-RD6
-Text Label 4900 2650 0    50   ~ 0
-RD5
-Text Label 4900 2550 0    50   ~ 0
-RD4
-Text Label 4900 2450 0    50   ~ 0
-RD3
-Text Label 4900 2350 0    50   ~ 0
-RD2
-Text Label 4900 2250 0    50   ~ 0
-RD1
-Text Label 4900 2150 0    50   ~ 0
-RD0
-$Comp
-L GW_RAM:Flash-4Mx16-TSOP1-48 U3
-U 1 1 5FDA9245
-P 4400 3050
-F 0 "U3" H 4400 4100 50  0000 C CNN
-F 1 "MX29LV640EB" V 4400 3050 50  0000 C CNN
-F 2 "stdpads:TSOP-I-48_18.4x12mm_P0.5mm" H 4400 3050 50  0001 C CNN
-F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/25022B.pdf" H 4400 3050 50  0001 C CNN
-F 4 "C30076" H 4400 3050 50  0001 C CNN "LCSC Part"
-	1    4400 3050
-	1    0    0    -1  
-$EndComp
-Entry Wire Line
-	3300 2950 3400 3050
-Entry Wire Line
-	3300 3050 3400 3150
-Entry Wire Line
-	3300 3150 3400 3250
-Entry Wire Line
-	3300 2350 3400 2450
-Entry Wire Line
-	3300 2450 3400 2550
-Entry Wire Line
-	3300 2550 3400 2650
-Entry Wire Line
-	3300 2650 3400 2750
-Entry Wire Line
-	3300 2750 3400 2850
-Entry Wire Line
-	3300 2850 3400 2950
-Text Label 3900 3250 2    50   ~ 0
-RA10
-Text Label 3900 3150 2    50   ~ 0
-RA9
-Text Label 3900 3050 2    50   ~ 0
-RA8
-Text Label 3900 2950 2    50   ~ 0
-RA7
-Text Label 3900 2850 2    50   ~ 0
-RA6
-Text Label 3900 2750 2    50   ~ 0
-RA5
-Text Label 3900 2650 2    50   ~ 0
-RA4
-Text Label 3900 2550 2    50   ~ 0
-RA3
-Text Label 3900 2450 2    50   ~ 0
-RA2
-Text Label 3900 2350 2    50   ~ 0
-RA1
-Text Label 4900 3650 0    50   ~ 0
-RA0
 Wire Wire Line
 	1000 7250 650  7250
 Connection ~ 650  7550
@@ -1348,19 +1156,6 @@ Wire Wire Line
 	650  7250 650  7550
 Wire Wire Line
 	1000 7550 650  7550
-$Comp
-L power:GND #PWR0107
-U 1 1 60F31FBA
-P 3900 4650
-F 0 "#PWR0107" H 3900 4400 50  0001 C CNN
-F 1 "GND" H 3900 4500 50  0000 C CNN
-F 2 "" H 3900 4650 50  0001 C CNN
-F 3 "" H 3900 4650 50  0001 C CNN
-	1    3900 4650
-	1    0    0    -1  
-$EndComp
-Entry Wire Line
-	3400 4150 3500 4050
 Connection ~ 650  7250
 $Comp
 L power:GND #PWR0145
@@ -1385,44 +1180,6 @@ Text Label 1000 7150 2    50   ~ 0
 INTout
 Wire Wire Line
 	650  6950 650  7250
-Entry Wire Line
-	3400 3950 3500 3850
-Entry Wire Line
-	3400 3850 3500 3750
-Wire Wire Line
-	3500 3850 3900 3850
-Wire Wire Line
-	3500 3750 3900 3750
-Entry Wire Line
-	3400 3750 3500 3650
-Entry Wire Line
-	3400 3650 3500 3550
-Entry Wire Line
-	3400 3550 3500 3450
-Entry Wire Line
-	3400 3450 3500 3350
-Wire Wire Line
-	3500 4050 3900 4050
-Wire Wire Line
-	3500 3650 3900 3650
-Wire Wire Line
-	3500 3550 3900 3550
-Wire Wire Line
-	3500 3450 3900 3450
-Wire Wire Line
-	3500 3350 3900 3350
-Text Label 3900 4050 2    50   ~ 0
-SA5
-Text Label 3900 3350 2    50   ~ 0
-SA10
-Text Label 3900 3550 2    50   ~ 0
-SBA1
-Text Label 3900 3850 2    50   ~ 0
-SA12
-Text Label 3900 3750 2    50   ~ 0
-SBA0
-Text Label 3900 3450 2    50   ~ 0
-SA9
 Wire Wire Line
 	3000 3750 3200 3750
 Wire Wire Line
@@ -1546,12 +1303,8 @@ F 3 "" H 3300 6450 50  0001 C CNN
 $EndComp
 Text Label 2200 4750 2    50   ~ 0
 Ddir
-Text Label 3000 2450 0    50   ~ 0
-A~OE~
 Text Label 2200 2350 2    50   ~ 0
 Adir
-Text Label 3000 3650 0    50   ~ 0
-A~OE~
 Text Label 2200 3550 2    50   ~ 0
 Adir
 Text Label 3000 1850 0    50   ~ 0
@@ -1619,10 +1372,6 @@ Text Label 3000 1750 0    50   ~ 0
 RR~W~in
 Text Label 2200 1450 2    50   ~ 0
 ~IOSTRB~
-Text Label 4900 4450 0    50   ~ 0
-R~CS~
-Text Label 4900 4650 0    50   ~ 0
-R~OE~
 Text Label 3000 4850 0    50   ~ 0
 D~OE~
 $Comp
@@ -1951,26 +1700,6 @@ Entry Wire Line
 	600  4050 700  3950
 Entry Wire Line
 	600  4150 700  4050
-Wire Wire Line
-	3400 3050 3900 3050
-Wire Wire Line
-	3400 2950 3900 2950
-Wire Wire Line
-	3400 2850 3900 2850
-Wire Wire Line
-	3400 2750 3900 2750
-Wire Wire Line
-	3400 2650 3900 2650
-Wire Wire Line
-	3400 2550 3900 2550
-Wire Wire Line
-	3400 2450 3900 2450
-Wire Wire Line
-	3400 2350 3900 2350
-Wire Wire Line
-	3400 3250 3900 3250
-Wire Wire Line
-	3400 3150 3900 3150
 Wire Bus Line
 	5200 4850 3300 4850
 Wire Wire Line
@@ -1997,19 +1726,6 @@ Text Label 3400 750  2    50   ~ 0
 ~RES~
 Wire Wire Line
 	4400 1050 4400 1000
-Connection ~ 6400 6550
-$Comp
-L Device:D_Schottky_Small_ALT D1
-U 1 1 5F7FB235
-P 3150 7400
-F 0 "D1" H 3150 7250 50  0000 C CNN
-F 1 "SS14" H 3150 7350 50  0000 C TNN
-F 2 "stdpads:D_SMA" V 3150 7400 50  0001 C CNN
-F 3 "~" V 3150 7400 50  0001 C CNN
-F 4 "C2480" H 3150 7400 50  0001 C CNN "LCSC Part"
-	1    3150 7400
-	1    0    0    1   
-$EndComp
 $Comp
 L power:GND #PWR0136
 U 1 1 60049C56
@@ -2078,35 +1794,32 @@ F 3 "" H 4300 5650 50  0001 C CNN
 	1    4300 5650
 	1    0    0    -1  
 $EndComp
-NoConn ~ 4800 5750
-NoConn ~ 4800 5650
-Text Label 4800 5850 0    50   ~ 0
+NoConn ~ 4800 5800
+NoConn ~ 4800 5700
+Text Label 4800 5900 0    50   ~ 0
 ACLK
-Text Label 4800 5550 0    50   ~ 0
+Text Label 4800 5600 0    50   ~ 0
 RCLK
-NoConn ~ 4400 5750
-NoConn ~ 4400 5650
+NoConn ~ 4400 5800
+NoConn ~ 4400 5700
 Wire Wire Line
-	4400 5550 4350 5550
+	4400 5600 4350 5600
 $Comp
 L Device:R_Pack04 RN1
 U 1 1 6006D01E
-P 4600 5650
-F 0 "RN1" V 4800 5650 50  0000 C CNN
-F 1 "4x33" V 4300 5650 50  0000 C CNN
-F 2 "stdpads:R4_0402" V 4875 5650 50  0001 C CNN
-F 3 "~" H 4600 5650 50  0001 C CNN
-F 4 "C25501" H 4600 5650 50  0001 C CNN "LCSC Part"
-	1    4600 5650
+P 4600 5700
+F 0 "RN1" V 4800 5700 50  0000 C CNN
+F 1 "4x33" V 4300 5700 50  0000 C CNN
+F 2 "stdpads:R4_0402" V 4875 5700 50  0001 C CNN
+F 3 "~" H 4600 5700 50  0001 C CNN
+F 4 "C25501" H 4600 5700 50  0001 C CNN "LCSC Part"
+	1    4600 5700
 	0    1    -1   0   
 $EndComp
 Wire Wire Line
-	4350 5850 4400 5850
-Wire Wire Line
-	4350 5550 4350 5850
+	4350 5900 4400 5900
 Wire Wire Line
 	4350 5850 4300 5850
-Connection ~ 4350 5850
 Wire Wire Line
 	3500 5250 3500 5750
 $Comp
@@ -2117,7 +1830,7 @@ F 0 "U13" H 3850 5500 50  0000 C CNN
 F 1 "25M" H 3850 5100 50  0000 C CNN
 F 2 "stdpads:Crystal_SMD_3225-4Pin_3.2x2.5mm" H 3850 5250 50  0001 C CNN
 F 3 "" H 3850 5250 50  0001 C CNN
-F 4 "C61219" H 3850 5250 50  0001 C CNN "LCSC Part"
+F 4 "C32526" H 3850 5250 50  0001 C CNN "LCSC Part"
 	1    3850 5250
 	-1   0    0    -1  
 $EndComp
@@ -2248,65 +1961,10 @@ TCK
 Connection ~ 3300 6450
 Wire Wire Line
 	4000 1550 4000 1450
-$Comp
-L power:+3V3 #PWR0154
-U 1 1 61FCF237
-P 6100 950
-F 0 "#PWR0154" H 6100 800 50  0001 C CNN
-F 1 "+3V3" H 6100 1100 50  0000 C CNN
-F 2 "" H 6100 950 50  0001 C CNN
-F 3 "" H 6100 950 50  0001 C CNN
-	1    6100 950 
-	-1   0    0    -1  
-$EndComp
-$Comp
-L power:+5V #PWR0155
-U 1 1 61FD083D
-P 5400 800
-F 0 "#PWR0155" H 5400 650 50  0001 C CNN
-F 1 "+5V" H 5400 950 50  0000 C CNN
-F 2 "" H 5400 800 50  0001 C CNN
-F 3 "" H 5400 800 50  0001 C CNN
-	1    5400 800 
-	1    0    0    -1  
-$EndComp
-$Comp
-L Comparator:LM393 U7
-U 2 1 61E99A6F
-P 5800 1150
-F 0 "U7" H 5750 1150 50  0000 C CNN
-F 1 "LM393" H 5900 1300 50  0000 C CNN
-F 2 "stdpads:SOIC-8_3.9mm" H 5800 1150 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/lm393-n.pdf" H 5800 1150 50  0001 C CNN
-F 4 "C7955" H 5800 1150 50  0001 C CNN "LCSC Part"
-	2    5800 1150
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	5500 1050 5400 1050
-Wire Wire Line
-	5400 1000 5400 1050
-Connection ~ 5400 1050
-Text Label 6600 1150 2    50   ~ 0
-~PreBOD~
-Wire Wire Line
-	6600 1150 6100 1150
-Connection ~ 6100 1150
 Wire Wire Line
 	4000 1550 4300 1550
 Wire Wire Line
 	4300 1000 4300 1050
-$Comp
-L power:+3V3 #PWR0156
-U 1 1 624602DA
-P 4900 800
-F 0 "#PWR0156" H 4900 650 50  0001 C CNN
-F 1 "+3V3" H 4900 950 50  0000 C CNN
-F 2 "" H 4900 800 50  0001 C CNN
-F 3 "" H 4900 800 50  0001 C CNN
-	1    4900 800 
-	-1   0    0    -1  
-$EndComp
 Wire Wire Line
 	4200 1050 4300 1050
 Connection ~ 4300 1050
@@ -2314,12 +1972,6 @@ Wire Wire Line
 	4300 1050 4300 1300
 Wire Wire Line
 	4300 1050 4400 1050
-Wire Wire Line
-	5300 1050 5300 1000
-Wire Wire Line
-	5400 1050 5300 1050
-Text Label 5300 800  2    50   ~ 0
-~PreBOD~
 $Comp
 L power:+5V #PWR0158
 U 1 1 6257849D
@@ -2331,13 +1983,6 @@ F 3 "" H 4300 800 50  0001 C CNN
 	1    4300 800 
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	4900 1000 4900 1250
-Connection ~ 4900 1250
-Wire Wire Line
-	4900 1250 5500 1250
-Text Notes 6950 1150 0    50   ~ 0
-~RES~ (+) input is   1.05V @ 4.2V\n~PreBOD~ (+) inpt is 1.0465V @ 4.5V\n                    1.1628V @ 5.0V\n                    1.2791V @ 5.5V
 Text GLabel 6250 9300 0    50   Input ~ 0
 Vin
 Wire Wire Line
@@ -2628,8 +2273,6 @@ F 4 "C150715" H 3800 7100 50  0001 C CNN "LCSC Part"
 $EndComp
 Wire Wire Line
 	3050 7000 3350 7000
-Text GLabel 3050 7100 2    50   Input ~ 0
-Vin
 $Comp
 L Device:C_Small C3
 U 1 1 5D12AB6D
@@ -2887,10 +2530,10 @@ L Device:R_Small R3
 U 1 1 5F903D16
 P 4300 900
 F 0 "R3" H 4350 950 50  0000 L CNN
-F 1 "2k7" H 4350 850 50  0000 L CNN
-F 2 "stdpads:R_0805" H 4300 900 50  0001 C CNN
+F 1 "3k0" H 4350 850 50  0000 L CNN
+F 2 "stdpads:R_0603" H 4300 900 50  0001 C CNN
 F 3 "~" H 4300 900 50  0001 C CNN
-F 4 "C17530" H 4300 900 50  0001 C CNN "LCSC Part"
+F 4 "C4211" H 4300 900 50  0001 C CNN "LCSC Part"
 	1    4300 900 
 	-1   0    0    -1  
 $EndComp
@@ -2900,122 +2543,12 @@ U 1 1 5F903D0E
 P 4300 1400
 F 0 "R7" H 4250 1450 50  0000 R CNN
 F 1 "1k" H 4250 1350 50  0000 R CNN
-F 2 "stdpads:R_0805" H 4300 1400 50  0001 C CNN
+F 2 "stdpads:R_0603" H 4300 1400 50  0001 C CNN
 F 3 "~" H 4300 1400 50  0001 C CNN
-F 4 "C17513" H 4300 1400 50  0001 C CNN "LCSC Part"
+F 4 "C21190" H 4300 1400 50  0001 C CNN "LCSC Part"
 	1    4300 1400
 	1    0    0    -1  
 $EndComp
-$Comp
-L Device:R_Small R5
-U 1 1 5F56E39C
-P 4400 900
-F 0 "R5" H 4450 950 50  0000 L CNN
-F 1 "1M" H 4450 850 50  0000 L CNN
-F 2 "stdpads:R_0805" H 4400 900 50  0001 C CNN
-F 3 "~" H 4400 900 50  0001 C CNN
-F 4 "C17514" H 4400 900 50  0001 C CNN "LCSC Part"
-	1    4400 900 
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small R8
-U 1 1 62559B38
-P 5300 900
-F 0 "R8" H 5350 950 50  0000 L CNN
-F 1 "1M" H 5350 850 50  0000 L CNN
-F 2 "stdpads:R_0805" H 5300 900 50  0001 C CNN
-F 3 "~" H 5300 900 50  0001 C CNN
-F 4 "C17514" H 5300 900 50  0001 C CNN "LCSC Part"
-	1    5300 900 
-	-1   0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small R9
-U 1 1 61FD0837
-P 5400 900
-F 0 "R9" H 5450 950 50  0000 L CNN
-F 1 "3k3" H 5450 850 50  0000 L CNN
-F 2 "stdpads:R_0805" H 5400 900 50  0001 C CNN
-F 3 "~" H 5400 900 50  0001 C CNN
-F 4 "C26010" H 5400 900 50  0001 C CNN "LCSC Part"
-	1    5400 900 
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small R11
-U 1 1 61FD0831
-P 5400 1400
-F 0 "R11" H 5350 1450 50  0000 R CNN
-F 1 "1k" H 5350 1350 50  0000 R CNN
-F 2 "stdpads:R_0805" H 5400 1400 50  0001 C CNN
-F 3 "~" H 5400 1400 50  0001 C CNN
-F 4 "C17513" H 5400 1400 50  0001 C CNN "LCSC Part"
-	1    5400 1400
-	-1   0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small R6
-U 1 1 5F7E44B7
-P 4900 1400
-F 0 "R6" H 4850 1450 50  0000 R CNN
-F 1 "1k" H 4850 1350 50  0000 R CNN
-F 2 "stdpads:R_0805" H 4900 1400 50  0001 C CNN
-F 3 "~" H 4900 1400 50  0001 C CNN
-F 4 "C17513" H 4900 1400 50  0001 C CNN "LCSC Part"
-	1    4900 1400
-	-1   0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small R10
-U 1 1 61F54D43
-P 6100 1050
-F 0 "R10" H 6050 1100 50  0000 R CNN
-F 1 "1k" H 6050 1000 50  0000 R CNN
-F 2 "stdpads:R_0805" H 6100 1050 50  0001 C CNN
-F 3 "~" H 6100 1050 50  0001 C CNN
-F 4 "C17513" H 6100 1050 50  0001 C CNN "LCSC Part"
-	1    6100 1050
-	-1   0    0    -1  
-$EndComp
-$Comp
-L Device:D_Schottky_Small_ALT D3
-U 1 1 60D839B5
-P 2950 7400
-F 0 "D3" H 2950 7250 50  0000 C CNN
-F 1 "SS14" H 2950 7350 50  0000 C TNN
-F 2 "stdpads:D_SMA" V 2950 7400 50  0001 C CNN
-F 3 "~" V 2950 7400 50  0001 C CNN
-F 4 "C2480" H 2950 7400 50  0001 C CNN "LCSC Part"
-	1    2950 7400
-	-1   0    0    1   
-$EndComp
-Connection ~ 3050 7400
-$Comp
-L Transistor_FET:AO3401A Q1
-U 1 1 619DD84F
-P 2650 7500
-F 0 "Q1" V 2950 7500 50  0000 C CNN
-F 1 "AO3401A" V 2850 7500 50  0000 C TNN
-F 2 "stdpads:SOT-23" H 2850 7425 50  0001 L CIN
-F 3 "http://www.aosmd.com/pdfs/datasheet/AO3401A.pdf" H 2650 7500 50  0001 L CNN
-F 4 "C15127" H 2650 7500 50  0001 C CNN "LCSC Part"
-	1    2650 7500
-	0    1    -1   0   
-$EndComp
-$Comp
-L power:+5V #PWR0148
-U 1 1 5F78B130
-P 2400 7400
-F 0 "#PWR0148" H 2400 7250 50  0001 C CNN
-F 1 "+5V" H 2400 7550 50  0000 C CNN
-F 2 "" H 2400 7400 50  0001 C CNN
-F 3 "" H 2400 7400 50  0001 C CNN
-	1    2400 7400
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2400 7400 2450 7400
 Text Label 5450 7550 2    50   ~ 0
 DET
 Wire Wire Line
@@ -3073,7 +2606,7 @@ $Comp
 L Device:Polyfuse_Small F1
 U 1 1 60026602
 P 4900 7400
-F 0 "F1" V 4950 7400 50  0000 C TNN
+F 0 "F1" V 4850 7400 50  0000 C BNN
 F 1 "nSMD035-16V" V 5150 7250 50  0000 C CNN
 F 2 "stdpads:BelFuse_1206" H 4950 7200 50  0001 L CNN
 F 3 "~" H 4900 7400 50  0001 C CNN
@@ -3183,10 +2716,7 @@ Wire Wire Line
 	3350 7400 3250 7400
 Wire Wire Line
 	3250 7400 3250 7700
-Wire Wire Line
-	3250 7700 2650 7700
 Connection ~ 3350 7400
-Connection ~ 3250 7400
 $Comp
 L Device:R_Small R1
 U 1 1 60B32D93
@@ -3267,50 +2797,8 @@ F 4 "C148198" H 2600 6250 50  0001 C CNN "LCSC Part"
 	1    2600 6250
 	1    0    0    -1  
 $EndComp
-$Comp
-L Device:R_Small R4
-U 1 1 5F7E44C3
-P 4900 900
-F 0 "R4" H 4950 950 50  0000 L CNN
-F 1 "2k2" H 4950 850 50  0000 L CNN
-F 2 "stdpads:R_0805" H 4900 900 50  0001 C CNN
-F 3 "~" H 4900 900 50  0001 C CNN
-F 4 "C17520" H 4900 900 50  0001 C CNN "LCSC Part"
-	1    4900 900 
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R_Small R12
-U 1 1 61A68D08
-P 3350 7550
-F 0 "R12" H 3400 7600 50  0000 L CNN
-F 1 "1k" H 3400 7500 50  0000 L CNN
-F 2 "stdpads:R_0805" H 3350 7550 50  0001 C CNN
-F 3 "~" H 3350 7550 50  0001 C CNN
-F 4 "C17513" H 3350 7550 50  0001 C CNN "LCSC Part"
-	1    3350 7550
-	1    0    0    -1  
-$EndComp
 Connection ~ 7450 9300
 Connection ~ 7850 9300
-$Comp
-L Device:R_Small R14
-U 1 1 5F724AD7
-P 3400 850
-F 0 "R14" H 3450 900 50  0000 L CNN
-F 1 "0" H 3450 800 50  0000 L CNN
-F 2 "stdpads:R_0805" H 3400 850 50  0001 C CNN
-F 3 "~" H 3400 850 50  0001 C CNN
-F 4 "C17477" H 3400 850 50  0001 C CNN "LCSC Part"
-	1    3400 850 
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3400 950  3400 1150
-Text Label 4400 800  0    50   ~ 0
-~RES~i
-Text Label 3600 1150 2    50   ~ 0
-~RES~i
 Wire Wire Line
 	5300 2850 5800 2850
 Wire Wire Line
@@ -3369,95 +2857,16 @@ Wire Wire Line
 	5500 4650 5800 4650
 Wire Wire Line
 	5800 2050 5600 2050
-Wire Wire Line
-	4900 2150 5100 2150
-Wire Wire Line
-	5100 2250 4900 2250
-Wire Wire Line
-	4900 2350 5100 2350
-Wire Wire Line
-	4900 2450 5100 2450
-Wire Wire Line
-	4900 2550 5100 2550
-Wire Wire Line
-	5100 2650 4900 2650
-Wire Wire Line
-	4900 2750 5100 2750
-Wire Wire Line
-	5100 2850 4900 2850
-Text Label 3500 3350 0    50   ~ 0
-RB0
-Text Label 3500 3450 0    50   ~ 0
-RB1
-Text Label 3500 3550 0    50   ~ 0
-RB2
-Text Label 3500 3650 0    50   ~ 0
-RB3
-Text Label 3500 3750 0    50   ~ 0
-RB4
-Text Label 3500 3850 0    50   ~ 0
-RB5
-Text Label 3500 4050 0    50   ~ 0
-RB7
-Text Label 3500 4150 0    50   ~ 0
-RB8
-Text Label 3500 4250 0    50   ~ 0
-RB9
-Text Label 3500 4350 0    50   ~ 0
-RB10
-Text Label 3500 4450 0    50   ~ 0
-RB11
 Entry Wire Line
 	5300 1950 5200 2050
 Wire Wire Line
 	5300 1950 5600 1950
 Wire Wire Line
 	5600 1950 5600 2050
-Text Label 7800 5750 0    50   ~ 0
-A~OE~
 Text Label 5800 3750 2    50   ~ 0
 RW~OE~
-$Comp
-L Device:C_Small C38
-U 1 1 5FB5B1B9
-P 4500 1400
-F 0 "C38" H 4592 1446 50  0000 L CNN
-F 1 "22n" H 4592 1355 50  0000 L CNN
-F 2 "stdpads:R_0805" H 4500 1400 50  0001 C CNN
-F 3 "~" H 4500 1400 50  0001 C CNN
-F 4 "C1729" H 4500 1400 50  0001 C CNN "LCSC Part"
-	1    4500 1400
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	4200 1250 4500 1250
 Wire Wire Line
 	4300 1500 4300 1550
-Wire Wire Line
-	4500 1550 4500 1500
-Wire Wire Line
-	4500 1550 4300 1550
-Connection ~ 4300 1550
-Wire Wire Line
-	4500 1300 4500 1250
-Wire Wire Line
-	5400 1050 5400 1300
-Wire Wire Line
-	5400 1500 5400 1550
-Wire Wire Line
-	4900 1250 4900 1300
-Wire Wire Line
-	4900 1500 4900 1550
-Wire Wire Line
-	4900 1550 5400 1550
-Wire Wire Line
-	4900 1550 4500 1550
-Connection ~ 4900 1550
-Connection ~ 4500 1550
-Connection ~ 5400 1550
-Wire Wire Line
-	4500 1250 4900 1250
-Connection ~ 4500 1250
 $Comp
 L Device:R_Pack04 RN4
 U 1 1 5F77B040
@@ -3466,7 +2875,7 @@ F 0 "RN4" V 1600 1050 50  0000 C CNN
 F 1 "4x10k" V 1100 1050 50  0000 C CNN
 F 2 "stdpads:R4_0402" V 1675 1050 50  0001 C CNN
 F 3 "~" H 1400 1050 50  0001 C CNN
-F 4 "C25501" H 1400 1050 50  0001 C CNN "LCSC Part"
+F 4 "C25725" H 1400 1050 50  0001 C CNN "LCSC Part"
 	1    1400 1050
 	0    1    -1   0   
 $EndComp
@@ -3498,20 +2907,840 @@ NoConn ~ 1200 1050
 NoConn ~ 1200 1150
 Text Label 7800 5650 0    50   ~ 0
 SDQML
-Wire Bus Line
-	3300 4850 3300 5550
-Wire Bus Line
-	600  3750 600  4650
+Wire Wire Line
+	1900 7450 1800 7450
+$Comp
+L power:GND #PWR0131
+U 1 1 6150ABA1
+P 1900 7450
+F 0 "#PWR0131" H 1900 7200 50  0001 C CNN
+F 1 "GND" H 1900 7300 50  0000 C CNN
+F 2 "" H 1900 7450 50  0001 C CNN
+F 3 "" H 1900 7450 50  0001 C CNN
+	1    1900 7450
+	-1   0    0    -1  
+$EndComp
+NoConn ~ 1800 7550
+Wire Wire Line
+	1800 7350 1900 7350
+Wire Wire Line
+	1900 7350 1900 7450
+Connection ~ 1900 7450
+Connection ~ 4300 1550
+Text Label 4400 800  0    50   ~ 0
+~RES~
+Text Label 5650 800  2    50   ~ 0
+~PreBOD~
+$Comp
+L Device:R_Small R9
+U 1 1 61FD0837
+P 5750 900
+F 0 "R9" H 5800 950 50  0000 L CNN
+F 1 "3k6" H 5800 850 50  0000 L CNN
+F 2 "stdpads:R_0603" H 5750 900 50  0001 C CNN
+F 3 "~" H 5750 900 50  0001 C CNN
+F 4 "C22980" H 5750 900 50  0001 C CNN "LCSC Part"
+	1    5750 900 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4450 1550 4450 1500
+Wire Wire Line
+	4450 1300 4450 1250
+Wire Wire Line
+	4200 1250 4450 1250
+Wire Wire Line
+	4450 1550 4300 1550
+Wire Wire Line
+	4750 1550 4450 1550
+Connection ~ 4450 1550
+$Comp
+L Device:R_Small R6
+U 1 1 5F7E44B7
+P 5050 1400
+F 0 "R6" H 5000 1450 50  0000 R CNN
+F 1 "1k" H 5000 1350 50  0000 R CNN
+F 2 "stdpads:R_0603" H 5050 1400 50  0001 C CNN
+F 3 "~" H 5050 1400 50  0001 C CNN
+F 4 "C21190" H 5050 1400 50  0001 C CNN "LCSC Part"
+	1    5050 1400
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	4750 1500 4750 1550
+Wire Wire Line
+	5750 1050 5850 1050
+Connection ~ 5750 1050
+Wire Wire Line
+	5750 1000 5750 1050
+Wire Wire Line
+	5650 1050 5750 1050
+$Comp
+L Device:R_Small R11
+U 1 1 61FD0831
+P 5650 1400
+F 0 "R11" H 5600 1450 50  0000 R CNN
+F 1 "1k" H 5600 1350 50  0000 R CNN
+F 2 "stdpads:R_0603" H 5650 1400 50  0001 C CNN
+F 3 "~" H 5650 1400 50  0001 C CNN
+F 4 "C21190" H 5650 1400 50  0001 C CNN "LCSC Part"
+	1    5650 1400
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	5650 1050 5650 1300
+Wire Wire Line
+	5650 1500 5650 1550
+$Comp
+L Device:R_Small R4
+U 1 1 5F7E44C3
+P 5050 900
+F 0 "R4" H 5100 950 50  0000 L CNN
+F 1 "2k2" H 5100 850 50  0000 L CNN
+F 2 "stdpads:R_0603" H 5050 900 50  0001 C CNN
+F 3 "~" H 5050 900 50  0001 C CNN
+F 4 "C4190" H 5050 900 50  0001 C CNN "LCSC Part"
+	1    5050 900 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R8
+U 1 1 62559B38
+P 5650 900
+F 0 "R8" H 5700 950 50  0000 L CNN
+F 1 "1M" H 5700 850 50  0000 L CNN
+F 2 "stdpads:R_0603" H 5650 900 50  0001 C CNN
+F 3 "~" H 5650 900 50  0001 C CNN
+F 4 "C22935" H 5650 900 50  0001 C CNN "LCSC Part"
+	1    5650 900 
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	5650 1050 5650 1000
+$Comp
+L power:+3V3 #PWR0156
+U 1 1 624602DA
+P 5050 800
+F 0 "#PWR0156" H 5050 650 50  0001 C CNN
+F 1 "+3V3" H 5050 950 50  0000 C CNN
+F 2 "" H 5050 800 50  0001 C CNN
+F 3 "" H 5050 800 50  0001 C CNN
+	1    5050 800 
+	-1   0    0    -1  
+$EndComp
+Connection ~ 5650 1050
+$Comp
+L Comparator:LM393 U7
+U 2 1 61E99A6F
+P 6150 1150
+F 0 "U7" H 6100 1150 50  0000 C CNN
+F 1 "LM393" H 6250 1300 50  0000 C CNN
+F 2 "stdpads:SOIC-8_3.9mm" H 6150 1150 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lm393-n.pdf" H 6150 1150 50  0001 C CNN
+F 4 "C7955" H 6150 1150 50  0001 C CNN "LCSC Part"
+	2    6150 1150
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0155
+U 1 1 61FD083D
+P 5750 800
+F 0 "#PWR0155" H 5750 650 50  0001 C CNN
+F 1 "+5V" H 5750 950 50  0000 C CNN
+F 2 "" H 5750 800 50  0001 C CNN
+F 3 "" H 5750 800 50  0001 C CNN
+	1    5750 800 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR0154
+U 1 1 61FCF237
+P 6450 950
+F 0 "#PWR0154" H 6450 800 50  0001 C CNN
+F 1 "+3V3" H 6450 1100 50  0000 C CNN
+F 2 "" H 6450 950 50  0001 C CNN
+F 3 "" H 6450 950 50  0001 C CNN
+	1    6450 950 
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0135
+U 1 1 62391583
+P 5650 1550
+F 0 "#PWR0135" H 5650 1300 50  0001 C CNN
+F 1 "GND" H 5650 1400 50  0000 C CNN
+F 2 "" H 5650 1550 50  0001 C CNN
+F 3 "" H 5650 1550 50  0001 C CNN
+	1    5650 1550
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C38
+U 1 1 5FB5B1B9
+P 4450 1400
+F 0 "C38" H 4542 1446 50  0000 L CNN
+F 1 "10n" H 4542 1355 50  0000 L CNN
+F 2 "stdpads:C_0603" H 4450 1400 50  0001 C CNN
+F 3 "~" H 4450 1400 50  0001 C CNN
+F 4 "C57112" H 4450 1400 50  0001 C CNN "LCSC Part"
+	1    4450 1400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C40
+U 1 1 601674EC
+P 5350 1400
+F 0 "C40" H 5442 1446 50  0000 L CNN
+F 1 "10n" H 5442 1355 50  0000 L CNN
+F 2 "stdpads:C_0603" H 5350 1400 50  0001 C CNN
+F 3 "~" H 5350 1400 50  0001 C CNN
+F 4 "C57112" H 5350 1400 50  0001 C CNN "LCSC Part"
+	1    5350 1400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4400 1050 4750 1050
+Connection ~ 4400 1050
+Wire Wire Line
+	5050 1550 5050 1500
+Wire Wire Line
+	5350 1050 5650 1050
+Connection ~ 5650 1550
+Wire Wire Line
+	4750 1300 4750 1050
+Connection ~ 6450 1150
+Wire Wire Line
+	5050 1550 4750 1550
+Connection ~ 4750 1550
+Wire Wire Line
+	5050 1550 5350 1550
+Connection ~ 5050 1550
+Wire Wire Line
+	5350 1500 5350 1550
+Connection ~ 5350 1550
+Wire Wire Line
+	5350 1550 5650 1550
+Wire Wire Line
+	5350 1050 5350 1300
+Wire Wire Line
+	5050 1300 5050 1250
+Wire Wire Line
+	4450 1250 5050 1250
+Connection ~ 4450 1250
+Connection ~ 5050 1250
+Wire Wire Line
+	5050 1250 5050 1000
+Wire Wire Line
+	5050 1250 5850 1250
+$Comp
+L Device:R_Small R12
+U 1 1 61A68D08
+P 3350 7550
+F 0 "R12" H 3400 7600 50  0000 L CNN
+F 1 "1k" H 3400 7500 50  0000 L CNN
+F 2 "stdpads:R_0805" H 3350 7550 50  0001 C CNN
+F 3 "~" H 3350 7550 50  0001 C CNN
+F 4 "C17513" H 3350 7550 50  0001 C CNN "LCSC Part"
+	1    3350 7550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C39
+U 1 1 5FFA952A
+P 4750 1400
+F 0 "C39" H 4842 1446 50  0000 L CNN
+F 1 "10n" H 4842 1355 50  0000 L CNN
+F 2 "stdpads:C_0603" H 4750 1400 50  0001 C CNN
+F 3 "~" H 4750 1400 50  0001 C CNN
+F 4 "C57112" H 4750 1400 50  0001 C CNN "LCSC Part"
+	1    4750 1400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R5
+U 1 1 5F56E39C
+P 4400 900
+F 0 "R5" H 4450 950 50  0000 L CNN
+F 1 "1M" H 4450 850 50  0000 L CNN
+F 2 "stdpads:R_0603" H 4400 900 50  0001 C CNN
+F 3 "~" H 4400 900 50  0001 C CNN
+F 4 "C22935" H 4400 900 50  0001 C CNN "LCSC Part"
+	1    4400 900 
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4350 5600 4350 5850
+Wire Wire Line
+	4350 5850 4350 5900
+Connection ~ 4350 5850
+Connection ~ 3250 7400
+Wire Wire Line
+	3400 1150 3400 750 
+$Comp
+L power:+5V #PWR0148
+U 1 1 5F78B130
+P 2450 7400
+F 0 "#PWR0148" H 2450 7250 50  0001 C CNN
+F 1 "+5V" H 2450 7550 50  0000 C CNN
+F 2 "" H 2450 7400 50  0001 C CNN
+F 3 "" H 2450 7400 50  0001 C CNN
+	1    2450 7400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D_Small_ALT D1
+U 1 1 60DE270F
+P 3150 7400
+F 0 "D1" H 3150 7250 50  0000 C CNN
+F 1 "M7" H 3150 7350 50  0000 C TNN
+F 2 "stdpads:D_SMA" V 3150 7400 50  0001 C CNN
+F 3 "~" V 3150 7400 50  0001 C CNN
+F 4 "C95872" H 3150 7400 50  0001 C CNN "LCSC Part"
+	1    3150 7400
+	1    0    0    1   
+$EndComp
+Wire Wire Line
+	3250 7700 2850 7700
+$Comp
+L Transistor_FET:AO3401A Q1
+U 1 1 619DD84F
+P 2850 7500
+F 0 "Q1" V 3150 7500 50  0000 C CNN
+F 1 "AO3401A" V 3050 7500 50  0000 C TNN
+F 2 "stdpads:SOT-23" H 3050 7425 50  0001 L CIN
+F 3 "http://www.aosmd.com/pdfs/datasheet/AO3401A.pdf" H 2850 7500 50  0001 L CNN
+F 4 "C15127" H 2850 7500 50  0001 C CNN "LCSC Part"
+	1    2850 7500
+	0    1    -1   0   
+$EndComp
+$Comp
+L Device:D_Schottky_Small_ALT D3
+U 1 1 60D839B5
+P 2550 7400
+F 0 "D3" H 2550 7250 50  0000 C CNN
+F 1 "SS14" H 2550 7350 50  0000 C TNN
+F 2 "stdpads:D_SMA" V 2550 7400 50  0001 C CNN
+F 3 "~" V 2550 7400 50  0001 C CNN
+F 4 "C2480" H 2550 7400 50  0001 C CNN "LCSC Part"
+	1    2550 7400
+	-1   0    0    -1  
+$EndComp
+Wire Notes Line
+	4900 7450 4875 7475
+Wire Notes Line
+	4900 7450 4925 7475
+Wire Notes Line
+	4900 7450 4900 7600
+Wire Wire Line
+	6900 1150 6450 1150
+Text Label 6900 1150 2    50   ~ 0
+~PreBOD~
+$Comp
+L Device:R_Small R10
+U 1 1 61F54D43
+P 6450 1050
+F 0 "R10" H 6400 1100 50  0000 R CNN
+F 1 "1k" H 6400 1000 50  0000 R CNN
+F 2 "stdpads:R_0603" H 6450 1050 50  0001 C CNN
+F 3 "~" H 6450 1050 50  0001 C CNN
+F 4 "C21190" H 6450 1050 50  0001 C CNN "LCSC Part"
+	1    6450 1050
+	-1   0    0    -1  
+$EndComp
+Text Notes 6600 1100 0    50   ~ 0
+Reference input is 1.03125V\n~RES~ (+) input is   1.05V @ 4.2V\n~PreBOD~ (+) inpt is 1.0465V @ 4.5V\n                    1.1628V @ 5.0V\n                    1.2791V @ 5.5V
+Connection ~ 3050 7400
+Text GLabel 3050 7100 2    50   Input ~ 0
+Vin
+Text Label 7800 5950 0    50   ~ 0
+~Menu~
+Connection ~ 9350 1500
+Connection ~ 8950 1500
+Wire Wire Line
+	8950 1500 9350 1500
+$Comp
+L Device:R_Small R17
+U 1 1 61827F10
+P 8800 1300
+F 0 "R17" V 8750 1300 50  0000 C BNN
+F 1 "1k" V 8850 1300 50  0000 C TNN
+F 2 "stdpads:R_0603" H 8800 1300 50  0001 C CNN
+F 3 "~" H 8800 1300 50  0001 C CNN
+F 4 "C21190" H 8800 1300 50  0001 C CNN "LCSC Part"
+	1    8800 1300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8900 1300 8950 1300
+Wire Wire Line
+	8700 1300 8650 1300
+Connection ~ 8650 1300
+Wire Wire Line
+	8650 1100 8650 1300
+Wire Wire Line
+	8550 1300 8650 1300
+Connection ~ 8550 1300
+Wire Wire Line
+	8950 1500 8550 1500
+$Comp
+L Device:R_Small R16
+U 1 1 616D8E5B
+P 8550 1200
+F 0 "R16" H 8600 1250 50  0000 L CNN
+F 1 "2k2" H 8600 1150 50  0000 L CNN
+F 2 "stdpads:R_0603" H 8550 1200 50  0001 C CNN
+F 3 "~" H 8550 1200 50  0001 C CNN
+F 4 "C4190" H 8550 1200 50  0001 C CNN "LCSC Part"
+	1    8550 1200
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R14
+U 1 1 614E057B
+P 8550 1400
+F 0 "R14" H 8600 1450 50  0000 L CNN
+F 1 "1k" H 8600 1350 50  0000 L CNN
+F 2 "stdpads:R_0603" H 8550 1400 50  0001 C CNN
+F 3 "~" H 8550 1400 50  0001 C CNN
+F 4 "C21190" H 8550 1400 50  0001 C CNN "LCSC Part"
+	1    8550 1400
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	9750 1200 10100 1200
+Wire Wire Line
+	8950 1300 9150 1300
+Connection ~ 8950 1300
+Wire Wire Line
+	8950 1050 8950 1300
+$Comp
+L power:+5V #PWR0172
+U 1 1 62EF8213
+P 8950 850
+F 0 "#PWR0172" H 8950 700 50  0001 C CNN
+F 1 "+5V" H 8950 1000 50  0000 C CNN
+F 2 "" H 8950 850 50  0001 C CNN
+F 3 "" H 8950 850 50  0001 C CNN
+	1    8950 850 
+	1    0    0    -1  
+$EndComp
+Text Label 8550 1100 2    50   ~ 0
+~RES~
+$Comp
+L Device:R_Small R18
+U 1 1 617DE3BC
+P 8950 950
+F 0 "R18" H 9000 1000 50  0000 L CNN
+F 1 "22k" H 9000 900 50  0000 L CNN
+F 2 "stdpads:R_0603" H 8950 950 50  0001 C CNN
+F 3 "~" H 8950 950 50  0001 C CNN
+F 4 "C31850" H 8950 950 50  0001 C CNN "LCSC Part"
+	1    8950 950 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C41
+U 1 1 61725B65
+P 8950 1400
+F 0 "C41" H 9042 1446 50  0000 L CNN
+F 1 "10n" H 9042 1355 50  0000 L CNN
+F 2 "stdpads:C_0603" H 8950 1400 50  0001 C CNN
+F 3 "~" H 8950 1400 50  0001 C CNN
+F 4 "C57112" H 8950 1400 50  0001 C CNN "LCSC Part"
+	1    8950 1400
+	1    0    0    1   
+$EndComp
+$Comp
+L Device:R_Small R15
+U 1 1 615334BF
+P 9750 1100
+F 0 "R15" H 9700 1150 50  0000 R CNN
+F 1 "1k" H 9700 1050 50  0000 R CNN
+F 2 "stdpads:R_0603" H 9750 1100 50  0001 C CNN
+F 3 "~" H 9750 1100 50  0001 C CNN
+F 4 "C21190" H 9750 1100 50  0001 C CNN "LCSC Part"
+	1    9750 1100
+	-1   0    0    -1  
+$EndComp
+Text Label 10100 1200 2    50   ~ 0
+~Menu~
+$Comp
+L power:+3V3 #PWR0170
+U 1 1 615334CC
+P 9750 1000
+F 0 "#PWR0170" H 9750 850 50  0001 C CNN
+F 1 "+3V3" H 9750 1150 50  0000 C CNN
+F 2 "" H 9750 1000 50  0001 C CNN
+F 3 "" H 9750 1000 50  0001 C CNN
+	1    9750 1000
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR0169
+U 1 1 61446D14
+P 9350 900
+F 0 "#PWR0169" H 9350 750 50  0001 C CNN
+F 1 "+3V3" H 9350 1050 50  0000 C CNN
+F 2 "" H 9350 900 50  0001 C CNN
+F 3 "" H 9350 900 50  0001 C CNN
+	1    9350 900 
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0168
+U 1 1 614214DA
+P 9350 1500
+F 0 "#PWR0168" H 9350 1250 50  0001 C CNN
+F 1 "GND" H 9350 1350 50  0000 C CNN
+F 2 "" H 9350 1500 50  0001 C CNN
+F 3 "" H 9350 1500 50  0001 C CNN
+	1    9350 1500
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Comparator:LM393 U10
+U 3 1 613FA7C0
+P 9450 1200
+F 0 "U10" H 9450 1200 50  0001 C CNN
+F 1 "LM393" H 9550 1400 50  0000 C CNN
+F 2 "stdpads:SOIC-8_3.9mm" H 9450 1200 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lm393-n.pdf" H 9450 1200 50  0001 C CNN
+F 4 "C7955" H 9450 1200 50  0001 C CNN "LCSC Part"
+	3    9450 1200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9150 1100 8650 1100
+Connection ~ 9750 1200
+Text Label 9150 1300 2    50   ~ 0
+M+
+Text Label 9150 1100 2    50   ~ 0
+M-
+Text Label 9150 1800 2    50   ~ 0
+M-
+Text Label 9150 2000 2    50   ~ 0
+M+
+NoConn ~ 9750 1900
+$Comp
+L Comparator:LM393 U10
+U 2 1 61FEFC44
+P 9450 1200
+F 0 "U10" H 9400 1200 50  0000 C CNN
+F 1 "LM393" H 9550 1000 50  0000 C CNN
+F 2 "stdpads:SOIC-8_3.9mm" H 9450 1200 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lm393-n.pdf" H 9450 1200 50  0001 C CNN
+F 4 "C7955" H 9450 1200 50  0001 C CNN "LCSC Part"
+	2    9450 1200
+	1    0    0    1   
+$EndComp
+$Comp
+L Comparator:LM393 U10
+U 1 1 613F9FAF
+P 9450 1900
+F 0 "U10" H 9400 1900 50  0000 C CNN
+F 1 "LM393" H 9550 1700 50  0000 C CNN
+F 2 "stdpads:SOIC-8_3.9mm" H 9450 1900 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lm393-n.pdf" H 9450 1900 50  0001 C CNN
+F 4 "C7955" H 9450 1900 50  0001 C CNN "LCSC Part"
+	1    9450 1900
+	1    0    0    1   
+$EndComp
+Connection ~ 7100 6550
+Text Label 4900 4550 0    50   ~ 0
+RR~W~in
+Text Label 3500 4450 0    50   ~ 0
+RB11
+Text Label 3500 4350 0    50   ~ 0
+RB10
+Text Label 3500 4250 0    50   ~ 0
+RB9
+Text Label 3500 4150 0    50   ~ 0
+RB8
+Text Label 3500 4050 0    50   ~ 0
+RB7
+Text Label 3500 3850 0    50   ~ 0
+RB5
+Text Label 3500 3750 0    50   ~ 0
+RB4
+Text Label 3500 3650 0    50   ~ 0
+RB3
+Text Label 3500 3550 0    50   ~ 0
+RB2
+Text Label 3500 3450 0    50   ~ 0
+RB1
+Text Label 3500 3350 0    50   ~ 0
+RB0
+Wire Wire Line
+	5100 2850 4900 2850
+Wire Wire Line
+	4900 2750 5100 2750
+Wire Wire Line
+	5100 2650 4900 2650
+Wire Wire Line
+	4900 2550 5100 2550
+Wire Wire Line
+	4900 2450 5100 2450
+Wire Wire Line
+	4900 2350 5100 2350
+Wire Wire Line
+	5100 2250 4900 2250
+Wire Wire Line
+	4900 2150 5100 2150
+Wire Wire Line
+	3400 3150 3900 3150
+Wire Wire Line
+	3400 3250 3900 3250
+Wire Wire Line
+	3400 2350 3900 2350
+Wire Wire Line
+	3400 2450 3900 2450
+Wire Wire Line
+	3400 2550 3900 2550
+Wire Wire Line
+	3400 2650 3900 2650
+Wire Wire Line
+	3400 2750 3900 2750
+Wire Wire Line
+	3400 2850 3900 2850
+Wire Wire Line
+	3400 2950 3900 2950
+Wire Wire Line
+	3400 3050 3900 3050
+Text Label 4900 4650 0    50   ~ 0
+R~OE~
+Text Label 4900 4450 0    50   ~ 0
+R~CS~
+Text Label 3900 3450 2    50   ~ 0
+SA9
+Text Label 3900 3750 2    50   ~ 0
+SBA0
+Text Label 3900 3850 2    50   ~ 0
+SA12
+Text Label 3900 3550 2    50   ~ 0
+SBA1
+Text Label 3900 3350 2    50   ~ 0
+SA10
+Text Label 3900 4050 2    50   ~ 0
+SA5
+Wire Wire Line
+	3500 3350 3900 3350
+Wire Wire Line
+	3500 3450 3900 3450
+Wire Wire Line
+	3500 3550 3900 3550
+Wire Wire Line
+	3500 3650 3900 3650
+Wire Wire Line
+	3500 4050 3900 4050
+Entry Wire Line
+	3400 3450 3500 3350
+Entry Wire Line
+	3400 3550 3500 3450
+Entry Wire Line
+	3400 3650 3500 3550
+Entry Wire Line
+	3400 3750 3500 3650
+Wire Wire Line
+	3500 3750 3900 3750
+Wire Wire Line
+	3500 3850 3900 3850
+Entry Wire Line
+	3400 3850 3500 3750
+Entry Wire Line
+	3400 3950 3500 3850
+Entry Wire Line
+	3400 4150 3500 4050
+$Comp
+L power:GND #PWR0107
+U 1 1 60F31FBA
+P 3900 4650
+F 0 "#PWR0107" H 3900 4400 50  0001 C CNN
+F 1 "GND" H 3900 4500 50  0000 C CNN
+F 2 "" H 3900 4650 50  0001 C CNN
+F 3 "" H 3900 4650 50  0001 C CNN
+	1    3900 4650
+	1    0    0    -1  
+$EndComp
+Text Label 4900 3650 0    50   ~ 0
+RA0
+Text Label 3900 2350 2    50   ~ 0
+RA1
+Text Label 3900 2450 2    50   ~ 0
+RA2
+Text Label 3900 2550 2    50   ~ 0
+RA3
+Text Label 3900 2650 2    50   ~ 0
+RA4
+Text Label 3900 2750 2    50   ~ 0
+RA5
+Text Label 3900 2850 2    50   ~ 0
+RA6
+Text Label 3900 2950 2    50   ~ 0
+RA7
+Text Label 3900 3050 2    50   ~ 0
+RA8
+Text Label 3900 3150 2    50   ~ 0
+RA9
+Text Label 3900 3250 2    50   ~ 0
+RA10
+Entry Wire Line
+	3300 2850 3400 2950
+Entry Wire Line
+	3300 2750 3400 2850
+Entry Wire Line
+	3300 2650 3400 2750
+Entry Wire Line
+	3300 2550 3400 2650
+Entry Wire Line
+	3300 2450 3400 2550
+Entry Wire Line
+	3300 2350 3400 2450
+Entry Wire Line
+	3300 3150 3400 3250
+Entry Wire Line
+	3300 3050 3400 3150
+Entry Wire Line
+	3300 2950 3400 3050
+Text Label 4900 2150 0    50   ~ 0
+RD0
+Text Label 4900 2250 0    50   ~ 0
+RD1
+Text Label 4900 2350 0    50   ~ 0
+RD2
+Text Label 4900 2450 0    50   ~ 0
+RD3
+Text Label 4900 2550 0    50   ~ 0
+RD4
+Text Label 4900 2650 0    50   ~ 0
+RD5
+Text Label 4900 2750 0    50   ~ 0
+RD6
+Text Label 4900 2850 0    50   ~ 0
+RD7
+NoConn ~ 4900 4250
+Entry Wire Line
+	3300 2250 3400 2350
+$Comp
+L power:+3V3 #PWR0113
+U 1 1 5FFC5A3C
+P 3900 2150
+F 0 "#PWR0113" H 3900 2000 50  0001 C CNN
+F 1 "+3V3" H 3900 2300 50  0000 C CNN
+F 2 "" H 3900 2150 50  0001 C CNN
+F 3 "" H 3900 2150 50  0001 C CNN
+	1    3900 2150
+	1    0    0    -1  
+$EndComp
+NoConn ~ 4900 2950
+NoConn ~ 4900 3050
+NoConn ~ 4900 3150
+NoConn ~ 4900 3250
+NoConn ~ 4900 3350
+NoConn ~ 4900 3450
+NoConn ~ 4900 3550
+$Comp
+L power:+3V3 #PWR0142
+U 1 1 600BAB7D
+P 4900 3850
+F 0 "#PWR0142" H 4900 3700 50  0001 C CNN
+F 1 "+3V3" H 4900 4000 50  0000 C CNN
+F 2 "" H 4900 3850 50  0001 C CNN
+F 3 "" H 4900 3850 50  0001 C CNN
+	1    4900 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR0143
+U 1 1 600BAFBC
+P 4900 4150
+F 0 "#PWR0143" H 4900 4000 50  0001 C CNN
+F 1 "+3V3" H 4900 4300 50  0000 C CNN
+F 2 "" H 4900 4150 50  0001 C CNN
+F 3 "" H 4900 4150 50  0001 C CNN
+	1    4900 4150
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0146
+U 1 1 600BBD4F
+P 5100 3950
+F 0 "#PWR0146" H 5100 3700 50  0001 C CNN
+F 1 "GND" H 5100 3800 50  0000 C CNN
+F 2 "" H 5100 3950 50  0001 C CNN
+F 3 "" H 5100 3950 50  0001 C CNN
+	1    5100 3950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5100 3950 4900 3950
+Entry Wire Line
+	3400 4450 3500 4350
+Entry Wire Line
+	3400 4250 3500 4150
+Entry Wire Line
+	3400 4350 3500 4250
+Entry Wire Line
+	3400 4550 3500 4450
+Text Label 3900 4150 2    50   ~ 0
+SA2
+Text Label 3900 4250 2    50   ~ 0
+SA8
+Text Label 3900 4350 2    50   ~ 0
+SA7
+Text Label 3900 4450 2    50   ~ 0
+SA1
+Wire Wire Line
+	3500 4350 3900 4350
+Wire Wire Line
+	3500 4450 3900 4450
+Wire Wire Line
+	3500 4150 3900 4150
+Wire Wire Line
+	3500 4250 3900 4250
+Text Label 3900 3650 2    50   ~ 0
+SA11
+Wire Wire Line
+	3500 3950 3900 3950
+Text Label 3500 3950 0    50   ~ 0
+RB6
+$Comp
+L GW_RAM:Flash-4Mx16-TSOP1-48 U3
+U 1 1 5FDA9245
+P 4400 3050
+F 0 "U3" H 4400 4100 50  0000 C CNN
+F 1 "MX29LV640EB" V 4400 3050 50  0000 C CNN
+F 2 "stdpads:TSOP-I-48_18.4x12mm_P0.5mm" H 4400 3050 50  0001 C CNN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/25022B.pdf" H 4400 3050 50  0001 C CNN
+F 4 "C34469" H 4400 3050 50  0001 C CNN "LCSC Part"
+	1    4400 3050
+	1    0    0    -1  
+$EndComp
+Text Label 7800 4850 0    50   ~ 0
+R~OE~
+Text Label 7800 4950 0    50   ~ 0
+R~CS~
+Text Label 5800 2950 2    50   ~ 0
+RB6
 Wire Bus Line
 	5400 1850 5400 4550
 Wire Bus Line
-	1800 4650 1800 5450
+	600  3750 600  4650
 Wire Bus Line
-	3400 3450 3400 4550
+	1800 4650 1800 5450
 Wire Bus Line
 	5200 2050 5200 4850
 Wire Bus Line
 	3300 1850 3300 4350
 Wire Bus Line
+	3400 3450 3400 4550
+Wire Bus Line
+	3300 4850 3300 5550
+Wire Bus Line
 	1800 2350 1800 4250
+Text Label 3000 3650 0    50   ~ 0
+A~OE~
+Text Label 3000 2450 0    50   ~ 0
+A~OE~
+Text Label 7800 5750 0    50   ~ 0
+A~OE~
 $EndSCHEMATC

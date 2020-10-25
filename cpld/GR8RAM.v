@@ -114,33 +114,33 @@ module GR8RAM(C25M, PHI1, nIOSEL, nDEVSEL, nIOSTRB,
 		~nIOSTRB ? { 
 			SAreg[0],	// SA0
 			BankC8[11],	// SA1,  Bank11
-			BankC8[8] ^ BankCX[8], // SA2, Bank8
+			BankC8[8],	// SA2, Bank8
 			SAreg[3],	// SA3
 			SAreg[4], 	// SA4
-			ExtBankEN ? BankC8[7] : 1'b0, // SA5, Bank7
+			BankC8[7],	// SA5, Bank7
 			SAreg[6], 	// SA6
 			BankC8[10], // SA7,  Bank10
-			BankC8[9] ^ BankCX[9], // SA8, Bank9
+			BankC8[9],	// SA8, Bank9
 			BankC8[1],	// SA9,  Bank1
 			BankC8[0],	// SA10, Bank0
 			BankC8[3],	// SA11, Bank3
-			BankC8[5]	// SA12, Bank5
+			BankC8[5] ^ BankCX[5] // SA12, Bank5
 		} : { // IOSEL
 			SAreg[0],	// SA0
 			1'b0,	 	// SA1,  Bank11
-			BankCX[8],	// SA2,  Bank8
+			1'b0,	// SA2,  Bank8
 			SAreg[3],	// SA3
 			SAreg[4], 	// SA4
 			1'b1, 		// SA5,  Bank7
 			SAreg[6], 	// SA6
 			1'b0, 		// SA7,  Bank10
-			BankCX[9], 	// SA8,  Bank9
+			1'b0, 		// SA8,  Bank9
 			1'b1,		// SA9,  Bank1
 			1'b1,		// SA10, Bank0
 			1'b1,		// SA11, Bank3
-			1'b1		// SA12, Bank5
+			BankCX[5]	// SA12, Bank5
 		};
-	output RB6 = ~nIOSEL ? 1'b1 : BankC8[6];
+	output RB6 = ~nIOSTRB ? BankC8[6] ^ BankCX[6] : BankCX[6];
 	reg SAmux = 1'b0;
 	reg [1:0] SBAreg;
 	reg [12:0] SAreg;
@@ -192,7 +192,7 @@ module GR8RAM(C25M, PHI1, nIOSEL, nDEVSEL, nIOSTRB,
 	reg [7:0] Data = 0;
 	reg [7:0] Data0 = 0;
 	reg [11:0] BankC8 = 0; // Bits 9:8 are XORed with BankCX
-	reg [9:8] BankCX = 0; // Bank CX is init value
+	reg [6:5] BankCX = 0; // Bank CX is init value
 	reg ExtBankEN = 0;
 
 	/* Set/Increment Address Register */
