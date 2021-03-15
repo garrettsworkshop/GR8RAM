@@ -1,0 +1,140 @@
+Init sequence
+
+Init State			SDRAM				Flash					Other
+--------------------------------------------------------------------------------
+$000000-$0FFFBF		Wait for Vcc		Wait for Vcc
+$000000				NOP	CKE				/CS hi, CLK lo
+...
+$0FFF90				NOP	CKE				/CS hi, CLK lo			InitActv <= ~BODf
+....
+$0FFFA0				NOP	CKE				/CS lo, CLK lo
+...
+$0FFFAF				NOP	CKE				/CS lo, CLK lo
+
+$0FFFB0-$0FFFBF		Init: Precharge		Send read cmd ($03)
+$0FFFB0				PC all				CLK lo, MOSI 0 (b7)
+$0FFFB1				NOP CKE				CLK hi
+$0FFFB2				NOP	CKE				CLK lo, MOSI 0 (b6)
+$0FFFB3				NOP CKE				CLK hi
+$0FFFB4				NOP	CKE				CLK lo, MOSI 0 (b5)
+$0FFFB5				NOP	CKE				CLK hi
+$0FFFB6				NOP	CKE				CLK lo, MOSI 0 (b4)
+$0FFFB7				NOP	CKE				CLK hi
+$0FFFB8				NOP	CKE				CLK lo, MOSI 0 (b3)
+$0FFFB9				NOP	CKE				CLK hi
+$0FFFBA				NOP	CKE				CLK lo, MOSI 0 (b2)
+$0FFFBB				NOP	CKE				CLK hi
+$0FFFBC				NOP	CKE				CLK lo, MOSI 1 (b1)
+$0FFFBD				NOP	CKE				CLK hi
+$0FFFBE				NOP	CKE				CLK lo, MOSI 1 (b0)
+$0FFFBF				NOP CKE				CLK hi
+
+$0FFFC0-$0FFFEF		Init: mode & ref	Send address ($000000)
+$0FFFC0				Load mode			CLK lo, MOSI 0 (b23)
+$0FFFC1				NOP CKE				CLK hi
+$0FFFC2				NOP	CKE				CLK lo, MOSI 0 (b22)
+$0FFFC3				NOP CKE				CLK hi
+$0FFFC4				AREF				CLK lo, MOSI Firmware[1] (b21)
+$0FFFC5				NOP	CKE				CLK hi
+$0FFFC6				NOP	CKE				CLK lo, MOSI Firmware[0] (b20)
+$0FFFC7				NOP	CKE				CLK hi
+$0FFFC8				NOP	CKE				CLK lo, MOSI 0 (b19)
+$0FFFC9				NOP	CKE				CLK hi
+$0FFFCA				NOP	CKE				CLK lo, MOSI 0 (b18)
+$0FFFCB				NOP	CKE				CLK hi
+$0FFFCC				AREF				CLK lo, MOSI 0 (b17)
+$0FFFCD				NOP CKE				CLK hi
+$0FFFCE				NOP	CKE				CLK lo, MOSI 0 (b16)
+$0FFFCF				NOP CKE				CLK hi
+$0FFFD0				NOP	CKE				CLK lo, MOSI 0 (b15)
+$0FFFD1				NOP CKE				CLK hi
+$0FFFD2				NOP	CKE				CLK lo, MOSI 0 (b14)
+$0FFFD3				NOP CKE				CLK hi
+$0FFFD4				AREF				CLK lo, MOSI 0 (b13)
+$0FFFD5				NOP	CKE				CLK hi
+$0FFFD6				NOP	CKE				CLK lo, MOSI 0 (b12)
+$0FFFD7				NOP	CKE				CLK hi
+$0FFFD8				NOP	CKE				CLK lo, MOSI 0 (b11)
+$0FFFD9				NOP	CKE				CLK hi
+$0FFFDA				NOP	CKE				CLK lo, MOSI 0 (b10)
+$0FFFDB				NOP	CKE				CLK hi
+$0FFFDC				AREF				CLK lo, MOSI 0 (b9)
+$0FFFDD				NOP CKE				CLK hi
+$0FFFDE				NOP	CKE				CLK lo, MOSI 0 (b8)
+$0FFFDF				NOP CKE				CLK hi
+$0FFFE0				NOP	CKE				CLK lo, MOSI 0 (b7)
+$0FFFE1				NOP CKE				CLK hi
+$0FFFE2				NOP	CKE				CLK lo, MOSI 0 (b6)
+$0FFFE3				NOP CKE				CLK hi
+$0FFFE4				AREF				CLK lo, MOSI 0 (b5)
+$0FFFE5				NOP	CKE				CLK hi
+$0FFFE6				NOP	CKE				CLK lo, MOSI 0 (b4)
+$0FFFE7				NOP	CKE				CLK hi
+$0FFFE8				NOP	CKE				CLK lo, MOSI 0 (b3)
+$0FFFE9				NOP	CKE				CLK hi
+$0FFFEA				NOP	CKE				CLK lo, MOSI 0 (b2)
+$0FFFEB				NOP	CKE				CLK hi
+$0FFFEC				AREF				CLK lo, MOSI 0 (b1)
+$0FFFED				NOP CKE				CLK hi
+$0FFFEE				NOP	CKE				CLK lo, MOSI 0 (b0)
+$0FFFEF				NOP CKE				CLK hi
+
+$0FFFF0-$0FFFFF		Init: mode & ref	8 dummy clocks
+$0FFFF0				NOP	CKE				CLK lo, MOSIOE 0
+$0FFFF1				NOP CKE				CLK hi
+$0FFFF2				NOP	CKE				CLK lo
+$0FFFF3				NOP CKE				CLK hi
+$0FFFF4				AREF				CLK lo
+$0FFFF5				NOP	CKE				CLK hi
+$0FFFF6				NOP	CKE				CLK lo
+$0FFFF7				NOP	CKE				CLK hi
+$0FFFF8				NOP	CKE				CLK lo
+$0FFFF9				NOP	CKE				CLK hi
+$0FFFFA				NOP	CKE				CLK lo
+$0FFFFB				NOP	CKE				CLK hi
+$0FFFFC				AREF				CLK lo
+$0FFFFD				NOP CKE				CLK hi
+$0FFFFE				NOP	CKE				CLK lo
+$0FFFFF				NOP CKE				CLK hi
+
+					Write ROM data		Shift in read data
+$100000				NOP CKE				CLK lo
+$100001				NOP CKE				CLK hi, get b7:6 of $000000
+$100002				NOP CKE				CLK lo
+$100003				NOP CKE				CLK hi, get b5:4 of $000000
+$100004				AREF				CLK lo
+$100005				NOP CKE				CLK hi, get b3:2 of $000000
+$100006				ACT					CLK lo
+$100007				NOP CKE				CLK hi, get b1:0 of $000000
+$100008				WR AP				CLK lo
+$100009				NOP CKE				CLK hi, get b7:6 of $000001
+$10000A				NOP CKE				CLK lo
+$10000B				NOP CKE				CLK hi, get b5:4 of $000001
+$10000C				AREF				CLK lo
+$10000D				NOP CKE				CLK hi, get b3:2 of $000001
+$10000E				ACT					CLK lo
+$10000F				NOP CKE				CLK hi, get b1:0 of $000001
+...
+$507FF0				WR AP				CLK lo
+$503FF1				NOP CKE				CLK hi, get b7:6 of $0807FE
+$503FF2				NOP CKE				CLK lo
+$503FF3				NOP CKE				CLK hi, get b5:4 of $0807FE
+$503FF4				AREF				CLK lo
+$503FF5				NOP CKE				CLK hi, get b3:2 of $0807FE
+$503FF6				ACT					CLK lo
+$503FF7				NOP CKE				CLK hi, get b1:0 of $0807FE
+$503FF8				WR AP				CLK lo
+$503FF9				NOP CKE				CLK hi, get b7:6 of $0807FF
+$503FFA				NOP CKE				CLK lo
+$503FFB				NOP CKE				CLK hi, get b5:4 of $0807FF
+$503FFC				AREF				CLK lo
+$503FFD				NOP CKE				CLK hi, get b3:2 of $0807FF
+$503FFE				ACT					CLK lo
+$503FFF				NOP CKE				CLK hi, get b1:0 of $0807FF
+$504000				WR AP				CLK lo, /CS hi
+$504001				NOP CKE				CLK lo
+...
+$50400F				NOP CKE				CLK lo
+$504010				NOP CKE										SDRAMActv <= InitActv && ~InitInterrupted
+...													
+$5F5E0F															flip 1hz, wrap
