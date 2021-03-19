@@ -1,5 +1,5 @@
 Flow report for GR8RAM
-Fri Mar 19 06:44:01 2021
+Fri Mar 19 06:58:10 2021
 Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -40,17 +40,17 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------+
 ; Flow Summary                                                                ;
 +---------------------------+-------------------------------------------------+
-; Flow Status               ; Flow Failed - Fri Mar 19 06:44:01 2021          ;
+; Flow Status               ; Flow Failed - Fri Mar 19 06:58:10 2021          ;
 ; Quartus II 32-bit Version ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name             ; GR8RAM                                          ;
 ; Top-level Entity Name     ; GR8RAM                                          ;
 ; Family                    ; MAX II                                          ;
 ; Device                    ; EPM240T100C5                                    ;
 ; Timing Models             ; Final                                           ;
-; Total logic elements      ; 250 / 240 ( 104 % )                             ;
+; Total logic elements      ; 247 / 240 ( 103 % )                             ;
 ; Total pins                ; 69 / 80 ( 86 % )                                ;
 ; Total virtual pins        ; 0                                               ;
-; UFM blocks                ; 0 / 1 ( 0 % )                                   ;
+; UFM blocks                ; 1 / 1 ( 100 % )                                 ;
 +---------------------------+-------------------------------------------------+
 
 
@@ -59,7 +59,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/19/2021 06:43:51 ;
+; Start date & time ; 03/19/2021 06:57:59 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; GR8RAM              ;
 +-------------------+---------------------+
@@ -70,7 +70,7 @@ applicable agreement for further details.
 +---------------------------------------+--------------------------------+---------------+-------------+------------+
 ; Assignment Name                       ; Value                          ; Default Value ; Entity Name ; Section Id ;
 +---------------------------------------+--------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID                 ; 44085571633675.161615063101880 ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID                 ; 44085571633675.161615147901060 ; --            ; --          ; --         ;
 ; FITTER_EFFORT                         ; Standard Fit                   ; Auto Fit      ; --          ; --         ;
 ; IP_TOOL_NAME                          ; ALTUFM_NONE                    ; --            ; --          ; --         ;
 ; IP_TOOL_VERSION                       ; 13.0                           ; --            ; --          ; --         ;
@@ -88,9 +88,9 @@ applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:05     ; 1.0                     ; 301 MB              ; 00:00:05                           ;
-; Fitter               ; 00:00:05     ; 1.0                     ; 359 MB              ; 00:00:04                           ;
-; Total                ; 00:00:10     ; --                      ; --                  ; 00:00:09                           ;
+; Analysis & Synthesis ; 00:00:06     ; 1.0                     ; 301 MB              ; 00:00:05                           ;
+; Fitter               ; 00:00:05     ; 1.0                     ; 367 MB              ; 00:00:05                           ;
+; Total                ; 00:00:11     ; --                      ; --                  ; 00:00:10                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

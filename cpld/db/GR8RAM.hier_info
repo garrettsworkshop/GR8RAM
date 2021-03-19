@@ -8,14 +8,20 @@ C25M => nRAS~reg0.CLK
 C25M => nRCS~reg0.CLK
 C25M => RCKE~reg0.CLK
 C25M => RefReqd.CLK
-C25M => IS[0].CLK
-C25M => IS[1].CLK
 C25M => PS[0].CLK
 C25M => PS[1].CLK
 C25M => PS[2].CLK
 C25M => SDOE.CLK
 C25M => WRD[6].CLK
 C25M => WRD[7].CLK
+C25M => DRDIn.CLK
+C25M => SetLoaded.CLK
+C25M => SetLim8M.CLK
+C25M => SetFW.CLK
+C25M => DRShift.CLK
+C25M => DRCLK.CLK
+C25M => ARShift.CLK
+C25M => ARCLK.CLK
 C25M => MOSIOE.CLK
 C25M => MOSIout.CLK
 C25M => FCKEN.CLK
@@ -173,5 +179,37 @@ nFCS <= FCS.DB_MAX_OUTPUT_PORT_TYPE
 FCK <= FCK~reg0.DB_MAX_OUTPUT_PORT_TYPE
 MISO => WRD[7].DATAIN
 MOSI <= MOSI.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|GR8RAM|UFM:UFM_inst
+arclk => arclk.IN1
+ardin => ardin.IN1
+arshft => arshft.IN1
+drclk => drclk.IN1
+drdin => drdin.IN1
+drshft => drshft.IN1
+erase => erase.IN1
+oscena => oscena.IN1
+program => program.IN1
+busy <= UFM_altufm_none_0ep:UFM_altufm_none_0ep_component.busy
+drdout <= UFM_altufm_none_0ep:UFM_altufm_none_0ep_component.drdout
+osc <= UFM_altufm_none_0ep:UFM_altufm_none_0ep_component.osc
+rtpbusy <= UFM_altufm_none_0ep:UFM_altufm_none_0ep_component.rtpbusy
+
+
+|GR8RAM|UFM:UFM_inst|UFM_altufm_none_0ep:UFM_altufm_none_0ep_component
+arclk => maxii_ufm_block1.ARCLK
+ardin => maxii_ufm_block1.ARDIN
+arshft => maxii_ufm_block1.ARSHFT
+busy <= maxii_ufm_block1.BUSY
+drclk => maxii_ufm_block1.DRCLK
+drdin => maxii_ufm_block1.DRDIN
+drdout <= maxii_ufm_block1.DRDOUT
+drshft => maxii_ufm_block1.DRSHFT
+erase => maxii_ufm_block1.ERASE
+osc <= maxii_ufm_block1.OSC
+oscena => maxii_ufm_block1.OSCENA
+program => maxii_ufm_block1.PROGRAM
+rtpbusy <= maxii_ufm_block1.BGPBUSY
 
 

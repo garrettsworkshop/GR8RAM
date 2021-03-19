@@ -118,27 +118,22 @@ module GR8RAM(C25M, PHI0, nBOD, nRES, nRESout,
 	wire AddrLSpecSEL = RAcur[3:0]==4'h0;
 	always @(posedge C25M) begin
 		if (~nRESr) begin
-			Addr[23:20] <= SetFW[1] ? 4'h0 : 4'hF;
-			Addr[19:0] <= 20'h00000;
+			Addr[23:0] <= 24'h000000;
 		end else if (PS==7 && REGEN && DEVSELr) begin
 			if (RAMSpecSEL) begin
-				if (SetFW[1]) Addr[23:0] <= Addr[23:0]+1;
-				else Addr[23:0] <= { 4'hF, Addr[19:0]+1 };
+				Addr[23:0] <= Addr[23:0]+1;
 			end else if (AddrLSpecSEL && ~nWEcur) begin
 				Addr[7:0] <= RD[7:0];
 				if (~RD[7] && Addr[7]) begin
-					if (SetFW[1]) Addr[23:8] <= Addr[23:8]+1;
-					else Addr[23:8] <= { 4'hF, Addr[19:8]+1 };
+					Addr[23:8] <= Addr[23:8]+1;
 				end
 			end else if (AddrMSpecSEL && ~nWEcur) begin
 				Addr[15:8] <= RD[7:0];
 				if (~RD[7] && Addr[15]) begin
-					if (SetFW[1]) Addr[23:16] <= Addr[23:16]+1;
-					else Addr[23:16] <= { 4'hF, Addr[19:16]+1 };
+					Addr[23:16] <= Addr[23:16]+1;
 				end
 			end else if (AddrHSpecSEL && ~nWEcur) begin
-				if (SetFW[1]) Addr[23:16] <= RD[7:0];
-				else Addr[23:16] <= { 4'hF, RD[3:0] };
+				Addr[23:16] <= RD[7:0];
 			end
 		end
 	end
@@ -260,7 +255,7 @@ module GR8RAM(C25M, PHI0, nBOD, nRES, nRESout,
 	always @(negedge C25M) begin UFMBr0 <= UFMB; RTPBr0 <= RTPB; end
 	always @(posedge C25M) begin UFMBr <= UFMBr0; RTPBr <= RTPBr0; end
 	reg SetLoaded = 0;
-	reg [1:0] SetFW;
+	reg SetFW;
 	reg SetLim8M;
 	always @(posedge C25M) begin
 		if (~SetLoaded) begin
@@ -274,7 +269,7 @@ module GR8RAM(C25M, PHI0, nBOD, nRES, nRESout,
 				ARShift <= 1;
 				DRCLK <= 0;
 				DRShift <= 0;
-				SetFW[1:0] <= 2'b11;
+				SetFW <= 1'b1;
 				SetLim8M <= 1'b1;
 			end else if (LS[15:0]<=16'h1FFF) begin
 				case (LS[3:1])
@@ -378,7 +373,7 @@ module GR8RAM(C25M, PHI0, nBOD, nRES, nRESout,
 		Amux[2:0]==2'h0 ? 2'b00 : // mode register / "all"
 		Amux[2:0]==2'h1 ? 2'b00 : // FIXME: init row / col
 		Amux[2:0]==2'h2 ? 2'b10 : // ROM row / col
-		/* 2'h3 */ { 1'b0, Addr[23] }; // RAM col
+		/* 2'h3 */ { 1'b0, Addr[23] & SetFW & ~SetLim8M }; // RAM col
 	output [12:0] SA; assign SA[12:0] = 
 		Amux[2:0]==3'h0 ? 13'b0001000100000 : // mode register
 		Amux[2:0]==3'h1 ? 13'b0011000100000 : // "all"
@@ -386,7 +381,10 @@ module GR8RAM(C25M, PHI0, nBOD, nRES, nRESout,
 		Amux[2:0]==3'h3 ? 13'b0011000100000 : // FIXME: init col
 		Amux[2:0]==3'h4 ? { 9'b000000000, Bank[1:0], RAcur[11:10] } : // ROM row
 		Amux[2:0]==3'h5 ? { 4'b0000, RAcur[9:1]} : // ROM col
-		Amux[2:0]==3'h6 ? { Addr[22:10] } : // RAM row
+		Amux[2:0]==3'h6 ? { Addr[22] & SetFW, 
+							Addr[21] & SetFW, 
+							Addr[20] & SetFW,
+							Addr[19:10] } : // RAM row
 		/* 3'h7 */        { 4'b0000, Addr[9:1] }; // RAM col
 	output DQML; assign DQML = 
 		Amux[2:0]==3'h0 ? 1'b1 : // mode register
@@ -415,97 +413,7 @@ module GR8RAM(C25M, PHI0, nBOD, nRES, nRESout,
 	always @(posedge C25M) begin
 		case (PS[2:0])
 			0: begin
-				if (InitActv) begin
-					case (IS[1:0])
-						0: begin
-							// NOP CKE
-							RCKE <= 1'b1;
-							nRCS <= 1'b1;
-							nRAS <= 1'b1;
-							nCAS <= 1'b1;
-							nSWE <= 1'b1;
-							Amux <= 3'b000;
-						end 1: begin
-							if (LS[3:0]==4'h3) begin
-								// PC all
-								RCKE <= 1'b1;
-								nRCS <= 1'b0;
-								nRAS <= 1'b0;
-								nCAS <= 1'b1;
-								nSWE <= 1'b0;
-								Amux <= 3'b001;
-							end else if (LS[3:0]==4'hB) begin
-								// Load mode
-								RCKE <= 1'b1;
-								nRCS <= 1'b0;
-								nRAS <= 1'b0;
-								nCAS <= 1'b0;
-								nSWE <= 1'b0;
-								Amux <= 3'b000;
-							end else begin
-								// NOP CKE
-								RCKE <= 1'b1;
-								nRCS <= 1'b1;
-								nRAS <= 1'b1;
-								nCAS <= 1'b1;
-								nSWE <= 1'b1;
-								Amux <= 3'b000;
-							end
-						end 2: begin
-							if (LS[2:0]==3'h3) begin
-								// AREF
-								RCKE <= 1'b1;
-								nRCS <= 1'b0;
-								nRAS <= 1'b0;
-								nCAS <= 1'b0;
-								nSWE <= 1'b1;
-								Amux <= 3'b000;
-							end else begin
-								// NOP CKE
-								RCKE <= 1'b1;
-								nRCS <= 1'b1;
-								nRAS <= 1'b1;
-								nCAS <= 1'b1;
-								nSWE <= 1'b1;
-								Amux <= 3'b000;
-							end
-						end 3: begin
-							if (LS[2:0]==3'h3) begin
-								// AREF
-								RCKE <= 1'b1;
-								nRCS <= 1'b0;
-								nRAS <= 1'b0;
-								nCAS <= 1'b0;
-								nSWE <= 1'b1;
-								Amux <= 3'b010;
-							end else if (LS[2:0]==3'h5) begin
-								// ACT
-								RCKE <= 1'b1;
-								nRCS <= 1'b0;
-								nRAS <= 1'b0;
-								nCAS <= 1'b1;
-								nSWE <= 1'b1;
-								Amux <= 3'b010;
-							end else if (LS[2:0]==3'h7) begin
-								// WR AP
-								RCKE <= 1'b1;
-								nRCS <= 1'b0;
-								nRAS <= 1'b1;
-								nCAS <= 1'b0;
-								nSWE <= 1'b0;
-								Amux <= 3'b011;
-							end else begin
-								// NOP CKE
-								RCKE <= 1'b1;
-								nRCS <= 1'b1;
-								nRAS <= 1'b1;
-								nCAS <= 1'b1;
-								nSWE <= 1'b1;
-								Amux <= 3'b010;
-							end
-						end
-					endcase
-				end else if (PSStart) begin
+				if (PSStart) begin
 					// NOP CKE
 					RCKE <= 1'b1;
 					nRCS <= 1'b1;

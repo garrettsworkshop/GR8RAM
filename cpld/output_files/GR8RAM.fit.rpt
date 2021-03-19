@@ -1,5 +1,5 @@
 Fitter report for GR8RAM
-Fri Mar 19 06:44:01 2021
+Fri Mar 19 06:58:10 2021
 Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -50,17 +50,17 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------+
 ; Fitter Summary                                                              ;
 +---------------------------+-------------------------------------------------+
-; Fitter Status             ; Failed - Fri Mar 19 06:44:01 2021               ;
+; Fitter Status             ; Failed - Fri Mar 19 06:58:10 2021               ;
 ; Quartus II 32-bit Version ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name             ; GR8RAM                                          ;
 ; Top-level Entity Name     ; GR8RAM                                          ;
 ; Family                    ; MAX II                                          ;
 ; Device                    ; EPM240T100C5                                    ;
 ; Timing Models             ; Final                                           ;
-; Total logic elements      ; 250 / 240 ( 104 % )                             ;
+; Total logic elements      ; 247 / 240 ( 103 % )                             ;
 ; Total pins                ; 69 / 80 ( 86 % )                                ;
 ; Total virtual pins        ; 0                                               ;
-; UFM blocks                ; 0 / 1 ( 0 % )                                   ;
+; UFM blocks                ; 1 / 1 ( 100 % )                                 ;
 +---------------------------+-------------------------------------------------+
 
 
@@ -138,19 +138,19 @@ applicable agreement for further details.
 ; Total logic elements           ; Not available    ;
 ;                                ;                  ;
 ; Total LABs                     ; Not available    ;
-; Logic elements in carry chains ; 51               ;
+; Logic elements in carry chains ; 62               ;
 ; Virtual pins                   ; 0                ;
 ; I/O pins                       ; 69 / 80 ( 86 % ) ;
 ;     -- Clock pins              ; 0 / 4 ( 0 % )    ;
 ;                                ;                  ;
 ; Global signals                 ; 1                ;
-; UFM blocks                     ; 0 / 1 ( 0 % )    ;
+; UFM blocks                     ; 1 / 1 ( 100 % )  ;
 ; Global clocks                  ; 1 / 4 ( 25 % )   ;
 ; JTAGs                          ; 0 / 1 ( 0 % )    ;
-; Maximum fan-out                ; 99               ;
+; Maximum fan-out                ; 103              ;
 ; Highest non-global fan-out     ; 36               ;
-; Total fan-out                  ; 1002             ;
-; Average fan-out                ; 3.14             ;
+; Total fan-out                  ; 980              ;
+; Average fan-out                ; 3.09             ;
 +--------------------------------+------------------+
 
 
@@ -159,7 +159,7 @@ applicable agreement for further details.
 +---------+------------+----------+-----------------------+--------------------+--------+-----------------+----------+--------------+--------------+----------------------+
 ; Name    ; Pin #      ; I/O Bank ; Combinational Fan-Out ; Registered Fan-Out ; Global ; PCI I/O Enabled ; Bus Hold ; Weak Pull Up ; I/O Standard ; Location assigned by ;
 +---------+------------+----------+-----------------------+--------------------+--------+-----------------+----------+--------------+--------------+----------------------+
-; C25M    ; Unassigned ; --       ; 99                    ; 0                  ; yes    ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Fitter               ;
+; C25M    ; Unassigned ; --       ; 103                   ; 0                  ; yes    ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Fitter               ;
 ; MISO    ; Unassigned ; --       ; 1                     ; 0                  ; no     ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Fitter               ;
 ; PHI0    ; Unassigned ; --       ; 2                     ; 0                  ; no     ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Fitter               ;
 ; RA[0]   ; Unassigned ; --       ; 1                     ; 0                  ; no     ; no              ; no       ; Off          ; 3.3-V LVTTL  ; Fitter               ;
@@ -232,9 +232,9 @@ applicable agreement for further details.
 ; RD[1] ; Unassigned ; --       ; 4                     ; 0                  ; no     ; no              ; no             ; no              ; yes        ; no       ; Off          ; 3.3-V LVTTL  ; Default          ; no                     ; Fitter               ; 10 pF ; comb~2 (inverted)    ; -                   ;
 ; RD[2] ; Unassigned ; --       ; 3                     ; 0                  ; no     ; no              ; no             ; no              ; yes        ; no       ; Off          ; 3.3-V LVTTL  ; Default          ; no                     ; Fitter               ; 10 pF ; comb~2 (inverted)    ; -                   ;
 ; RD[3] ; Unassigned ; --       ; 3                     ; 0                  ; no     ; no              ; no             ; no              ; yes        ; no       ; Off          ; 3.3-V LVTTL  ; Default          ; no                     ; Fitter               ; 10 pF ; comb~2 (inverted)    ; -                   ;
-; RD[4] ; Unassigned ; --       ; 2                     ; 0                  ; no     ; no              ; no             ; no              ; yes        ; no       ; Off          ; 3.3-V LVTTL  ; Default          ; no                     ; Fitter               ; 10 pF ; comb~2 (inverted)    ; -                   ;
-; RD[5] ; Unassigned ; --       ; 2                     ; 0                  ; no     ; no              ; no             ; no              ; yes        ; no       ; Off          ; 3.3-V LVTTL  ; Default          ; no                     ; Fitter               ; 10 pF ; comb~2 (inverted)    ; -                   ;
-; RD[6] ; Unassigned ; --       ; 2                     ; 0                  ; no     ; no              ; no             ; no              ; yes        ; no       ; Off          ; 3.3-V LVTTL  ; Default          ; no                     ; Fitter               ; 10 pF ; comb~2 (inverted)    ; -                   ;
+; RD[4] ; Unassigned ; --       ; 3                     ; 0                  ; no     ; no              ; no             ; no              ; yes        ; no       ; Off          ; 3.3-V LVTTL  ; Default          ; no                     ; Fitter               ; 10 pF ; comb~2 (inverted)    ; -                   ;
+; RD[5] ; Unassigned ; --       ; 3                     ; 0                  ; no     ; no              ; no             ; no              ; yes        ; no       ; Off          ; 3.3-V LVTTL  ; Default          ; no                     ; Fitter               ; 10 pF ; comb~2 (inverted)    ; -                   ;
+; RD[6] ; Unassigned ; --       ; 3                     ; 0                  ; no     ; no              ; no             ; no              ; yes        ; no       ; Off          ; 3.3-V LVTTL  ; Default          ; no                     ; Fitter               ; 10 pF ; comb~2 (inverted)    ; -                   ;
 ; RD[7] ; Unassigned ; --       ; 4                     ; 0                  ; no     ; no              ; no             ; no              ; yes        ; no       ; Off          ; 3.3-V LVTTL  ; Default          ; no                     ; Fitter               ; 10 pF ; comb~2 (inverted)    ; -                   ;
 ; SD[0] ; Unassigned ; --       ; 0                     ; 0                  ; no     ; no              ; no             ; no              ; yes        ; no       ; Off          ; 3.3-V LVTTL  ; Default          ; no                     ; Fitter               ; 10 pF ; SDOE                 ; -                   ;
 ; SD[1] ; Unassigned ; --       ; 0                     ; 0                  ; no     ; no              ; no             ; no              ; yes        ; no       ; Off          ; 3.3-V LVTTL  ; Default          ; no                     ; Fitter               ; 10 pF ; SDOE                 ; -                   ;
@@ -383,13 +383,15 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 Note: User assignments will override these defaults. The user specified values are listed in the Output Pins and Bidir Pins tables.
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Fitter Resource Utilization by Entity                                                                                                                                                                                ;
-+----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+--------------+
-; Compilation Hierarchy Node ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name ; Library Name ;
-+----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+--------------+
-; |GR8RAM                    ; 250 (250)   ; 99           ; 0          ; 69   ; 0            ; 151 (151)    ; 0 (0)             ; 99 (99)          ; 51 (51)         ; 27 (27)    ; |GR8RAM             ; work         ;
-+----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+--------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Fitter Resource Utilization by Entity                                                                                                                                                                                                                                                                  ;
++-----------------------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                                ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name                                                    ; Library Name ;
++-----------------------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+------------------------------------------------------------------------+--------------+
+; |GR8RAM                                                   ; 247 (247)   ; 103          ; 1          ; 69   ; 0            ; 144 (144)    ; 0 (0)             ; 103 (103)        ; 62 (62)         ; 27 (27)    ; |GR8RAM                                                                ; work         ;
+;    |UFM:UFM_inst|                                         ; 0 (0)       ; 0            ; 1          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |GR8RAM|UFM:UFM_inst                                                   ; work         ;
+;       |UFM_altufm_none_0ep:UFM_altufm_none_0ep_component| ; 0 (0)       ; 0            ; 1          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |GR8RAM|UFM:UFM_inst|UFM_altufm_none_0ep:UFM_altufm_none_0ep_component ; work         ;
++-----------------------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -470,27 +472,26 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------+----------+---------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------+
-; Control Signals                                                                                                 ;
-+-------------+------------+---------+-------------------------+--------+----------------------+------------------+
-; Name        ; Location   ; Fan-Out ; Usage                   ; Global ; Global Resource Used ; Global Line Name ;
-+-------------+------------+---------+-------------------------+--------+----------------------+------------------+
-; Addr[14]~8  ; Unassigned ; 8       ; Clock enable            ; no     ; --                   ; --               ;
-; Addr[17]~19 ; Unassigned ; 4       ; Clock enable            ; no     ; --                   ; --               ;
-; Addr[4]~10  ; Unassigned ; 8       ; Clock enable            ; no     ; --                   ; --               ;
-; Bank[0]~1   ; Unassigned ; 2       ; Clock enable            ; no     ; --                   ; --               ;
-; C25M        ; Unassigned ; 99      ; Clock                   ; yes    ; Global Clock         ; Not Available    ;
-; Equal0~3    ; Unassigned ; 3       ; Clock enable            ; no     ; --                   ; --               ;
-; IS[0]~4     ; Unassigned ; 2       ; Clock enable            ; no     ; --                   ; --               ;
-; InitActv    ; Unassigned ; 23      ; Sync. clear             ; no     ; --                   ; --               ;
-; MOSIOE      ; Unassigned ; 3       ; Output enable           ; no     ; --                   ; --               ;
-; MOSIout~2   ; Unassigned ; 2       ; Clock enable            ; no     ; --                   ; --               ;
-; PSStart~2   ; Unassigned ; 18      ; Clock enable            ; no     ; --                   ; --               ;
-; PS[2]       ; Unassigned ; 17      ; Sync. load              ; no     ; --                   ; --               ;
-; SDOE        ; Unassigned ; 8       ; Output enable           ; no     ; --                   ; --               ;
-; always15~0  ; Unassigned ; 2       ; Clock enable            ; no     ; --                   ; --               ;
-; nRESr       ; Unassigned ; 36      ; Sync. clear, Sync. load ; no     ; --                   ; --               ;
-+-------------+------------+---------+-------------------------+--------+----------------------+------------------+
++-------------------------------------------------------------------------------------------------------+
+; Control Signals                                                                                       ;
++-------------+------------+---------+---------------+--------+----------------------+------------------+
+; Name        ; Location   ; Fan-Out ; Usage         ; Global ; Global Resource Used ; Global Line Name ;
++-------------+------------+---------+---------------+--------+----------------------+------------------+
+; ARCLK~6     ; Unassigned ; 2       ; Clock enable  ; no     ; --                   ; --               ;
+; Addr[0]~4   ; Unassigned ; 8       ; Clock enable  ; no     ; --                   ; --               ;
+; Addr[20]~16 ; Unassigned ; 7       ; Clock enable  ; no     ; --                   ; --               ;
+; Addr[9]~2   ; Unassigned ; 8       ; Clock enable  ; no     ; --                   ; --               ;
+; Bank[0]~1   ; Unassigned ; 2       ; Clock enable  ; no     ; --                   ; --               ;
+; C25M        ; Unassigned ; 103     ; Clock         ; yes    ; Global Clock         ; Not Available    ;
+; DRShift~0   ; Unassigned ; 2       ; Clock enable  ; no     ; --                   ; --               ;
+; Equal0~3    ; Unassigned ; 2       ; Clock enable  ; no     ; --                   ; --               ;
+; MOSIOE      ; Unassigned ; 3       ; Output enable ; no     ; --                   ; --               ;
+; MOSIout~4   ; Unassigned ; 2       ; Clock enable  ; no     ; --                   ; --               ;
+; PSStart~1   ; Unassigned ; 18      ; Clock enable  ; no     ; --                   ; --               ;
+; SDOE        ; Unassigned ; 8       ; Output enable ; no     ; --                   ; --               ;
+; always18~0  ; Unassigned ; 2       ; Clock enable  ; no     ; --                   ; --               ;
+; nRESr       ; Unassigned ; 36      ; Sync. clear   ; no     ; --                   ; --               ;
++-------------+------------+---------+---------------+--------+----------------------+------------------+
 
 
 +-----------------------------------------------------------------------+
@@ -498,7 +499,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +------+------------+---------+----------------------+------------------+
 ; Name ; Location   ; Fan-Out ; Global Resource Used ; Global Line Name ;
 +------+------------+---------+----------------------+------------------+
-; C25M ; Unassigned ; 99      ; Global Clock         ; Not Available    ;
+; C25M ; Unassigned ; 103     ; Global Clock         ; Not Available    ;
 +------+------------+---------+----------------------+------------------+
 
 
@@ -508,84 +509,84 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Name         ; Fan-Out          ;
 +--------------+------------------+
 ; nRESr        ; 36               ;
-; InitActv     ; 23               ;
-; RAMSpecSEL~4 ; 19               ;
-; PS[1]        ; 19               ;
 ; Amux[1]      ; 19               ;
-; PSStart~2    ; 18               ;
+; RAMSpecSEL~4 ; 18               ;
+; PSStart~1    ; 18               ;
 ; Amux[0]      ; 18               ;
-; PS[2]        ; 17               ;
 ; Amux[2]      ; 17               ;
 ; PS[0]        ; 16               ;
-; RAcur[0]     ; 15               ;
-; always11~0   ; 13               ;
-; LS[2]        ; 12               ;
-; LS[1]        ; 12               ;
-; LS[0]        ; 11               ;
-; LS[3]        ; 11               ;
-; LS[4]        ; 9                ;
+; RAcur[0]     ; 14               ;
+; PS[2]        ; 13               ;
+; PS[1]        ; 13               ;
+; Addr[20]~10  ; 11               ;
+; Addr[0]~3    ; 11               ;
+; always11~0   ; 11               ;
+; InitActv     ; 11               ;
+; LS[6]        ; 11               ;
+; LS[1]        ; 10               ;
 ; comb~2       ; 9                ;
-; Addr[4]~10   ; 8                ;
-; Addr[14]~8   ; 8                ;
-; RAMSpecSEL~2 ; 8                ;
-; LS[5]        ; 8                ;
+; Addr[0]~4    ; 8                ;
+; Addr[9]~2    ; 8                ;
 ; SDOE         ; 8                ;
-; Addr[17]     ; 7                ;
-; Addr[16]     ; 7                ;
-; Addr[4]~9    ; 7                ;
-; IS[1]        ; 7                ;
-; RAMSpecSEL~3 ; 7                ;
+; LS[5]        ; 8                ;
+; LS[4]        ; 8                ;
+; LS[3]        ; 8                ;
+; Addr[20]~16  ; 7                ;
+; RAMSpecSEL~1 ; 7                ;
 ; nWEcur       ; 6                ;
-; Addr[18]     ; 6                ;
-; Addr[17]~16  ; 6                ;
-; Equal15~0    ; 5                ;
-; Addr[19]     ; 5                ;
-; IS[0]        ; 5                ;
-; always11~1   ; 5                ;
-; LS[6]        ; 5                ;
-; Equal36~1    ; 5                ;
+; RAMSpecSEL~3 ; 6                ;
+; Equal7~0     ; 6                ;
+; LS[2]        ; 6                ;
+; LS[7]        ; 6                ;
+; SetLoaded    ; 5                ;
+; Mux1~0       ; 5                ;
+; LS[0]        ; 5                ;
+; LS[15]       ; 5                ;
+; LS[14]       ; 5                ;
+; LS[13]       ; 5                ;
+; LS[12]       ; 5                ;
+; Equal45~1    ; 5                ;
 ; RD[7]~7      ; 4                ;
 ; RD[1]~1      ; 4                ;
 ; RD[0]~0      ; 4                ;
-; Equal16~1    ; 4                ;
-; always19~1   ; 4                ;
-; Mux6~3       ; 4                ;
-; Addr[17]~19  ; 4                ;
+; Addr[22]     ; 4                ;
+; Addr[21]     ; 4                ;
+; Addr[20]     ; 4                ;
+; Addr[19]     ; 4                ;
+; Addr[18]     ; 4                ;
+; Addr[17]     ; 4                ;
+; Addr[16]     ; 4                ;
 ; RACr         ; 4                ;
 ; RAcur[1]     ; 4                ;
-; Equal7~0     ; 4                ;
-; Equal16~0    ; 4                ;
 ; nBODf        ; 4                ;
 ; LS[17]       ; 4                ;
-; LS[16]       ; 4                ;
-; LS[7]        ; 4                ;
-; Equal2~0     ; 4                ;
 ; Addr[7]      ; 4                ;
 ; Addr[15]     ; 4                ;
-; Addr[23]     ; 4                ;
+; RD[6]~6      ; 3                ;
+; RD[5]~5      ; 3                ;
+; RD[4]~4      ; 3                ;
 ; RD[3]~3      ; 3                ;
 ; RD[2]~2      ; 3                ;
-; Equal33~0    ; 3                ;
-; Equal30~0    ; 3                ;
+; ARCLK~4      ; 3                ;
+; Equal39~0    ; 3                ;
 ; MOSIOE       ; 3                ;
 ; Equal12~0    ; 3                ;
-; nRCS~0       ; 3                ;
+; always22~1   ; 3                ;
 ; RefReqd      ; 3                ;
-; Addr~4       ; 3                ;
+; always11~1   ; 3                ;
 ; RAcur[2]     ; 3                ;
 ; RAcur[3]     ; 3                ;
-; always6~0    ; 3                ;
-; Equal0~3     ; 3                ;
-; Equal2~4     ; 3                ;
-; LS[15]       ; 3                ;
-; LS[14]       ; 3                ;
-; LS[13]       ; 3                ;
-; LS[12]       ; 3                ;
+; always6~2    ; 3                ;
+; always6~1    ; 3                ;
+; Equal0~2     ; 3                ;
+; LS[8]        ; 3                ;
 ; LS[11]       ; 3                ;
 ; LS[10]       ; 3                ;
 ; LS[9]        ; 3                ;
-; LS[8]        ; 3                ;
-; Addr[20]     ; 3                ;
+; LS[16]       ; 3                ;
+; Equal44~0    ; 3                ;
+; Equal0~0     ; 3                ;
+; DRCLK~0      ; 3                ;
 ; Addr[9]      ; 3                ;
 ; Addr[8]      ; 3                ;
 ; Addr[14]     ; 3                ;
@@ -594,49 +595,49 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Addr[11]     ; 3                ;
 ; Addr[10]     ; 3                ;
 ; REGEN        ; 3                ;
-; RD[6]~6      ; 2                ;
-; RD[5]~5      ; 2                ;
-; RD[4]~4      ; 2                ;
 ; nIOSEL       ; 2                ;
 ; nIOSTRB      ; 2                ;
 ; nDEVSEL      ; 2                ;
 ; nWE          ; 2                ;
 ; PHI0         ; 2                ;
-; IS[0]~4      ; 2                ;
-; always15~0   ; 2                ;
-; MOSIout~2    ; 2                ;
-; Equal15~2    ; 2                ;
+; always18~0   ; 2                ;
+; MOSIout~4    ; 2                ;
 ; SDRAMActv    ; 2                ;
-; Equal15~1    ; 2                ;
+; Equal0~3     ; 2                ;
+; Equal44~1    ; 2                ;
+; ARCLK~6      ; 2                ;
+; DRShift~0    ; 2                ;
+; DRCLK~2      ; 2                ;
+; ARCLK~1      ; 2                ;
 ; MOSIout      ; 2                ;
 ; FCKEN        ; 2                ;
-; Equal0~4     ; 2                ;
-; FCS~3        ; 2                ;
-; FCS~2        ; 2                ;
-; Mux7~1       ; 2                ;
-; Mux7~0       ; 2                ;
-; always19~0   ; 2                ;
+; FCS~1        ; 2                ;
+; FCKEN~2      ; 2                ;
+; Equal12~1    ; 2                ;
+; Mux4~0       ; 2                ;
+; Mux1~3       ; 2                ;
+; always22~0   ; 2                ;
+; Mux1~1       ; 2                ;
 ; Bank[0]~1    ; 2                ;
-; Mux11~0      ; 2                ;
 ; DEVSELr      ; 2                ;
 ; RAcur[7]     ; 2                ;
+; RAMSpecSEL~2 ; 2                ;
 ; RAcur[10]    ; 2                ;
-; RAMSpecSEL~1 ; 2                ;
 ; always10~3   ; 2                ;
 ; always10~0   ; 2                ;
 ; RAMSpecSEL~0 ; 2                ;
 ; IOSELr       ; 2                ;
-; Equal0~2     ; 2                ;
-; Equal35~0    ; 2                ;
+; always6~0    ; 2                ;
+; ARCLK~0      ; 2                ;
 ; SDRAMActv~0  ; 2                ;
 ; InitIntr     ; 2                ;
-; Equal2~6     ; 2                ;
+; Equal2~3     ; 2                ;
+; Equal2~2     ; 2                ;
 ; FCS          ; 2                ;
 ; RCKE~reg0    ; 2                ;
 ; DQML~1       ; 2                ;
 ; DQML~0       ; 2                ;
 ; Addr[0]      ; 2                ;
-; SA~24        ; 2                ;
 ; RAcur[9]     ; 2                ;
 ; RAcur[8]     ; 2                ;
 ; Addr[6]      ; 2                ;
@@ -666,87 +667,100 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; RA[2]        ; 1                ;
 ; RA[10]       ; 1                ;
 ; RA[1]        ; 1                ;
-; MOSIout~3    ; 1                ;
-; Equal17~2    ; 1                ;
-; Addr~31      ; 1                ;
+; ~GND         ; 1                ;
+; FCKEN~4      ; 1                ;
 ; WRD[6]       ; 1                ;
-; Equal31~0    ; 1                ;
-; Equal16~2    ; 1                ;
-; FCKEN~1      ; 1                ;
-; Equal30~1    ; 1                ;
+; Equal39~1    ; 1                ;
+; MOSIout~2    ; 1                ;
+; MOSIout~1    ; 1                ;
+; MOSIout~0    ; 1                ;
+; Equal44~2    ; 1                ;
 ; DEVSELr0     ; 1                ;
 ; IOSTRBr0     ; 1                ;
 ; IOSELr0      ; 1                ;
-; FCKEN~0      ; 1                ;
-; FCS~4        ; 1                ;
-; Mux5~2       ; 1                ;
-; Mux5~1       ; 1                ;
-; Mux5~0       ; 1                ;
+; ARCLK~3      ; 1                ;
+; ARCLK~2      ; 1                ;
+; DRShift~1    ; 1                ;
+; FCS~0        ; 1                ;
+; Mux0~2       ; 1                ;
+; Mux0~1       ; 1                ;
+; Mux0~0       ; 1                ;
+; Add1~112     ; 1                ;
+; Add1~110     ; 1                ;
+; Mux3~0       ; 1                ;
+; Mux1~5       ; 1                ;
+; Mux1~2       ; 1                ;
+; Add1~105     ; 1                ;
+; Addr~29      ; 1                ;
+; Add2~70      ; 1                ;
+; Add3~30      ; 1                ;
 ; Add1~102     ; 1                ;
 ; Add1~100     ; 1                ;
-; Mux9~1       ; 1                ;
-; Mux9~0       ; 1                ;
-; Mux8~1       ; 1                ;
-; Mux8~0       ; 1                ;
-; Mux6~6       ; 1                ;
-; Mux7~5       ; 1                ;
-; Mux7~4       ; 1                ;
-; Mux7~3       ; 1                ;
-; Mux7~2       ; 1                ;
-; Mux6~4       ; 1                ;
-; Mux6~2       ; 1                ;
-; Mux6~1       ; 1                ;
-; Mux6~0       ; 1                ;
-; Addr~30      ; 1                ;
-; Addr~29      ; 1                ;
-; Add2~60      ; 1                ;
-; Addr~28      ; 1                ;
+; Addr~27      ; 1                ;
+; Add3~27      ; 1                ;
+; Add3~25      ; 1                ;
+; Add2~67      ; 1                ;
+; Add2~65      ; 1                ;
+; Add1~97      ; 1                ;
 ; Add1~95      ; 1                ;
+; Addr~25      ; 1                ;
+; Add2~62      ; 1                ;
+; Add2~60      ; 1                ;
+; Add3~22      ; 1                ;
+; Add3~20      ; 1                ;
 ; Add1~92      ; 1                ;
 ; Add1~90      ; 1                ;
-; Addr~26      ; 1                ;
-; Add3~2       ; 1                ;
+; Addr~23      ; 1                ;
+; Add3~17      ; 1                ;
+; Add3~15      ; 1                ;
 ; Add2~57      ; 1                ;
 ; Add2~55      ; 1                ;
 ; Add1~87      ; 1                ;
 ; Add1~85      ; 1                ;
-; Addr~24      ; 1                ;
+; Addr~21      ; 1                ;
 ; Add2~52      ; 1                ;
 ; Add2~50      ; 1                ;
-; Add3~1       ; 1                ;
+; Add3~12      ; 1                ;
+; Add3~10      ; 1                ;
 ; Add1~82      ; 1                ;
 ; Add1~80      ; 1                ;
-; Addr~23      ; 1                ;
+; Addr~20      ; 1                ;
 ; Add2~47      ; 1                ;
 ; Add2~45      ; 1                ;
 ; Add1~77      ; 1                ;
 ; Add1~75      ; 1                ;
-; Addr~21      ; 1                ;
-; Add3~0       ; 1                ;
+; Addr~18      ; 1                ;
+; Add3~7       ; 1                ;
+; Add3~5       ; 1                ;
 ; Add2~42      ; 1                ;
 ; Add2~40      ; 1                ;
 ; Add1~72      ; 1                ;
 ; Add1~70      ; 1                ;
-; Addr~20      ; 1                ;
+; Addr~17      ; 1                ;
 ; Add2~37      ; 1                ;
 ; Add2~35      ; 1                ;
+; Addr[20]~15  ; 1                ;
+; Addr[20]~14  ; 1                ;
+; Addr[20]~13  ; 1                ;
 ; Add1~67      ; 1                ;
 ; Add1~65      ; 1                ;
-; Addr~17      ; 1                ;
+; Addr~11      ; 1                ;
 ; Add2~32      ; 1                ;
 ; Add2~30      ; 1                ;
+; Add3~2       ; 1                ;
+; Add3~0       ; 1                ;
 ; Add1~62      ; 1                ;
 ; Add1~60      ; 1                ;
 ; Add1~57      ; 1                ;
 ; Add1~55      ; 1                ;
-; Addr~15      ; 1                ;
+; Addr~9       ; 1                ;
 ; Add2~27      ; 1                ;
 ; Add2~25      ; 1                ;
 ; Add1~52      ; 1                ;
 ; Add1~50      ; 1                ;
 ; Add1~47      ; 1                ;
 ; Add1~45      ; 1                ;
-; Addr~14      ; 1                ;
+; Addr~8       ; 1                ;
 ; Add2~22      ; 1                ;
 ; Add2~20      ; 1                ;
 ; Add1~42      ; 1                ;
@@ -755,67 +769,59 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Add1~35      ; 1                ;
 ; Add1~32      ; 1                ;
 ; Add1~30      ; 1                ;
-; Addr~13      ; 1                ;
+; Addr~7       ; 1                ;
 ; Add2~17      ; 1                ;
 ; Add2~15      ; 1                ;
 ; Add1~27      ; 1                ;
 ; Add1~25      ; 1                ;
 ; Add1~22      ; 1                ;
 ; Add1~20      ; 1                ;
-; Addr~12      ; 1                ;
+; Addr~6       ; 1                ;
 ; Add2~12      ; 1                ;
 ; Add2~10      ; 1                ;
 ; Add1~17      ; 1                ;
 ; Add1~15      ; 1                ;
 ; Add1~12      ; 1                ;
 ; Add1~10      ; 1                ;
-; Addr~11      ; 1                ;
+; Addr~5       ; 1                ;
 ; Add2~7       ; 1                ;
 ; Add2~5       ; 1                ;
 ; Add1~7       ; 1                ;
 ; Add1~5       ; 1                ;
-; Addr[14]~7   ; 1                ;
+; Addr[9]~1    ; 1                ;
 ; Add1~2       ; 1                ;
 ; Add1~0       ; 1                ;
-; Addr~6       ; 1                ;
+; Addr~0       ; 1                ;
 ; Add2~2       ; 1                ;
 ; Add2~0       ; 1                ;
 ; PHI0r1       ; 1                ;
-; PSStart~1    ; 1                ;
-; WideOr0~2    ; 1                ;
-; WideOr0~1    ; 1                ;
-; ROMSpecRD    ; 1                ;
-; Mux10~0      ; 1                ;
 ; PSStart~0    ; 1                ;
-; Mux11~1      ; 1                ;
-; Addr~5       ; 1                ;
-; Addr~3       ; 1                ;
-; Addr~2       ; 1                ;
+; ROMSpecRD    ; 1                ;
 ; RAcur[4]     ; 1                ;
 ; always10~2   ; 1                ;
 ; always10~1   ; 1                ;
-; nBODf0       ; 1                ;
 ; Equal0~1     ; 1                ;
-; Equal0~0     ; 1                ;
-; LS[4]~33     ; 1                ;
-; Equal2~5     ; 1                ;
-; LS[2]~31     ; 1                ;
-; LS[1]~29     ; 1                ;
-; Equal2~3     ; 1                ;
-; LS[15]~27    ; 1                ;
-; LS[14]~25    ; 1                ;
-; LS[16]~21    ; 1                ;
-; Equal2~2     ; 1                ;
-; LS[13]~19    ; 1                ;
-; LS[12]~17    ; 1                ;
-; LS[11]~15    ; 1                ;
-; LS[10]~13    ; 1                ;
+; LS[6]~33     ; 1                ;
 ; Equal2~1     ; 1                ;
-; LS[9]~11     ; 1                ;
-; LS[8]~9      ; 1                ;
-; LS[7]~7      ; 1                ;
-; LS[5]~5      ; 1                ;
-; LS[6]~3      ; 1                ;
+; LS[8]~31     ; 1                ;
+; Equal2~0     ; 1                ;
+; LS[11]~29    ; 1                ;
+; LS[10]~27    ; 1                ;
+; LS[9]~25     ; 1                ;
+; LS[16]~23    ; 1                ;
+; LS[2]~21     ; 1                ;
+; LS[5]~19     ; 1                ;
+; LS[4]~17     ; 1                ;
+; LS[7]~15     ; 1                ;
+; LS[15]~13    ; 1                ;
+; LS[14]~11    ; 1                ;
+; LS[13]~9     ; 1                ;
+; LS[12]~7     ; 1                ;
+; LS[1]~3      ; 1                ;
+; ARShift      ; 1                ;
+; ARCLK        ; 1                ;
+; DRShift      ; 1                ;
+; DRCLK        ; 1                ;
 ; FCK~reg0     ; 1                ;
 ; DQMH~0       ; 1                ;
 ; DQML~2       ; 1                ;
@@ -824,6 +830,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; nCAS~reg0    ; 1                ;
 ; nRAS~reg0    ; 1                ;
 ; nRCS~reg0    ; 1                ;
+; SA~25        ; 1                ;
+; SA~24        ; 1                ;
 ; SA~23        ; 1                ;
 ; SA~22        ; 1                ;
 ; SA~21        ; 1                ;
@@ -853,12 +861,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; SA~4         ; 1                ;
 ; RAcur[11]    ; 1                ;
 ; SA~3         ; 1                ;
+; PHI0r0       ; 1                ;
 ; SA~2         ; 1                ;
 ; SA~1         ; 1                ;
 ; SA~0         ; 1                ;
-; PHI0r0       ; 1                ;
-; Equal36~0    ; 1                ;
-; SBA~0        ; 1                ;
+; nBODf0       ; 1                ;
+; Equal45~0    ; 1                ;
 ; nRESr0       ; 1                ;
 ; comb~1       ; 1                ;
 ; PHI0r2       ; 1                ;
@@ -989,7 +997,7 @@ Info (176215): I/O bank details before I/O pin placement
     Info (176214): Statistics of I/O banks
         Info (176213): I/O bank number 1 does not use VREF pins and has undetermined VCCIO pins. 1 total pin(s) used --  37 pins available
         Info (176213): I/O bank number 2 does not use VREF pins and has undetermined VCCIO pins. 0 total pin(s) used --  42 pins available
-Info (171121): Fitter preparation operations ending: elapsed time is 00:00:01
+Info (171121): Fitter preparation operations ending: elapsed time is 00:00:00
 Info (170189): Fitter placement preparation operations beginning
 Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:00
 Info (11888): Total time spent on timing analysis during the Fitter is 0.03 seconds.
@@ -1002,7 +1010,7 @@ Info (176235): Finished register packing
 Info (171121): Fitter preparation operations ending: elapsed time is 00:00:00
 Info (170189): Fitter placement preparation operations beginning
 Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:00
-Info (11888): Total time spent on timing analysis during the Fitter is 0.00 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 0.02 seconds.
 Info (170216): Fitter cannot place all nodes on current device -- Fitter will automatically make another fitting attempt and tightly pack logic elements
 Info (176234): Starting register packing
 Info (186391): Fitter is using Minimize Area with Chains packing mode for logic elements with Auto setting for Auto Packed Registers logic option
@@ -1011,15 +1019,15 @@ Info (186469): Finished processing fast register assignments
 Info (176235): Finished register packing
 Info (171121): Fitter preparation operations ending: elapsed time is 00:00:00
 Info (170189): Fitter placement preparation operations beginning
-Error (170011): Design contains 250 blocks of type logic cell.  However, device contains only 240.
+Error (170011): Design contains 247 blocks of type logic cell.  However, device contains only 240.
 Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:00
 Info (11888): Total time spent on timing analysis during the Fitter is 0.02 seconds.
 Error (171000): Can't fit design in device
 Warning (169174): The Reserve All Unused Pins setting has not been specified, and will default to 'As output driving ground'.
 Info (144001): Generated suppressed messages file Z:/Repos/GR8RAM/cpld/output_files/GR8RAM.fit.smsg
 Error: Quartus II 32-bit Fitter was unsuccessful. 2 errors, 4 warnings
-    Error: Peak virtual memory: 359 megabytes
-    Error: Processing ended: Fri Mar 19 06:44:01 2021
+    Error: Peak virtual memory: 367 megabytes
+    Error: Processing ended: Fri Mar 19 06:58:10 2021
     Error: Elapsed time: 00:00:05
     Error: Total CPU time (on all processors): 00:00:05
 
