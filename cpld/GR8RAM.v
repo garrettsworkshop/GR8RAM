@@ -1,4 +1,4 @@
-module GR8RAM(C25M, PHI0, nBOD, nRES, nRESout,
+module GR8RAM(C25M, PHI0, nRES, nRESout,
 			  nIOSEL, nDEVSEL, nIOSTRB,
 			  RA, nWE, RAdir, RD, RDdir,
 			  SBA, SA, nRCS, nRAS, nCAS, nSWE, DQML, DQMH, RCKE, SD,
@@ -12,21 +12,11 @@ module GR8RAM(C25M, PHI0, nBOD, nRES, nRESout,
 	always @(posedge C25M) begin PHI0r1 <= PHI0r0; PHI0r2 <= PHI0r1; end
 
 	/* Reset/brown-out detect synchronized inputs */
-	/* Outputs: nRESr, nBODf */
-	input nRES, nBOD;
+	/* Outputs: nRESr */
+	input nRES;
 	reg nRESr0, nRESr;
-	reg nBODr0, nBODr, nBODf0, nBODf;
-	always @(negedge C25M) begin nBODr0 <= nBOD; nRESr0 <= nRES; end
-	always @(posedge C25M) begin nBODr <= nBODr0; nRESr <= nRESr0; end
-	always @(posedge C25M) begin
-		// Filter nBODr to get nBODf. Output hi when hi for $10000 cycles
-		if (LS[15:0]==16'hFF00) begin // When LS low-order is $FFF0
-			nBODf0 <= nBODr; // "Precharge" nBODf0 
-			nBODf <= nBODf0; // Move computed nBODf0 into nBODf
-		end else if (nBODr) begin // Else AND nBODf0 with nBODr 
-			nBODf0 <= nBODf0 && nBODr; // "Evaluate" by ANDing
-		end
-	end
+	always @(negedge C25M) begin nRESr0 <= nRES; end
+	always @(posedge C25M) begin nRESr <= nRESr0; end
 
 	/* Long state counter: counts from 0 to $3FFFF */
 	/* Outputs: LS */
@@ -35,23 +25,9 @@ module GR8RAM(C25M, PHI0, nBOD, nRES, nRESout,
 
 	/* Init state */
 	output reg nRESout = 0;
-	reg InitActv = 0;
-	reg InitIntr = 0;
-	reg SDRAMActv = 0;
 	always @(posedge C25M) begin
-		if (~nBODf) begin
-			nRESout <= 0;
-			InitIntr <= 1;
-		end else if (~nRESr && LS[17:0]==18'h0FF00) begin
-			nRESout <= 0;
-			InitActv <= 1;
-			InitIntr <= 0;
-		end else if (LS[17:0]==18'h30002) begin
-			InitActv <= 0;
-			if (InitActv && ~InitIntr) begin
-				SDRAMActv <= 1;
-				nRESout <= 1;
-			end
+		if (LS[17:0]==18'h30002) begin
+			nRESout <= 1'b1;
 		end
 	end
 
@@ -108,7 +84,7 @@ module GR8RAM(C25M, PHI0, nBOD, nRES, nRESout,
 	/* Apple data bus */
 	inout [7:0] RD = RDdir ? 8'bZ : RDout[7:0];
 	reg [7:0] RDout;
-	output RDdir = ~(PHI0 && PHI0r2 && nWE && nRESr &&
+	output RDdir = ~(PHI0 && PHI0r2 && nWE &&
 		((~nDEVSEL && REGEN) || ~nIOSEL || (~nIOSTRB && IOROMEN)));
 
 	/* Slinky address registers */
@@ -160,10 +136,10 @@ module GR8RAM(C25M, PHI0, nBOD, nRES, nRESout,
 
 	/* SPI flash control */
 	always @(posedge C25M) begin
-		FCK <= (FCKEN && LS[0]) || (nRESr && FCKEN);
+		FCK <= ~nRESout && FCKEN && LS[0];
 	end
 	always @(posedge C25M) begin
-		if (InitActv) begin
+		if (~nRESout) begin
 			// Flash /CS enabled from init states $0FFB0 to $2FFFF
 			if (LS[17:0]==18'h0FF90) FCS <= 1'b0;
 			else if (LS[17:0]==18'h0FFA0) FCS <= 1'b1;
@@ -212,7 +188,7 @@ module GR8RAM(C25M, PHI0, nBOD, nRES, nRESout,
 
 			if (LS[17:0]==18'h0FF90) MOSIOE <= 1'b1;
 			else if (LS[17:0]==18'h0FFF0) MOSIOE <= 1'b0;
-		end else if (nRESr) begin
+		end else begin
 			//TODO: control these with Apple II
 			FCS <= 0;
 			FCKEN <= 0;
@@ -337,34 +313,25 @@ module GR8RAM(C25M, PHI0, nBOD, nRES, nRESout,
 	reg SDOE = 0;
 	always @(posedge C25M) begin
 		// Shift { MISO, MOSI } in when InitActv. When ready, synchronize RD
-		if (InitActv && LS[1]) WRD[7:0] <= { MISO, MOSI, WRD[5:0] };
+		if (~nRESout && LS[1]) WRD[7:0] <= { MISO, MOSI, WRD[5:0] };
 		else if (PS==8) WRD[7:0] <= RD[7:0];
 		// Output data on SDRAM data bus only during init and when writing
-		SDOE <= InitActv || (RAMSpecWR && PS==8);
+		SDOE <= ~nRESout || (RAMSpecWR && PS==8);
 	end
 
 	reg [2:0] PS = 0;
-	wire PSStart = ~InitActv && nRESr && PS==0 && PHI0r1 && ~PHI0r2;
+	wire PSStart = nRESr && PS==0 && PHI0r1 && ~PHI0r2;
 	always @(posedge C25M) begin
 		if (PSStart) PS <= 1;
 		else if (PS==0) PS <= 0;
 		else PS <= PS+1;
 	end
 
-	reg [1:0] IS = 0;
-	always @(posedge C25M) begin
-		if (InitActv) begin
-			if (LS[17:0]==18'h0FFAF) IS <= 1;
-			else if (LS[17:0]==18'h0FFBF) IS <= 2;
-			else if (LS[17:0]==18'h0FFFF) IS <= 3;
-		end else IS <= 0;
-	end
-
 	/* Refresh state */
 	reg RefReqd = 0;
 	reg RefReady = 0;
 	always @(posedge C25M) begin
-		if (LS[6:0]==7'h00) RefReqd <= SDRAMActv; // Reset RefDone every 128 C25M cycles (5.12 us)
+		if (LS[6:0]==7'h00) RefReqd <= 1; // Reset RefDone every 128 C25M cycles (5.12 us)
 		else if (PS==0 && ~RefReqd) RefReqd <= 0;
 	end
 
@@ -440,8 +407,8 @@ module GR8RAM(C25M, PHI0, nBOD, nRES, nRESout,
 						Amux <= 3'b001;
 					end
 				end else begin
-					// NOP CKD
-					RCKE <= 1'b0;
+					// NOP CKE
+					RCKE <= 1'b1;
 					nRCS <= 1'b1;
 					nRAS <= 1'b1;
 					nCAS <= 1'b1;
@@ -457,8 +424,8 @@ module GR8RAM(C25M, PHI0, nBOD, nRES, nRESout,
 					nCAS <= 1'b1;
 					nSWE <= 1'b1;
 				end else begin
-					// NOP CKD
-					RCKE <= 1'b0;
+					// NOP CKE
+					RCKE <= 1'b1;
 					nRCS <= 1'b1;
 					nRAS <= 1'b1;
 					nCAS <= 1'b1;
@@ -475,8 +442,8 @@ module GR8RAM(C25M, PHI0, nBOD, nRES, nRESout,
 					nCAS <= 1'b1;
 					nSWE <= 1'b1;
 				end else begin
-					// NOP CKD
-					RCKE <= 1'b0;
+					// NOP CKE
+					RCKE <= 1'b1;
 					nRCS <= 1'b1;
 					nRAS <= 1'b1;
 					nCAS <= 1'b1;
@@ -486,38 +453,20 @@ module GR8RAM(C25M, PHI0, nBOD, nRES, nRESout,
 				if (ROMSpecRD) Amux <= 3'b101;
 				else Amux <= 3'b111;
 			end 3: begin
-				if (ROMSpecRD || RAMSpecRD) begin
-					// NOP CKE
-					RCKE <= 1'b1;
-					nRCS <= 1'b1;
-					nRAS <= 1'b1;
-					nCAS <= 1'b1;
-					nSWE <= 1'b1;
-				end else begin
-					// NOP CKD
-					RCKE <= 1'b0;
-					nRCS <= 1'b1;
-					nRAS <= 1'b1;
-					nCAS <= 1'b1;
-					nSWE <= 1'b1;
-				end
+				// NOP CKE
+				RCKE <= 1'b0;
+				nRCS <= 1'b1;
+				nRAS <= 1'b1;
+				nCAS <= 1'b1;
+				nSWE <= 1'b1;
 				Amux <= 3'b001;
 			end 4: begin
-				if (RAMSpecWR && DEVSELr) begin
-					// NOP CKE
-					RCKE <= 1'b1;
-					nRCS <= 1'b1;
-					nRAS <= 1'b1;
-					nCAS <= 1'b1;
-					nSWE <= 1'b1;
-				end else begin
-					// NOP CKD
-					RCKE <= 1'b0;
-					nRCS <= 1'b1;
-					nRAS <= 1'b1;
-					nCAS <= 1'b1;
-					nSWE <= 1'b1;
-				end
+				// NOP CKE
+				RCKE <= 1'b0;
+				nRCS <= 1'b1;
+				nRAS <= 1'b1;
+				nCAS <= 1'b1;
+				nSWE <= 1'b1;
 				Amux <= 3'b001;
 			end 5: begin
 				if (RAMSpecWR && DEVSELr) begin
@@ -528,8 +477,8 @@ module GR8RAM(C25M, PHI0, nBOD, nRES, nRESout,
 					nCAS <= 1'b0;
 					nSWE <= 1'b0;
 				end else begin
-					// NOP CKD
-					RCKE <= 1'b0;
+					// NOP CKE
+					RCKE <= 1'b1;
 					nRCS <= 1'b1;
 					nRAS <= 1'b1;
 					nCAS <= 1'b1;
@@ -537,29 +486,19 @@ module GR8RAM(C25M, PHI0, nBOD, nRES, nRESout,
 				end
 				Amux <= 3'b111;
 			end 6: begin
-				// NOP CKE if ACT'd, else CKD
-				RCKE <= ROMSpecRD || RAMSpecSEL;
+				RCKE <= 1'b1;
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;
 				nSWE <= 1'b1;
 				Amux <= 3'b001;
 			end 7: begin
-				if (ROMSpecRD || RAMSpecSEL) begin
-					// PC all CKD
-					RCKE <= 1'b0;
-					nRCS <= 1'b0;
-					nRAS <= 1'b0;
-					nCAS <= 1'b1;
-					nSWE <= 1'b0;
-				end else begin
-					// NOP CKD
-					RCKE <= 1'b0;
-					nRCS <= 1'b1;
-					nRAS <= 1'b1;
-					nCAS <= 1'b1;
-					nSWE <= 1'b1;
-				end
+				// PC all
+				RCKE <= 1'b1;
+				nRCS <= 1'b0;
+				nRAS <= 1'b0;
+				nCAS <= 1'b1;
+				nSWE <= 1'b0;
 				Amux <= 3'b001;
 			end
 		endcase

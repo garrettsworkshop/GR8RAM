@@ -1,5 +1,5 @@
 Analysis & Synthesis report for GR8RAM
-Fri Mar 19 06:58:03 2021
+Fri Mar 19 07:32:59 2021
 Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -47,13 +47,13 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Fri Mar 19 06:58:03 2021           ;
+; Analysis & Synthesis Status ; Successful - Fri Mar 19 07:32:59 2021           ;
 ; Quartus II 32-bit Version   ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name               ; GR8RAM                                          ;
 ; Top-level Entity Name       ; GR8RAM                                          ;
 ; Family                      ; MAX II                                          ;
-; Total logic elements        ; 281                                             ;
-; Total pins                  ; 69                                              ;
+; Total logic elements        ; 260                                             ;
+; Total pins                  ; 68                                              ;
 ; Total virtual pins          ; 0                                               ;
 ; UFM blocks                  ; 1 / 1 ( 100 % )                                 ;
 +-----------------------------+-------------------------------------------------+
@@ -164,34 +164,34 @@ applicable agreement for further details.
 +---------------------------------------------+-------+
 ; Resource                                    ; Usage ;
 +---------------------------------------------+-------+
-; Total logic elements                        ; 281   ;
-;     -- Combinational with no register       ; 178   ;
-;     -- Register only                        ; 34    ;
-;     -- Combinational with a register        ; 69    ;
+; Total logic elements                        ; 260   ;
+;     -- Combinational with no register       ; 164   ;
+;     -- Register only                        ; 29    ;
+;     -- Combinational with a register        ; 67    ;
 ;                                             ;       ;
 ; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 106   ;
-;     -- 3 input functions                    ; 52    ;
+;     -- 4 input functions                    ; 96    ;
+;     -- 3 input functions                    ; 45    ;
 ;     -- 2 input functions                    ; 80    ;
-;     -- 1 input functions                    ; 8     ;
+;     -- 1 input functions                    ; 9     ;
 ;     -- 0 input functions                    ; 1     ;
 ;                                             ;       ;
 ; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 223   ;
+;     -- normal mode                          ; 202   ;
 ;     -- arithmetic mode                      ; 58    ;
 ;     -- qfbk mode                            ; 0     ;
 ;     -- register cascade mode                ; 0     ;
 ;     -- synchronous clear/load mode          ; 25    ;
 ;     -- asynchronous clear/load mode         ; 0     ;
 ;                                             ;       ;
-; Total registers                             ; 103   ;
+; Total registers                             ; 96    ;
 ; Total logic cells in carry chains           ; 62    ;
-; I/O pins                                    ; 69    ;
+; I/O pins                                    ; 68    ;
 ; UFM blocks                                  ; 1     ;
 ; Maximum fan-out node                        ; C25M  ;
-; Maximum fan-out                             ; 103   ;
-; Total fan-out                               ; 1009  ;
-; Average fan-out                             ; 2.87  ;
+; Maximum fan-out                             ; 96    ;
+; Total fan-out                               ; 933   ;
+; Average fan-out                             ; 2.84  ;
 +---------------------------------------------+-------+
 
 
@@ -200,7 +200,7 @@ applicable agreement for further details.
 +-----------------------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                                ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name                                                    ; Library Name ;
 +-----------------------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+------------------------------------------------------------------------+--------------+
-; |GR8RAM                                                   ; 281 (281)   ; 103          ; 1          ; 69   ; 0            ; 178 (178)    ; 34 (34)           ; 69 (69)          ; 62 (62)         ; 0 (0)      ; |GR8RAM                                                                ; work         ;
+; |GR8RAM                                                   ; 260 (260)   ; 96           ; 1          ; 68   ; 0            ; 164 (164)    ; 29 (29)           ; 67 (67)          ; 62 (62)         ; 0 (0)      ; |GR8RAM                                                                ; work         ;
 ;    |UFM:UFM_inst|                                         ; 0 (0)       ; 0            ; 1          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |GR8RAM|UFM:UFM_inst                                                   ; work         ;
 ;       |UFM_altufm_none_0ep:UFM_altufm_none_0ep_component| ; 0 (0)       ; 0            ; 1          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |GR8RAM|UFM:UFM_inst|UFM_altufm_none_0ep:UFM_altufm_none_0ep_component ; work         ;
 +-----------------------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+------------------------------------------------------------------------+--------------+
@@ -243,12 +243,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 103   ;
+; Total registers                              ; 96    ;
 ; Number of registers using Synchronous Clear  ; 25    ;
 ; Number of registers using Synchronous Load   ; 0     ;
 ; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 49    ;
+; Number of registers using Clock Enable       ; 45    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -272,12 +272,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |GR8RAM|PS[2]              ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |GR8RAM|Bank[0]            ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |GR8RAM|Addr[0]            ;
-; 7:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |GR8RAM|Addr[9]            ;
-; 13:1               ; 2 bits    ; 16 LEs        ; 12 LEs               ; 4 LEs                  ; Yes        ; |GR8RAM|DRShift            ;
-; 9:1                ; 8 bits    ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; Yes        ; |GR8RAM|Addr[20]           ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |GR8RAM|PS[0]              ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |GR8RAM|Bank[1]            ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |GR8RAM|Addr[4]            ;
+; 7:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |GR8RAM|Addr[8]            ;
+; 13:1               ; 2 bits    ; 16 LEs        ; 12 LEs               ; 4 LEs                  ; Yes        ; |GR8RAM|DRCLK              ;
+; 9:1                ; 8 bits    ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; Yes        ; |GR8RAM|Addr[19]           ;
 ; 8:1                ; 2 bits    ; 10 LEs        ; 6 LEs                ; 4 LEs                  ; No         ; |GR8RAM|SA                 ;
 ; 8:1                ; 5 bits    ; 25 LEs        ; 15 LEs               ; 10 LEs                 ; No         ; |GR8RAM|SA                 ;
 ; 8:1                ; 4 bits    ; 20 LEs        ; 12 LEs               ; 8 LEs                  ; No         ; |GR8RAM|SA                 ;
@@ -304,7 +304,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Fri Mar 19 06:57:57 2021
+    Info: Processing started: Fri Mar 19 07:32:54 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off GR8RAM -c GR8RAM
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
 Info (12021): Found 2 design units, including 2 entities, in source file ufm.v
@@ -312,21 +312,20 @@ Info (12021): Found 2 design units, including 2 entities, in source file ufm.v
     Info (12023): Found entity 2: UFM
 Warning (12125): Using design file gr8ram.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
     Info (12023): Found entity 1: GR8RAM
-Warning (10236): Verilog HDL Implicit Net warning at gr8ram.v(247): created implicit net for "UFMB"
-Warning (10236): Verilog HDL Implicit Net warning at gr8ram.v(250): created implicit net for "RTPB"
+Warning (10236): Verilog HDL Implicit Net warning at gr8ram.v(223): created implicit net for "UFMB"
+Warning (10236): Verilog HDL Implicit Net warning at gr8ram.v(226): created implicit net for "RTPB"
 Info (12127): Elaborating entity "GR8RAM" for the top level hierarchy
-Warning (10858): Verilog HDL warning at gr8ram.v(110): object RDout used but never assigned
-Warning (10036): Verilog HDL or VHDL warning at gr8ram.v(252): object "UFMBr" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at gr8ram.v(254): object "RTPBr" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at gr8ram.v(354): object "IS" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at gr8ram.v(365): object "RefReady" assigned a value but never read
-Warning (10230): Verilog HDL assignment warning at gr8ram.v(34): truncated value with size 32 to match size of target (18)
-Warning (10230): Verilog HDL assignment warning at gr8ram.v(124): truncated value with size 32 to match size of target (24)
-Warning (10230): Verilog HDL assignment warning at gr8ram.v(128): truncated value with size 32 to match size of target (16)
-Warning (10230): Verilog HDL assignment warning at gr8ram.v(133): truncated value with size 32 to match size of target (8)
-Warning (10230): Verilog HDL assignment warning at gr8ram.v(351): truncated value with size 32 to match size of target (3)
-Warning (10030): Net "RDout" at gr8ram.v(110) has no driver or initial value, using a default initial value '0'
-Warning (10030): Net "WRD[5..0]" at gr8ram.v(336) has no driver or initial value, using a default initial value '0'
+Warning (10858): Verilog HDL warning at gr8ram.v(86): object RDout used but never assigned
+Warning (10036): Verilog HDL or VHDL warning at gr8ram.v(228): object "UFMBr" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at gr8ram.v(230): object "RTPBr" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at gr8ram.v(332): object "RefReady" assigned a value but never read
+Warning (10230): Verilog HDL assignment warning at gr8ram.v(24): truncated value with size 32 to match size of target (18)
+Warning (10230): Verilog HDL assignment warning at gr8ram.v(100): truncated value with size 32 to match size of target (24)
+Warning (10230): Verilog HDL assignment warning at gr8ram.v(104): truncated value with size 32 to match size of target (16)
+Warning (10230): Verilog HDL assignment warning at gr8ram.v(109): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at gr8ram.v(327): truncated value with size 32 to match size of target (3)
+Warning (10030): Net "RDout" at gr8ram.v(86) has no driver or initial value, using a default initial value '0'
+Warning (10030): Net "WRD[5..0]" at gr8ram.v(312) has no driver or initial value, using a default initial value '0'
 Info (12128): Elaborating entity "UFM" for hierarchy "UFM:UFM_inst"
 Info (12128): Elaborating entity "UFM_altufm_none_0ep" for hierarchy "UFM:UFM_inst|UFM_altufm_none_0ep:UFM_altufm_none_0ep_component"
 Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
@@ -334,18 +333,18 @@ Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "RAdir" is stuck at VCC
     Warning (13410): Pin "SBA[0]" is stuck at GND
-Info (21057): Implemented 351 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 25 input pins
+Info (21057): Implemented 329 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 24 input pins
     Info (21059): Implemented 28 output pins
     Info (21060): Implemented 16 bidirectional pins
-    Info (21061): Implemented 281 logic cells
+    Info (21061): Implemented 260 logic cells
     Info (21070): Implemented 1 User Flash Memory blocks
 Info (144001): Generated suppressed messages file Z:/Repos/GR8RAM/cpld/output_files/GR8RAM.map.smsg
-Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 20 warnings
+Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 19 warnings
     Info: Peak virtual memory: 301 megabytes
-    Info: Processing ended: Fri Mar 19 06:58:03 2021
-    Info: Elapsed time: 00:00:06
-    Info: Total CPU time (on all processors): 00:00:06
+    Info: Processing ended: Fri Mar 19 07:32:59 2021
+    Info: Elapsed time: 00:00:05
+    Info: Total CPU time (on all processors): 00:00:05
 
 
 +------------------------------------------+
