@@ -230,78 +230,81 @@ module GR8RAM(C25M, PHI0, nRES, nRESout,
 	reg RTPBr = 0; // RTPBusy registered to sync with C25M
 	always @(negedge C25M) begin UFMBr0 <= UFMB; RTPBr0 <= RTPB; end
 	always @(posedge C25M) begin UFMBr <= UFMBr0; RTPBr <= RTPBr0; end
-	reg SetLoaded = 0;
+	reg [1:0] SS = 0;
 	reg SetFW;
 	reg SetLim8M;
 	always @(posedge C25M) begin
-		if (~SetLoaded) begin
-			if (LS[15:0]<=16'h0FB0) begin
-				ARCLK <= 0;
-				ARShift <= 1;
-				DRCLK <= 0;
-				DRShift <= 0;
-			end else if (LS[15:0]<=16'h0FFF) begin
-				ARCLK <= ~LS[1];
-				ARShift <= 1;
-				DRCLK <= 0;
-				DRShift <= 0;
-				SetFW <= 1'b1;
-				SetLim8M <= 1'b1;
-			end else if (LS[15:0]<=16'h1FFF) begin
-				case (LS[3:1])
-					3'h0: begin
-						ARCLK <= 0;
-						ARShift <= 0;
-						DRCLK <= 1;
-						DRShift <= 0;
-					end 3'h1: begin
-						ARCLK <= 0;
-						ARShift <= 0;
-						DRCLK <= 0;
-						DRShift <= 1;
-					end 3'h2: begin
-						ARCLK <= 0;
-						ARShift <= 0;
-						DRCLK <= 1;
-						DRShift <= 1;
-						if (LS[3:0]==4'h2 && DRDOut) SetLoaded <= 1;
-					end 3'h3: begin
-						ARCLK <= 0;
-						ARShift <= 0;
-						DRCLK <= 0;
-						DRShift <= 1;
-					end 3'h4: begin
-						ARCLK <= 0;
-						ARShift <= 0;
-						DRCLK <= 1;
-						DRShift <= 1;
-						if (LS[3:0]==4'h4) SetFW <= DRDOut;
-					end 3'h5: begin
-						ARCLK <= 0;
-						ARShift <= 0;
-						DRCLK <= 0;
-						DRShift <= 1;
-					end 3'h6: begin
-						ARCLK <= 1;
-						ARShift <= 0;
-						DRCLK <= 0;
-						DRShift <= 1;
-						if (LS[3:0]==4'h6) SetLim8M <= DRDOut;
-					end 3'h7: begin
-						ARCLK <= 0;
-						ARShift <= 0;
-						DRCLK <= 0;
-						DRShift <= 0;
-					end
-				endcase
-			end else SetLoaded <= 1;
+		if (SS[1:0]!=2'b11) begin
+			if (SS[1:0]==2'b10 && LS[3:0]==4'h2 && DRDOut) SS[1:0] <= 2'b11;
+			else if (LS[15:0]==16'h0FB0) SS[1:0] <= 2'b01;
+			else if (LS[15:0]==16'h0FFF) SS[1:0] <= 2'b10;
+			else if (LS[15:0]==16'h1FFF) SS[1:0] <= 2'b11;
+		end
+	end
+	always @(posedge C25M) begin
+		if (SS[1:0]==2'b00 /* LS[15:0]<=16'h0FB0 */) begin
+			ARCLK <= 0;
+			ARShift <= 1;
+			DRCLK <= 0;
+			DRShift <= 0;
+		end else if (SS[1:0]==2'b01 /* LS[15:0]<=16'h0FFF */) begin
+			ARCLK <= ~LS[1];
+			ARShift <= 1;
+			DRCLK <= 0;
+			DRShift <= 0;
+			SetFW <= 1'b1;
+			SetLim8M <= 1'b1;
+		end else if (SS[1:0]==2'b10 /* LS[15:0]<=16'h1FFF */) begin
+			case (LS[3:1])
+				3'h0: begin
+					ARCLK <= 0;
+					ARShift <= 0;
+					DRCLK <= 1;
+					DRShift <= 0;
+				end 3'h1: begin
+					ARCLK <= 0;
+					ARShift <= 0;
+					DRCLK <= 0;
+					DRShift <= 1;
+				end 3'h2: begin
+					ARCLK <= 0;
+					ARShift <= 0;
+					DRCLK <= 1;
+					DRShift <= 1;
+				end 3'h3: begin
+					ARCLK <= 0;
+					ARShift <= 0;
+					DRCLK <= 0;
+					DRShift <= 1;
+				end 3'h4: begin
+					ARCLK <= 0;
+					ARShift <= 0;
+					DRCLK <= 1;
+					DRShift <= 1;
+					if (LS[3:0]==4'h4) SetFW <= DRDOut;
+				end 3'h5: begin
+					ARCLK <= 0;
+					ARShift <= 0;
+					DRCLK <= 0;
+					DRShift <= 1;
+				end 3'h6: begin
+					ARCLK <= 1;
+					ARShift <= 0;
+					DRCLK <= 0;
+					DRShift <= 1;
+					if (LS[3:0]==4'h6) SetLim8M <= DRDOut;
+				end 3'h7: begin
+					ARCLK <= 0;
+					ARShift <= 0;
+					DRCLK <= 0;
+					DRShift <= 0;
+				end
+			endcase
 			DRDIn <= 0;
-		end else if (PS==7 /* && ... FIXME */) begin
+		end else begin
 			ARCLK <= 0;
 			ARShift <= 0;
 			DRShift <= 1;
-
-
 			DRCLK <= 0;
 			DRDIn <= 0;
 		end
@@ -337,22 +340,25 @@ module GR8RAM(C25M, PHI0, nRES, nRESout,
 
 	/* SDRAM address/command */
 	output [1:0] SBA; assign SBA[1:0] = 
-		Amux[2:0]==2'h0 ? 2'b00 : // mode register / "all"
-		Amux[2:0]==2'h1 ? 2'b00 : // FIXME: init row / col
-		Amux[2:0]==2'h2 ? 2'b10 : // ROM row / col
-		/* 2'h3 */ { 1'b0, Addr[23] & SetFW & ~SetLim8M }; // RAM col
-	output [12:0] SA; assign SA[12:0] = 
-		Amux[2:0]==3'h0 ? 13'b0001000100000 : // mode register
-		Amux[2:0]==3'h1 ? 13'b0011000100000 : // "all"
-		Amux[2:0]==3'h2 ? 13'b0011000100000 : // FIXME: init row
-		Amux[2:0]==3'h3 ? 13'b0011000100000 : // FIXME: init col
+		Amux[2:1]==2'h0 ? 2'b00 : // mode register / "all"
+		Amux[2:1]==2'h1 ? 2'b00 : // FIXME: init row / col
+		Amux[2:1]==2'h2 ? 2'b10 : // ROM row / col
+		/* 2'h3 */ { 1'b0, Addr[23] & SetFW & ~SetLim8M }; // RAM row/col
+	output [12:0] SA;
+	assign SA[12] = Amux[2:0]==3'h6 && Addr[22] && SetFW;
+	/*assign SA[12:0] =
+		Amux[2:0]==3'h0 ?  13'b0001000100000 : // mode register
+		Amux[2:0]==3'h1 ?  13'b0011000100000 : // "all"
+		Amux[2:0]==3'h2 ? { 9'b001100010, LS[16:13] } : // init row
+		Amux[2:0]==3'h3 ? { 4'b0011, LS[12:4] } : // init col
 		Amux[2:0]==3'h4 ? { 9'b000000000, Bank[1:0], RAcur[11:10] } : // ROM row
 		Amux[2:0]==3'h5 ? { 4'b0000, RAcur[9:1]} : // ROM col
-		Amux[2:0]==3'h6 ? { Addr[22] & SetFW, 
-							Addr[21] & SetFW, 
+		Amux[2:0]==3'h6 ? { Addr[22] & SetFW,
+							Addr[21] & SetFW,
 							Addr[20] & SetFW,
 							Addr[19:10] } : // RAM row
-		/* 3'h7 */        { 4'b0000, Addr[9:1] }; // RAM col
+						  { 4'b0000, Addr[9:1] }; // RAM col
+	*/
 	output DQML; assign DQML = 
 		Amux[2:0]==3'h0 ? 1'b1 : // mode register
 		Amux[2:0]==3'h1 ? 1'b1 : // "all"
@@ -362,7 +368,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout,
 		Amux[2:0]==3'h5 ? RAcur[0]: // ROM col
 		Amux[2:0]==3'h6 ? 1'b1 : // RAM row
 		/* 3'h7 */        Addr[0]; // RAM col
-	output DQMH; assign DQMH =
+	output DQMH; assign DQMH = 
 		Amux[2:0]==3'h0 ? 1'b1 : // mode register
 		Amux[2:0]==3'h1 ? 1'b1 : // "all"
 		Amux[2:0]==3'h2 ? 1'b1 : // FIXME: init row
