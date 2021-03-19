@@ -11,20 +11,20 @@ Slack : -99.000
 TNS   : -99.000
 
 Type  : Setup 'C25M'
-Slack : -8.447
-TNS   : -415.877
-
-Type  : Hold 'DRCLK'
-Slack : -16.286
-TNS   : -16.286
+Slack : -9.598
+TNS   : -485.527
 
 Type  : Hold 'ARCLK'
+Slack : -16.296
+TNS   : -16.296
+
+Type  : Hold 'DRCLK'
 Slack : -16.276
 TNS   : -16.276
 
 Type  : Hold 'C25M'
-Slack : -1.579
-TNS   : -1.579
+Slack : -1.031
+TNS   : -1.031
 
 Type  : Minimum Pulse Width 'ARCLK'
 Slack : -29.500

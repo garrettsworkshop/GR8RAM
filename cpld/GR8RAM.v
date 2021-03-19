@@ -1,8 +1,6 @@
-module GR8RAM(C25M, PHI0, nBOD, nRES,
+module GR8RAM(C25M, PHI0, nBOD, nRES, nRESout,
 			  nIOSEL, nDEVSEL, nIOSTRB,
-			  RA, nWE, RAdir,
-			  RD, RDdir,
-			  DMAin, DMAout, INTin, INTout, nRESout,
+			  RA, nWE, RAdir, RD, RDdir,
 			  SBA, SA, nRCS, nRAS, nCAS, nSWE, DQML, DQMH, RCKE, SD,
 			  nFCS, FCK, MISO, MOSI);
 
@@ -14,50 +12,46 @@ module GR8RAM(C25M, PHI0, nBOD, nRES,
 	always @(posedge C25M) begin PHI0r1 <= PHI0r0; PHI0r2 <= PHI0r1; end
 
 	/* Reset/brown-out detect synchronized inputs */
-	/* Outputs: nRESr, nPBODr, nBODf */
+	/* Outputs: nRESr, nBODf */
 	input nRES, nBOD;
 	reg nRESr0, nRESr;
 	reg nBODr0, nBODr, nBODf0, nBODf;
+	always @(negedge C25M) begin nBODr0 <= nBOD; nRESr0 <= nRES; end
+	always @(posedge C25M) begin nBODr <= nBODr0; nRESr <= nRESr0; end
 	always @(posedge C25M) begin
-		// Double-synchronize nBOD, nPBOD, nRES
-		nBODr0 <= nBOD; nRESr0 <= nRES;
-		nBODr <= nBODr0; nRESr <= nRESr0;
-
 		// Filter nBODr to get nBODf. Output hi when hi for $10000 cycles
-		if (LS[15:0]==16'hFFFF) begin // When LS low-order is $FFFF
+		if (LS[15:0]==16'hFF00) begin // When LS low-order is $FFF0
 			nBODf0 <= nBODr; // "Precharge" nBODf0 
-			nBODf <= nBODf0; // "Evaluate" computed nBODf0 into nBODf
+			nBODf <= nBODf0; // Move computed nBODf0 into nBODf
 		end else if (nBODr) begin // Else AND nBODf0 with nBODr 
-			nBODf0 <= nBODf0 && nBODr; 
+			nBODf0 <= nBODf0 && nBODr; // "Evaluate" by ANDing
 		end
 	end
 
 	/* Long state counter: counts from 0 to $3FFFF */
-	/* Outputs: LS, CSec */
+	/* Outputs: LS */
 	reg [17:0] LS = 0;
-	always @(posedge C25M) begin
-		LS <= LS+1;
-	end
+	always @(posedge C25M) begin LS <= LS+1; end
 
 	/* Init state */
 	output reg nRESout = 0;
 	reg InitActv = 0;
 	reg InitIntr = 0;
-	reg CmdActv = 0;
 	reg SDRAMActv = 0;
 	always @(posedge C25M) begin
 		if (~nBODf) begin
 			nRESout <= 0;
 			InitIntr <= 1;
-			CmdActv <= 0;
-		end else if (LS[17:0]==18'h0FF10) begin
-			InitActv <= ~CmdActv;
+		end else if (~nRESr && LS[17:0]==18'h0FF00) begin
+			nRESout <= 0;
+			InitActv <= 1;
 			InitIntr <= 0;
-		end else if (LS[17:0]==18'h30010) begin
-			nRESout <= InitActv && ~InitIntr;
+		end else if (LS[17:0]==18'h30002) begin
 			InitActv <= 0;
-			CmdActv <= InitActv && ~InitIntr;
-			if (InitActv && ~InitIntr) SDRAMActv <= 1;
+			if (InitActv && ~InitIntr) begin
+				SDRAMActv <= 1;
+				nRESout <= 1;
+			end
 		end
 	end
 
@@ -74,11 +68,6 @@ module GR8RAM(C25M, PHI0, nBOD, nRES,
 		DEVSELr <= DEVSELr0; IOSELr <= IOSELr0; IOSTRBr <= IOSTRBr0;
 	end
 
-	/* DMA/IRQ daisy chain */
-	input DMAin, INTin;
-	output DMAout = DMAin;
-	output INTout = INTin;
-
 	/* Apple address bus */
 	/* Outputs: RACr, RAcur, nWEcur, RAdir */
 	input [15:0] RA;
@@ -87,7 +76,7 @@ module GR8RAM(C25M, PHI0, nBOD, nRES,
 	reg [11:0] RAcur; reg nWEcur;
 	output RAdir = 1;
 	always @(posedge C25M) begin
-		if (S==0 && PHI0r1 && ~PHI0r2) begin
+		if (PSStart) begin
 			RACr <= RA[15:12]==4'hC;
 			RAcur[11:0] <= RA[11:0];
 			nWEcur <= nWE;
@@ -95,17 +84,11 @@ module GR8RAM(C25M, PHI0, nBOD, nRES,
 	end
 
 	/* Apple select signals */
-	/* Outputs: ROMSpecRD, RAMSpecSEL, RAMSpecRD, RAMSpecWR, RAMSEL */
+	/* Outputs: ROMSpecRD, RAMSpecSEL, RAMSpecRD, RAMSpecWR */
 	wire ROMSpecRD = RACr && RAcur[11:8]!=4'h0 && nWEcur;
-	wire RAMSpecSEL = RACr && RAcur[11:8]==4'h0 && RAcur[3:0]==4'h3;
+	wire RAMSpecSEL = RACr && RAcur[11:8]==4'h0 && RAcur[7] && RAcur[3:0]==4'h3;
 	wire RAMSpecRD = RAMSpecSEL && nWEcur;
 	wire RAMSpecWR = RAMSpecSEL && ~nWEcur;
-	reg RAMSEL = 0;
-	wire RAMWR = RAMSEL && ~nWEcur;
-	always @(posedge C25M) begin
-		if (S==5) RAMSEL <= RAMSpecSEL && DEVSELr;
-		else if (S==0) RAMSEL <= 0;
-	end 
 	
 	/* IOROMEN and REGEN control */
 	reg IOROMEN = 0;
@@ -114,9 +97,9 @@ module GR8RAM(C25M, PHI0, nBOD, nRES,
 		if (~nRESr) begin
 			IOROMEN <= 0;
 			REGEN <= 0;
-		end else if (S==7 && IOSTRBr && RAcur[10:0]==11'h7FF) begin
+		end else if (PS==7 && IOSTRBr && RAcur[10:0]==11'h7FF) begin
 			IOROMEN <= 0;
-		end else if (S==7 && IOSELr) begin
+		end else if (PS==7 && IOSELr) begin
 			IOROMEN <= 1;
 			REGEN <= 1;
 		end
@@ -125,9 +108,8 @@ module GR8RAM(C25M, PHI0, nBOD, nRES,
 	/* Apple data bus */
 	inout [7:0] RD = RDdir ? 8'bZ : RDout[7:0];
 	reg [7:0] RDout;
-	reg RDOE = 0;
-	output RDdir = ~((~nDEVSEL || ~nIOSEL || (~nIOSTRB && IOROMEN)) &&
-					 PHI0 && PHI0r2 && nWE && RDOE && nBODf);
+	output RDdir = ~(PHI0 && PHI0r2 && nWE && nRESr &&
+		((~nDEVSEL && REGEN) || ~nIOSEL || (~nIOSTRB && IOROMEN)));
 
 	/* Slinky address registers */
 	reg [23:0] Addr = 0;
@@ -138,26 +120,25 @@ module GR8RAM(C25M, PHI0, nBOD, nRES,
 		if (~nRESr) begin
 			Addr[23:20] <= SetFW[1] ? 4'h0 : 4'hF;
 			Addr[19:0] <= 20'h00000;
-		end else if (S==7 && DEVSELr) begin
-			if (AddrHSpecSEL && ~nWEcur) begin
-				Addr[23:16] <= { SetFW[1] ? RD[7:4] : 4'hF, RD[3:0] };
-			end else if ((RAMSEL && Addr[15:0]==16'hFFFF) || 
-				(AddrMSpecSEL && Addr[15] && ~RD[7] && ~nWEcur) ||
-				(AddrLSpecSEL && Addr[7]  && ~RD[7] && Addr[15:8]==8'hFF && ~nWEcur)) begin
-				Addr[23:16] <= Addr[23:16]+1;
-			end
-
-			if (AddrMSpecSEL && ~nWEcur) begin
-				Addr[15:8] <= RD[7:0];
-			end else if ((RAMSEL && Addr[7:0]==8'hFF) || 
-				(AddrLSpecSEL && Addr[7] && ~RD[7] && ~nWEcur)) begin
-				Addr[15:8] <= Addr[15:8]+1;
-			end
-
-			if (AddrLSpecSEL && ~nWEcur) begin
+		end else if (PS==7 && REGEN && DEVSELr) begin
+			if (RAMSpecSEL) begin
+				if (SetFW[1]) Addr[23:0] <= Addr[23:0]+1;
+				else Addr[23:0] <= { 4'hF, Addr[19:0]+1 };
+			end else if (AddrLSpecSEL && ~nWEcur) begin
 				Addr[7:0] <= RD[7:0];
-			end else if (RAMSEL) begin
-				Addr[7:0] <= Addr[7:0]+1;
+				if (~RD[7] && Addr[7]) begin
+					if (SetFW[1]) Addr[23:8] <= Addr[23:8]+1;
+					else Addr[23:8] <= { 4'hF, Addr[19:8]+1 };
+				end
+			end else if (AddrMSpecSEL && ~nWEcur) begin
+				Addr[15:8] <= RD[7:0];
+				if (~RD[7] && Addr[15]) begin
+					if (SetFW[1]) Addr[23:16] <= Addr[23:16]+1;
+					else Addr[23:16] <= { 4'hF, Addr[19:16]+1 };
+				end
+			end else if (AddrHSpecSEL && ~nWEcur) begin
+				if (SetFW[1]) Addr[23:16] <= RD[7:0];
+				else Addr[23:16] <= { 4'hF, RD[3:0] };
 			end
 		end
 	end
@@ -166,9 +147,8 @@ module GR8RAM(C25M, PHI0, nBOD, nRES,
 	reg [1:0] Bank = 0;
 	wire BankSpecSEL = RAcur[3:0]==4'hF;
 	always @(posedge C25M) begin
-		if (~nRESr) begin
-			Bank <= 0;
-		end else if (S==7 && DEVSELr && BankSpecSEL && ~nWEcur) begin
+		if (~nRESr) Bank <= 0;
+		else if (PS==7 && DEVSELr && BankSpecSEL && ~nWEcur) begin
 			Bank[1:0] <= RD[1:0];
 		end
 	end
@@ -185,35 +165,35 @@ module GR8RAM(C25M, PHI0, nBOD, nRES,
 
 	/* SPI flash control */
 	always @(posedge C25M) begin
-		FCK <= FCKEN && LS[0];
+		FCK <= (FCKEN && LS[0]) || (nRESr && FCKEN);
 	end
 	always @(posedge C25M) begin
 		if (InitActv) begin
-			// Pulse clock from init states $0FFC0 to $2FFFF
-			if (LS[17:0]==18'h0FFB0) FCKEN <= 1'b0;
-			else if (LS[17:0]==18'h0FFC0) FCKEN <= 1'b1;
-			else if (LS[17:0]==18'h30000) FCKEN <= 1'b0;
-
 			// Flash /CS enabled from init states $0FFB0 to $2FFFF
-			if (LS[17:0]==18'h0FFA0) FCS <= 1'b0;
-			else if (LS[17:0]==18'h0FFB0) FCS <= 1'b1;
+			if (LS[17:0]==18'h0FF90) FCS <= 1'b0;
+			else if (LS[17:0]==18'h0FFA0) FCS <= 1'b1;
 			else if (LS[17:0]==18'h30000) FCS <= 1'b0;
 
+			// Pulse clock from init states $0FFC0 to $2FFFF
+			if (LS[17:0]==18'h0FF90) FCKEN <= 1'b0;
+			else if (LS[17:0]==18'h0FFB0) FCKEN <= 1'b1;
+			else if (LS[17:0]==18'h30000) FCKEN <= 1'b0;
+
 			// Send command $3B (read) (MSB first)
-			/*if 		(LS[17:0]==18'h0FFB0 || LS[17:0]==18'h0FFB1) MOSIout <= 0;
+			if 		(LS[17:0]==18'h0FFB0 || LS[17:0]==18'h0FFB1) MOSIout <= 0;
 			else if	(LS[17:0]==18'h0FFB2 || LS[17:0]==18'h0FFB3) MOSIout <= 0;
-			else*/ if	(LS[17:0]==18'h0FFB4 || LS[17:0]==18'h0FFB5) MOSIout <= 1;
+			else if	(LS[17:0]==18'h0FFB4 || LS[17:0]==18'h0FFB5) MOSIout <= 1;
 			else if	(LS[17:0]==18'h0FFB6 || LS[17:0]==18'h0FFB7) MOSIout <= 1;
 			else if	(LS[17:0]==18'h0FFB8 || LS[17:0]==18'h0FFB9) MOSIout <= 1;
-			/*else if	(LS[17:0]==18'h0FFBA || LS[17:0]==18'h0FFBB) MOSIout <= 0;*/
+			else if	(LS[17:0]==18'h0FFBA || LS[17:0]==18'h0FFBB) MOSIout <= 0;
 			else if	(LS[17:0]==18'h0FFBC || LS[17:0]==18'h0FFBD) MOSIout <= 1;
 			else if	(LS[17:0]==18'h0FFBE || LS[17:0]==18'h0FFBF) MOSIout <= 1;
 			// Send 24-bit address (MSB first)
-			/*else if (LS[17:0]==18'h0FFC0 || LS[17:0]==18'h0FFC1) MOSIout <= 0;
-			else if	(LS[17:0]==18'h0FFC2 || LS[17:0]==18'h0FFC3) MOSIout <= 0;*/
-			else if	(LS[17:0]==18'h0FFC4 || LS[17:0]==18'h0FFC5) MOSIout <= SetFW[1];
-			else if	(LS[17:0]==18'h0FFC6 || LS[17:0]==18'h0FFC7) MOSIout <= SetFW[0];
-			/*else if	(LS[17:0]==18'h0FFC8 || LS[17:0]==18'h0FFC9) MOSIout <= 0;
+			else if (LS[17:0]==18'h0FFC0 || LS[17:0]==18'h0FFC1) MOSIout <= 0;
+			else if	(LS[17:0]==18'h0FFC2 || LS[17:0]==18'h0FFC3) MOSIout <= 0;
+			else if	(LS[17:0]==18'h0FFC4 || LS[17:0]==18'h0FFC5) MOSIout <= 0;
+			else if	(LS[17:0]==18'h0FFC6 || LS[17:0]==18'h0FFC7) MOSIout <= SetFW;
+			else if	(LS[17:0]==18'h0FFC8 || LS[17:0]==18'h0FFC9) MOSIout <= 0;
 			else if	(LS[17:0]==18'h0FFCA || LS[17:0]==18'h0FFCB) MOSIout <= 0;
 			else if	(LS[17:0]==18'h0FFCC || LS[17:0]==18'h0FFCD) MOSIout <= 0;
 			else if	(LS[17:0]==18'h0FFCE || LS[17:0]==18'h0FFCF) MOSIout <= 0;
@@ -232,25 +212,22 @@ module GR8RAM(C25M, PHI0, nBOD, nRES,
 			else if	(LS[17:0]==18'h0FFE8 || LS[17:0]==18'h0FFE9) MOSIout <= 0;
 			else if	(LS[17:0]==18'h0FFEA || LS[17:0]==18'h0FFEB) MOSIout <= 0;
 			else if	(LS[17:0]==18'h0FFEC || LS[17:0]==18'h0FFED) MOSIout <= 0;
-			else if	(LS[17:0]==18'h0FFEE || LS[17:0]==18'h0FFEF) MOSIout <= 0;*/
+			else if	(LS[17:0]==18'h0FFEE || LS[17:0]==18'h0FFEF) MOSIout <= 0;
 			else MOSIout <= 0;
 
-			if (LS[17:0]==18'h0FFA0) MOSIOE <= 1'b0;
-			else if (LS[17:0]==18'h0FFB0) MOSIOE <= 1'b1;
+			if (LS[17:0]==18'h0FF90) MOSIOE <= 1'b1;
 			else if (LS[17:0]==18'h0FFF0) MOSIOE <= 1'b0;
-		end else if (CmdActv) begin
+		end else if (nRESr) begin
 			//TODO: control these with Apple II
 			FCS <= 0;
 			FCKEN <= 0;
 			MOSIout <= 0;
 			MOSIOE <= 0;
-			//TODO? sample nMenu when MOSI not outputting?
 		end
 	end
 
 	/* UFM control */
 	reg ARCLK = 0; // UFM address register clock
-	// UFM address register data input tied to 0
 	reg ARShift = 0; // 1 to Shift UFM address in, 0 to increment
 	reg DRCLK = 0; // UFM data register clock
 	reg DRDIn = 0; // UFM data register input
@@ -280,16 +257,14 @@ module GR8RAM(C25M, PHI0, nBOD, nRES,
 	reg UFMBr = 0; // UFMBusy registered to sync with C25M
 	reg RTPBr0 = 0; // RTPBusy registered to sync with C25M
 	reg RTPBr = 0; // RTPBusy registered to sync with C25M
-	always @(posedge C25M) begin
-		UFMBr <= UFMBr0; UFMBr0 <= UFMB;
-		RTPBr <= RTPBr0; RTPBr0 <= RTPB;
-	end
+	always @(negedge C25M) begin UFMBr0 <= UFMB; RTPBr0 <= RTPB; end
+	always @(posedge C25M) begin UFMBr <= UFMBr0; RTPBr <= RTPBr0; end
 	reg SetLoaded = 0;
 	reg [1:0] SetFW;
 	reg SetLim8M;
 	always @(posedge C25M) begin
 		if (~SetLoaded) begin
-			if (LS[15:0]<=16'h0FBF) begin
+			if (LS[15:0]<=16'h0FB0) begin
 				ARCLK <= 0;
 				ARShift <= 1;
 				DRCLK <= 0;
@@ -301,106 +276,61 @@ module GR8RAM(C25M, PHI0, nBOD, nRES,
 				DRShift <= 0;
 				SetFW[1:0] <= 2'b11;
 				SetLim8M <= 1'b1;
-			end else if (LS[15:0]<=16'h2FFF) begin
-				if (LS[4:0]==5'h00 || LS[4:0]==5'h01) begin
-					ARCLK <= 0;
-					ARShift <= 0;
-					DRCLK <= 1;
-					DRShift <= 0;
-				end else if (LS[4:0]==5'h02 || LS[4:0]==5'h03) begin
-					ARCLK <= 0;
-					ARShift <= 0;
-					DRCLK <= 0;
-					DRShift <= 1;
-				end else if (LS[4:0]==5'h04 || LS[4:0]==5'h05) begin
-					ARCLK <= 0;
-					ARShift <= 0;
-					DRCLK <= 1;
-					DRShift <= 1;
-					if (LS[4:0]==5'h04 && DRDOut) SetLoaded <= 1;
-				end else if (LS[4:0]==5'h06 || LS[4:0]==5'h07) begin
-					ARCLK <= 0;
-					ARShift <= 0;
-					DRCLK <= 0;
-					DRShift <= 1;
-				end else if (LS[4:0]==5'h08 || LS[4:0]==5'h09) begin
-					ARCLK <= 0;
-					ARShift <= 0;
-					DRCLK <= 1;
-					DRShift <= 1;
-					if (LS[4:0]==5'h08) SetFW[1] <= DRDOut;
-				end else if (LS[4:0]==5'h0A || LS[4:0]==5'h0B) begin
-					ARCLK <= 0;
-					ARShift <= 0;
-					DRCLK <= 0;
-					DRShift <= 1;
-				end else if (LS[4:0]==5'h0C || LS[4:0]==5'h0D) begin
-					ARCLK <= 0;
-					ARShift <= 0;
-					DRCLK <= 1;
-					DRShift <= 1;
-					if (LS[4:0]==5'h0C) SetFW[0] <= DRDOut;
-				end else if (LS[4:0]==5'h0E || LS[4:0]==5'h0F) begin
-					ARCLK <= 0;
-					ARShift <= 0;
-					DRCLK <= 0;
-					DRShift <= 1;
-				end else if (LS[4:0]==5'h10 || LS[4:0]==5'h11) begin
-					ARCLK <= 0;
-					ARShift <= 0;
-					DRCLK <= 0;
-					DRShift <= 1;
-					if (LS[4:0]==5'h10) SetLim8M <= DRDOut;
-				end else if (LS[4:0]==5'h12 || LS[4:0]==5'h13) begin
-					ARCLK <= 0;
-					ARShift <= 0;
-					DRCLK <= 0;
-					DRShift <= 1;
-				end else if (LS[4:0]==5'h14 || LS[4:0]==5'h15) begin
-					ARCLK <= 0;
-					ARShift <= 0;
-					DRCLK <= 0;
-					DRShift <= 1;
-				end else if (LS[4:0]==5'h16 || LS[4:0]==5'h17) begin
-					ARCLK <= 0;
-					ARShift <= 0;
-					DRCLK <= 0;
-					DRShift <= 1;
-				end else if (LS[4:0]==5'h18 || LS[4:0]==5'h19) begin
-					ARCLK <= 0;
-					ARShift <= 0;
-					DRCLK <= 0;
-					DRShift <= 1;
-				end else if (LS[4:0]==5'h1A || LS[4:0]==5'h1B) begin
-					ARCLK <= 0;
-					ARShift <= 0;
-					DRCLK <= 0;
-					DRShift <= 1;
-				end else if (LS[4:0]==5'h1C || LS[4:0]==5'h1D) begin
-					ARCLK <= 1;
-					ARShift <= 0;
-					DRCLK <= 0;
-					DRShift <= 1;
-				end else if (LS[4:0]==5'h1E || LS[4:0]==5'h1F) begin
-					ARCLK <= 0;
-					ARShift <= 0;
-					DRCLK <= 0;
-					DRShift <= 1;
-				end
+			end else if (LS[15:0]<=16'h1FFF) begin
+				case (LS[3:1])
+					3'h0: begin
+						ARCLK <= 0;
+						ARShift <= 0;
+						DRCLK <= 1;
+						DRShift <= 0;
+					end 3'h1: begin
+						ARCLK <= 0;
+						ARShift <= 0;
+						DRCLK <= 0;
+						DRShift <= 1;
+					end 3'h2: begin
+						ARCLK <= 0;
+						ARShift <= 0;
+						DRCLK <= 1;
+						DRShift <= 1;
+						if (LS[3:0]==4'h2 && DRDOut) SetLoaded <= 1;
+					end 3'h3: begin
+						ARCLK <= 0;
+						ARShift <= 0;
+						DRCLK <= 0;
+						DRShift <= 1;
+					end 3'h4: begin
+						ARCLK <= 0;
+						ARShift <= 0;
+						DRCLK <= 1;
+						DRShift <= 1;
+						if (LS[3:0]==4'h4) SetFW <= DRDOut;
+					end 3'h5: begin
+						ARCLK <= 0;
+						ARShift <= 0;
+						DRCLK <= 0;
+						DRShift <= 1;
+					end 3'h6: begin
+						ARCLK <= 1;
+						ARShift <= 0;
+						DRCLK <= 0;
+						DRShift <= 1;
+						if (LS[3:0]==4'h6) SetLim8M <= DRDOut;
+					end 3'h7: begin
+						ARCLK <= 0;
+						ARShift <= 0;
+						DRCLK <= 0;
+						DRShift <= 0;
+					end
+				endcase
 			end else SetLoaded <= 1;
 			DRDIn <= 0;
-		end else if (CmdActv) begin
+		end else if (PS==7 /* && ... FIXME */) begin
 			ARCLK <= 0;
 			ARShift <= 0;
 			DRShift <= 1;
 
 
-			DRCLK <= 0;
-			DRDIn <= 0;
-		end else begin
-			ARCLK <= 0;
-			ARShift <= 0;
-			DRShift <= 1;
 			DRCLK <= 0;
 			DRDIn <= 0;
 		end
@@ -412,25 +342,18 @@ module GR8RAM(C25M, PHI0, nBOD, nRES,
 	reg SDOE = 0;
 	always @(posedge C25M) begin
 		// Shift { MISO, MOSI } in when InitActv. When ready, synchronize RD
-		if (InitActv) if (LS[1]) WRD[7:0] <= { MISO, MOSI, WRD[5:0] };
-		else WRD[7:0] <= RD[7:0];
+		if (InitActv && LS[1]) WRD[7:0] <= { MISO, MOSI, WRD[5:0] };
+		else if (PS==8) WRD[7:0] <= RD[7:0];
 		// Output data on SDRAM data bus only during init and when writing
-		SDOE <= InitActv || (RAMSEL && nWEcur && S==6);
+		SDOE <= InitActv || (RAMSpecWR && PS==8);
 	end
 
-	/* State counters */
-	reg [3:0] S = 0;
+	reg [2:0] PS = 0;
+	wire PSStart = ~InitActv && nRESr && PS==0 && PHI0r1 && ~PHI0r2;
 	always @(posedge C25M) begin
-		if (~InitActv && SDRAMActv && S==0 && PHI0r1 && ~PHI0r2 && nRESr && nBODf) S <= 1;
-		else if (S==0) S <= 0;
-		else S <= S+1;
-	end
-
-	/* Refresh state */
-	reg RefDone = 0;
-	always @(posedge C25M) begin
-		if (LS[6:0]==7'h00) RefDone <= 0; // Reset RefDone every 128 C25M cycles (5.12 us)
-		else if (S==0 && ~RefDone && ~(PHI0r1 && ~PHI0r2)) RefDone <= 1;
+		if (PSStart) PS <= 1;
+		else if (PS==0) PS <= 0;
+		else PS <= PS+1;
 	end
 
 	reg [1:0] IS = 0;
@@ -442,325 +365,295 @@ module GR8RAM(C25M, PHI0, nBOD, nRES,
 		end else IS <= 0;
 	end
 
+	/* Refresh state */
+	reg RefReqd = 0;
+	reg RefReady = 0;
+	always @(posedge C25M) begin
+		if (LS[6:0]==7'h00) RefReqd <= SDRAMActv; // Reset RefDone every 128 C25M cycles (5.12 us)
+		else if (PS==0 && ~RefReqd) RefReqd <= 0;
+	end
+
 	/* SDRAM address/command */
-	output reg [1:0] SBA;
-	output reg [12:0] SA;
+	output [1:0] SBA; assign SBA[1:0] = 
+		Amux[2:0]==2'h0 ? 2'b00 : // mode register / "all"
+		Amux[2:0]==2'h1 ? 2'b00 : // FIXME: init row / col
+		Amux[2:0]==2'h2 ? 2'b10 : // ROM row / col
+		/* 2'h3 */ { 1'b0, Addr[23] }; // RAM col
+	output [12:0] SA; assign SA[12:0] = 
+		Amux[2:0]==3'h0 ? 13'b0001000100000 : // mode register
+		Amux[2:0]==3'h1 ? 13'b0011000100000 : // "all"
+		Amux[2:0]==3'h2 ? 13'b0011000100000 : // FIXME: init row
+		Amux[2:0]==3'h3 ? 13'b0011000100000 : // FIXME: init col
+		Amux[2:0]==3'h4 ? { 9'b000000000, Bank[1:0], RAcur[11:10] } : // ROM row
+		Amux[2:0]==3'h5 ? { 4'b0000, RAcur[9:1]} : // ROM col
+		Amux[2:0]==3'h6 ? { Addr[22:10] } : // RAM row
+		/* 3'h7 */        { 4'b0000, Addr[9:1] }; // RAM col
+	output DQML; assign DQML = 
+		Amux[2:0]==3'h0 ? 1'b1 : // mode register
+		Amux[2:0]==3'h1 ? 1'b1 : // "all"
+		Amux[2:0]==3'h2 ? 1'b1 : // FIXME: init row
+		Amux[2:0]==3'h3 ? LS[3] : // FIXME: init col
+		Amux[2:0]==3'h4 ? 1'b1 : // ROM row
+		Amux[2:0]==3'h5 ? RAcur[0]: // ROM col
+		Amux[2:0]==3'h6 ? 1'b1 : // RAM row
+		/* 3'h7 */        Addr[0]; // RAM col
+	output DQMH; assign DQMH =
+		Amux[2:0]==3'h0 ? 1'b1 : // mode register
+		Amux[2:0]==3'h1 ? 1'b1 : // "all"
+		Amux[2:0]==3'h2 ? 1'b1 : // FIXME: init row
+		Amux[2:0]==3'h3 ? ~LS[3] : // FIXME: init col
+		Amux[2:0]==3'h4 ? 1'b1 : // ROM row
+		Amux[2:0]==3'h5 ? ~RAcur[0]: // ROM col
+		Amux[2:0]==3'h6 ? 1'b1 : // RAM row
+		/* 3'h7 */        ~Addr[0]; // RAM col
+	reg [2:0] Amux = 0;
 	output reg RCKE = 1;
 	output reg nRCS = 1;
 	output reg nRAS = 1;
 	output reg nCAS = 1;
 	output reg nSWE = 1;
-	output reg DQMH = 1;
-	output reg DQML = 1;
 	always @(posedge C25M) begin
-		if (S==0 && InitActv) begin
-			if (IS[1:0]==2'h0) begin
-				// NOP CKE
-				RCKE <= 1'b1;
-				nRCS <= 1'b1;
-				nRAS <= 1'b1;
-				nCAS <= 1'b1;
-				nSWE <= 1'b1;
-				DQMH <= 1'b1;
-				DQML <= 1'b1;
-				SBA[1:0] <= 2'b00;
-				SA[12:11] <= 2'b00;
-				SA[10] <= 1'b1;
-				SA[9:0] <= 10'b1000100000;
-			end else if (IS[1:0]==2'h1) begin
-				if (LS[3:0]==4'h3) begin
-					// PC all
-					RCKE <= 1'b1;
-					nRCS <= 1'b0;
-					nRAS <= 1'b0;
-					nCAS <= 1'b1;
-					nSWE <= 1'b0;
-					DQMH <= 1'b1;
-					DQML <= 1'b1;
-					SA[10] <= 1'b1; // "all"
-				end else if (LS[3:0]==4'hB) begin
-					// Load mode register
-					RCKE <= 1'b1;
-					nRCS <= 1'b0;
-					nRAS <= 1'b0;
-					nCAS <= 1'b0;
-					nSWE <= 1'b0;
-					DQMH <= 1'b1;
-					DQML <= 1'b1;
-					SA[10] <= 1'b0; // reserved in mode register
-				end
-				SBA[1:0] <= 2'b00; // reserved in mode register
-				SA[12:11] <= 2'b00; // reserved in mode register
-				SA[9] <= 1'b1; // single write mode
-				SA[8] <= 1'b0; // reserved in mode register
-				SA[7] <= 1'b0; // don't enter test mode
-				SA[6:4] <= 2'b010; // CAS latency 2
-				SA[3] <= 1'b0; // sequential addressing mode
-				SA[2:0] <= 3'b000; // burst length 1
-			end else if (IS[1:0]==2'h2) begin
-				if (LS[2:0]==3'h3) begin
-					// AREF
-					RCKE <= 1'b1;
-					nRCS <= 1'b0;
-					nRAS <= 1'b0;
-					nCAS <= 1'b0;
-					nSWE <= 1'b1;
-					DQMH <= 1'b1;
-					DQML <= 1'b1;
-				end else begin
+		case (PS[2:0])
+			0: begin
+				if (InitActv) begin
+					case (IS[1:0])
+						0: begin
+							// NOP CKE
+							RCKE <= 1'b1;
+							nRCS <= 1'b1;
+							nRAS <= 1'b1;
+							nCAS <= 1'b1;
+							nSWE <= 1'b1;
+							Amux <= 3'b000;
+						end 1: begin
+							if (LS[3:0]==4'h3) begin
+								// PC all
+								RCKE <= 1'b1;
+								nRCS <= 1'b0;
+								nRAS <= 1'b0;
+								nCAS <= 1'b1;
+								nSWE <= 1'b0;
+								Amux <= 3'b001;
+							end else if (LS[3:0]==4'hB) begin
+								// Load mode
+								RCKE <= 1'b1;
+								nRCS <= 1'b0;
+								nRAS <= 1'b0;
+								nCAS <= 1'b0;
+								nSWE <= 1'b0;
+								Amux <= 3'b000;
+							end else begin
+								// NOP CKE
+								RCKE <= 1'b1;
+								nRCS <= 1'b1;
+								nRAS <= 1'b1;
+								nCAS <= 1'b1;
+								nSWE <= 1'b1;
+								Amux <= 3'b000;
+							end
+						end 2: begin
+							if (LS[2:0]==3'h3) begin
+								// AREF
+								RCKE <= 1'b1;
+								nRCS <= 1'b0;
+								nRAS <= 1'b0;
+								nCAS <= 1'b0;
+								nSWE <= 1'b1;
+								Amux <= 3'b000;
+							end else begin
+								// NOP CKE
+								RCKE <= 1'b1;
+								nRCS <= 1'b1;
+								nRAS <= 1'b1;
+								nCAS <= 1'b1;
+								nSWE <= 1'b1;
+								Amux <= 3'b000;
+							end
+						end 3: begin
+							if (LS[2:0]==3'h3) begin
+								// AREF
+								RCKE <= 1'b1;
+								nRCS <= 1'b0;
+								nRAS <= 1'b0;
+								nCAS <= 1'b0;
+								nSWE <= 1'b1;
+								Amux <= 3'b010;
+							end else if (LS[2:0]==3'h5) begin
+								// ACT
+								RCKE <= 1'b1;
+								nRCS <= 1'b0;
+								nRAS <= 1'b0;
+								nCAS <= 1'b1;
+								nSWE <= 1'b1;
+								Amux <= 3'b010;
+							end else if (LS[2:0]==3'h7) begin
+								// WR AP
+								RCKE <= 1'b1;
+								nRCS <= 1'b0;
+								nRAS <= 1'b1;
+								nCAS <= 1'b0;
+								nSWE <= 1'b0;
+								Amux <= 3'b011;
+							end else begin
+								// NOP CKE
+								RCKE <= 1'b1;
+								nRCS <= 1'b1;
+								nRAS <= 1'b1;
+								nCAS <= 1'b1;
+								nSWE <= 1'b1;
+								Amux <= 3'b010;
+							end
+						end
+					endcase
+				end else if (PSStart) begin
 					// NOP CKE
 					RCKE <= 1'b1;
 					nRCS <= 1'b1;
 					nRAS <= 1'b1;
 					nCAS <= 1'b1;
 					nSWE <= 1'b1;
-					DQMH <= 1'b1;
-					DQML <= 1'b1;
-				end
-				SBA[1:0] <= 2'b10;
-				SA[12:11] <= 2'b00;
-				SA[10] <= 1'b1;
-				SA[9:0] <= 10'b1000100000;
-			end else if (IS[1:0]==2'h3) begin
-				if (LS[2:0]==3'h3) begin
-					// AREF
-					RCKE <= 1'b1;
-					nRCS <= 1'b0;
-					nRAS <= 1'b0;
-					nCAS <= 1'b0;
+					Amux <= 3'b001;
+				end else if (RefReqd) begin
+					if (RCKE) begin
+						// AREF
+						RCKE <= 1'b1;
+						nRCS <= 1'b0;
+						nRAS <= 1'b0;
+						nCAS <= 1'b0;
+						nSWE <= 1'b1;
+						Amux <= 3'b001;
+					end else begin
+						// NOP CKE
+						RCKE <= 1'b1;
+						nRCS <= 1'b1;
+						nRAS <= 1'b1;
+						nCAS <= 1'b1;
+						nSWE <= 1'b1;
+						Amux <= 3'b001;
+					end
+				end else begin
+					// NOP CKD
+					RCKE <= 1'b0;
+					nRCS <= 1'b1;
+					nRAS <= 1'b1;
+					nCAS <= 1'b1;
 					nSWE <= 1'b1;
-					DQMH <= 1'b1;
-					DQML <= 1'b1;
-					SBA[1:0] <= 2'b10;
-					SA[12:11] <= 2'b00;
-					SA[10] <= 1'b1;
-					SA[9:0] <= 10'b1000100000;
-				end else if (LS[2:0]==3'h5) begin
+					Amux <= 3'b001;
+				end
+			end 1: begin
+				if (ROMSpecRD || RAMSpecSEL) begin
 					// ACT
 					RCKE <= 1'b1;
 					nRCS <= 1'b0;
 					nRAS <= 1'b0;
 					nCAS <= 1'b1;
 					nSWE <= 1'b1;
-					SBA[1:0] <= 1'b10;
-					SA[12:10] <= 3'b001;
-					SA[9:4] <= 10'b100010;
-					SA[3:0] <= { ~LS[17], LS[16:14] };
-					DQMH <= 1'b1;
-					DQML <= 1'b1;
-				end else if (LS[2:0]==3'h7) begin
-					// WR auto-PC
+				end else begin
+					// NOP CKD
+					RCKE <= 1'b0;
+					nRCS <= 1'b1;
+					nRAS <= 1'b1;
+					nCAS <= 1'b1;
+					nSWE <= 1'b1;
+				end
+				if (ROMSpecRD) Amux <= 3'b100;
+				else Amux <= 3'b110;
+			end 2: begin
+				if (ROMSpecRD || RAMSpecRD) begin
+					// RD
 					RCKE <= 1'b1;
 					nRCS <= 1'b0;
-					nRAS <= 1'b1;
-					nCAS <= 1'b0;
-					nSWE <= 1'b0;
-					SBA[1:0] <= 1'b10;
-					SA[12:11] <= 2'b00; // don't care
-					SA[10] <= 1'b1; // auto-precharge
-					SA[9:0] <= LS[13:4];
-					DQML <= LS[3];
-					DQMH <= ~LS[3];
+					nRAS <= 1'b0;
+					nCAS <= 1'b1;
+					nSWE <= 1'b1;
 				end else begin
+					// NOP CKD
+					RCKE <= 1'b0;
+					nRCS <= 1'b1;
+					nRAS <= 1'b1;
+					nCAS <= 1'b1;
+					nSWE <= 1'b1;
+				end
+
+				if (ROMSpecRD) Amux <= 3'b101;
+				else Amux <= 3'b111;
+			end 3: begin
+				if (ROMSpecRD || RAMSpecRD) begin
 					// NOP CKE
 					RCKE <= 1'b1;
 					nRCS <= 1'b1;
 					nRAS <= 1'b1;
 					nCAS <= 1'b1;
 					nSWE <= 1'b1;
-					DQMH <= 1'b1;
-					DQML <= 1'b1;
-					SBA[1:0] <= 2'b10;
-					SA[12:11] <= 2'b00;
-					SA[10] <= 1'b1;
-					SA[9:0] <= 10'b1000100000;
-				end
-			end
-		end else if (S==0 && ~RefDone) begin
-			// AREF
-			RCKE <= 1'b1;
-			nRCS <= 1'b0;
-			nRAS <= 1'b0;
-			nCAS <= 1'b0;
-			nSWE <= 1'b1;
-			DQMH <= 1'b1;
-			DQML <= 1'b1;
-			SBA[1:0] <= 2'b10;
-			SA[12:11] <= 2'b00;
-			SA[10] <= 1'b1;
-			SA[9:0] <= 10'b1000100000;
-		end else if (S==0) begin
-			// NOP CKE
-			RCKE <= 1'b1;
-			nRCS <= 1'b1;
-			nRAS <= 1'b1;
-			nCAS <= 1'b1;
-			nSWE <= 1'b1;
-			DQMH <= 1'b1;
-			DQML <= 1'b1;
-			SBA[1:0] <= 2'b10;
-			SA[12:11] <= 2'b00;
-			SA[10] <= 1'b1;
-			SA[9:0] <= 10'b1000100000;
-		end else if (S==4'h1) begin
-			if (ROMSpecRD || RAMSpecRD) begin
-				// ACT
-				RCKE <= 1'b1;
-				nRCS <= 1'b0;
-				nRAS <= 1'b0;
-				nCAS <= 1'b1;
-				nSWE <= 1'b1;
-				DQMH <= 1'b1;
-				DQML <= 1'b1;
-			end else begin
-				// NOP CKE
-				RCKE <= 1'b1;
-				nRCS <= 1'b1;
-				nRAS <= 1'b1;
-				nCAS <= 1'b1;
-				nSWE <= 1'b1;
-				DQMH <= 1'b1;
-				DQML <= 1'b1;
-			end
-
-			if (RAMSpecRD) begin
-				SBA[1] <= 1'b0;
-				SBA[0] <= Addr[23] & ~SetLim8M;
-				SA[12:0] <= Addr[22:10];
-			end else begin
-				SBA[1] <= 1'b1;
-				SBA[0] <= 1'b0;
-				SA[12:11] <= 2'b00;
-				SA[10] <= 1'b1;
-				SA[9:4] <= 10'b100010;
-				SA[9:1] <= Bank[1:0];
-				SA[1:0] <= RAcur[11:10];
-			end
-		end else if (S==4'h2) begin
-			if (ROMSpecRD || RAMSpecRD) begin
-				// RD auto-PC
-				RCKE <= 1'b1;
-				nRCS <= 1'b0;
-				nRAS <= 1'b1;
-				nCAS <= 1'b0;
-				nSWE <= 1'b1;
-				if (RAMSpecRD) begin
-					DQMH <= ~Addr[0];
-					DQML <= Addr[0];
 				end else begin
-					DQMH <= ~RAcur[0];
-					DQML <= RAcur[0];
+					// NOP CKD
+					RCKE <= 1'b0;
+					nRCS <= 1'b1;
+					nRAS <= 1'b1;
+					nCAS <= 1'b1;
+					nSWE <= 1'b1;
 				end
-			end else begin
-				// NOP CKE
-				RCKE <= 1'b1;
+				Amux <= 3'b001;
+			end 4: begin
+				if (RAMSpecWR && DEVSELr) begin
+					// NOP CKE
+					RCKE <= 1'b1;
+					nRCS <= 1'b1;
+					nRAS <= 1'b1;
+					nCAS <= 1'b1;
+					nSWE <= 1'b1;
+				end else begin
+					// NOP CKD
+					RCKE <= 1'b0;
+					nRCS <= 1'b1;
+					nRAS <= 1'b1;
+					nCAS <= 1'b1;
+					nSWE <= 1'b1;
+				end
+				Amux <= 3'b001;
+			end 5: begin
+				if (RAMSpecWR && DEVSELr) begin
+					// WR AP
+					RCKE <= 1'b1;
+					nRCS <= 1'b0;
+					nRAS <= 1'b1;
+					nCAS <= 1'b0;
+					nSWE <= 1'b0;
+				end else begin
+					// NOP CKD
+					RCKE <= 1'b0;
+					nRCS <= 1'b1;
+					nRAS <= 1'b1;
+					nCAS <= 1'b1;
+					nSWE <= 1'b1;
+				end
+				Amux <= 3'b111;
+			end 6: begin
+				// NOP CKE if ACT'd, else CKD
+				RCKE <= ROMSpecRD || RAMSpecSEL;
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;
 				nSWE <= 1'b1;
-				DQMH <= 1'b1;
-				DQML <= 1'b1;
+				Amux <= 3'b001;
+			end 7: begin
+				if (ROMSpecRD || RAMSpecSEL) begin
+					// PC all CKD
+					RCKE <= 1'b0;
+					nRCS <= 1'b0;
+					nRAS <= 1'b0;
+					nCAS <= 1'b1;
+					nSWE <= 1'b0;
+				end else begin
+					// NOP CKD
+					RCKE <= 1'b0;
+					nRCS <= 1'b1;
+					nRAS <= 1'b1;
+					nCAS <= 1'b1;
+					nSWE <= 1'b1;
+				end
+				Amux <= 3'b001;
 			end
-
-			SA[12:11] <= 2'b00; // don't care
-			SA[10] <= 1'b1; // auto-precharge
-			SA[9] <= 1'b1; // don't care
-			if (RAMSpecRD) begin
-				SBA[1] <= 1'b0;
-				SBA[0] <= Addr[23];
-				SA[8:0] <= Addr[9:1];
-			end else begin
-				SBA[1] <= 1'b1;
-				SBA[0] <= 1'b0;
-				SA[8:0] <= RAcur[9:1];
-			end
-		end else if (S==4'h3) begin
-			// NOP CKE
-			RCKE <= 1'B1;
-			nRCS <= 1'b1;
-			nRAS <= 1'b1;
-			nCAS <= 1'b1;
-			nSWE <= 1'b1;
-			DQMH <= 1'b1;
-			DQML <= 1'b1;
-			SBA[1:0] <= 2'b10;
-			SA[12:11] <= 2'b00;
-			SA[10] <= 1'b1;
-			SA[9:0] <= 10'b1000100000;
-		end else if (S==4'h4) begin
-			// NOP CKE
-			RCKE <= 1'b1;
-			nRCS <= 1'b1;
-			nRAS <= 1'b1;
-			nCAS <= 1'b1;
-			nSWE <= 1'b1;
-			DQMH <= 1'b1;
-			DQML <= 1'b1;
-			SBA[1] <= 1'b0;
-			SBA[0] <= Addr[23];
-			SA[12:0] <= Addr[22:10];
-		end else if (S==4'h5) begin
-			if (RAMSpecWR && DEVSELr) begin
-				// ACT
-				RCKE <= 1'b1;
-				nRCS <= 1'b0;
-				nRAS <= 1'b0;
-				nCAS <= 1'b1;
-				nSWE <= 1'b1;
-				DQMH <= 1'b1;
-				DQML <= 1'b1;
-			end else begin
-				// NOP CKE
-				RCKE <= 1'b1;
-				nRCS <= 1'b1;
-				nRAS <= 1'b1;
-				nCAS <= 1'b1;
-				nSWE <= 1'b1;
-				DQMH <= 1'b1;
-				DQML <= 1'b1;
-			end
-			SBA[1] <= 1'b0;
-			SBA[0] <= Addr[23];
-			SA[12:0] <= Addr[22:10];
-		end else if (S==4'h6) begin
-			if (RAMWR) begin
-				// WR auto-PC
-				RCKE <= 1'b1;
-				nRCS <= 1'b0;
-				nRAS <= 1'b1;
-				nCAS <= 1'b0;
-				nSWE <= 1'b0;
-				DQMH <= ~Addr[10];
-				DQML <= Addr[10];
-			end else begin
-				// NOP CKE
-				RCKE <= 1'b1;
-				nRCS <= 1'b1;
-				nRAS <= 1'b1;
-				nCAS <= 1'b1;
-				nSWE <= 1'b1;
-				DQMH <= 1'b1;
-				DQML <= 1'b1;
-			end
-			SBA[1] <= 1'b0;
-			SBA[0] <= Addr[23];
-			SA[12:11] <= 2'b00; // don't care
-			SA[10] <= 1'b1; // auto-precharge
-			SA[9:0] <= Addr[9:0];
-		end else if (S==4'h7) begin
-			// NOP CKE
-			RCKE <= 1'b1;
-			nRCS <= 1'b1;
-			nRAS <= 1'b1;
-			nCAS <= 1'b1;
-			nSWE <= 1'b1;
-			DQMH <= 1'b1;
-			DQML <= 1'b1;
-			SBA[1] <= 1'b0;
-			SBA[0] <= Addr[23];
-			SA[12:11] <= 2'b00; // don't care
-			SA[10] <= 1'b1; // auto-precharge
-			SA[9:0] <= Addr[9:0];
-		end
+		endcase
 	end
 endmodule

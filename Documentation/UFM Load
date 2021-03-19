@@ -78,62 +78,30 @@ $1004	0		0		1		1			SetLoaded <= Dout
 $1005	0		0		1		1			
 $1006	0		0		0		1			
 $1007	0		0		0		1			
-$1008	0		0		1		1			latch DR[14] (nSetFW[1])
+$1008	0		0		1		1			latch DR[14] (SetFW)
 $1009	0		0		1		1			
 $100A	0		0		0		1			
 $100B	0		0		0		1			
-$100C	0		0		1		1			latch DR[13] (nSetFW[0])
-$100D	0		0		1		1			
-$100E	0		0		0		1			
-$100F	0		0		0		1			
-$1010	0		0		0		1			latch DR[12] (nSetLim8M)
-$1011	0		0		0		1			
-$1012	0		0		0		1			
-$1013	0		0		0		1			
-$1014	0		0		0		1			
-$1015	0		0		0		1			
-$1016	0		0		0		1			
-$1017	0		0		0		1			
-$1018	0		0		0		1			
-$1019	0		0		0		1			
-$101A	0		0		0		1			
-$101B	0		0		0		1			
-$101C	1		0		0		1			Increment address
-$101D	1		0		0		1			
-$101E	0		0		0		1			
-$101F	0		0		0		1			
+$100C	1		0		0		1			latch DR[13] (SetLim8M)
+$100D	1		0		0		1			
+$100E	0		0		0		0			
+$100F	0		0		0		0				
 ...
-$2FE0	0		0		1		0			parallel load into DR
-$2FE1	0		0		1		0			
-$2FE2	0		0		0		1			
-$2FE3	0		0		0		1			
-$2FE4	0		0		1		1			SetLoaded <= Dout
-$2FE5	0		0		1		1			
-$2FE6	0		0		0		1			
-$2FE7	0		0		0		1			
-$2FE8	0		0		1		1			latch DR[14] (nSetFW[1])
-$2FE9	0		0		1		1			
-$2FEA	0		0		0		1			
-$2FEB	0		0		0		1			
-$2FEC	0		0		1		1			latch DR[13] (nSetFW[0])
-$2FED	0		0		1		1			
-$2FEE	0		0		0		1			
-$2FEF	0		0		0		1			
-$2FF0	0		0		0		1			latch DR[12] (nSetLim8M)
-$2FF1	0		0		0		1			
-$2FF2	0		0		0		1			
-$2FF3	0		0		0		1			
-$2FF4	0		0		0		1			
-$2FF5	0		0		0		1			
-$2FF6	0		0		0		1			
-$2FF7	0		0		0		1			
-$2FF8	0		0		0		1			
-$2FF9	0		0		0		1			
-$2FFA	0		0		0		1			
-$2FFB	0		0		0		1			
-$2FFC	1		0		0		1			Increment address
-$2FFD	1		0		0		1			
-$2FFE	0		0		0		1			
-$2FFF	0		0		0		1			
+$1FF0	0		0		1		0			parallel load into DR
+$1FF1	0		0		1		0			
+$1FF2	0		0		0		1			
+$1FF3	0		0		0		1			
+$1FF4	0		0		1		1			SetLoaded <= Dout
+$1FF5	0		0		1		1			
+$1FF6	0		0		0		1			
+$1FF7	0		0		0		1			
+$1FF8	0		0		1		1			latch DR[14] (SetFW)
+$1FF9	0		0		1		1			
+$1FFA	0		0		0		1			
+$1FFB	0		0		0		1			
+$1FFC	1		0		0		1			latch DR[13] (SetLim8M)
+$1FFD	1		0		0		1			
+$1FFE	0		0		0		0			
+$1FFF	0		0		0		0					
 
-$3000	0		0		0		0			Everything 0, set SetLoaded
+$2000	0		0		0		0			Everything 0, set SetLoaded
