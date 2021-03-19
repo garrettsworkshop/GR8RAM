@@ -1,0 +1,41 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Setup 'ARCLK'
+Slack : -99.000
+TNS   : -99.000
+
+Type  : Setup 'DRCLK'
+Slack : -99.000
+TNS   : -99.000
+
+Type  : Setup 'C25M'
+Slack : -8.447
+TNS   : -415.877
+
+Type  : Hold 'DRCLK'
+Slack : -16.286
+TNS   : -16.286
+
+Type  : Hold 'ARCLK'
+Slack : -16.276
+TNS   : -16.276
+
+Type  : Hold 'C25M'
+Slack : -1.579
+TNS   : -1.579
+
+Type  : Minimum Pulse Width 'ARCLK'
+Slack : -29.500
+TNS   : -59.000
+
+Type  : Minimum Pulse Width 'DRCLK'
+Slack : -29.500
+TNS   : -59.000
+
+Type  : Minimum Pulse Width 'C25M'
+Slack : -2.289
+TNS   : -2.289
+
+------------------------------------------------------------
