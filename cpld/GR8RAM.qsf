@@ -51,14 +51,13 @@ set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 5
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR "-1"
 set_global_assignment -name POWER_EXT_SUPPLY_VOLTAGE_TO_REGULATOR 3.3V
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
-set_global_assignment -name QIP_FILE UFM.qip
 set_global_assignment -name OPTIMIZE_HOLD_TIMING "IO PATHS AND MINIMUM TPD PATHS"
 set_global_assignment -name OPTIMIZE_MULTI_CORNER_TIMING OFF
 set_global_assignment -name FITTER_EFFORT "STANDARD FIT"
 set_global_assignment -name MAXII_OPTIMIZATION_TECHNIQUE AREA
 set_global_assignment -name SYNTH_TIMING_DRIVEN_SYNTHESIS OFF
 set_global_assignment -name ADV_NETLIST_OPT_SYNTH_WYSIWYG_REMAP ON
-set_global_assignment -name SAFE_STATE_MACHINE ON
+set_global_assignment -name SAFE_STATE_MACHINE OFF
 set_global_assignment -name REMOVE_REDUNDANT_LOGIC_CELLS ON
 set_global_assignment -name ALLOW_SHIFT_REGISTER_MERGING_ACROSS_HIERARCHIES ALWAYS
 set_global_assignment -name AUTO_RESOURCE_SHARING ON
@@ -66,3 +65,10 @@ set_global_assignment -name PLACEMENT_EFFORT_MULTIPLIER 2.0
 set_global_assignment -name ROUTER_EFFORT_MULTIPLIER 2.0
 set_global_assignment -name FINAL_PLACEMENT_OPTIMIZATION ALWAYS
 set_global_assignment -name ALM_REGISTER_PACKING_EFFORT HIGH
+set_global_assignment -name MUX_RESTRUCTURE ON
+set_global_assignment -name STATE_MACHINE_PROCESSING "MINIMAL BITS"
+set_global_assignment -name SYNTHESIS_SEED 123
+set_global_assignment -name SEED 235
+set_global_assignment -name AUTO_PACKED_REGISTERS_MAXII "MINIMIZE AREA"
+set_global_assignment -name ROUTER_REGISTER_DUPLICATION OFF
+set_global_assignment -name VERILOG_FILE GR8RAM.v

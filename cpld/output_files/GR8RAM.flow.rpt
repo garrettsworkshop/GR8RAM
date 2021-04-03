@@ -1,5 +1,5 @@
 Flow report for GR8RAM
-Fri Mar 19 16:35:37 2021
+Mon Mar 22 12:12:31 2021
 Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -40,17 +40,17 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------+
 ; Flow Summary                                                                ;
 +---------------------------+-------------------------------------------------+
-; Flow Status               ; Successful - Fri Mar 19 16:35:30 2021           ;
+; Flow Status               ; Successful - Mon Mar 22 12:12:25 2021           ;
 ; Quartus II 32-bit Version ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name             ; GR8RAM                                          ;
 ; Top-level Entity Name     ; GR8RAM                                          ;
 ; Family                    ; MAX II                                          ;
 ; Device                    ; EPM240T100C5                                    ;
 ; Timing Models             ; Final                                           ;
-; Total logic elements      ; 217 / 240 ( 90 % )                              ;
-; Total pins                ; 68 / 80 ( 85 % )                                ;
+; Total logic elements      ; 223 / 240 ( 93 % )                              ;
+; Total pins                ; 69 / 80 ( 86 % )                                ;
 ; Total virtual pins        ; 0                                               ;
-; UFM blocks                ; 1 / 1 ( 100 % )                                 ;
+; UFM blocks                ; 0 / 1 ( 0 % )                                   ;
 +---------------------------+-------------------------------------------------+
 
 
@@ -59,7 +59,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/19/2021 16:35:10 ;
+; Start date & time ; 03/22/2021 12:12:08 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; GR8RAM              ;
 +-------------------+---------------------+
@@ -73,21 +73,24 @@ applicable agreement for further details.
 ; ADV_NETLIST_OPT_SYNTH_WYSIWYG_REMAP             ; On                             ; Off           ; --          ; --         ;
 ; ALLOW_SHIFT_REGISTER_MERGING_ACROSS_HIERARCHIES ; Always                         ; Auto          ; --          ; --         ;
 ; ALM_REGISTER_PACKING_EFFORT                     ; High                           ; Medium        ; --          ; --         ;
+; AUTO_PACKED_REGISTERS_MAXII                     ; Minimize Area                  ; Auto          ; --          ; --         ;
 ; AUTO_RESOURCE_SHARING                           ; On                             ; Off           ; --          ; --         ;
-; COMPILER_SIGNATURE_ID                           ; 44085571633675.161618611002356 ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID                           ; 44085571633675.161642952802820 ; --            ; --          ; --         ;
 ; FINAL_PLACEMENT_OPTIMIZATION                    ; Always                         ; Automatically ; --          ; --         ;
 ; FITTER_EFFORT                                   ; Standard Fit                   ; Auto Fit      ; --          ; --         ;
-; IP_TOOL_NAME                                    ; ALTUFM_NONE                    ; --            ; --          ; --         ;
-; IP_TOOL_VERSION                                 ; 13.0                           ; --            ; --          ; --         ;
 ; MAXII_OPTIMIZATION_TECHNIQUE                    ; Area                           ; Balanced      ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP                          ; 85                             ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP                          ; 0                              ; --            ; --          ; --         ;
+; MUX_RESTRUCTURE                                 ; On                             ; Auto          ; --          ; --         ;
 ; PLACEMENT_EFFORT_MULTIPLIER                     ; 2.0                            ; 1.0           ; --          ; --         ;
 ; POWER_EXT_SUPPLY_VOLTAGE_TO_REGULATOR           ; 3.3V                           ; --            ; --          ; --         ;
 ; PROJECT_OUTPUT_DIRECTORY                        ; output_files                   ; --            ; --          ; --         ;
 ; REMOVE_REDUNDANT_LOGIC_CELLS                    ; On                             ; Off           ; --          ; --         ;
 ; ROUTER_EFFORT_MULTIPLIER                        ; 2.0                            ; 1.0           ; --          ; --         ;
-; SAFE_STATE_MACHINE                              ; On                             ; Off           ; --          ; --         ;
+; ROUTER_REGISTER_DUPLICATION                     ; Off                            ; Auto          ; --          ; --         ;
+; SEED                                            ; 235                            ; 1             ; --          ; --         ;
+; STATE_MACHINE_PROCESSING                        ; Minimal Bits                   ; Auto          ; --          ; --         ;
+; SYNTHESIS_SEED                                  ; 123                            ; 1             ; --          ; --         ;
 ; SYNTH_TIMING_DRIVEN_SYNTHESIS                   ; Off                            ; --            ; --          ; --         ;
 +-------------------------------------------------+--------------------------------+---------------+-------------+------------+
 
@@ -97,11 +100,11 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:05     ; 1.0                     ; 301 MB              ; 00:00:04                           ;
-; Fitter                    ; 00:00:09     ; 1.5                     ; 376 MB              ; 00:00:08                           ;
+; Analysis & Synthesis      ; 00:00:05     ; 1.0                     ; 301 MB              ; 00:00:05                           ;
+; Fitter                    ; 00:00:08     ; 1.5                     ; 373 MB              ; 00:00:08                           ;
 ; Assembler                 ; 00:00:02     ; 1.0                     ; 292 MB              ; 00:00:02                           ;
-; TimeQuest Timing Analyzer ; 00:00:04     ; 1.0                     ; 275 MB              ; 00:00:04                           ;
-; Total                     ; 00:00:20     ; --                      ; --                  ; 00:00:18                           ;
+; TimeQuest Timing Analyzer ; 00:00:04     ; 1.0                     ; 286 MB              ; 00:00:04                           ;
+; Total                     ; 00:00:19     ; --                      ; --                  ; 00:00:19                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

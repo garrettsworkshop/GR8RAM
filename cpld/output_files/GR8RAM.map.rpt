@@ -1,5 +1,5 @@
 Analysis & Synthesis report for GR8RAM
-Fri Mar 19 16:35:14 2021
+Mon Mar 22 12:12:11 2021
 Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -13,15 +13,13 @@ Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. Analysis & Synthesis IP Cores Summary
+  8. State Machine - |GR8RAM|IS
   9. Registers Removed During Synthesis
- 10. Removed Registers Triggering Further Register Optimizations
- 11. General Register Statistics
- 12. Inverted Register Statistics
- 13. Multiplexer Restructuring Statistics (Restructuring Performed)
- 14. Port Connectivity Checks: "UFM:UFM_inst"
- 15. Analysis & Synthesis Messages
- 16. Analysis & Synthesis Suppressed Messages
+ 10. General Register Statistics
+ 11. Inverted Register Statistics
+ 12. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 13. Analysis & Synthesis Messages
+ 14. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -47,15 +45,15 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Fri Mar 19 16:35:14 2021           ;
+; Analysis & Synthesis Status ; Successful - Mon Mar 22 12:12:11 2021           ;
 ; Quartus II 32-bit Version   ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name               ; GR8RAM                                          ;
 ; Top-level Entity Name       ; GR8RAM                                          ;
 ; Family                      ; MAX II                                          ;
-; Total logic elements        ; 237                                             ;
-; Total pins                  ; 68                                              ;
+; Total logic elements        ; 235                                             ;
+; Total pins                  ; 69                                              ;
 ; Total virtual pins          ; 0                                               ;
-; UFM blocks                  ; 1 / 1 ( 100 % )                                 ;
+; UFM blocks                  ; 0 / 1 ( 0 % )                                   ;
 +-----------------------------+-------------------------------------------------+
 
 
@@ -67,22 +65,23 @@ applicable agreement for further details.
 ; Device                                                                     ; EPM240T100C5       ;                    ;
 ; Top-level entity name                                                      ; GR8RAM             ; GR8RAM             ;
 ; Family name                                                                ; MAX II             ; Cyclone IV GX      ;
-; Safe State Machine                                                         ; On                 ; Off                ;
+; Restructure Multiplexers                                                   ; On                 ; Auto               ;
+; State Machine Processing                                                   ; Minimal Bits       ; Auto               ;
 ; Remove Redundant Logic Cells                                               ; On                 ; Off                ;
 ; Optimization Technique                                                     ; Area               ; Balanced           ;
 ; Perform WYSIWYG Primitive Resynthesis                                      ; On                 ; Off                ;
 ; Allow Shift Register Merging across Hierarchies                            ; Always             ; Auto               ;
 ; Auto Resource Sharing                                                      ; On                 ; Off                ;
+; Synthesis Seed                                                             ; 123                ; 1                  ;
 ; Use smart compilation                                                      ; Off                ; Off                ;
 ; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
 ; Enable compact report table                                                ; Off                ; Off                ;
-; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
 ; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
 ; Preserve fewer node names                                                  ; On                 ; On                 ;
 ; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
 ; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
 ; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
-; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
 ; Extract Verilog State Machines                                             ; On                 ; On                 ;
 ; Extract VHDL State Machines                                                ; On                 ; On                 ;
 ; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
@@ -128,7 +127,6 @@ applicable agreement for further details.
 ; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
 ; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
 ; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
-; Synthesis Seed                                                             ; 1                  ; 1                  ;
 +----------------------------------------------------------------------------+--------------------+--------------------+
 
 
@@ -149,14 +147,13 @@ applicable agreement for further details.
 +----------------------------+-------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                      ;
-+----------------------------------+-----------------+------------------------------+-------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path  ; Library ;
-+----------------------------------+-----------------+------------------------------+-------------------------------+---------+
-; UFM.v                            ; yes             ; User Wizard-Generated File   ; Z:/Repos/GR8RAM/cpld/UFM.v    ;         ;
-; gr8ram.v                         ; yes             ; Auto-Found Verilog HDL File  ; Z:/Repos/GR8RAM/cpld/gr8ram.v ;         ;
-+----------------------------------+-----------------+------------------------------+-------------------------------+---------+
++-----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                ;
++----------------------------------+-----------------+------------------------+-------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path  ; Library ;
++----------------------------------+-----------------+------------------------+-------------------------------+---------+
+; GR8RAM.v                         ; yes             ; User Verilog HDL File  ; Z:/Repos/GR8RAM/cpld/GR8RAM.v ;         ;
++----------------------------------+-----------------+------------------------+-------------------------------+---------+
 
 
 +-----------------------------------------------------+
@@ -164,78 +161,69 @@ applicable agreement for further details.
 +---------------------------------------------+-------+
 ; Resource                                    ; Usage ;
 +---------------------------------------------+-------+
-; Total logic elements                        ; 237   ;
-;     -- Combinational with no register       ; 142   ;
-;     -- Register only                        ; 29    ;
-;     -- Combinational with a register        ; 66    ;
+; Total logic elements                        ; 235   ;
+;     -- Combinational with no register       ; 133   ;
+;     -- Register only                        ; 13    ;
+;     -- Combinational with a register        ; 89    ;
 ;                                             ;       ;
 ; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 80    ;
-;     -- 3 input functions                    ; 45    ;
-;     -- 2 input functions                    ; 71    ;
-;     -- 1 input functions                    ; 11    ;
-;     -- 0 input functions                    ; 1     ;
+;     -- 4 input functions                    ; 122   ;
+;     -- 3 input functions                    ; 36    ;
+;     -- 2 input functions                    ; 64    ;
+;     -- 1 input functions                    ; 0     ;
+;     -- 0 input functions                    ; 0     ;
 ;                                             ;       ;
 ; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 179   ;
-;     -- arithmetic mode                      ; 58    ;
+;     -- normal mode                          ; 202   ;
+;     -- arithmetic mode                      ; 33    ;
 ;     -- qfbk mode                            ; 0     ;
 ;     -- register cascade mode                ; 0     ;
-;     -- synchronous clear/load mode          ; 25    ;
-;     -- asynchronous clear/load mode         ; 0     ;
+;     -- synchronous clear/load mode          ; 35    ;
+;     -- asynchronous clear/load mode         ; 30    ;
 ;                                             ;       ;
-; Total registers                             ; 95    ;
-; Total logic cells in carry chains           ; 62    ;
-; I/O pins                                    ; 68    ;
-; UFM blocks                                  ; 1     ;
+; Total registers                             ; 102   ;
+; Total logic cells in carry chains           ; 37    ;
+; I/O pins                                    ; 69    ;
 ; Maximum fan-out node                        ; C25M  ;
-; Maximum fan-out                             ; 95    ;
-; Total fan-out                               ; 836   ;
-; Average fan-out                             ; 2.73  ;
+; Maximum fan-out                             ; 102   ;
+; Total fan-out                               ; 1020  ;
+; Average fan-out                             ; 3.36  ;
 +---------------------------------------------+-------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                    ;
-+-----------------------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+------------------------------------------------------------------------+--------------+
-; Compilation Hierarchy Node                                ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name                                                    ; Library Name ;
-+-----------------------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+------------------------------------------------------------------------+--------------+
-; |GR8RAM                                                   ; 237 (237)   ; 95           ; 1          ; 68   ; 0            ; 142 (142)    ; 29 (29)           ; 66 (66)          ; 62 (62)         ; 0 (0)      ; |GR8RAM                                                                ; work         ;
-;    |UFM:UFM_inst|                                         ; 0 (0)       ; 0            ; 1          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |GR8RAM|UFM:UFM_inst                                                   ; work         ;
-;       |UFM_altufm_none_0ep:UFM_altufm_none_0ep_component| ; 0 (0)       ; 0            ; 1          ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; 0 (0)           ; 0 (0)      ; |GR8RAM|UFM:UFM_inst|UFM_altufm_none_0ep:UFM_altufm_none_0ep_component ; work         ;
-+-----------------------------------------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+------------------------------------------------------------------------+--------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                  ;
++----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+--------------+
+; Compilation Hierarchy Node ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name ; Library Name ;
++----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+--------------+
+; |GR8RAM                    ; 235 (235)   ; 102          ; 0          ; 69   ; 0            ; 133 (133)    ; 13 (13)           ; 89 (89)          ; 37 (37)         ; 0 (0)      ; |GR8RAM             ; work         ;
++----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+-------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis IP Cores Summary                                                                             ;
-+--------+--------------+---------+--------------+--------------+----------------------+----------------------------+
-; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance      ; IP Include File            ;
-+--------+--------------+---------+--------------+--------------+----------------------+----------------------------+
-; Altera ; ALTUFM_NONE  ; 13.0    ; N/A          ; N/A          ; |GR8RAM|UFM:UFM_inst ; Z:/Repos/GR8RAM/cpld/UFM.v ;
-+--------+--------------+---------+--------------+--------------+----------------------+----------------------------+
+Encoding Type:  Minimal Bits
++-----------------------------------------------------------+
+; State Machine - |GR8RAM|IS                                ;
++--------+----------------+----------------+----------------+
+; Name   ; IS.state_bit_2 ; IS.state_bit_1 ; IS.state_bit_0 ;
++--------+----------------+----------------+----------------+
+; IS.000 ; 0              ; 0              ; 0              ;
+; IS.001 ; 0              ; 0              ; 1              ;
+; IS.100 ; 1              ; 0              ; 0              ;
+; IS.101 ; 1              ; 0              ; 1              ;
+; IS.110 ; 0              ; 1              ; 0              ;
+; IS.111 ; 0              ; 1              ; 1              ;
++--------+----------------+----------------+----------------+
 
 
-+--------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                             ;
-+---------------------------------------+----------------------------------------+
-; Register name                         ; Reason for Removal                     ;
-+---------------------------------------+----------------------------------------+
-; DRDIn                                 ; Stuck at GND due to stuck port data_in ;
-; SetFW                                 ; Stuck at VCC due to stuck port data_in ;
-; SetLim8M                              ; Stuck at VCC due to stuck port data_in ;
-; Total Number of Removed Registers = 3 ;                                        ;
-+---------------------------------------+----------------------------------------+
-
-
-+------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                        ;
-+---------------+---------------------------+----------------------------------------+
-; Register name ; Reason for Removal        ; Registers Removed due to This Register ;
-+---------------+---------------------------+----------------------------------------+
-; DRDIn         ; Stuck at GND              ; SetFW, SetLim8M                        ;
-;               ; due to stuck port data_in ;                                        ;
-+---------------+---------------------------+----------------------------------------+
++------------------------------------------------------------+
+; Registers Removed During Synthesis                         ;
++---------------------------------------+--------------------+
+; Register name                         ; Reason for Removal ;
++---------------------------------------+--------------------+
+; IS~10                                 ; Lost fanout        ;
+; Total Number of Removed Registers = 1 ;                    ;
++---------------------------------------+--------------------+
 
 
 +------------------------------------------------------+
@@ -243,12 +231,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 95    ;
-; Number of registers using Synchronous Clear  ; 25    ;
-; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 0     ;
+; Total registers                              ; 102   ;
+; Number of registers using Synchronous Clear  ; 10    ;
+; Number of registers using Synchronous Load   ; 25    ;
+; Number of registers using Asynchronous Clear ; 30    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 41    ;
+; Number of registers using Clock Enable       ; 32    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -262,8 +250,10 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; nRAS~reg0                              ; 1       ;
 ; nCAS~reg0                              ; 1       ;
 ; nSWE~reg0                              ; 1       ;
-; RCKE~reg0                              ; 2       ;
-; Total number of inverted registers = 5 ;         ;
+; DQML~reg0                              ; 1       ;
+; DQMH~reg0                              ; 1       ;
+; RCKE~reg0                              ; 1       ;
+; Total number of inverted registers = 7 ;         ;
 +----------------------------------------+---------+
 
 
@@ -272,26 +262,17 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; Yes        ; |GR8RAM|PS[0]              ;
-; 5:1                ; 8 bits    ; 24 LEs        ; 16 LEs               ; 8 LEs                  ; Yes        ; |GR8RAM|Addr[0]            ;
-; 6:1                ; 2 bits    ; 8 LEs         ; 4 LEs                ; 4 LEs                  ; Yes        ; |GR8RAM|SS[0]              ;
-; 7:1                ; 8 bits    ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |GR8RAM|Addr[13]           ;
-; 9:1                ; 8 bits    ; 48 LEs        ; 24 LEs               ; 24 LEs                 ; Yes        ; |GR8RAM|Addr[17]           ;
-; 8:1                ; 2 bits    ; 10 LEs        ; 6 LEs                ; 4 LEs                  ; No         ; |GR8RAM|DQML               ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |GR8RAM|PS[1]              ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |GR8RAM|SA[12]~reg0        ;
+; 20:1               ; 6 bits    ; 78 LEs        ; 24 LEs               ; 54 LEs                 ; Yes        ; |GR8RAM|SA[3]~reg0         ;
+; 20:1               ; 3 bits    ; 39 LEs        ; 18 LEs               ; 21 LEs                 ; Yes        ; |GR8RAM|SA[1]~reg0         ;
+; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |GR8RAM|WRD[0]             ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |GR8RAM|WRD[7]             ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |GR8RAM|RDD[1]             ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |GR8RAM|RDD[4]             ;
+; 18:1               ; 2 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |GR8RAM|DQMH~reg0          ;
+; 8:1                ; 5 bits    ; 25 LEs        ; 20 LEs               ; 5 LEs                  ; No         ; |GR8RAM|IS                 ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-
-
-+-------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "UFM:UFM_inst"                                                                          ;
-+---------+--------+----------+-------------------------------------------------------------------------------------+
-; Port    ; Type   ; Severity ; Details                                                                             ;
-+---------+--------+----------+-------------------------------------------------------------------------------------+
-; ardin   ; Input  ; Info     ; Stuck at GND                                                                        ;
-; oscena  ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; busy    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; osc     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; rtpbusy ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+---------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +-------------------------------+
@@ -300,60 +281,28 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Fri Mar 19 16:35:09 2021
+    Info: Processing started: Mon Mar 22 12:12:06 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off GR8RAM -c GR8RAM
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
-Info (12021): Found 2 design units, including 2 entities, in source file ufm.v
-    Info (12023): Found entity 1: UFM_altufm_none_0ep
-    Info (12023): Found entity 2: UFM
-Warning (12125): Using design file gr8ram.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+Info (12021): Found 1 design units, including 1 entities, in source file gr8ram.v
     Info (12023): Found entity 1: GR8RAM
-Warning (10236): Verilog HDL Implicit Net warning at gr8ram.v(223): created implicit net for "UFMB"
-Warning (10236): Verilog HDL Implicit Net warning at gr8ram.v(226): created implicit net for "RTPB"
 Info (12127): Elaborating entity "GR8RAM" for the top level hierarchy
-Warning (10858): Verilog HDL warning at gr8ram.v(86): object RDout used but never assigned
-Warning (10036): Verilog HDL or VHDL warning at gr8ram.v(118): object "Bank" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at gr8ram.v(228): object "UFMBr" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at gr8ram.v(230): object "RTPBr" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at gr8ram.v(335): object "RefReady" assigned a value but never read
-Warning (10230): Verilog HDL assignment warning at gr8ram.v(24): truncated value with size 32 to match size of target (18)
-Warning (10230): Verilog HDL assignment warning at gr8ram.v(100): truncated value with size 32 to match size of target (24)
-Warning (10230): Verilog HDL assignment warning at gr8ram.v(104): truncated value with size 32 to match size of target (16)
-Warning (10230): Verilog HDL assignment warning at gr8ram.v(109): truncated value with size 32 to match size of target (8)
-Warning (10230): Verilog HDL assignment warning at gr8ram.v(330): truncated value with size 32 to match size of target (3)
-Warning (10030): Net "RDout" at gr8ram.v(86) has no driver or initial value, using a default initial value '0'
-Warning (10030): Net "WRD[5..0]" at gr8ram.v(315) has no driver or initial value, using a default initial value '0'
-Warning (10034): Output port "SA[11..0]" at gr8ram.v(347) has no driver
-Info (12128): Elaborating entity "UFM" for hierarchy "UFM:UFM_inst"
-Info (12128): Elaborating entity "UFM_altufm_none_0ep" for hierarchy "UFM:UFM_inst|UFM_altufm_none_0ep:UFM_altufm_none_0ep_component"
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(20): truncated value with size 32 to match size of target (14)
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(104): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(112): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(119): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(306): truncated value with size 32 to match size of target (4)
 Info (17026): Resynthesizing 0 WYSIWYG logic cells and I/Os using "area" technology mapper which leaves 0 WYSIWYG logic cells and I/Os untouched
-Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
-    Warning (13047): Converted the fan-out from the tri-state buffer "MOSI" to the node "WRD[6]" into an OR gate
-Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "RAdir" is stuck at VCC
-    Warning (13410): Pin "SBA[0]" is stuck at GND
-    Warning (13410): Pin "SA[0]" is stuck at GND
-    Warning (13410): Pin "SA[1]" is stuck at GND
-    Warning (13410): Pin "SA[2]" is stuck at GND
-    Warning (13410): Pin "SA[3]" is stuck at GND
-    Warning (13410): Pin "SA[4]" is stuck at GND
-    Warning (13410): Pin "SA[5]" is stuck at GND
-    Warning (13410): Pin "SA[6]" is stuck at GND
-    Warning (13410): Pin "SA[7]" is stuck at GND
-    Warning (13410): Pin "SA[8]" is stuck at GND
-    Warning (13410): Pin "SA[9]" is stuck at GND
-    Warning (13410): Pin "SA[10]" is stuck at GND
-    Warning (13410): Pin "SA[11]" is stuck at GND
-Info (21057): Implemented 306 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 24 input pins
-    Info (21059): Implemented 28 output pins
-    Info (21060): Implemented 16 bidirectional pins
-    Info (21061): Implemented 237 logic cells
-    Info (21070): Implemented 1 User Flash Memory blocks
+Info (17049): 1 registers lost all their fanouts during netlist optimizations.
+Info (21057): Implemented 304 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 26 input pins
+    Info (21059): Implemented 26 output pins
+    Info (21060): Implemented 17 bidirectional pins
+    Info (21061): Implemented 235 logic cells
 Info (144001): Generated suppressed messages file Z:/Repos/GR8RAM/cpld/output_files/GR8RAM.map.smsg
-Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 33 warnings
+Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 5 warnings
     Info: Peak virtual memory: 301 megabytes
-    Info: Processing ended: Fri Mar 19 16:35:14 2021
+    Info: Processing ended: Mon Mar 22 12:12:11 2021
     Info: Elapsed time: 00:00:05
     Info: Total CPU time (on all processors): 00:00:05
 
