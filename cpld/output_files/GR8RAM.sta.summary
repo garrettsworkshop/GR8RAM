@@ -3,22 +3,34 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Setup 'C25M'
-Slack : -9.843
-TNS   : -651.483
+Slack : -9.908
+TNS   : -697.920
+
+Type  : Setup 'PHI0'
+Slack : -1.302
+TNS   : -1.302
+
+Type  : Hold 'PHI0'
+Slack : 1.012
+TNS   : 0.000
 
 Type  : Hold 'C25M'
-Slack : 1.395
+Slack : 1.288
 TNS   : 0.000
 
 Type  : Recovery 'C25M'
-Slack : -4.404
-TNS   : -132.120
+Slack : -4.389
+TNS   : -131.670
 
 Type  : Removal 'C25M'
-Slack : 4.850
+Slack : 4.835
 TNS   : 0.000
 
 Type  : Minimum Pulse Width 'C25M'
+Slack : -2.289
+TNS   : -2.289
+
+Type  : Minimum Pulse Width 'PHI0'
 Slack : -2.289
 TNS   : -2.289
 

@@ -1,6 +1,0 @@
-GR8RAM Settings (not applicable to Library Card!)
-
-Settings[15]	SetValid (1 = invalid, 0 = valid)
-Settings[14]	SetFW (1 = RAMFactor, 0 = Slinky)
-Settings[13]	SetLim8M
-Settings[12:0]	Reserved

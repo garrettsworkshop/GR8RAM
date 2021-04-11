@@ -1,6 +1,6 @@
 module GR8RAM(C25M, PHI0, nRES, nRESout,
 			  nIOSEL, nDEVSEL, nIOSTRB,
-			  SetRF, SetLim8M,
+			  SetFW,
 			  RA, nWE, RD, RDdir,
 			  SBA, SA, nRCS, nRAS, nCAS, nSWE, DQML, DQMH, RCKE, SD,
 			  nFCS, FCK, MISO, MOSI);
@@ -42,10 +42,11 @@ module GR8RAM(C25M, PHI0, nRES, nRESout,
 	/* Apple select signals */
 	wire ROMSpecSEL = RA[15:12]==4'hC && RA[11:8]!=4'h0;
 	wire BankSpecSEL = RA[3:0]==4'hF;
-	wire RAMSpecSEL = RA[15:12]==4'hC && RA[11:8]==4'h0 && RA[7] && RA[3:0]==4'h3 && REGEN;
-	wire AddrHSpecSEL = RA[3:0]==4'h2;
-	wire AddrMSpecSEL = RA[3:0]==4'h1;
-	wire AddrLSpecSEL = RA[3:0]==4'h0;
+	wire REGSpecSEL = RA[15:12]==4'hC && RA[11:8]==4'h0 && RA[7] && REGEN;
+	wire RAMSpecSEL = REGSpecSEL && RA[3:0]==4'h3 && (~SetLim1M || Addr[23:20]==0) && (~SetLim8M || ~Addr[23]);
+	wire AddrHSpecSEL = REGSpecSEL && RA[3:0]==4'h2;
+	wire AddrMSpecSEL = REGSpecSEL && RA[3:0]==4'h1;
+	wire AddrLSpecSEL = REGSpecSEL && RA[3:0]==4'h0;
 	reg ROMSpecSELr, RAMSpecSELr, nWEr;
 	wire BankSEL = REGEN && ~nDEVSEL && BankSpecSEL;
 	wire RAMSEL = ~nDEVSEL && RAMSpecSELr;
@@ -53,12 +54,10 @@ module GR8RAM(C25M, PHI0, nRES, nRESout,
 	wire AddrHSEL = REGEN && ~nDEVSEL && AddrHSpecSEL;
 	wire AddrMSEL = REGEN && ~nDEVSEL && AddrMSpecSEL;
 	wire AddrLSEL = REGEN && ~nDEVSEL && AddrLSpecSEL;
-	always @(posedge C25M) begin
-		if (PSStart) begin
-			ROMSpecSELr <= ROMSpecSEL;
-			RAMSpecSELr <= RAMSpecSEL;
-			nWEr <= nWE;
-		end
+	always @(posedge PHI0) begin
+		ROMSpecSELr <= ROMSpecSEL;
+		RAMSpecSELr <= RAMSpecSEL;
+		nWEr <= nWE;
 	end
 	
 	/* IOROMEN and REGEN control */
@@ -174,7 +173,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout,
 				FCK <= ~(IS==5);
 			end
 		endcase
-		FCS <= IS==5 || IS==6;
+		FCS <= IS==4 || IS==5 || IS==6;
 		MOSIOE <= IS==5;
 	end
 
@@ -183,16 +182,16 @@ module GR8RAM(C25M, PHI0, nRES, nRESout,
 			1, 2: begin
 				case (LS[2:0])
 					3'h3: MOSIout <= 1'b0; // Command bit 7
-					3'h4: MOSIout <= SetRF; // Address bit 23
+					3'h4: MOSIout <= 1'b0; // Address bit 23
 					3'h5: MOSIout <= 1'b0; // Address bit 15
 					3'h6: MOSIout <= 1'b0; // Address bit 7
 					default MOSIout <= 1'b0;
 				endcase
 			end 3, 4: begin
 				case (LS[2:0])
-					3'h3: MOSIout <= 1'b1; // Command bit 6
+					3'h3: MOSIout <= 1'b0; // Command bit 6
 					3'h4: MOSIout <= 1'b0; // Address bit 22
-					3'h5: MOSIout <= 1'b0; // Address bit 14
+					3'h5: MOSIout <= SetFW[1]; // Address bit 14
 					3'h6: MOSIout <= 1'b0; // Address bit 6
 					default MOSIout <= 1'b0;
 				endcase
@@ -200,13 +199,13 @@ module GR8RAM(C25M, PHI0, nRES, nRESout,
 				case (LS[2:0])
 					3'h3: MOSIout <= 1'b1; // Command bit 5
 					3'h4: MOSIout <= 1'b0; // Address bit 21
-					3'h5: MOSIout <= 1'b0; // Address bit 13
+					3'h5: MOSIout <= SetFW[0]; // Address bit 13
 					3'h6: MOSIout <= 1'b0; // Address bit 5
 					default MOSIout <= 1'b0;
 				endcase
 			end 7, 8: begin
 				case (LS[2:0])
-					3'h3: MOSIout <= 1'b0; // Command bit 4
+					3'h3: MOSIout <= 1'b1; // Command bit 4
 					3'h4: MOSIout <= 1'b0; // Address bit 20
 					3'h5: MOSIout <= 1'b0; // Address bit 12
 					3'h6: MOSIout <= 1'b0; // Address bit 4
@@ -248,8 +247,10 @@ module GR8RAM(C25M, PHI0, nRES, nRESout,
 		endcase
 	end
 
-	input SetRF;
-	input SetLim8M;
+	input [1:0] SetFW;
+	wire SetRF = SetFW[1:0] != 2'b11;
+	wire SetLim1M = SetFW[1];
+	wire SetLim8M = SetFW[1:0] != 2'b00;
 
 	/* SDRAM data bus */
 	inout [7:0] SD = SDOE ? WRD[7:0] : 8'bZ;
@@ -452,7 +453,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout,
 					SBA[1:0] <= { 2'b10 };
 					SA[12:0] <= { 10'b0011000100, LS[12:10] };
 				end else if (RAMSpecSELr) begin
-					SBA[1:0] <= { 1'b0, Addr[23] && SetLim8M && SetRF };
+					SBA[1:0] <= { 1'b0, Addr[23] && SetRF };
 					SA[12:0] <= { SetRF ? Addr [22:20] : 3'b000, Addr[19:10]};
 				end else begin
 					SBA[1:0] <= 2'b10;
@@ -460,7 +461,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout,
 				end
 			end 2: begin // RD
 				if (RAMSpecSELr) begin
-					SBA[1:0] <= { 1'b0, Addr[23] && SetLim8M && SetRF };
+					SBA[1:0] <= { 1'b0, Addr[23] && SetRF };
 					SA[12:0] <= { 4'b0011, Addr[9:1] };
 					DQML <= Addr[0];
 					DQMH <= ~Addr[0];

@@ -1,11 +1,11 @@
-Fitter Status : Successful - Mon Mar 22 12:12:21 2021
+Fitter Status : Successful - Sun Apr 11 13:22:34 2021
 Quartus II 32-bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
 Revision Name : GR8RAM
 Top-level Entity Name : GR8RAM
 Family : MAX II
 Device : EPM240T100C5
 Timing Models : Final
-Total logic elements : 223 / 240 ( 93 % )
+Total logic elements : 227 / 240 ( 95 % )
 Total pins : 69 / 80 ( 86 % )
 Total virtual pins : 0
 UFM blocks : 0 / 1 ( 0 % )
