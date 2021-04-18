@@ -1,6 +1,7 @@
-module GR8RAM(C25M, PHI0, nRES, nRESout,
+module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
+			  RAdir, INTin, INTout, DMAin, DMAout, nDMAout, 
+			  nNMIout, nIRQout, nRDYout, nINHout, RWout,
 			  nIOSEL, nDEVSEL, nIOSTRB,
-			  SetFW,
 			  RA, nWE, RD, RDdir,
 			  SBA, SA, nRCS, nRAS, nCAS, nSWE, DQML, DQMH, RCKE, SD,
 			  nFCS, FCK, MISO, MOSI);
@@ -9,7 +10,20 @@ module GR8RAM(C25M, PHI0, nRES, nRESout,
 	input C25M, PHI0;
 	reg PHI0r1, PHI0r2;
 	always @(posedge C25M) begin PHI0r1 <= PHI0; PHI0r2 <= PHI0r1; end
-
+	
+	/* Unused Pins */
+	output RAdir = 1;
+	input INTin;
+	output INTout = INTin;
+	input DMAin;
+	output DMAout = DMAin;
+	output nDMAout = 1;
+	output nNMIout = 1;
+	output nINHout = 1;
+	output nRDYout = 1;
+	output nIRQout = 1;
+	output RWout = 1;
+	
 	/* Reset/brown-out detect synchronized inputs */
 	input nRES;
 	reg nRESr0, nRESr;
@@ -130,51 +144,54 @@ module GR8RAM(C25M, PHI0, nRES, nRESout,
 	end
 
 	/* SPI flash */
-	output nFCS = ~FCS;
+	output nFCS = FCKOE ? ~FCS : 1'bZ;
 	reg FCS = 0;
-	output reg FCK = 0;
+	output FCK = FCKOE ? FCKout : 1'bZ;
+	reg FCKOE = 0;
+	reg FCKout = 0;
 	inout MOSI = MOSIOE ? MOSIout : 1'bZ;
 	reg MOSIOE = 0;
-	reg MOSIout;
+	reg MOSIout = 0;
 	input MISO;
 	always @(posedge C25M) begin
 		case (PS[3:0])
 			0: begin // NOP CKE
-				FCK <= 1'b1;
+				FCKout <= 1'b1;
 			end 1: begin // ACT
-				FCK <= ~(IS==5 || IS==6);
+				FCKout <= ~(IS==5 || IS==6);
 			end 2: begin // RD
-				FCK <= 1'b1;
+				FCKout <= 1'b1;
 			end 3: begin // NOP CKE
-				FCK <= ~(IS==5 || IS==6);
+				FCKout <= ~(IS==5 || IS==6);
 			end 4: begin // NOP CKE
-				FCK <= 1'b1;
+				FCKout <= 1'b1;
 			end 5: begin // NOP CKE
-				FCK <= ~(IS==5 || IS==6);
+				FCKout <= ~(IS==5 || IS==6);
 			end 6: begin // NOP CKE
-				FCK <= 1'b1;
+				FCKout <= 1'b1;
 			end 7: begin // NOP CKE
-				FCK <= ~(IS==5 || IS==6);
+				FCKout <= ~(IS==5 || IS==6);
 			end 8: begin // WR AP
-				FCK <= 1'b1;
+				FCKout <= 1'b1;
 			end 9: begin // NOP CKE
-				FCK <= ~(IS==5);
+				FCKout <= ~(IS==5);
 			end 10: begin // PC all
-				FCK <= 1'b1;
+				FCKout <= 1'b1;
 			end 11: begin // AREF
-				FCK <= ~(IS==5);
+				FCKout <= ~(IS==5);
 			end 12: begin // NOP CKE
-				FCK <= 1'b1;
+				FCKout <= 1'b1;
 			end 13: begin // NOP CKE
-				FCK <= ~(IS==5);
+				FCKout <= ~(IS==5);
 			end 14: begin // NOP CKE
-				FCK <= 1'b1;
+				FCKout <= 1'b1;
 			end 15: begin // NOP CKE
-				FCK <= ~(IS==5);
+				FCKout <= ~(IS==5);
 			end
 		endcase
 		FCS <= IS==4 || IS==5 || IS==6;
 		MOSIOE <= IS==5;
+		FCKOE <= IS==1 || IS==2 || IS==3 || IS==4 || IS==5 || IS==6 || IS==7;
 	end
 
 	always @(posedge C25M) begin
@@ -461,7 +478,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout,
 				end
 			end 2: begin // RD
 				if (RAMSpecSELr) begin
-					SBA[1:0] <= { 1'b0, Addr[23] && SetRF };
+					SBA[1:0] <= { 1'b0, Addr[23] && SetLim8M && SetRF };
 					SA[12:0] <= { 4'b0011, Addr[9:1] };
 					DQML <= Addr[0];
 					DQMH <= ~Addr[0];
