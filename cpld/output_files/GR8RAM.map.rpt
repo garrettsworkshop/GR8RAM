@@ -1,5 +1,5 @@
 Analysis & Synthesis report for GR8RAM
-Sun Apr 18 03:45:20 2021
+Sun Apr 18 05:55:48 2021
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -45,12 +45,12 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Sun Apr 18 03:45:20 2021           ;
+; Analysis & Synthesis Status ; Successful - Sun Apr 18 05:55:48 2021           ;
 ; Quartus II 64-Bit Version   ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name               ; GR8RAM                                          ;
 ; Top-level Entity Name       ; GR8RAM                                          ;
 ; Family                      ; MAX II                                          ;
-; Total logic elements        ; 242                                             ;
+; Total logic elements        ; 226                                             ;
 ; Total pins                  ; 80                                              ;
 ; Total virtual pins          ; 0                                               ;
 ; UFM blocks                  ; 0 / 1 ( 0 % )                                   ;
@@ -155,24 +155,24 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+-------+
 ; Resource                                    ; Usage ;
 +---------------------------------------------+-------+
-; Total logic elements                        ; 242   ;
-;     -- Combinational with no register       ; 139   ;
-;     -- Register only                        ; 14    ;
-;     -- Combinational with a register        ; 89    ;
+; Total logic elements                        ; 226   ;
+;     -- Combinational with no register       ; 123   ;
+;     -- Register only                        ; 7     ;
+;     -- Combinational with a register        ; 96    ;
 ;                                             ;       ;
 ; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 135   ;
-;     -- 3 input functions                    ; 30    ;
-;     -- 2 input functions                    ; 63    ;
+;     -- 4 input functions                    ; 114   ;
+;     -- 3 input functions                    ; 46    ;
+;     -- 2 input functions                    ; 59    ;
 ;     -- 1 input functions                    ; 0     ;
 ;     -- 0 input functions                    ; 0     ;
 ;                                             ;       ;
 ; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 209   ;
+;     -- normal mode                          ; 193   ;
 ;     -- arithmetic mode                      ; 33    ;
 ;     -- qfbk mode                            ; 0     ;
 ;     -- register cascade mode                ; 0     ;
-;     -- synchronous clear/load mode          ; 35    ;
+;     -- synchronous clear/load mode          ; 44    ;
 ;     -- asynchronous clear/load mode         ; 30    ;
 ;                                             ;       ;
 ; Total registers                             ; 103   ;
@@ -180,8 +180,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; I/O pins                                    ; 80    ;
 ; Maximum fan-out node                        ; C25M  ;
 ; Maximum fan-out                             ; 100   ;
-; Total fan-out                               ; 1055  ;
-; Average fan-out                             ; 3.28  ;
+; Total fan-out                               ; 1013  ;
+; Average fan-out                             ; 3.31  ;
 +---------------------------------------------+-------+
 
 
@@ -190,7 +190,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+--------------+
 ; Compilation Hierarchy Node ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name ; Library Name ;
 +----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+--------------+
-; |GR8RAM                    ; 242 (242)   ; 103          ; 0          ; 80   ; 0            ; 139 (139)    ; 14 (14)           ; 89 (89)          ; 37 (37)         ; 0 (0)      ; |GR8RAM             ; work         ;
+; |GR8RAM                    ; 226 (226)   ; 103          ; 0          ; 80   ; 0            ; 123 (123)    ; 7 (7)             ; 96 (96)          ; 37 (37)         ; 0 (0)      ; |GR8RAM             ; work         ;
 +----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -203,8 +203,6 @@ Encoding Type:  Minimal Bits
 +--------+----------------+----------------+----------------+
 ; IS.000 ; 0              ; 0              ; 0              ;
 ; IS.001 ; 0              ; 0              ; 1              ;
-; IS.010 ; 1              ; 1              ; 0              ;
-; IS.011 ; 1              ; 1              ; 1              ;
 ; IS.100 ; 1              ; 0              ; 0              ;
 ; IS.101 ; 1              ; 0              ; 1              ;
 ; IS.110 ; 0              ; 1              ; 0              ;
@@ -217,7 +215,7 @@ Encoding Type:  Minimal Bits
 +---------------------------------------+--------------------+
 ; Register name                         ; Reason for Removal ;
 +---------------------------------------+--------------------+
-; IS~12                                 ; Lost fanout        ;
+; IS~10                                 ; Lost fanout        ;
 ; Total Number of Removed Registers = 1 ;                    ;
 +---------------------------------------+--------------------+
 
@@ -228,11 +226,11 @@ Encoding Type:  Minimal Bits
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
 ; Total registers                              ; 103   ;
-; Number of registers using Synchronous Clear  ; 10    ;
-; Number of registers using Synchronous Load   ; 25    ;
+; Number of registers using Synchronous Clear  ; 11    ;
+; Number of registers using Synchronous Load   ; 33    ;
 ; Number of registers using Asynchronous Clear ; 30    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 29    ;
+; Number of registers using Clock Enable       ; 22    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -258,16 +256,14 @@ Encoding Type:  Minimal Bits
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |GR8RAM|PS[2]              ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |GR8RAM|SA[11]~reg0        ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |GR8RAM|PS[1]              ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |GR8RAM|SA[11]~reg0        ;
 ; 20:1               ; 6 bits    ; 78 LEs        ; 24 LEs               ; 54 LEs                 ; Yes        ; |GR8RAM|SA[8]~reg0         ;
 ; 20:1               ; 3 bits    ; 39 LEs        ; 18 LEs               ; 21 LEs                 ; Yes        ; |GR8RAM|SA[2]~reg0         ;
-; 3:1                ; 6 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; Yes        ; |GR8RAM|WRD[0]             ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; Yes        ; |GR8RAM|WRD[7]             ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |GR8RAM|RDD[2]             ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |GR8RAM|RDD[7]             ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |GR8RAM|WRD[7]             ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |GR8RAM|RDD[1]             ;
 ; 18:1               ; 2 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |GR8RAM|DQMH~reg0          ;
-; 8:1                ; 7 bits    ; 35 LEs        ; 28 LEs               ; 7 LEs                  ; No         ; |GR8RAM|IS                 ;
+; 8:1                ; 5 bits    ; 25 LEs        ; 20 LEs               ; 5 LEs                  ; No         ; |GR8RAM|IS                 ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 
 
@@ -277,17 +273,20 @@ Encoding Type:  Minimal Bits
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Sun Apr 18 03:45:19 2021
+    Info: Processing started: Sun Apr 18 05:55:47 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off GR8RAM -c GR8RAM
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file gr8ram.v
     Info (12023): Found entity 1: GR8RAM
 Info (12127): Elaborating entity "GR8RAM" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at GR8RAM.v(269): object "SetRF" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at GR8RAM.v(270): object "SetLim1M" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at GR8RAM.v(271): object "SetLim8M" assigned a value but never read
 Warning (10230): Verilog HDL assignment warning at GR8RAM.v(34): truncated value with size 32 to match size of target (14)
 Warning (10230): Verilog HDL assignment warning at GR8RAM.v(117): truncated value with size 32 to match size of target (8)
 Warning (10230): Verilog HDL assignment warning at GR8RAM.v(125): truncated value with size 32 to match size of target (8)
 Warning (10230): Verilog HDL assignment warning at GR8RAM.v(132): truncated value with size 32 to match size of target (8)
-Warning (10230): Verilog HDL assignment warning at GR8RAM.v(324): truncated value with size 32 to match size of target (4)
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(325): truncated value with size 32 to match size of target (4)
 Info (17026): Resynthesizing 0 WYSIWYG logic cells and I/Os using "area" technology mapper which leaves 0 WYSIWYG logic cells and I/Os untouched
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "RAdir" is stuck at VCC
@@ -298,15 +297,18 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "nINHout" is stuck at VCC
     Warning (13410): Pin "RWout" is stuck at VCC
 Info (17049): 1 registers lost all their fanouts during netlist optimizations.
-Info (21057): Implemented 322 device resources after synthesis - the final resource count might be different
+Warning (21074): Design contains 2 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "SetFW[0]"
+    Warning (15610): No output dependent on input pin "SetFW[1]"
+Info (21057): Implemented 306 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 28 input pins
     Info (21059): Implemented 35 output pins
     Info (21060): Implemented 17 bidirectional pins
-    Info (21061): Implemented 242 logic cells
+    Info (21061): Implemented 226 logic cells
 Info (144001): Generated suppressed messages file C:/Users/Dog/Documents/GitHub/GR8RAM/cpld/output_files/GR8RAM.map.smsg
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 14 warnings
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 20 warnings
     Info: Peak virtual memory: 421 megabytes
-    Info: Processing ended: Sun Apr 18 03:45:20 2021
+    Info: Processing ended: Sun Apr 18 05:55:48 2021
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 

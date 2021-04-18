@@ -54,14 +54,14 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 	input [15:0] RA; input nWE;
 
 	/* Apple select signals */
-	wire ROMSpecSEL = RA[15:12]==4'hC && RA[11:8]!=4'h0;
+	wire ROMSpecRD = RA[15:12]==4'hC && RA[11:8]!=4'h0 && nWE;
 	wire BankSpecSEL = RA[3:0]==4'hF;
 	wire REGSpecSEL = RA[15:12]==4'hC && RA[11:8]==4'h0 && RA[7] && REGEN;
-	wire RAMSpecSEL = REGSpecSEL && RA[3:0]==4'h3 && (~SetLim1M || Addr[23:20]==0) && (~SetLim8M || ~Addr[23]);
+	wire RAMSpecSEL = REGSpecSEL && RA[3:0]==4'h3;
 	wire AddrHSpecSEL = REGSpecSEL && RA[3:0]==4'h2;
 	wire AddrMSpecSEL = REGSpecSEL && RA[3:0]==4'h1;
 	wire AddrLSpecSEL = REGSpecSEL && RA[3:0]==4'h0;
-	reg ROMSpecSELr, RAMSpecSELr, nWEr;
+	reg ROMSpecRDr, RAMSpecSELr, nWEr;
 	wire BankSEL = REGEN && ~nDEVSEL && BankSpecSEL;
 	wire RAMSEL = ~nDEVSEL && RAMSpecSELr;
 	wire RAMWR = RAMSEL && ~nWEr;
@@ -69,7 +69,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 	wire AddrMSEL = REGEN && ~nDEVSEL && AddrMSpecSEL;
 	wire AddrLSEL = REGEN && ~nDEVSEL && AddrLSpecSEL;
 	always @(posedge PHI0) begin
-		ROMSpecSELr <= ROMSpecSEL;
+		ROMSpecRDr <= ROMSpecRD;
 		RAMSpecSELr <= RAMSpecSEL;
 		nWEr <= nWE;
 	end
@@ -191,12 +191,12 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 		endcase
 		FCS <= IS==4 || IS==5 || IS==6;
 		MOSIOE <= IS==5;
-		FCKOE <= IS==1 || IS==2 || IS==3 || IS==4 || IS==5 || IS==6 || IS==7;
+		FCKOE <= IS==1 || IS==4 || IS==5 || IS==6 || IS==7;
 	end
 
 	always @(posedge C25M) begin
 		case (PS[3:0])
-			1, 2: begin
+			1: begin
 				case (LS[2:0])
 					3'h3: MOSIout <= 1'b0; // Command bit 7
 					3'h4: MOSIout <= 1'b0; // Address bit 23
@@ -204,23 +204,23 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 					3'h6: MOSIout <= 1'b0; // Address bit 7
 					default MOSIout <= 1'b0;
 				endcase
-			end 3, 4: begin
+			end 3: begin
 				case (LS[2:0])
 					3'h3: MOSIout <= 1'b0; // Command bit 6
 					3'h4: MOSIout <= 1'b0; // Address bit 22
-					3'h5: MOSIout <= SetFW[1]; // Address bit 14
+					3'h5: MOSIout <= SetROM[1]; // Address bit 14
 					3'h6: MOSIout <= 1'b0; // Address bit 6
 					default MOSIout <= 1'b0;
 				endcase
-			end 5, 6: begin
+			end 5: begin
 				case (LS[2:0])
 					3'h3: MOSIout <= 1'b1; // Command bit 5
 					3'h4: MOSIout <= 1'b0; // Address bit 21
-					3'h5: MOSIout <= SetFW[0]; // Address bit 13
+					3'h5: MOSIout <= SetROM[0]; // Address bit 13
 					3'h6: MOSIout <= 1'b0; // Address bit 5
 					default MOSIout <= 1'b0;
 				endcase
-			end 7, 8: begin
+			end 7: begin
 				case (LS[2:0])
 					3'h3: MOSIout <= 1'b1; // Command bit 4
 					3'h4: MOSIout <= 1'b0; // Address bit 20
@@ -228,7 +228,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 					3'h6: MOSIout <= 1'b0; // Address bit 4
 					default MOSIout <= 1'b0;
 				endcase
-			end 9, 10: begin
+			end 9: begin
 				case (LS[2:0])
 					3'h3: MOSIout <= 1'b1; // Command bit 3
 					3'h4: MOSIout <= 1'b0; // Address bit 19
@@ -236,7 +236,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 					3'h6: MOSIout <= 1'b0; // Address bit 3
 					default MOSIout <= 1'b0;
 				endcase
-			end 11, 12: begin
+			end 11: begin
 				case (LS[2:0])
 					3'h3: MOSIout <= 1'b0; // Command bit 2
 					3'h4: MOSIout <= 1'b0; // Address bit 18
@@ -244,7 +244,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 					3'h6: MOSIout <= 1'b0; // Address bit 2
 					default MOSIout <= 1'b0;
 				endcase
-			end 13, 14: begin
+			end 13: begin
 				case (LS[2:0])
 					3'h3: MOSIout <= 1'b1; // Command bit 1
 					3'h4: MOSIout <= 1'b0; // Address bit 16
@@ -252,7 +252,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 					3'h6: MOSIout <= 1'b0; // Address bit 1
 					default MOSIout <= 1'b0;
 				endcase
-			end 15, 0: begin
+			end 15: begin
 				case (LS[2:0])
 					3'h3: MOSIout <= 1'b1; // Command bit 0
 					3'h4: MOSIout <= 1'b0; // Address bit 15
@@ -265,6 +265,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 	end
 
 	input [1:0] SetFW;
+	wire [1:0] SetROM = 2'b01;
 	wire SetRF = SetFW[1:0] != 2'b11;
 	wire SetLim1M = SetFW[1];
 	wire SetLim8M = SetFW[1:0] != 2'b00;
@@ -276,40 +277,40 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 	always @(posedge C25M) begin
 		case (PS[3:0])
 			0: begin // NOP CKE
-				if (IS==6) WRD[7:0] <= { MISO, MOSI, WRD[5:0] };
+				if (IS==6) WRD[7:0] <= { WRD[5:0], MISO, MOSI };
 				else WRD[7:0] <= RD[7:0];
 			end 1: begin // ACT
 			end 2: begin // RD
-				if (IS==6) WRD[7:0] <= { MISO, MOSI, WRD[5:0] };
+				if (IS==6) WRD[7:0] <= { WRD[5:0], MISO, MOSI };
 				else WRD[7:0] <= RD[7:0];
 			end 3: begin // NOP CKE
 			end 4: begin // NOP CKE
-				if (AddrLSpecSEL) RDD[7:0] <= Addr[7:0];
-				else if (AddrMSpecSEL) RDD[7:0] <= Addr[15:8];
-				else if (AddrHSpecSEL && SetRF) RDD[7:0] <= Addr[23:16];
-				else if (AddrHSpecSEL && ~SetRF) RDD[7:0] <= {4'hF, Addr[19:16]};
-				else RDD[7:0] <= SD[7:0];
-				if (IS==6) WRD[7:0] <= { MISO, MOSI, WRD[5:0] };
+				if (IS==6) WRD[7:0] <= { WRD[5:0], MISO, MOSI };
 				else WRD[7:0] <= RD[7:0];
 			end 5: begin // NOP CKE
+				if (AddrLSpecSEL) RDD[7:0] <= Addr[7:0];
+				else if (AddrMSpecSEL) RDD[7:0] <= Addr[15:8];
+				else if (AddrHSpecSEL) RDD[7:0] <= Addr[23:16];
+				else if (AddrHSpecSEL) RDD[7:0] <= {4'hF, Addr[19:16]};
+				else RDD[7:0] <= SD[7:0];
 			end 6: begin // NOP CKE
-				if (IS==6) WRD[7:0] <= { MISO, MOSI, WRD[5:0] };
+				if (IS==6) WRD[7:0] <= { WRD[5:0], MISO, MOSI };
 				else WRD[7:0] <= RD[7:0];
 			end 7: begin // NOP CKE
 			end 8: begin // WR AP
-				if (IS==6) WRD[7:0] <= { MISO, MOSI, WRD[5:0] };
+				if (IS==6) WRD[7:0] <= { WRD[5:0], MISO, MOSI };
 				else WRD[7:0] <= RD[7:0];
 			end 9: begin // NOP CKE
 			end 10: begin // PC all
-				if (IS==6) WRD[7:0] <= { MISO, MOSI, WRD[5:0] };
+				if (IS==6) WRD[7:0] <= { WRD[5:0], MISO, MOSI };
 				else WRD[7:0] <= RD[7:0];
 			end 11: begin // AREF
 			end 12: begin // NOP CKE
-				if (IS==6) WRD[7:0] <= { MISO, MOSI, WRD[5:0] };
+				if (IS==6) WRD[7:0] <= { WRD[5:0], MISO, MOSI };
 				else WRD[7:0] <= RD[7:0];
 			end 13: begin // NOP CKE
 			end 14: begin // NOP CKE
-				if (IS==6) WRD[7:0] <= { MISO, MOSI, WRD[5:0] };
+				if (IS==6) WRD[7:0] <= { WRD[5:0], MISO, MOSI };
 				else WRD[7:0] <= RD[7:0];
 			end 15: begin // NOP CKE
 			end
@@ -325,7 +326,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 	end
 
 	/* SDRAM address/command */
-	output RCKE = 1;
+	output reg RCKE = 1;
 	output reg nRCS = 1;
 	output reg nRAS = 1;
 	output reg nCAS = 1;
@@ -333,98 +334,92 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 	wire RefReqd = LS[1:0] == 2'b11;
 	always @(posedge C25M) begin
 		case (PS[3:0])
-			0: begin // NOP
+			0: begin // NOP CKE / NOP CKD
+				RCKE <= PSStart;
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;	
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 1: begin // ACT / NOP (ACT)
-				nRCS <= ~(IS==6 || (((ROMSpecSELr && nWEr) || RAMSpecSELr) && IS==7));
+			end 1: begin // ACT CKE / NOP CKD (ACT)
+				RCKE <= (ROMSpecRDr || RAMSpecSELr) && nWEr && IS==7;
+				nRCS <= ~(IS==6 || ((ROMSpecRDr || RAMSpecSELr) && IS==7));
 				nRAS <= 1'b0;
 				nCAS <= 1'b1;
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 2: begin // RD / NOP (RD)
-				nRCS <= ~((ROMSpecSELr || RAMSpecSELr) && nWEr && IS==7);
+			end 2: begin // RD CKE / NOP CKD (RD)
+				RCKE <= (ROMSpecRDr || RAMSpecSELr) && nWEr && IS==7;
+				nRCS <= ~((ROMSpecRDr || RAMSpecSELr) && nWEr && IS==7);
 				nRAS <= 1'b1;
 				nCAS <= 1'b0;
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 3: begin // NOP
+			end 3: begin // NOP CKE / CKD
+				RCKE <= (ROMSpecRDr || RAMSpecSELr) && nWEr && IS==7;
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 4: begin // NOP
+			end 4: begin // NOP CKD
+				RCKE <= 1'b0;
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 5: begin // NOP
+			end 5: begin // NOP CKD
+				RCKE <= 1'b0;
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 6: begin // NOP
+			end 6: begin // NOP CKD
+				RCKE <= 1'b0;
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 7: begin // NOP
+			end 7: begin // NOP CKE / CKD
+				RCKE <= IS==6 || (RAMWR && IS==7);
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 8: begin // WR AP / NOP (WR AP)
+			end 8: begin // WR AP CKE / NOP CKD (WR AP)
+				RCKE <= IS==6 || (RAMWR && IS==7);
 				nRCS <= ~(IS==6 || (RAMWR && IS==7));
 				nRAS <= 1'b1;
 				nCAS <= 1'b0;
 				nSWE <= 1'b0;
 				SDOE <= IS==6 || (RAMWR && IS==7);
-			end 9: begin // NOP
+			end 9: begin // NOP CKE / NOP CKD
+				RCKE <= 1'b1;
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 10: begin // PC all / NOP (PC all)
-				nRCS <= ~((IS==6) || ((ROMSpecSELr || RAMSpecSELr) && IS==7) ||
-					(RefReqd && (IS==4 || IS==5 || IS==6 || IS==7)));
+			end 10: begin // PC all CKE / PC all CKD
+				RCKE <= 1'b1;
+				nRCS <= 1'b0;
 				nRAS <= 1'b0;
 				nCAS <= 1'b1;
 				nSWE <= 1'b0;
 				SDOE <= 0;
-			end 11: begin // AREF
-				nRCS <= ~(RefReqd && (IS==4 || IS==5 || IS==6 || IS==7));
+			end 11: begin // LDM CKE / AREF CKE / NOP CKD
+				RCKE <= IS==1 || IS==4 || IS==5 || IS==6 || (IS==7 && RefReqd);
+				nRCS <= ~(IS==1 || IS==4 || IS==5 || IS==6 || (IS==7 && RefReqd));
 				nRAS <= 1'b0;
 				nCAS <= 1'b0;
-				nSWE <= 1'b1;
+				nSWE <= ~(IS==1);
 				SDOE <= 0;
-			end 12: begin // NOP
-				nRCS <= 1'b1;
-				nRAS <= 1'b1;
-				nCAS <= 1'b1;
-				nSWE <= 1'b1;
-				SDOE <= 0;
-			end 13: begin // NOP
-				nRCS <= 1'b1;
-				nRAS <= 1'b1;
-				nCAS <= 1'b1;
-				nSWE <= 1'b1;
-				SDOE <= 0;
-			end 14: begin // NOP
-				nRCS <= 1'b1;
-				nRAS <= 1'b1;
-				nCAS <= 1'b1;
-				nSWE <= 1'b1;
-				SDOE <= 0;
-			end 15: begin // NOP
+			end default: begin // NOP CKD
+				RCKE <= IS==1;
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;
@@ -451,15 +446,15 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 					SBA[1:0] <= { 2'b10 };
 					SA[12:0] <= { 10'b0011000100, LS[12:10] };
 				end else if (RAMSpecSELr) begin
-					SBA[1:0] <= { 1'b0, Addr[23] && SetRF };
-					SA[12:0] <= { SetRF ? Addr [22:20] : 3'b000, Addr[19:10]};
+					SBA[1:0] <= { 1'b0, Addr[23] };
+					SA[12:0] <= Addr [22:10];
 				end else begin
 					SBA[1:0] <= 2'b10;
 					SA[12:0] <= { 10'b0011000100, Bank, RA[11:10] };
 				end
 			end 2: begin // RD
 				if (RAMSpecSELr) begin
-					SBA[1:0] <= { 1'b0, Addr[23] && SetLim8M && SetRF };
+					SBA[1:0] <= { 1'b0, Addr[23] };
 					SA[12:0] <= { 4'b0011, Addr[9:1] };
 					DQML <= Addr[0];
 					DQMH <= ~Addr[0];
@@ -501,7 +496,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 					DQML <= LS[0];
 					DQMH <= ~LS[0];
 				end else begin
-					SBA[1:0] <= { 1'b0, Addr[23] && SetLim8M && SetRF };
+					SBA[1:0] <= { 1'b0, Addr[23] };
 					SA[12:0] <= { 4'b0011, Addr[9:1] };
 					DQML <= Addr[0];
 					DQMH <= ~Addr[0];
