@@ -325,7 +325,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 	end
 
 	/* SDRAM address/command */
-	output reg RCKE = 1;
+	output RCKE = 1;
 	output reg nRCS = 1;
 	output reg nRAS = 1;
 	output reg nCAS = 1;
@@ -333,117 +333,98 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 	wire RefReqd = LS[1:0] == 2'b11;
 	always @(posedge C25M) begin
 		case (PS[3:0])
-			0: begin // NOP CKE / CKD
-				RCKE <= PSStart;
+			0: begin // NOP
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;	
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 1: begin // ACT CKE / NOP CKD
-				RCKE <= IS==6 || (((ROMSpecSELr && nWEr) || RAMSpecSELr) && IS==7);
+			end 1: begin // ACT / NOP (ACT)
 				nRCS <= ~(IS==6 || (((ROMSpecSELr && nWEr) || RAMSpecSELr) && IS==7));
 				nRAS <= 1'b0;
 				nCAS <= 1'b1;
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 2: begin // RD CKE / NOP CKD
-				RCKE <= (ROMSpecSELr || RAMSpecSELr) && nWEr && IS==7;
+			end 2: begin // RD / NOP (RD)
 				nRCS <= ~((ROMSpecSELr || RAMSpecSELr) && nWEr && IS==7);
 				nRAS <= 1'b1;
 				nCAS <= 1'b0;
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 3: begin // NOP CKE / CKD
-				RCKE <= (ROMSpecSELr || RAMSpecSELr) && nWEr && IS==7;
+			end 3: begin // NOP
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 4: begin // NOP CKD
-				RCKE <= 1'b0;
+			end 4: begin // NOP
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 5: begin // NOP CKD
-				RCKE <= 1'b0;
+			end 5: begin // NOP
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 6: begin // NOP CKD
-				RCKE <= 1'b0;
+			end 6: begin // NOP
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 7: begin // NOP CKE / CKD
-				RCKE <= IS==6 || (RAMWR && IS==7);
+			end 7: begin // NOP
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 8: begin // WR AP / NOP CKE (WR AP)
-				// NOP CKD / WR AP
-				RCKE <= IS==6 || (RAMWR && IS==7);
+			end 8: begin // WR AP / NOP (WR AP)
 				nRCS <= ~(IS==6 || (RAMWR && IS==7));
 				nRAS <= 1'b1;
 				nCAS <= 1'b0;
 				nSWE <= 1'b0;
 				SDOE <= IS==6 || (RAMWR && IS==7);
-			end 9: begin // NOP CKE / NOP CKD
-				RCKE <= (IS==6) || ((ROMSpecSELr || RAMSpecSELr) && IS==7) || 
-					 (RefReqd && (IS==4 || IS==5 || IS==6 || IS==7));
+			end 9: begin // NOP
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 10: begin // PC all / NOP CKD (PC all)
-				RCKE <= (IS==6) || ((ROMSpecSELr || RAMSpecSELr) && IS==7) ||
-					(RefReqd && (IS==4 || IS==5 || IS==6 || IS==7));
+			end 10: begin // PC all / NOP (PC all)
 				nRCS <= ~((IS==6) || ((ROMSpecSELr || RAMSpecSELr) && IS==7) ||
 					(RefReqd && (IS==4 || IS==5 || IS==6 || IS==7)));
 				nRAS <= 1'b0;
 				nCAS <= 1'b1;
 				nSWE <= 1'b0;
 				SDOE <= 0;
-			end 11: begin // AREF / NOP CKD (AREF)
-				RCKE <= RefReqd && (IS==4 || IS==5 || IS==6 || IS==7);
+			end 11: begin // AREF
 				nRCS <= ~(RefReqd && (IS==4 || IS==5 || IS==6 || IS==7));
 				nRAS <= 1'b0;
 				nCAS <= 1'b0;
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 12: begin // NOP CKD
-				RCKE <= 1'b0;
+			end 12: begin // NOP
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 13: begin // NOP CKD
-				RCKE <= 1'b0;
+			end 13: begin // NOP
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 14: begin // NOP CKD
-				RCKE <= 1'b0;
+			end 14: begin // NOP
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;
 				nSWE <= 1'b1;
 				SDOE <= 0;
-			end 15: begin // NOP CKD
-				RCKE <= 1'b0;
+			end 15: begin // NOP
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;
