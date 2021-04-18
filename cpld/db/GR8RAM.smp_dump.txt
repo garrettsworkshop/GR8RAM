@@ -3,8 +3,6 @@ State Machine - |GR8RAM|IS
 Name IS.state_bit_2 IS.state_bit_1 IS.state_bit_0 
 IS.000 0 0 0 
 IS.001 0 0 1 
-IS.010 1 1 0 
-IS.011 1 1 1 
 IS.100 1 0 0 
 IS.101 1 0 1 
 IS.110 0 1 0 

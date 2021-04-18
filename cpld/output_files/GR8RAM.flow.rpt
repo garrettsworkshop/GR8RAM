@@ -1,5 +1,5 @@
 Flow report for GR8RAM
-Sun Apr 18 03:45:27 2021
+Sun Apr 18 05:55:54 2021
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -40,14 +40,14 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------+
 ; Flow Summary                                                                ;
 +---------------------------+-------------------------------------------------+
-; Flow Status               ; Successful - Sun Apr 18 03:45:25 2021           ;
+; Flow Status               ; Successful - Sun Apr 18 05:55:52 2021           ;
 ; Quartus II 64-Bit Version ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name             ; GR8RAM                                          ;
 ; Top-level Entity Name     ; GR8RAM                                          ;
 ; Family                    ; MAX II                                          ;
 ; Device                    ; EPM240T100C5                                    ;
 ; Timing Models             ; Final                                           ;
-; Total logic elements      ; 229 / 240 ( 95 % )                              ;
+; Total logic elements      ; 220 / 240 ( 92 % )                              ;
 ; Total pins                ; 80 / 80 ( 100 % )                               ;
 ; Total virtual pins        ; 0                                               ;
 ; UFM blocks                ; 0 / 1 ( 0 % )                                   ;
@@ -59,7 +59,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/18/2021 03:45:19 ;
+; Start date & time ; 04/18/2021 05:55:48 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; GR8RAM              ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ applicable agreement for further details.
 ; ALM_REGISTER_PACKING_EFFORT                     ; High                         ; Medium        ; --          ; --         ;
 ; AUTO_PACKED_REGISTERS_MAXII                     ; Minimize Area                ; Auto          ; --          ; --         ;
 ; AUTO_RESOURCE_SHARING                           ; On                           ; Off           ; --          ; --         ;
-; COMPILER_SIGNATURE_ID                           ; 136298148942.161873191903592 ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID                           ; 136298148942.161873974705152 ; --            ; --          ; --         ;
 ; FINAL_PLACEMENT_OPTIMIZATION                    ; Always                       ; Automatically ; --          ; --         ;
 ; FITTER_EFFORT                                   ; Standard Fit                 ; Auto Fit      ; --          ; --         ;
 ; IOBANK_VCCIO                                    ; 3.3V                         ; --            ; --          ; 1          ;
@@ -103,10 +103,10 @@ applicable agreement for further details.
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Analysis & Synthesis      ; 00:00:01     ; 1.0                     ; 421 MB              ; 00:00:01                           ;
-; Fitter                    ; 00:00:03     ; 1.0                     ; 547 MB              ; 00:00:03                           ;
-; Assembler                 ; 00:00:01     ; 1.0                     ; 381 MB              ; 00:00:00                           ;
+; Fitter                    ; 00:00:02     ; 1.0                     ; 545 MB              ; 00:00:02                           ;
+; Assembler                 ; 00:00:00     ; 1.0                     ; 381 MB              ; 00:00:00                           ;
 ; TimeQuest Timing Analyzer ; 00:00:01     ; 1.0                     ; 368 MB              ; 00:00:01                           ;
-; Total                     ; 00:00:06     ; --                      ; --                  ; 00:00:05                           ;
+; Total                     ; 00:00:04     ; --                      ; --                  ; 00:00:04                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
