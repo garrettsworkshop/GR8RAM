@@ -84,7 +84,6 @@ set_location_assignment PIN_12 -to FCK
 set_location_assignment PIN_14 -to RA[10]
 set_location_assignment PIN_15 -to MOSI
 set_location_assignment PIN_16 -to MISO
-set_location_assignment PIN_17 -to Ddir
 set_location_assignment PIN_30 -to nRESout
 set_location_assignment PIN_34 -to RA[11]
 set_location_assignment PIN_35 -to RA[12]
@@ -143,3 +142,23 @@ set_location_assignment PIN_96 -to SetFW[0]
 set_location_assignment PIN_95 -to SetFW[1]
 set_global_assignment -name IOBANK_VCCIO 3.3V -section_id 1
 set_global_assignment -name IOBANK_VCCIO 3.3V -section_id 2
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to nFCS
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nFCS
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to FCK
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to FCK
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to MOSI
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to MOSI
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to MISO
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to MISO
+set_location_assignment PIN_21 -to nDMAout
+set_location_assignment PIN_19 -to RAdir
+set_location_assignment PIN_20 -to INTout
+set_location_assignment PIN_26 -to nNMIout
+set_location_assignment PIN_27 -to nINHout
+set_location_assignment PIN_28 -to nRDYout
+set_location_assignment PIN_29 -to nIRQout
+set_location_assignment PIN_33 -to RWout
+set_location_assignment PIN_48 -to DMAin
+set_location_assignment PIN_49 -to INTin
+set_location_assignment PIN_17 -to RDdir
+set_location_assignment PIN_18 -to DMAout

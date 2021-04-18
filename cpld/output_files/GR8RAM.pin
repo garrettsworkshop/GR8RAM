@@ -57,7 +57,7 @@
  -- Pin directions (input, output or bidir) are based on device operating in user mode.
  ---------------------------------------------------------------------------------
 
-Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 CHIP  "GR8RAM"  ASSIGNED TO AN: EPM240T100C5
 
 Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment
@@ -78,23 +78,23 @@ VCCINT                       : 13        : power  :                   : 2.5V/3.3
 RA[10]                       : 14        : input  : 3.3-V LVTTL       :         : 1         : Y              
 MOSI                         : 15        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
 MISO                         : 16        : input  : 3.3-V LVTTL       :         : 1         : Y              
-RDdir                        : 17        : output : 3.3-V LVTTL       :         : 1         : N              
-GND*                         : 18        :        :                   :         : 1         :                
-GND*                         : 19        :        :                   :         : 1         :                
-GND*                         : 20        :        :                   :         : 1         :                
-GND*                         : 21        :        :                   :         : 1         :                
+RDdir                        : 17        : output : 3.3-V LVTTL       :         : 1         : Y              
+DMAout                       : 18        : output : 3.3-V LVTTL       :         : 1         : Y              
+RAdir                        : 19        : output : 3.3-V LVTTL       :         : 1         : Y              
+INTout                       : 20        : output : 3.3-V LVTTL       :         : 1         : Y              
+nDMAout                      : 21        : output : 3.3-V LVTTL       :         : 1         : Y              
 TMS                          : 22        : input  :                   :         : 1         :                
 TDI                          : 23        : input  :                   :         : 1         :                
 TCK                          : 24        : input  :                   :         : 1         :                
 TDO                          : 25        : output :                   :         : 1         :                
-GND*                         : 26        :        :                   :         : 1         :                
-GND*                         : 27        :        :                   :         : 1         :                
-GND*                         : 28        :        :                   :         : 1         :                
-GND*                         : 29        :        :                   :         : 1         :                
+nNMIout                      : 26        : output : 3.3-V LVTTL       :         : 1         : Y              
+nINHout                      : 27        : output : 3.3-V LVTTL       :         : 1         : Y              
+nRDYout                      : 28        : output : 3.3-V LVTTL       :         : 1         : Y              
+nIRQout                      : 29        : output : 3.3-V LVTTL       :         : 1         : Y              
 nRESout                      : 30        : output : 3.3-V LVTTL       :         : 1         : Y              
 VCCIO1                       : 31        : power  :                   : 3.3V    : 1         :                
 GNDIO                        : 32        : gnd    :                   :         :           :                
-GND*                         : 33        :        :                   :         : 1         :                
+RWout                        : 33        : output : 3.3-V LVTTL       :         : 1         : Y              
 RA[11]                       : 34        : input  : 3.3-V LVTTL       :         : 1         : Y              
 RA[12]                       : 35        : input  : 3.3-V LVTTL       :         : 1         : Y              
 RA[13]                       : 36        : input  : 3.3-V LVTTL       :         : 1         : Y              
@@ -109,8 +109,8 @@ nRES                         : 44        : input  : 3.3-V LVTTL       :         
 VCCIO1                       : 45        : power  :                   : 3.3V    : 1         :                
 GNDIO                        : 46        : gnd    :                   :         :           :                
 SD[1]                        : 47        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
-GND*                         : 48        :        :                   :         : 1         :                
-GND*                         : 49        :        :                   :         : 1         :                
+DMAin                        : 48        : input  : 3.3-V LVTTL       :         : 1         : Y              
+INTin                        : 49        : input  : 3.3-V LVTTL       :         : 1         : Y              
 SD[0]                        : 50        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
 SD[4]                        : 51        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
 SD[5]                        : 52        : bidir  : 3.3-V LVTTL       :         : 2         : Y              
