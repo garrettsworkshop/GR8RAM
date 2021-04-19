@@ -10,19 +10,6 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 	reg PHI0r1, PHI0r2;
 	always @(posedge C25M) begin PHI0r1 <= PHI0; PHI0r2 <= PHI0r1; end
 	
-	/* Unused Pins */
-	output RAdir = 1;
-	input INTin;
-	output INTout = INTin;
-	input DMAin;
-	output DMAout = DMAin;
-	output nDMAout = 1;
-	output nNMIout = 1;
-	output nINHout = 1;
-	output nRDYout = 1;
-	output nIRQout = 1;
-	output RWout = 1;
-	
 	/* Reset/brown-out detect synchronized inputs */
 	input nRES;
 	reg nRESr0, nRESr;
@@ -56,13 +43,15 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 	wire ROMSpecRD = RA[15:12]==4'hC && RA[11:8]!=4'h0 && nWE && ((RA[11] && IOROMEN) || (~RA[11]));
 	wire REGSpecSEL = RA[15:12]==4'hC && RA[11:8]==4'h0 && RA[7] && REGEN;
 	wire BankSpecSEL = REGSpecSEL && RA[3:0]==4'hF;
-	wire RAMSpecSEL = REGSpecSEL && RA[3:0]==4'h3;
+	wire RAMRegSpecSEL = REGSpecSEL && RA[3:0]==4'h3;
+	wire RAMSpecSEL = RAMRegSpecSEL && (~SetEN24bit || SetEN16MB || ~Addr[23]);
 	wire AddrHSpecSEL = REGSpecSEL && RA[3:0]==4'h2;
 	wire AddrMSpecSEL = REGSpecSEL && RA[3:0]==4'h1;
 	wire AddrLSpecSEL = REGSpecSEL && RA[3:0]==4'h0;
 	reg ROMSpecRDr, RAMSpecSELr, nWEr;
 	wire BankSEL = REGEN && ~nDEVSEL && BankSpecSEL;
 	wire RAMSEL = ~nDEVSEL && RAMSpecSELr;
+	wire RAMRegSEL = ~nDEVSEL && RAMRegSpecSEL;
 	wire RAMWR = RAMSEL && ~nWEr;
 	wire AddrHSEL = REGEN && ~nDEVSEL && AddrHSpecSEL;
 	wire AddrMSEL = REGEN && ~nDEVSEL && AddrMSpecSEL;
@@ -76,16 +65,14 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 	/* IOROMEN and REGEN control */
 	reg IOROMEN = 0;
 	reg REGEN = 0;
+	wire IOROMRES = ~nRES || (RA[10:0]==11'h7FF && ~nIOSTRB);
+	always @(posedge C25M, posedge IOROMRES) begin
+		if (IOROMRES) IOROMEN <= 0;
+		else if (PS==8 && ~nIOSEL) IOROMEN <= 1;
+	end
 	always @(posedge C25M, negedge nRESr) begin
-		if (~nRESr) begin
-			IOROMEN <= 0;
-			REGEN <= 0;
-		end else if (PS==8 && ~nIOSTRB && RA[10:0]==11'h7FF) begin
-			IOROMEN <= 0;
-		end else if (PS==8 && ~nIOSEL) begin
-			IOROMEN <= 1;
-			REGEN <= 1;
-		end
+		if (~nRESr) REGEN <= 0;
+		else if (PS==8 && ~nIOSEL) REGEN <= 1;
 	end
 
 	/* Apple data bus */
@@ -106,7 +93,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 			AddrIncM <= 0;
 			AddrIncH <= 0;
 		end else begin
-			if (PS==8 && RAMSEL) AddrIncL <= 1;
+			if (PS==8 && RAMRegSEL) AddrIncL <= 1;
 			else AddrIncL <= 0;
 
 			if (PS==8 && AddrLSEL && ~nWEr) begin
@@ -264,10 +251,9 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 	end
 
 	input [1:0] SetFW;
-	wire [1:0] SetROM = 2'b01;
-	wire SetRF = SetFW[1:0] != 2'b11;
-	wire SetLim1M = SetFW[1];
-	wire SetLim8M = SetFW[1:0] != 2'b00;
+	wire [1:0] SetROM = 2'b11;//~SetFW[1:0];
+	wire SetEN16MB = SetROM[1:0]==2'b11;
+	wire SetEN24bit = SetROM[1];
 
 	/* SDRAM data bus */
 	inout [7:0] SD = SDOE ? WRD[7:0] : 8'bZ;
@@ -289,8 +275,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 			end 5: begin // NOP CKE
 				if (AddrLSpecSEL) RDD[7:0] <= Addr[7:0];
 				else if (AddrMSpecSEL) RDD[7:0] <= Addr[15:8];
-				else if (AddrHSpecSEL) RDD[7:0] <= Addr[23:16];
-				else if (AddrHSpecSEL) RDD[7:0] <= {4'hF, Addr[19:16]};
+				else if (AddrHSpecSEL) RDD[7:0] <= { SetEN24bit ? Addr[23:20] : 4'hF, Addr[19:16] };
 				else RDD[7:0] <= SD[7:0];
 			end 6: begin // NOP CKE
 				if (IS==6) WRD[7:0] <= { WRD[5:0], MISO, MOSI };
@@ -445,15 +430,16 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 					SBA[1:0] <= { 2'b10 };
 					SA[12:0] <= { 10'b0011000100, LS[12:10] };
 				end else if (RAMSpecSELr) begin
-					SBA[1:0] <= { 1'b0, Addr[23] };
-					SA[12:0] <= Addr [22:10];
+					SBA[1:0] <= { 1'b0, SetEN24bit ? Addr[23] : 1'b0 };
+					SA[12:10] <= SetEN24bit ? Addr[22:20] : 3'b000;
+					SA[9:0] <= Addr[19:10];
 				end else begin
 					SBA[1:0] <= 2'b10;
 					SA[12:0] <= { 10'b0011000100, Bank, RA[11:10] };
 				end
 			end 2: begin // RD
 				if (RAMSpecSELr) begin
-					SBA[1:0] <= { 1'b0, Addr[23] };
+					SBA[1:0] <= { 1'b0, SetEN24bit ? Addr[23] : 1'b0 };
 					SA[12:0] <= { 4'b0011, Addr[9:1] };
 					DQML <= Addr[0];
 					DQMH <= ~Addr[0];
@@ -495,7 +481,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 					DQML <= LS[0];
 					DQMH <= ~LS[0];
 				end else begin
-					SBA[1:0] <= { 1'b0, Addr[23] };
+					SBA[1:0] <= { 1'b0, SetEN24bit ? Addr[23] : 1'b0 };
 					SA[12:0] <= { 4'b0011, Addr[9:1] };
 					DQML <= Addr[0];
 					DQMH <= ~Addr[0];
@@ -538,4 +524,18 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 			end
 		endcase
 	end
+
+	/* DMA/INT in/out */
+	input INTin, DMAin;
+	output INTout = INTin;
+	output DMAout = DMAin;
+
+	/* Unused Pins */
+	output RAdir = 1;
+	output nDMAout = 1;
+	output nNMIout = 1;
+	output nINHout = 1;
+	output nRDYout = 1;
+	output nIRQout = 1;
+	output RWout = 1;
 endmodule

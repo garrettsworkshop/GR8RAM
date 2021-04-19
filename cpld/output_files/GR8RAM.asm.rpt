@@ -1,5 +1,5 @@
 Assembler report for GR8RAM
-Sun Apr 18 06:27:18 2021
+Mon Apr 19 01:27:18 2021
 Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -37,7 +37,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Sun Apr 18 06:27:18 2021 ;
+; Assembler Status      ; Successful - Mon Apr 19 01:27:18 2021 ;
 ; Revision Name         ; GR8RAM                                ;
 ; Top-level Entity Name ; GR8RAM                                ;
 ; Family                ; MAX II                                ;
@@ -90,8 +90,8 @@ applicable agreement for further details.
 ; Option         ; Setting                                               ;
 +----------------+-------------------------------------------------------+
 ; Device         ; EPM240T100C5                                          ;
-; JTAG usercode  ; 0x00164904                                            ;
-; Checksum       ; 0x00164E04                                            ;
+; JTAG usercode  ; 0x00163FE1                                            ;
+; Checksum       ; 0x001642D1                                            ;
 +----------------+-------------------------------------------------------+
 
 
@@ -101,13 +101,13 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Assembler
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Sun Apr 18 06:27:16 2021
+    Info: Processing started: Mon Apr 19 01:27:16 2021
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off GR8RAM -c GR8RAM
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 32-bit Assembler was successful. 0 errors, 0 warnings
     Info: Peak virtual memory: 293 megabytes
-    Info: Processing ended: Sun Apr 18 06:27:18 2021
+    Info: Processing ended: Mon Apr 19 01:27:18 2021
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 
