@@ -1,8 +1,7 @@
 module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
-			  RAdir, INTin, INTout, DMAin, DMAout, nDMAout, 
-			  nNMIout, nIRQout, nRDYout, nINHout, RWout,
-			  nIOSEL, nDEVSEL, nIOSTRB,
-			  RA, nWE, RD, RDdir,
+			  INTin, INTout, DMAin, DMAout, 
+			  nNMIout, nIRQout, nRDYout, nINHout, RWout, nDMAout,
+			  RA, nWE, RD, RAdir, RDdir, nIOSEL, nDEVSEL, nIOSTRB,
 			  SBA, SA, nRCS, nRAS, nCAS, nSWE, DQML, DQMH, RCKE, SD,
 			  nFCS, FCK, MISO, MOSI);
 
@@ -54,9 +53,9 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 	input [15:0] RA; input nWE;
 
 	/* Apple select signals */
-	wire ROMSpecRD = RA[15:12]==4'hC && RA[11:8]!=4'h0 && nWE;
-	wire BankSpecSEL = RA[3:0]==4'hF;
+	wire ROMSpecRD = RA[15:12]==4'hC && RA[11:8]!=4'h0 && nWE && ((RA[11] && IOROMEN) || (~RA[11]));
 	wire REGSpecSEL = RA[15:12]==4'hC && RA[11:8]==4'h0 && RA[7] && REGEN;
+	wire BankSpecSEL = REGSpecSEL && RA[3:0]==4'hF;
 	wire RAMSpecSEL = REGSpecSEL && RA[3:0]==4'h3;
 	wire AddrHSpecSEL = REGSpecSEL && RA[3:0]==4'h2;
 	wire AddrMSpecSEL = REGSpecSEL && RA[3:0]==4'h1;
@@ -342,21 +341,21 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 				nSWE <= 1'b1;
 				SDOE <= 0;
 			end 1: begin // ACT CKE / NOP CKD (ACT)
-				RCKE <= (ROMSpecRDr || RAMSpecSELr) && nWEr && IS==7;
-				nRCS <= ~(IS==6 || ((ROMSpecRDr || RAMSpecSELr) && IS==7));
+				RCKE <= IS==6 || (IS==7 && (ROMSpecRDr || RAMSpecSELr));
+				nRCS <= ~(IS==6 || (IS==7 && (ROMSpecRDr || RAMSpecSELr)));
 				nRAS <= 1'b0;
 				nCAS <= 1'b1;
 				nSWE <= 1'b1;
 				SDOE <= 0;
 			end 2: begin // RD CKE / NOP CKD (RD)
-				RCKE <= (ROMSpecRDr || RAMSpecSELr) && nWEr && IS==7;
-				nRCS <= ~((ROMSpecRDr || RAMSpecSELr) && nWEr && IS==7);
+				RCKE <= IS==7 && nWEr && (ROMSpecRDr || RAMSpecSELr);
+				nRCS <= ~(IS==7 && nWEr && (ROMSpecRDr || RAMSpecSELr));
 				nRAS <= 1'b1;
 				nCAS <= 1'b0;
 				nSWE <= 1'b1;
 				SDOE <= 0;
 			end 3: begin // NOP CKE / CKD
-				RCKE <= (ROMSpecRDr || RAMSpecSELr) && nWEr && IS==7;
+				RCKE <= IS==7 && nWEr && (ROMSpecRDr || RAMSpecSELr);
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;
@@ -405,7 +404,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 				nSWE <= 1'b1;
 				SDOE <= 0;
 			end 10: begin // PC all CKE / PC all CKD
-				RCKE <= 1'b1;
+				RCKE <= IS==1 || IS==4 || IS==5 || IS==6 || (IS==7 && RefReqd);
 				nRCS <= 1'b0;
 				nRAS <= 1'b0;
 				nCAS <= 1'b1;
@@ -419,7 +418,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 				nSWE <= ~(IS==1);
 				SDOE <= 0;
 			end default: begin // NOP CKD
-				RCKE <= IS==1;
+				RCKE <= 1'b0;
 				nRCS <= 1'b1;
 				nRAS <= 1'b1;
 				nCAS <= 1'b1;
