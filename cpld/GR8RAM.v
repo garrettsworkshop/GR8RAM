@@ -12,8 +12,12 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 	
 	/* Reset/brown-out detect synchronized inputs */
 	input nRES;
-	reg nRESr0, nRESr;
-	always @(posedge C25M) begin nRESr0 <= nRES; nRESr <= nRESr0; end
+	reg [3:0] nRESf = 0;
+	reg nRESr = 0;
+	always @(posedge C25M) begin 
+		nRESf[3:0] <= { nRESf[2:0], nRES };
+		nRESr <= nRESf[3] || nRESf[2] || nRESf[1] || nRESf[0];
+	end
 
 	/* Long state counter: counts from 0 to $3FFF */
 	reg [13:0] LS = 0;
@@ -251,7 +255,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 	end
 
 	input [1:0] SetFW;
-	wire [1:0] SetROM = 2'b11;//~SetFW[1:0];
+	wire [1:0] SetROM = ~SetFW[1:0];
 	wire SetEN16MB = SetROM[1:0]==2'b11;
 	wire SetEN24bit = SetROM[1];
 
