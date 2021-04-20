@@ -72,93 +72,446 @@ set_global_assignment -name SEED 235
 set_global_assignment -name AUTO_PACKED_REGISTERS_MAXII "MINIMIZE AREA"
 set_global_assignment -name ROUTER_REGISTER_DUPLICATION OFF
 set_global_assignment -name VERILOG_FILE GR8RAM.v
-set_location_assignment PIN_1 -to RA[4]
-set_location_assignment PIN_2 -to RA[5]
-set_location_assignment PIN_3 -to RA[6]
-set_location_assignment PIN_4 -to RA[3]
-set_location_assignment PIN_5 -to nFCS
-set_location_assignment PIN_6 -to RA[7]
-set_location_assignment PIN_7 -to RA[8]
-set_location_assignment PIN_8 -to RA[9]
-set_location_assignment PIN_12 -to FCK
-set_location_assignment PIN_14 -to RA[10]
-set_location_assignment PIN_15 -to MOSI
-set_location_assignment PIN_16 -to MISO
-set_location_assignment PIN_30 -to nRESout
-set_location_assignment PIN_34 -to RA[11]
-set_location_assignment PIN_35 -to RA[12]
-set_location_assignment PIN_36 -to RA[13]
-set_location_assignment PIN_37 -to RA[14]
-set_location_assignment PIN_38 -to RA[15]
-set_location_assignment PIN_39 -to nIOSEL
-set_location_assignment PIN_42 -to nIOSTRB
-set_location_assignment PIN_40 -to nDEVSEL
-set_location_assignment PIN_41 -to PHI0
-set_location_assignment PIN_43 -to nWE
-set_location_assignment PIN_44 -to nRES
-set_location_assignment PIN_47 -to SD[1]
-set_location_assignment PIN_50 -to SD[0]
-set_location_assignment PIN_51 -to SD[4]
-set_location_assignment PIN_100 -to RA[0]
-set_location_assignment PIN_99 -to RD[7]
-set_location_assignment PIN_52 -to SD[5]
-set_location_assignment PIN_54 -to SD[7]
-set_location_assignment PIN_55 -to SD[3]
-set_location_assignment PIN_56 -to SD[2]
-set_location_assignment PIN_53 -to SD[6]
-set_location_assignment PIN_57 -to DQMH
-set_location_assignment PIN_58 -to nSWE
-set_location_assignment PIN_62 -to nRAS
-set_location_assignment PIN_61 -to nCAS
-set_location_assignment PIN_64 -to C25M
-set_location_assignment PIN_66 -to RCKE
-set_location_assignment PIN_67 -to nRCS
-set_location_assignment PIN_68 -to SA[12]
-set_location_assignment PIN_69 -to SBA[0]
-set_location_assignment PIN_70 -to SA[11]
-set_location_assignment PIN_71 -to SBA[1]
-set_location_assignment PIN_72 -to SA[9]
-set_location_assignment PIN_73 -to SA[10]
-set_location_assignment PIN_74 -to SA[8]
-set_location_assignment PIN_75 -to SA[0]
-set_location_assignment PIN_76 -to SA[4]
-set_location_assignment PIN_77 -to SA[6]
-set_location_assignment PIN_78 -to SA[7]
-set_location_assignment PIN_81 -to SA[1]
-set_location_assignment PIN_82 -to SA[2]
-set_location_assignment PIN_83 -to SA[5]
-set_location_assignment PIN_84 -to SA[3]
-set_location_assignment PIN_85 -to DQML
-set_location_assignment PIN_86 -to RD[0]
-set_location_assignment PIN_87 -to RD[1]
-set_location_assignment PIN_88 -to RD[2]
-set_location_assignment PIN_89 -to RD[3]
-set_location_assignment PIN_90 -to RD[4]
-set_location_assignment PIN_91 -to RD[5]
-set_location_assignment PIN_92 -to RD[6]
-set_location_assignment PIN_97 -to RA[2]
-set_location_assignment PIN_98 -to RA[1]
-set_location_assignment PIN_96 -to SetFW[0]
-set_location_assignment PIN_95 -to SetFW[1]
+
 set_global_assignment -name IOBANK_VCCIO 3.3V -section_id 1
 set_global_assignment -name IOBANK_VCCIO 3.3V -section_id 2
+
+
+set_location_assignment PIN_41 -to PHI0
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to PHI0
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to PHI0
+set_instance_assignment -name IO_STANDARD "3.3V SCHMITT TRIGGER INPUT" -to PHI0
+set_location_assignment PIN_43 -to nWE
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to nWE
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nWE
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nWE
+set_location_assignment PIN_44 -to nRES
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to nRES
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to nRES
+set_instance_assignment -name IO_STANDARD "3.3V SCHMITT TRIGGER INPUT" -to nRES
+
+set_location_assignment PIN_96 -to SetFW[0]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to SetFW[0]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to SetFW[0]
+set_instance_assignment -name IO_STANDARD "3.3V SCHMITT TRIGGER INPUT" -to SetFW[0]
+set_location_assignment PIN_95 -to SetFW[1]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to SetFW[1]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to SetFW[1]
+set_instance_assignment -name IO_STANDARD "3.3V SCHMITT TRIGGER INPUT" -to SetFW[1]
+
+set_location_assignment PIN_39 -to nIOSEL
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to nIOSEL
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nIOSEL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nIOSEL
+set_location_assignment PIN_42 -to nIOSTRB
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to nIOSTRB
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nIOSTRB
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nIOSTRB
+set_location_assignment PIN_40 -to nDEVSEL
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to nDEVSEL
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nDEVSEL
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nDEVSEL
+
+set_location_assignment PIN_100 -to RA[0]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RA[0]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RA[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RA[0]
+set_location_assignment PIN_98 -to RA[1]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RA[1]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RA[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RA[1]
+set_location_assignment PIN_97 -to RA[2]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RA[2]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RA[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RA[2]
+set_location_assignment PIN_4 -to RA[3]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RA[3]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RA[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RA[3]
+set_location_assignment PIN_1 -to RA[4]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RA[4]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RA[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RA[4]
+set_location_assignment PIN_2 -to RA[5]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RA[5]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RA[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RA[5]
+set_location_assignment PIN_3 -to RA[6]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RA[6]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RA[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RA[6]
+set_location_assignment PIN_6 -to RA[7]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RA[7]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RA[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RA[7]
+set_location_assignment PIN_7 -to RA[8]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RA[8]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RA[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RA[8]
+set_location_assignment PIN_8 -to RA[9]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RA[9]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RA[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RA[9]
+set_location_assignment PIN_14 -to RA[10]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RA[10]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RA[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RA[10]
+set_location_assignment PIN_34 -to RA[11]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RA[11]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RA[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RA[11]
+set_location_assignment PIN_35 -to RA[12]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RA[12]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RA[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RA[12]
+set_location_assignment PIN_36 -to RA[13]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RA[13]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RA[13]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RA[13]
+set_location_assignment PIN_37 -to RA[14]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RA[14]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RA[14]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RA[14]
+set_location_assignment PIN_38 -to RA[15]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RA[15]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RA[15]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RA[15]
+
+set_location_assignment PIN_86 -to RD[0]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RD[0]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to RD[0]
+set_instance_assignment -name SLOW_SLEW_RATE OFF -to RD[0]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to RD[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RD[0]
+set_location_assignment PIN_87 -to RD[1]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RD[1]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to RD[1]
+set_instance_assignment -name SLOW_SLEW_RATE OFF -to RD[1]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to RD[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RD[1]
+set_location_assignment PIN_88 -to RD[2]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RD[2]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to RD[2]
+set_instance_assignment -name SLOW_SLEW_RATE OFF -to RD[2]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to RD[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RD[2]
+set_location_assignment PIN_89 -to RD[3]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RD[3]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to RD[3]
+set_instance_assignment -name SLOW_SLEW_RATE OFF -to RD[3]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to RD[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RD[3]
+set_location_assignment PIN_90 -to RD[4]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RD[4]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to RD[4]
+set_instance_assignment -name SLOW_SLEW_RATE OFF -to RD[4]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to RD[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RD[4]
+set_location_assignment PIN_91 -to RD[5]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RD[5]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to RD[5]
+set_instance_assignment -name SLOW_SLEW_RATE OFF -to RD[5]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to RD[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RD[5]
+set_location_assignment PIN_92 -to RD[6]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RD[6]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to RD[6]
+set_instance_assignment -name SLOW_SLEW_RATE OFF -to RD[6]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to RD[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RD[6]
+set_location_assignment PIN_99 -to RD[7]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RD[7]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to RD[7]
+set_instance_assignment -name SLOW_SLEW_RATE OFF -to RD[7]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to RD[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RD[7]
+
+set_location_assignment PIN_19 -to RAdir
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to RAdir
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RAdir
+set_instance_assignment -name SLOW_SLEW_RATE ON -to RAdir
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to RAdir
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RAdir
+set_location_assignment PIN_17 -to RDdir
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to RDdir
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RDdir
+set_instance_assignment -name SLOW_SLEW_RATE ON -to RDdir
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to RDdir
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RDdir
+
+set_location_assignment PIN_30 -to nRESout
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to nRESout
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nRESout
+set_instance_assignment -name SLOW_SLEW_RATE ON -to nRESout
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to nRESout
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nRESout
+
+set_location_assignment PIN_5 -to nFCS
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to nFCS
 set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nFCS
+set_instance_assignment -name SLOW_SLEW_RATE ON -to nFCS
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to nFCS
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nFCS
+
+set_location_assignment PIN_12 -to FCK
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to FCK
 set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to FCK
+set_instance_assignment -name SLOW_SLEW_RATE OFF -to FCK
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FCK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FCK
+
+set_location_assignment PIN_15 -to MOSI
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to MOSI
 set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to MOSI
+set_instance_assignment -name SLOW_SLEW_RATE ON -to MOSI
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to MOSI
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MOSI
+
+set_location_assignment PIN_16 -to MISO
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to MISO
-set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to MISO
-set_location_assignment PIN_21 -to nDMAout
-set_location_assignment PIN_19 -to RAdir
-set_location_assignment PIN_20 -to INTout
-set_location_assignment PIN_26 -to nNMIout
-set_location_assignment PIN_27 -to nINHout
-set_location_assignment PIN_28 -to nRDYout
-set_location_assignment PIN_29 -to nIRQout
-set_location_assignment PIN_33 -to RWout
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to MISO
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MISO
+
+set_location_assignment PIN_64 -to C25M
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to C25M
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to C25M
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to C25M
+set_location_assignment PIN_66 -to RCKE
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RCKE
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RCKE
+set_instance_assignment -name SLOW_SLEW_RATE ON -to RCKE
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to RCKE
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RCKE
+set_location_assignment PIN_67 -to nRCS
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to nRCS
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nRCS
+set_instance_assignment -name SLOW_SLEW_RATE ON -to nRCS
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to nRCS
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nRCS
+set_location_assignment PIN_62 -to nRAS
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to nRAS
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nRAS
+set_instance_assignment -name SLOW_SLEW_RATE ON -to nRAS
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to nRAS
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nRAS
+set_location_assignment PIN_61 -to nCAS
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to nCAS
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nCAS
+set_instance_assignment -name SLOW_SLEW_RATE ON -to nCAS
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to nCAS
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nCAS
+set_location_assignment PIN_58 -to nSWE
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to nSWE
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nSWE
+set_instance_assignment -name SLOW_SLEW_RATE ON -to nSWE
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to nSWE
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nSWE
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SBA[1]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to SBA[1]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SBA[1]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SBA[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SBA[1]
+set_location_assignment PIN_69 -to SBA[1]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SBA[0]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to SBA[0]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SBA[0]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SBA[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SBA[0]
+set_location_assignment PIN_68 -to SBA[0]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SA[12]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to SA[12]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SA[12]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SA[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SA[12]
+set_location_assignment PIN_70 -to SA[12]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SA[11]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to SA[11]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SA[11]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SA[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SA[11]
+set_location_assignment PIN_73 -to SA[11]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SA[10]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to SA[10]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SA[10]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SA[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SA[10]
+set_location_assignment PIN_72 -to SA[10]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SA[9]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to SA[9]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SA[9]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SA[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SA[9]
+set_location_assignment PIN_74 -to SA[8]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SA[8]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to SA[8]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SA[8]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SA[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SA[8]
+set_location_assignment PIN_78 -to SA[7]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SA[7]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to SA[7]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SA[7]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SA[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SA[7]
+set_location_assignment PIN_77 -to SA[6]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SA[6]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to SA[6]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SA[6]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SA[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SA[6]
+set_location_assignment PIN_83 -to SA[5]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SA[5]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to SA[5]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SA[5]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SA[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SA[5]
+set_location_assignment PIN_76 -to SA[4]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SA[4]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to SA[4]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SA[4]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SA[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SA[4]
+set_location_assignment PIN_84 -to SA[3]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SA[3]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to SA[3]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SA[3]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SA[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SA[3]
+set_location_assignment PIN_82 -to SA[2]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SA[2]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to SA[2]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SA[2]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SA[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SA[2]
+set_location_assignment PIN_81 -to SA[1]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SA[1]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to SA[1]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SA[1]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SA[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SA[1]
+set_location_assignment PIN_75 -to SA[0]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SA[0]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to SA[0]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SA[0]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SA[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SA[0]
+set_location_assignment PIN_57 -to DQMH
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to DQMH
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to DQMH
+set_instance_assignment -name SLOW_SLEW_RATE ON -to DQMH
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to DQMH
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DQMH
+set_location_assignment PIN_85 -to DQML
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to DQML
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to DQML
+set_instance_assignment -name SLOW_SLEW_RATE ON -to DQML
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to DQML
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DQML
+
+set_location_assignment PIN_50 -to SD[0]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SD[0]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to SD[0]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SD[0]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SD[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD[0]
+set_location_assignment PIN_47 -to SD[1]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SD[1]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to SD[1]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SD[1]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SD[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD[1]
+set_location_assignment PIN_56 -to SD[2]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SD[2]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to SD[2]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SD[2]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SD[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD[2]
+set_location_assignment PIN_55 -to SD[3]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SD[3]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to SD[3]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SD[3]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SD[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD[3]
+set_location_assignment PIN_51 -to SD[4]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SD[4]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to SD[4]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SD[4]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SD[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD[4]
+set_location_assignment PIN_52 -to SD[5]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SD[5]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to SD[5]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SD[5]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SD[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD[5]
+set_location_assignment PIN_53 -to SD[6]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SD[6]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to SD[6]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SD[6]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SD[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD[6]
+set_location_assignment PIN_54 -to SD[7]
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SD[7]
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to SD[7]
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SD[7]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SD[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD[7]
+
 set_location_assignment PIN_48 -to DMAin
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to DMAin
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to DMAin
+set_instance_assignment -name IO_STANDARD "3.3V SCHMITT TRIGGER INPUT" -to DMAin
 set_location_assignment PIN_49 -to INTin
-set_location_assignment PIN_17 -to RDdir
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to INTin
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to INTin
+set_instance_assignment -name IO_STANDARD "3.3V SCHMITT TRIGGER INPUT" -to INTin
+
+set_location_assignment PIN_20 -to INTout
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to INTout
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to INTout
+set_instance_assignment -name SLOW_SLEW_RATE ON -to INTout
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to INTout
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to INTout
 set_location_assignment PIN_18 -to DMAout
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to DMAout
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to DMAout
+set_instance_assignment -name SLOW_SLEW_RATE ON -to DMAout
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to DMAout
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DMAout
+
+set_location_assignment PIN_21 -to nDMAout
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to nDMAout
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nDMAout
+set_instance_assignment -name SLOW_SLEW_RATE ON -to nDMAout
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to nDMAout
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nDMAout
+set_location_assignment PIN_26 -to nNMIout
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to nNMIout
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nNMIout
+set_instance_assignment -name SLOW_SLEW_RATE ON -to nNMIout
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to nNMIout
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nNMIout
+set_location_assignment PIN_27 -to nINHout
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to nINHout
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nINHout
+set_instance_assignment -name SLOW_SLEW_RATE ON -to nINHout
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to nINHout
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nINHout
+set_location_assignment PIN_28 -to nRDYout
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to nRDYout
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nRDYout
+set_instance_assignment -name SLOW_SLEW_RATE ON -to nRDYout
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to nRDYout
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nRDYout
+set_location_assignment PIN_29 -to nIRQout
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to nIRQout
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nIRQout
+set_instance_assignment -name SLOW_SLEW_RATE ON -to nIRQout
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to nIRQout
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nIRQout
+set_location_assignment PIN_33 -to RWout
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to RWout
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RWout
+set_instance_assignment -name SLOW_SLEW_RATE ON -to RWout
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to RWout
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RWout

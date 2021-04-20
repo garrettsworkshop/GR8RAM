@@ -102,15 +102,15 @@ RA[14]                       : 37        : input  : 3.3-V LVTTL       :         
 RA[15]                       : 38        : input  : 3.3-V LVTTL       :         : 1         : Y              
 nIOSEL                       : 39        : input  : 3.3-V LVTTL       :         : 1         : Y              
 nDEVSEL                      : 40        : input  : 3.3-V LVTTL       :         : 1         : Y              
-PHI0                         : 41        : input  : 3.3-V LVTTL       :         : 1         : Y              
+PHI0                         : 41        : input  : 3.3V Schmitt Trigger Input :         : 1         : Y              
 nIOSTRB                      : 42        : input  : 3.3-V LVTTL       :         : 1         : Y              
 nWE                          : 43        : input  : 3.3-V LVTTL       :         : 1         : Y              
-nRES                         : 44        : input  : 3.3-V LVTTL       :         : 1         : Y              
+nRES                         : 44        : input  : 3.3V Schmitt Trigger Input :         : 1         : Y              
 VCCIO1                       : 45        : power  :                   : 3.3V    : 1         :                
 GNDIO                        : 46        : gnd    :                   :         :           :                
 SD[1]                        : 47        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
-DMAin                        : 48        : input  : 3.3-V LVTTL       :         : 1         : Y              
-INTin                        : 49        : input  : 3.3-V LVTTL       :         : 1         : Y              
+DMAin                        : 48        : input  : 3.3V Schmitt Trigger Input :         : 1         : Y              
+INTin                        : 49        : input  : 3.3V Schmitt Trigger Input :         : 1         : Y              
 SD[0]                        : 50        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
 SD[4]                        : 51        : bidir  : 3.3-V LVTTL       :         : 1         : Y              
 SD[5]                        : 52        : bidir  : 3.3-V LVTTL       :         : 2         : Y              
@@ -129,12 +129,12 @@ C25M                         : 64        : input  : 3.3-V LVTTL       :         
 GNDINT                       : 65        : gnd    :                   :         :           :                
 RCKE                         : 66        : output : 3.3-V LVTTL       :         : 2         : Y              
 nRCS                         : 67        : output : 3.3-V LVTTL       :         : 2         : Y              
-SA[12]                       : 68        : output : 3.3-V LVTTL       :         : 2         : Y              
-SBA[0]                       : 69        : output : 3.3-V LVTTL       :         : 2         : Y              
-SA[11]                       : 70        : output : 3.3-V LVTTL       :         : 2         : Y              
-SBA[1]                       : 71        : output : 3.3-V LVTTL       :         : 2         : Y              
-SA[9]                        : 72        : output : 3.3-V LVTTL       :         : 2         : Y              
-SA[10]                       : 73        : output : 3.3-V LVTTL       :         : 2         : Y              
+SBA[0]                       : 68        : output : 3.3-V LVTTL       :         : 2         : Y              
+SBA[1]                       : 69        : output : 3.3-V LVTTL       :         : 2         : Y              
+SA[12]                       : 70        : output : 3.3-V LVTTL       :         : 2         : Y              
+SA[9]                        : 71        : output : 3.3-V LVTTL       :         : 2         : N              
+SA[10]                       : 72        : output : 3.3-V LVTTL       :         : 2         : Y              
+SA[11]                       : 73        : output : 3.3-V LVTTL       :         : 2         : Y              
 SA[8]                        : 74        : output : 3.3-V LVTTL       :         : 2         : Y              
 SA[0]                        : 75        : output : 3.3-V LVTTL       :         : 2         : Y              
 SA[4]                        : 76        : output : 3.3-V LVTTL       :         : 2         : Y              
@@ -156,8 +156,8 @@ RD[5]                        : 91        : bidir  : 3.3-V LVTTL       :         
 RD[6]                        : 92        : bidir  : 3.3-V LVTTL       :         : 2         : Y              
 GNDIO                        : 93        : gnd    :                   :         :           :                
 VCCIO2                       : 94        : power  :                   : 3.3V    : 2         :                
-SetFW[1]                     : 95        : input  : 3.3-V LVTTL       :         : 2         : Y              
-SetFW[0]                     : 96        : input  : 3.3-V LVTTL       :         : 2         : Y              
+SetFW[1]                     : 95        : input  : 3.3V Schmitt Trigger Input :         : 2         : Y              
+SetFW[0]                     : 96        : input  : 3.3V Schmitt Trigger Input :         : 2         : Y              
 RA[2]                        : 97        : input  : 3.3-V LVTTL       :         : 2         : Y              
 RA[1]                        : 98        : input  : 3.3-V LVTTL       :         : 2         : Y              
 RD[7]                        : 99        : bidir  : 3.3-V LVTTL       :         : 2         : Y              
