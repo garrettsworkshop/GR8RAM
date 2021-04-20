@@ -5,8 +5,8 @@ $Descr USLetter 11000 8500
 encoding utf-8
 Sheet 1 2
 Title "GR8RAM"
-Date "2021-01-06"
-Rev "0.9"
+Date "2021-04-20"
+Rev "1.9"
 Comp "Garrett's Workshop"
 Comment1 ""
 Comment2 ""
