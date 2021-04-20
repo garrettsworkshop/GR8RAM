@@ -19,6 +19,29 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 		nRESr <= nRESf[3] || nRESf[2] || nRESf[1] || nRESf[0];
 	end
 
+	/* Firmware select */
+	input [1:0] SetFW;
+	reg [1:0] SetFWr;
+	reg SetFWLoaded = 0;
+	always @(posedge C25M) begin
+		if (~SetFWLoaded) begin
+			SetFWLoaded <= 1;
+			SetFWr[1:0] <= SetFW[1:0];
+		end
+	end
+	wire [1:0] SetROM = ~SetFWr[1:0];
+	wire SetEN16MB = SetROM[1:0]==2'b11;
+	wire SetEN24bit = SetROM[1];
+
+	/* State counter from PHI0 rising edge */
+	reg [3:0] PS = 0;
+	wire PSStart = PS==0 && PHI0r1 && ~PHI0r2;
+	always @(posedge C25M) begin
+		if (PSStart) PS <= 1;
+		else if (PS==0) PS <= 0;
+		else PS <= PS+1;
+	end
+
 	/* Long state counter: counts from 0 to $3FFF */
 	reg [13:0] LS = 0;
 	always @(posedge C25M) begin if (PS==15) LS <= LS+1; end
@@ -133,7 +156,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 		end
 	end
 
-	/* SPI flash */
+	/* SPI flash control signals */
 	output nFCS = FCKOE ? ~FCS : 1'bZ;
 	reg FCS = 0;
 	output FCK = FCKOE ? FCKout : 1'bZ;
@@ -141,7 +164,6 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 	reg FCKout = 0;
 	inout MOSI = MOSIOE ? MOSIout : 1'bZ;
 	reg MOSIOE = 0;
-	reg MOSIout = 0;
 	input MISO;
 	always @(posedge C25M) begin
 		case (PS[3:0])
@@ -184,6 +206,8 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 		FCKOE <= IS==1 || IS==4 || IS==5 || IS==6 || IS==7;
 	end
 
+	/* SPI flash MOSI control */
+	reg MOSIout = 0;
 	always @(posedge C25M) begin
 		case (PS[3:0])
 			1: begin
@@ -254,11 +278,6 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 		endcase
 	end
 
-	input [1:0] SetFW;
-	wire [1:0] SetROM = ~SetFW[1:0];
-	wire SetEN16MB = SetROM[1:0]==2'b11;
-	wire SetEN24bit = SetROM[1];
-
 	/* SDRAM data bus */
 	inout [7:0] SD = SDOE ? WRD[7:0] : 8'bZ;
 	reg [7:0] WRD;
@@ -305,15 +324,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 		endcase
 	end
 
-	reg [3:0] PS = 0;
-	wire PSStart = PS==0 && PHI0r1 && ~PHI0r2;
-	always @(posedge C25M) begin
-		if (PSStart) PS <= 1;
-		else if (PS==0) PS <= 0;
-		else PS <= PS+1;
-	end
-
-	/* SDRAM address/command */
+	/* SDRAM command */
 	output reg RCKE = 1;
 	output reg nRCS = 1;
 	output reg nRAS = 1;
@@ -416,6 +427,8 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 			end
 		endcase
 	end
+
+	/* SDRAM address */
 	output reg DQML = 1;
 	output reg DQMH = 1;
 	output reg [1:0] SBA;
