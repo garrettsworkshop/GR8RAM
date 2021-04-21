@@ -20,21 +20,13 @@ C25M
 Text Notes 1450 800  2    50   ~ 0
 PHI0
 Wire Wire Line
-	1600 650  1600 550 
-Wire Wire Line
-	1700 550  1600 550 
-Wire Wire Line
-	1700 650  1700 550 
-Wire Wire Line
-	1800 650  1700 650 
-Wire Wire Line
 	1800 650  1800 550 
 Wire Wire Line
-	1800 550  1900 550 
+	1900 550  1800 550 
 Wire Wire Line
-	1900 550  1900 650 
+	1900 650  1900 550 
 Wire Wire Line
-	1900 650  2000 650 
+	2000 650  1900 650 
 Wire Wire Line
 	2000 650  2000 550 
 Wire Wire Line
@@ -52,13 +44,13 @@ Wire Wire Line
 Wire Wire Line
 	2300 650  2400 650 
 Wire Wire Line
+	2400 650  2400 550 
+Wire Wire Line
 	2400 550  2500 550 
 Wire Wire Line
 	2500 550  2500 650 
 Wire Wire Line
 	2500 650  2600 650 
-Wire Wire Line
-	2600 650  2600 550 
 Wire Wire Line
 	2600 550  2700 550 
 Wire Wire Line
@@ -156,17 +148,7 @@ Wire Wire Line
 Wire Wire Line
 	5000 650  5000 550 
 Wire Wire Line
-	4050 800  5650 800 
-Wire Wire Line
-	4000 700  4050 800 
-Wire Wire Line
-	1550 800  1600 800 
-Wire Wire Line
-	1650 700  4000 700 
-Wire Wire Line
-	1600 800  1650 700 
-Wire Wire Line
-	1600 650  1550 650 
+	5000 550  5100 550 
 Wire Wire Line
 	5100 550  5100 650 
 Wire Wire Line
@@ -174,7 +156,15 @@ Wire Wire Line
 Wire Wire Line
 	5200 650  5200 550 
 Wire Wire Line
-	5000 550  5100 550 
+	4300 800  5850 800 
+Wire Wire Line
+	4250 700  4300 800 
+Wire Wire Line
+	1600 800  1900 800 
+Wire Wire Line
+	1950 700  4250 700 
+Wire Wire Line
+	1900 800  1950 700 
 Wire Wire Line
 	5300 550  5300 650 
 Wire Wire Line
@@ -184,11 +174,19 @@ Wire Wire Line
 Wire Wire Line
 	5200 550  5300 550 
 Wire Wire Line
-	1550 850  2600 850 
+	5500 550  5500 650 
 Wire Wire Line
-	2600 850  2650 950 
+	5500 650  5600 650 
 Wire Wire Line
-	2650 950  4050 950 
+	5600 650  5600 550 
+Wire Wire Line
+	5400 550  5500 550 
+Wire Wire Line
+	1600 850  2800 850 
+Wire Wire Line
+	2800 850  2850 950 
+Wire Wire Line
+	2850 950  4250 950 
 Text Notes 1450 950  2    50   ~ 0
 ~DEVSEL~
 Text Notes 3100 2450 0    50   ~ 0
@@ -766,47 +764,31 @@ Wire Wire Line
 Text Notes 1450 1400 2    50   ~ 0
 PHI0r3
 Wire Wire Line
-	4700 1400 5650 1400
+	4900 1400 5850 1400
 Wire Wire Line
-	4650 1300 4700 1400
+	4850 1300 4900 1400
 Wire Wire Line
-	1600 1400 2250 1400
+	2450 1400 2500 1300
 Wire Wire Line
-	2250 1400 2300 1300
-Wire Wire Line
-	2300 1300 4650 1300
+	2500 1300 4850 1300
 Text Notes 1450 1250 2    50   ~ 0
 PHI0r2
 Wire Wire Line
-	4500 1250 5650 1250
+	4700 1250 5850 1250
 Wire Wire Line
-	1600 1250 2050 1250
+	2250 1250 2300 1150
 Wire Wire Line
-	2050 1250 2100 1150
+	4300 850  5850 850 
 Wire Wire Line
-	1600 1100 1950 1100
-Wire Wire Line
-	1950 1100 2000 1000
-Text Notes 1450 1100 2    50   ~ 0
-PHI0r1
-Wire Wire Line
-	4100 850  5650 850 
-Wire Wire Line
-	4050 950  4100 850 
+	4250 950  4300 850 
 Wire Wire Line
 	3100 1750 4250 1750
 Wire Wire Line
 	4250 1750 4300 1850
 Wire Wire Line
-	2100 1150 4450 1150
+	2300 1150 4650 1150
 Wire Wire Line
-	4450 1150 4500 1250
-Wire Wire Line
-	4400 1100 5650 1100
-Wire Wire Line
-	4350 1000 4400 1100
-Wire Wire Line
-	2000 1000 4350 1000
+	4650 1150 4700 1250
 Text Notes 5550 1550 0    50   ~ 0
 0
 Wire Wire Line
@@ -818,15 +800,15 @@ Wire Wire Line
 Wire Wire Line
 	5500 1450 5650 1450
 Wire Wire Line
-	5500 550  5500 650 
+	5700 550  5700 650 
 Wire Wire Line
-	5500 650  5600 650 
+	5700 650  5800 650 
 Wire Wire Line
-	5600 650  5600 550 
+	5800 650  5800 550 
 Wire Wire Line
-	5600 550  5650 550 
+	5800 550  5850 550 
 Wire Wire Line
-	5400 550  5500 550 
+	5600 550  5700 550 
 Text Notes 5300 2150 0    50   ~ 0
 NOP
 Wire Wire Line
@@ -1313,7 +1295,7 @@ Wire Wire Line
 Wire Wire Line
 	2500 2600 3050 2600
 Wire Wire Line
-	2400 550  2400 650 
+	2600 550  2600 650 
 Wire Wire Line
 	4100 1550 4250 1550
 Wire Wire Line
@@ -1360,4 +1342,36 @@ Wire Wire Line
 	2500 2000 5650 2000
 Text Notes 1450 1850 2    50   ~ 0
 DEVSELr2
+Wire Wire Line
+	2050 1100 2100 1000
+Text Notes 1450 1100 2    50   ~ 0
+PHI0r1
+Wire Wire Line
+	4500 1100 5750 1100
+Wire Wire Line
+	4450 1000 4500 1100
+Wire Wire Line
+	2100 1000 2150 1000
+Wire Wire Line
+	2100 1100 2150 1000
+Wire Wire Line
+	1600 1100 2050 1100
+Connection ~ 2050 1100
+Wire Wire Line
+	2050 1100 2100 1100
+Connection ~ 2150 1000
+Wire Wire Line
+	2150 1000 4450 1000
+Wire Wire Line
+	1600 650  1600 550 
+Wire Wire Line
+	1700 550  1600 550 
+Wire Wire Line
+	1700 650  1700 550 
+Wire Wire Line
+	1800 650  1700 650 
+Wire Wire Line
+	1600 1250 2250 1250
+Wire Wire Line
+	1600 1400 2450 1400
 $EndSCHEMATC
