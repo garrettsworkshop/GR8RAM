@@ -296,10 +296,6 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 				if (IS==6) WRD[7:0] <= { WRD[5:0], MISO, MOSI };
 				else WRD[7:0] <= RD[7:0];
 			end 5: begin // NOP CKE
-				if (AddrLSpecSEL) RDD[7:0] <= Addr[7:0];
-				else if (AddrMSpecSEL) RDD[7:0] <= Addr[15:8];
-				else if (AddrHSpecSEL) RDD[7:0] <= { SetEN24bit ? Addr[23:20] : 4'hF, Addr[19:16] };
-				else RDD[7:0] <= SD[7:0];
 			end 6: begin // NOP CKE
 				if (IS==6) WRD[7:0] <= { WRD[5:0], MISO, MOSI };
 				else WRD[7:0] <= RD[7:0];
@@ -322,6 +318,16 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 			end 15: begin // NOP CKE
 			end
 		endcase
+	end
+
+	/* Apple data bus from SDRAM */
+	always @(negedge C25M) begin
+		if (PS==5) begin
+			if (AddrLSpecSEL) RDD[7:0] <= Addr[7:0];
+			else if (AddrMSpecSEL) RDD[7:0] <= Addr[15:8];
+			else if (AddrHSpecSEL) RDD[7:0] <= { SetEN24bit ? Addr[23:20] : 4'hF, Addr[19:16] };
+			else RDD[7:0] <= SD[7:0];
+		end
 	end
 
 	/* SDRAM command */
