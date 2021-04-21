@@ -10,7 +10,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 	reg PHI0r1, PHI0r2;
 	always @(posedge C25M) begin PHI0r1 <= PHI0; PHI0r2 <= PHI0r1; end
 	
-	/* Reset/brown-out detect synchronized inputs */
+	/* Reset filter */
 	input nRES;
 	reg [3:0] nRESf = 0;
 	reg nRESr = 0;
@@ -92,21 +92,24 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 	/* IOROMEN and REGEN control */
 	reg IOROMEN = 0;
 	reg REGEN = 0;
-	wire IOROMRES = ~nRES || (RA[10:0]==11'h7FF && ~nIOSTRB);
-	always @(posedge C25M, posedge IOROMRES) begin
-		if (IOROMRES) IOROMEN <= 0;
-		else if (PS==8 && ~nIOSEL) IOROMEN <= 1;
-	end
+	reg nIOSTRBr;
+	wire IOROMRES = RA[10:0]==11'h7FF && ~nIOSTRB && ~nIOSTRBr;
 	always @(posedge C25M, negedge nRESr) begin
 		if (~nRESr) REGEN <= 0;
 		else if (PS==8 && ~nIOSEL) REGEN <= 1;
+	end
+	always @(posedge C25M, negedge nRESr) begin
+		nIOSTRBr <= nIOSTRB;
+		if (~nRESr) IOROMEN <= 0;
+		else if (PS==8 && IOROMRES) IOROMEN <= 0;
+		else if (PS==8 && ~nIOSEL) IOROMEN <= 1;
 	end
 
 	/* Apple data bus */
 	inout [7:0] RD = RDdir ? 8'bZ : RDD[7:0];
 	reg [7:0] RDD;
 	output RDdir = ~(PHI0r2 && nWE && PHI0 &&
-		(~nDEVSEL || ~nIOSEL || (~nIOSTRB && IOROMEN)));
+		(~nDEVSEL || ~nIOSEL || (~nIOSTRB && IOROMEN && RA[10:0]!=11'h7FF)));
 
 	/* Slinky address registers */
 	reg [23:0] Addr = 0;
