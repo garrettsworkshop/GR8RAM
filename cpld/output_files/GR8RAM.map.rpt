@@ -1,5 +1,5 @@
 Analysis & Synthesis report for GR8RAM
-Tue Apr 20 04:19:44 2021
+Wed Apr 21 20:01:47 2021
 Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -45,12 +45,12 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Tue Apr 20 04:19:44 2021           ;
+; Analysis & Synthesis Status ; Successful - Wed Apr 21 20:01:47 2021           ;
 ; Quartus II 32-bit Version   ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name               ; GR8RAM                                          ;
 ; Top-level Entity Name       ; GR8RAM                                          ;
 ; Family                      ; MAX II                                          ;
-; Total logic elements        ; 241                                             ;
+; Total logic elements        ; 257                                             ;
 ; Total pins                  ; 80                                              ;
 ; Total virtual pins          ; 0                                               ;
 ; UFM blocks                  ; 0 / 1 ( 0 % )                                   ;
@@ -161,32 +161,32 @@ applicable agreement for further details.
 +---------------------------------------------+-------+
 ; Resource                                    ; Usage ;
 +---------------------------------------------+-------+
-; Total logic elements                        ; 241   ;
-;     -- Combinational with no register       ; 132   ;
-;     -- Register only                        ; 12    ;
+; Total logic elements                        ; 257   ;
+;     -- Combinational with no register       ; 136   ;
+;     -- Register only                        ; 24    ;
 ;     -- Combinational with a register        ; 97    ;
 ;                                             ;       ;
 ; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 119   ;
-;     -- 3 input functions                    ; 38    ;
-;     -- 2 input functions                    ; 69    ;
+;     -- 4 input functions                    ; 126   ;
+;     -- 3 input functions                    ; 41    ;
+;     -- 2 input functions                    ; 65    ;
 ;     -- 1 input functions                    ; 0     ;
-;     -- 0 input functions                    ; 3     ;
+;     -- 0 input functions                    ; 1     ;
 ;                                             ;       ;
 ; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 208   ;
+;     -- normal mode                          ; 224   ;
 ;     -- arithmetic mode                      ; 33    ;
 ;     -- qfbk mode                            ; 0     ;
 ;     -- register cascade mode                ; 0     ;
-;     -- synchronous clear/load mode          ; 44    ;
-;     -- asynchronous clear/load mode         ; 30    ;
+;     -- synchronous clear/load mode          ; 45    ;
+;     -- asynchronous clear/load mode         ; 29    ;
 ;                                             ;       ;
-; Total registers                             ; 109   ;
+; Total registers                             ; 121   ;
 ; Total logic cells in carry chains           ; 37    ;
 ; I/O pins                                    ; 80    ;
 ; Maximum fan-out node                        ; C25M  ;
-; Maximum fan-out                             ; 106   ;
-; Total fan-out                               ; 1044  ;
+; Maximum fan-out                             ; 107   ;
+; Total fan-out                               ; 1095  ;
 ; Average fan-out                             ; 3.25  ;
 +---------------------------------------------+-------+
 
@@ -196,7 +196,7 @@ applicable agreement for further details.
 +----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+--------------+
 ; Compilation Hierarchy Node ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name ; Library Name ;
 +----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+--------------+
-; |GR8RAM                    ; 241 (241)   ; 109          ; 0          ; 80   ; 0            ; 132 (132)    ; 12 (12)           ; 97 (97)          ; 37 (37)         ; 0 (0)      ; |GR8RAM             ; work         ;
+; |GR8RAM                    ; 257 (257)   ; 121          ; 0          ; 80   ; 0            ; 136 (136)    ; 24 (24)           ; 97 (97)          ; 37 (37)         ; 0 (0)      ; |GR8RAM             ; work         ;
 +----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -231,12 +231,12 @@ Encoding Type:  Minimal Bits
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 109   ;
-; Number of registers using Synchronous Clear  ; 11    ;
+; Total registers                              ; 121   ;
+; Number of registers using Synchronous Clear  ; 12    ;
 ; Number of registers using Synchronous Load   ; 33    ;
-; Number of registers using Asynchronous Clear ; 30    ;
+; Number of registers using Asynchronous Clear ; 29    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 26    ;
+; Number of registers using Clock Enable       ; 24    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -265,7 +265,7 @@ Encoding Type:  Minimal Bits
 ; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |GR8RAM|PS[2]              ;
 ; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |GR8RAM|SA[11]~reg0        ;
 ; 20:1               ; 6 bits    ; 78 LEs        ; 24 LEs               ; 54 LEs                 ; Yes        ; |GR8RAM|SA[3]~reg0         ;
-; 20:1               ; 3 bits    ; 39 LEs        ; 18 LEs               ; 21 LEs                 ; Yes        ; |GR8RAM|SA[0]~reg0         ;
+; 20:1               ; 3 bits    ; 39 LEs        ; 18 LEs               ; 21 LEs                 ; Yes        ; |GR8RAM|SA[1]~reg0         ;
 ; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |GR8RAM|WRD[7]             ;
 ; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |GR8RAM|RDD[1]             ;
 ; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |GR8RAM|RDD[4]             ;
@@ -280,7 +280,7 @@ Encoding Type:  Minimal Bits
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Tue Apr 20 04:19:39 2021
+    Info: Processing started: Wed Apr 21 20:01:42 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off GR8RAM -c GR8RAM
 Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
 Info (12021): Found 1 design units, including 1 entities, in source file gr8ram.v
@@ -288,9 +288,9 @@ Info (12021): Found 1 design units, including 1 entities, in source file gr8ram.
 Info (12127): Elaborating entity "GR8RAM" for the top level hierarchy
 Warning (10230): Verilog HDL assignment warning at GR8RAM.v(42): truncated value with size 32 to match size of target (4)
 Warning (10230): Verilog HDL assignment warning at GR8RAM.v(47): truncated value with size 32 to match size of target (14)
-Warning (10230): Verilog HDL assignment warning at GR8RAM.v(130): truncated value with size 32 to match size of target (8)
-Warning (10230): Verilog HDL assignment warning at GR8RAM.v(138): truncated value with size 32 to match size of target (8)
-Warning (10230): Verilog HDL assignment warning at GR8RAM.v(145): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(134): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(142): truncated value with size 32 to match size of target (8)
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(149): truncated value with size 32 to match size of target (8)
 Info (17026): Resynthesizing 0 WYSIWYG logic cells and I/Os using "area" technology mapper which leaves 0 WYSIWYG logic cells and I/Os untouched
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "nNMIout" is stuck at VCC
@@ -301,17 +301,17 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "nDMAout" is stuck at VCC
     Warning (13410): Pin "RAdir" is stuck at VCC
 Info (17049): 1 registers lost all their fanouts during netlist optimizations.
-Info (21057): Implemented 321 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 337 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 28 input pins
     Info (21059): Implemented 35 output pins
     Info (21060): Implemented 17 bidirectional pins
-    Info (21061): Implemented 241 logic cells
+    Info (21061): Implemented 257 logic cells
 Info (144001): Generated suppressed messages file Z:/Repos/GR8RAM/cpld/output_files/GR8RAM.map.smsg
 Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 13 warnings
     Info: Peak virtual memory: 301 megabytes
-    Info: Processing ended: Tue Apr 20 04:19:44 2021
+    Info: Processing ended: Wed Apr 21 20:01:47 2021
     Info: Elapsed time: 00:00:05
-    Info: Total CPU time (on all processors): 00:00:04
+    Info: Total CPU time (on all processors): 00:00:05
 
 
 +------------------------------------------+
