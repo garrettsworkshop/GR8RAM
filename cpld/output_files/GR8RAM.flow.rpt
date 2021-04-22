@@ -1,5 +1,5 @@
 Flow report for GR8RAM
-Tue Apr 20 04:20:05 2021
+Wed Apr 21 20:02:07 2021
 Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -40,14 +40,14 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------+
 ; Flow Summary                                                                ;
 +---------------------------+-------------------------------------------------+
-; Flow Status               ; Successful - Tue Apr 20 04:19:58 2021           ;
+; Flow Status               ; Successful - Wed Apr 21 20:02:00 2021           ;
 ; Quartus II 32-bit Version ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name             ; GR8RAM                                          ;
 ; Top-level Entity Name     ; GR8RAM                                          ;
 ; Family                    ; MAX II                                          ;
 ; Device                    ; EPM240T100C5                                    ;
 ; Timing Models             ; Final                                           ;
-; Total logic elements      ; 230 / 240 ( 96 % )                              ;
+; Total logic elements      ; 234 / 240 ( 98 % )                              ;
 ; Total pins                ; 80 / 80 ( 100 % )                               ;
 ; Total virtual pins        ; 0                                               ;
 ; UFM blocks                ; 0 / 1 ( 0 % )                                   ;
@@ -59,7 +59,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 04/20/2021 04:19:41 ;
+; Start date & time ; 04/21/2021 20:01:44 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; GR8RAM              ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ applicable agreement for further details.
 ; ALM_REGISTER_PACKING_EFFORT                     ; High                           ; Medium        ; --          ; --         ;
 ; AUTO_PACKED_REGISTERS_MAXII                     ; Minimize Area                  ; Auto          ; --          ; --         ;
 ; AUTO_RESOURCE_SHARING                           ; On                             ; Off           ; --          ; --         ;
-; COMPILER_SIGNATURE_ID                           ; 44085571633675.161890678100176 ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID                           ; 44085571633675.161904970303144 ; --            ; --          ; --         ;
 ; FINAL_PLACEMENT_OPTIMIZATION                    ; Always                         ; Automatically ; --          ; --         ;
 ; FITTER_EFFORT                                   ; Standard Fit                   ; Auto Fit      ; --          ; --         ;
 ; IOBANK_VCCIO                                    ; 3.3V                           ; --            ; --          ; 1          ;
@@ -102,11 +102,11 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:05     ; 1.0                     ; 301 MB              ; 00:00:04                           ;
-; Fitter                    ; 00:00:08     ; 1.2                     ; 382 MB              ; 00:00:07                           ;
+; Analysis & Synthesis      ; 00:00:05     ; 1.0                     ; 301 MB              ; 00:00:05                           ;
+; Fitter                    ; 00:00:07     ; 1.4                     ; 383 MB              ; 00:00:07                           ;
 ; Assembler                 ; 00:00:02     ; 1.0                     ; 292 MB              ; 00:00:02                           ;
 ; TimeQuest Timing Analyzer ; 00:00:05     ; 1.0                     ; 278 MB              ; 00:00:04                           ;
-; Total                     ; 00:00:20     ; --                      ; --                  ; 00:00:17                           ;
+; Total                     ; 00:00:19     ; --                      ; --                  ; 00:00:18                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
