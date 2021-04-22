@@ -23,3 +23,6 @@ fp-info-cache
 *.ses
 
 *.DS_Store
+cpld/db/GR8RAM.db_info
+cpld/db/GR8RAM.tmw_info
+cpld/GR8RAM.qws
