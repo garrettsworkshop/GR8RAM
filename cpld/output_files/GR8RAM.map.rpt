@@ -1,6 +1,6 @@
 Analysis & Synthesis report for GR8RAM
-Wed Apr 21 20:01:47 2021
-Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+Tue Sep 14 01:35:27 2021
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
 ---------------------
@@ -45,8 +45,8 @@ applicable agreement for further details.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +-----------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Wed Apr 21 20:01:47 2021           ;
-; Quartus II 32-bit Version   ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Analysis & Synthesis Status ; Successful - Tue Sep 14 01:35:27 2021           ;
+; Quartus II 64-Bit Version   ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name               ; GR8RAM                                          ;
 ; Top-level Entity Name       ; GR8RAM                                          ;
 ; Family                      ; MAX II                                          ;
@@ -130,30 +130,24 @@ applicable agreement for further details.
 +----------------------------------------------------------------------------+--------------------+--------------------+
 
 
-+------------------------------------------+
-; Parallel Compilation                     ;
-+----------------------------+-------------+
-; Processors                 ; Number      ;
-+----------------------------+-------------+
-; Number detected on machine ; 2           ;
-; Maximum allowed            ; 2           ;
-;                            ;             ;
-; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
-;                            ;             ;
-; Usage by Processor         ; % Time Used ;
-;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
-+----------------------------+-------------+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 12     ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                ;
-+----------------------------------+-----------------+------------------------+-------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path  ; Library ;
-+----------------------------------+-----------------+------------------------+-------------------------------+---------+
-; GR8RAM.v                         ; yes             ; User Verilog HDL File  ; Z:/Repos/GR8RAM/cpld/GR8RAM.v ;         ;
-+----------------------------------+-----------------+------------------------+-------------------------------+---------+
++--------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                     ;
++----------------------------------+-----------------+------------------------+----------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                       ; Library ;
++----------------------------------+-----------------+------------------------+----------------------------------------------------+---------+
+; GR8RAM.v                         ; yes             ; User Verilog HDL File  ; C:/Users/Dog/Documents/GitHub/GR8RAM/cpld/GR8RAM.v ;         ;
++----------------------------------+-----------------+------------------------+----------------------------------------------------+---------+
 
 
 +-----------------------------------------------------+
@@ -278,11 +272,11 @@ Encoding Type:  Minimal Bits
 ; Analysis & Synthesis Messages ;
 +-------------------------------+
 Info: *******************************************************************
-Info: Running Quartus II 32-bit Analysis & Synthesis
+Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Wed Apr 21 20:01:42 2021
+    Info: Processing started: Tue Sep 14 01:35:25 2021
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off GR8RAM -c GR8RAM
-Info (20030): Parallel compilation is enabled and will use 2 of the 2 processors detected
+Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file gr8ram.v
     Info (12023): Found entity 1: GR8RAM
 Info (12127): Elaborating entity "GR8RAM" for the top level hierarchy
@@ -306,17 +300,17 @@ Info (21057): Implemented 337 device resources after synthesis - the final resou
     Info (21059): Implemented 35 output pins
     Info (21060): Implemented 17 bidirectional pins
     Info (21061): Implemented 257 logic cells
-Info (144001): Generated suppressed messages file Z:/Repos/GR8RAM/cpld/output_files/GR8RAM.map.smsg
-Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 13 warnings
-    Info: Peak virtual memory: 301 megabytes
-    Info: Processing ended: Wed Apr 21 20:01:47 2021
-    Info: Elapsed time: 00:00:05
-    Info: Total CPU time (on all processors): 00:00:05
+Info (144001): Generated suppressed messages file C:/Users/Dog/Documents/GitHub/GR8RAM/cpld/output_files/GR8RAM.map.smsg
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 14 warnings
+    Info: Peak virtual memory: 422 megabytes
+    Info: Processing ended: Tue Sep 14 01:35:27 2021
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:01
 
 
 +------------------------------------------+
 ; Analysis & Synthesis Suppressed Messages ;
 +------------------------------------------+
-The suppressed messages can be found in Z:/Repos/GR8RAM/cpld/output_files/GR8RAM.map.smsg.
+The suppressed messages can be found in C:/Users/Dog/Documents/GitHub/GR8RAM/cpld/output_files/GR8RAM.map.smsg.
 
 
