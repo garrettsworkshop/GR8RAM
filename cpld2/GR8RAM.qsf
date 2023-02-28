@@ -1,25 +1,24 @@
 # -------------------------------------------------------------------------- #
 #
-# Copyright (C) 2022  Intel Corporation. All rights reserved.
-# Your use of Intel Corporation's design tools, logic functions 
-# and other software and tools, and any partner logic 
+# Copyright (C) 1991-2013 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
 # functions, and any output files from any of the foregoing 
 # (including device programming or simulation files), and any 
 # associated documentation or information are expressly subject 
-# to the terms and conditions of the Intel Program License 
-# Subscription Agreement, the Intel Quartus Prime License Agreement,
-# the Intel FPGA IP License Agreement, or other applicable license
-# agreement, including, without limitation, that your use is for
-# the sole purpose of programming logic devices manufactured by
-# Intel and sold by Intel or its authorized distributors.  Please
-# refer to the applicable agreement for further details, at
-# https://fpgasoftware.intel.com/eula.
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
 #
 # -------------------------------------------------------------------------- #
 #
-# Quartus Prime
-# Version 22.1std.0 Build 915 10/25/2022 SC Lite Edition
-# Date created = 11:15:44  February 28, 2023
+# Quartus II 32-bit
+# Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+# Date created = 13:41:40  March 15, 2021
 #
 # -------------------------------------------------------------------------- #
 #
@@ -30,8 +29,8 @@
 #    If this file doesn't exist, see file:
 #		assignment_defaults.qdf
 #
-# 2) Intel recommends that you do not modify this file. This
-#    file is updated automatically by the Quartus Prime software
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
 #    and any changes you make may be lost or overwritten.
 #
 # -------------------------------------------------------------------------- #
@@ -58,4 +57,200 @@ set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_timing
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_symbol
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_signal_integrity
-set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scanset_location_assignment PIN_2 -to RA[5]
+set_location_assignment PIN_3 -to RA[6]
+set_location_assignment PIN_4 -to RA[3]
+set_location_assignment PIN_5 -to nFCS
+set_location_assignment PIN_6 -to RA[7]
+set_location_assignment PIN_7 -to RA[8]
+set_location_assignment PIN_8 -to RA[9]
+set_location_assignment PIN_12 -to FCK
+set_location_assignment PIN_14 -to RA[10]
+set_location_assignment PIN_15 -to MOSI
+set_location_assignment PIN_16 -to MISO
+set_location_assignment PIN_30 -to nRESout
+set_location_assignment PIN_34 -to RA[11]
+set_location_assignment PIN_35 -to RA[12]
+set_location_assignment PIN_36 -to RA[13]
+set_location_assignment PIN_37 -to RA[14]
+set_location_assignment PIN_38 -to RA[15]
+set_location_assignment PIN_39 -to nIOSEL
+set_location_assignment PIN_42 -to nIOSTRB
+set_location_assignment PIN_40 -to nDEVSEL
+set_location_assignment PIN_41 -to PHI0
+set_location_assignment PIN_43 -to nWE
+set_location_assignment PIN_44 -to nRES
+set_location_assignment PIN_47 -to SD[1]
+set_location_assignment PIN_50 -to SD[0]
+set_location_assignment PIN_51 -to SD[4]
+set_location_assignment PIN_100 -to RA[0]
+set_location_assignment PIN_99 -to RD[7]
+set_location_assignment PIN_52 -to SD[5]
+set_location_assignment PIN_54 -to SD[7]
+set_location_assignment PIN_55 -to SD[3]
+set_location_assignment PIN_56 -to SD[2]
+set_location_assignment PIN_53 -to SD[6]
+set_location_assignment PIN_57 -to DQMH
+set_location_assignment PIN_58 -to nSWE
+set_location_assignment PIN_62 -to nRAS
+set_location_assignment PIN_61 -to nCAS
+set_location_assignment PIN_64 -to C25M
+set_location_assignment PIN_66 -to RCKE
+set_location_assignment PIN_67 -to nRCS
+set_location_assignment PIN_68 -to SA[12]
+set_location_assignment PIN_69 -to SBA[0]
+set_location_assignment PIN_70 -to SA[11]
+set_location_assignment PIN_71 -to SBA[1]
+set_location_assignment PIN_72 -to SA[9]
+set_location_assignment PIN_73 -to SA[10]
+set_location_assignment PIN_74 -to SA[8]
+set_location_assignment PIN_75 -to SA[0]
+set_location_assignment PIN_76 -to SA[4]
+set_location_assignment PIN_77 -to SA[6]
+set_location_assignment PIN_78 -to SA[7]
+set_location_assignment PIN_81 -to SA[1]
+set_location_assignment PIN_82 -to SA[2]
+set_location_assignment PIN_83 -to SA[5]
+set_location_assignment PIN_84 -to SA[3]
+set_location_assignment PIN_85 -to DQML
+set_location_assignment PIN_86 -to RD[0]
+set_location_assignment PIN_87 -to RD[1]
+set_location_assignment PIN_88 -to RD[2]
+set_location_assignment PIN_89 -to RD[3]
+set_location_assignment PIN_90 -to RD[4]
+set_location_assignment PIN_91 -to RD[5]
+set_location_assignment PIN_92 -to RD[6]
+set_location_assignment PIN_97 -to RA[2]
+set_location_assignment PIN_98 -to RA[1]
+set_location_assignment PIN_96 -to SetFW[0]
+set_location_assignment PIN_95 -to SetFW[1]
+set_global_assignment -name IOBANK_VCCIO 3.3V -section_id 1
+set_global_assignment -name IOBANK_VCCIO 3.3V -section_id 2
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to nFCS
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nFCS
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to FCK
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to FCK
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to MOSI
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to MOSI
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to MISO
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to MISO
+set_location_assignment PIN_21 -to nDMAout
+set_location_assignment PIN_19 -to RAdir
+set_location_assignment PIN_20 -to INTout
+set_location_assignment PIN_26 -to nNMIout
+set_location_assignment PIN_27 -to nINHout
+set_location_assignment PIN_28 -to nRDYout
+set_location_assignment PIN_29 -to nIRQout
+set_location_assignment PIN_33 -to RWout
+set_location_assignment PIN_48 -to DMAin
+set_location_assignment PIN_49 -to INTin
+set_location_assignment PIN_17 -to RDdir
+set_location_assignment PIN_18 -to DMAout
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RA
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RA
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RA
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RD
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RD
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY ON -to RD
+set_instance_assignment -name SLOW_SLEW_RATE OFF -to RD
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to RD
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RAdir
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to RAdir
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RAdir
+set_instance_assignment -name SLOW_SLEW_RATE ON -to RAdir
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to RAdir
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RDdir
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to RDdir
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RDdir
+set_instance_assignment -name SLOW_SLEW_RATE ON -to RDdir
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to RDdir
+set_instance_assignment -name IO_STANDARD "3.3V SCHMITT TRIGGER INPUT" -to PHI0
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to PHI0
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to PHI0
+set_instance_assignment -name IO_STANDARD "3.3V SCHMITT TRIGGER INPUT" -to nWE
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to nWE
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nWE
+set_instance_assignment -name IO_STANDARD "3.3V SCHMITT TRIGGER INPUT" -to nDEVSEL
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to nDEVSEL
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nDEVSEL
+set_instance_assignment -name IO_STANDARD "3.3V SCHMITT TRIGGER INPUT" -to nIOSEL
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to nIOSEL
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nIOSEL
+set_instance_assignment -name IO_STANDARD "3.3V SCHMITT TRIGGER INPUT" -to nIOSTRB
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to nIOSTRB
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nIOSTRB
+set_instance_assignment -name IO_STANDARD "3.3V SCHMITT TRIGGER INPUT" -to nRES
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to nRES
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nRES
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nRESout
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to nRESout
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nRESout
+set_instance_assignment -name SLOW_SLEW_RATE ON -to nRESout
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to nRESout
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nFCS
+set_instance_assignment -name SLOW_SLEW_RATE ON -to nFCS
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to nFCS
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FCK
+set_instance_assignment -name SLOW_SLEW_RATE ON -to FCK
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FCK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MOSI
+set_instance_assignment -name SLOW_SLEW_RATE ON -to MOSI
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to MOSI
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to MISO
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to C25M
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to C25M
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to C25M
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nRCS
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to nRCS
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nRCS
+set_instance_assignment -name SLOW_SLEW_RATE ON -to nRCS
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to nRCS
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nRAS
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to nRAS
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nRAS
+set_instance_assignment -name SLOW_SLEW_RATE ON -to nRAS
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to nRAS
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nCAS
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to nCAS
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nCAS
+set_instance_assignment -name SLOW_SLEW_RATE ON -to nCAS
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to nCAS
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to nSWE
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to nSWE
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to nSWE
+set_instance_assignment -name SLOW_SLEW_RATE ON -to nSWE
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to nSWE
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to RCKE
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to RCKE
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to RCKE
+set_instance_assignment -name SLOW_SLEW_RATE ON -to RCKE
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to RCKE
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SBA
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SBA
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to SBA
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SBA
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SBA
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SA
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SA
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to SA
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SA
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to SA
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DQMH
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to DQMH
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to DQMH
+set_instance_assignment -name SLOW_SLEW_RATE ON -to DQMH
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to DQMH
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DQML
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to DQML
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to DQML
+set_instance_assignment -name SLOW_SLEW_RATE ON -to DQML
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to DQML
+set_instance_assignment -name IO_STANDARD "3.3V SCHMITT TRIGGER INPUT" -to SetFW
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to SetFW
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to SetFW
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SD
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR OFF -to SD
+set_instance_assignment -name ENABLE_BUS_HOLD_CIRCUITRY OFF -to SD
+set_instance_assignment -name SLOW_SLEW_RATE ON -to SD
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to SD
+set_global_assignment -name SDC_FILE GR8RAM.sdc
