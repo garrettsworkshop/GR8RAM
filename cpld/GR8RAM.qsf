@@ -39,9 +39,9 @@
 set_global_assignment -name FAMILY "MAX II"
 set_global_assignment -name DEVICE EPM240T100C5
 set_global_assignment -name TOP_LEVEL_ENTITY GR8RAM
-set_global_assignment -name ORIGINAL_QUARTUS_VERSION "13.0 SP1"
-set_global_assignment -name PROJECT_CREATION_TIME_DATE "13:41:40  MARCH 15, 2021"
-set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 22.1STD.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "11:15:44  FEBRUARY 28, 2023"
+set_global_assignment -name LAST_QUARTUS_VERSION "22.1std.0 Lite Edition"
 set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
@@ -50,29 +50,14 @@ set_global_assignment -name DEVICE_FILTER_PIN_COUNT 100
 set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 5
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR "-1"
 set_global_assignment -name POWER_EXT_SUPPLY_VOLTAGE_TO_REGULATOR 3.3V
-set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
-set_global_assignment -name OPTIMIZE_HOLD_TIMING "IO PATHS AND MINIMUM TPD PATHS"
-set_global_assignment -name OPTIMIZE_MULTI_CORNER_TIMING OFF
-set_global_assignment -name FITTER_EFFORT "STANDARD FIT"
-set_global_assignment -name MAXII_OPTIMIZATION_TECHNIQUE AREA
-set_global_assignment -name SYNTH_TIMING_DRIVEN_SYNTHESIS OFF
-set_global_assignment -name ADV_NETLIST_OPT_SYNTH_WYSIWYG_REMAP ON
-set_global_assignment -name SAFE_STATE_MACHINE OFF
-set_global_assignment -name REMOVE_REDUNDANT_LOGIC_CELLS ON
-set_global_assignment -name ALLOW_SHIFT_REGISTER_MERGING_ACROSS_HIERARCHIES ALWAYS
-set_global_assignment -name AUTO_RESOURCE_SHARING ON
-set_global_assignment -name PLACEMENT_EFFORT_MULTIPLIER 2.0
-set_global_assignment -name ROUTER_EFFORT_MULTIPLIER 2.0
-set_global_assignment -name FINAL_PLACEMENT_OPTIMIZATION ALWAYS
-set_global_assignment -name ALM_REGISTER_PACKING_EFFORT HIGH
-set_global_assignment -name MUX_RESTRUCTURE ON
-set_global_assignment -name STATE_MACHINE_PROCESSING "MINIMAL BITS"
-set_global_assignment -name SYNTHESIS_SEED 123
-set_global_assignment -name SEED 235
-set_global_assignment -name AUTO_PACKED_REGISTERS_MAXII "MINIMIZE AREA"
-set_global_assignment -name ROUTER_REGISTER_DUPLICATION OFF
-set_global_assignment -name VERILOG_FILE GR8RAM.v
-set_location_assignment PIN_1 -to RA[4]
+set_global_assignment -name EDA_SIMULATION_TOOL "Questa Intel FPGA (Verilog)"
+set_global_assignment -name EDA_NETLIST_WRITER_OUTPUT_DIR simulation/questa -section_id eda_simulation
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_timing
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_symbol
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_signal_integrity
+set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
 set_location_assignment PIN_2 -to RA[5]
 set_location_assignment PIN_3 -to RA[6]
 set_location_assignment PIN_4 -to RA[3]
