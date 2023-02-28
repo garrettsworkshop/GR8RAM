@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EPM240T100) Path("//Mac/iCloud/Repos2/GR8RAM/cpld/output_files/") File("GR8RAM.pof") MfrSpec(OpMask(1) SEC_Device(EPM240T100) Child_OpMask(2 3 3));
+		Device PartName(EPM240T100) Path("//mac/iCloud/Repos2/GR8RAM/cpld2/output_files/") File("GR8RAM.pof") MfrSpec(OpMask(1) SEC_Device(EPM240T100) Child_OpMask(2 3 3));
 
 ChainEnd;
 
