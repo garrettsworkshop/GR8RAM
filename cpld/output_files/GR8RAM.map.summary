@@ -1,9 +1,9 @@
-Analysis & Synthesis Status : Successful - Tue Sep 14 01:35:27 2021
-Quartus II 64-Bit Version : 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition
+Analysis & Synthesis Status : Successful - Tue Feb 28 11:21:16 2023
+Quartus Prime Version : 22.1std.0 Build 915 10/25/2022 SC Lite Edition
 Revision Name : GR8RAM
 Top-level Entity Name : GR8RAM
 Family : MAX II
-Total logic elements : 257
+Total logic elements : 253
 Total pins : 80
 Total virtual pins : 0
 UFM blocks : 0 / 1 ( 0 % )
