@@ -1,10 +1,10 @@
-/* Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition */
+/* Quartus Prime Version 22.1std.0 Build 915 10/25/2022 SC Lite Edition */
 JedecChain;
 	FileRevision(JESD32A);
 	DefaultMfr(6E);
 
-	P ActionCode(Vfy)
-		Device PartName(EPM240T100) Path("C:/Users/Dog/Documents/GitHub/GR8RAM/cpld/output_files/") File("GR8RAM.pof") MfrSpec(OpMask(2) SEC_Device(EPM240T100) Child_OpMask(2 2 2));
+	P ActionCode(Cfg)
+		Device PartName(EPM240T100) Path("//Mac/iCloud/Repos2/GR8RAM/cpld/output_files/") File("GR8RAM.pof") MfrSpec(OpMask(1) SEC_Device(EPM240T100) Child_OpMask(2 3 3));
 
 ChainEnd;
 
