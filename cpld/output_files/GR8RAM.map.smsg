@@ -1,2 +1,2 @@
-Warning (10273): Verilog HDL warning at gr8ram.v(110): extended using "x" or "z" File: //mac/iCloud/Repos2/GR8RAM/cpld2/gr8ram.v Line: 110
-Warning (10273): Verilog HDL warning at gr8ram.v(286): extended using "x" or "z" File: //mac/iCloud/Repos2/GR8RAM/cpld2/gr8ram.v Line: 286
+Warning (10273): Verilog HDL warning at GR8RAM.v(110): extended using "x" or "z" File: //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v Line: 110
+Warning (10273): Verilog HDL warning at GR8RAM.v(286): extended using "x" or "z" File: //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v Line: 286
