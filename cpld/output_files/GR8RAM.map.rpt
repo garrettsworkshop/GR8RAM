@@ -1,6 +1,6 @@
 Analysis & Synthesis report for GR8RAM
-Tue Feb 28 11:21:16 2023
-Quartus Prime Version 22.1std.0 Build 915 10/25/2022 SC Lite Edition
+Fri Feb 16 20:46:11 2024
+Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
 ---------------------
@@ -26,7 +26,7 @@ Quartus Prime Version 22.1std.0 Build 915 10/25/2022 SC Lite Edition
 ----------------
 ; Legal Notice ;
 ----------------
-Copyright (C) 2022  Intel Corporation. All rights reserved.
+Copyright (C) 2019  Intel Corporation. All rights reserved.
 Your use of Intel Corporation's design tools, logic functions 
 and other software and tools, and any partner logic 
 functions, and any output files from any of the foregoing 
@@ -43,19 +43,19 @@ https://fpgasoftware.intel.com/eula.
 
 
 
-+------------------------------------------------------------------------------+
-; Analysis & Synthesis Summary                                                 ;
-+-----------------------------+------------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Tue Feb 28 11:21:16 2023          ;
-; Quartus Prime Version       ; 22.1std.0 Build 915 10/25/2022 SC Lite Edition ;
-; Revision Name               ; GR8RAM                                         ;
-; Top-level Entity Name       ; GR8RAM                                         ;
-; Family                      ; MAX II                                         ;
-; Total logic elements        ; 253                                            ;
-; Total pins                  ; 80                                             ;
-; Total virtual pins          ; 0                                              ;
-; UFM blocks                  ; 0 / 1 ( 0 % )                                  ;
-+-----------------------------+------------------------------------------------+
++---------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                              ;
++-----------------------------+---------------------------------------------+
+; Analysis & Synthesis Status ; Successful - Fri Feb 16 20:46:11 2024       ;
+; Quartus Prime Version       ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
+; Revision Name               ; GR8RAM                                      ;
+; Top-level Entity Name       ; GR8RAM                                      ;
+; Family                      ; MAX II                                      ;
+; Total logic elements        ; 253                                         ;
+; Total pins                  ; 80                                          ;
+; Total virtual pins          ; 0                                           ;
+; UFM blocks                  ; 0 / 1 ( 0 % )                               ;
++-----------------------------+---------------------------------------------+
 
 
 +------------------------------------------------------------------------------------------------------------+
@@ -145,13 +145,13 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                  ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path              ; Library ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------+---------+
-; gr8ram.v                         ; yes             ; Auto-Found Verilog HDL File  ; //mac/iCloud/Repos2/GR8RAM/cpld2/gr8ram.v ;         ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------+---------+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                        ;
++----------------------------------+-----------------+------------------------+---------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path          ; Library ;
++----------------------------------+-----------------+------------------------+---------------------------------------+---------+
+; GR8RAM.v                         ; yes             ; User Verilog HDL File  ; //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v ;         ;
++----------------------------------+-----------------+------------------------+---------------------------------------+---------+
 
 
 +-----------------------------------------------------+
@@ -279,44 +279,44 @@ Encoding Type:  One-Hot
 +-------------------------------+
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
-    Info: Version 22.1std.0 Build 915 10/25/2022 SC Lite Edition
-    Info: Processing started: Tue Feb 28 11:20:53 2023
+    Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
+    Info: Processing started: Fri Feb 16 20:45:52 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off GR8RAM -c GR8RAM
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
-Warning (12125): Using design file gr8ram.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
-    Info (12023): Found entity 1: GR8RAM File: //mac/iCloud/Repos2/GR8RAM/cpld2/gr8ram.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file gr8ram.v
+    Info (12023): Found entity 1: GR8RAM File: //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v Line: 1
 Info (12127): Elaborating entity "GR8RAM" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at gr8ram.v(42): truncated value with size 32 to match size of target (4) File: //mac/iCloud/Repos2/GR8RAM/cpld2/gr8ram.v Line: 42
-Warning (10230): Verilog HDL assignment warning at gr8ram.v(47): truncated value with size 32 to match size of target (14) File: //mac/iCloud/Repos2/GR8RAM/cpld2/gr8ram.v Line: 47
-Warning (10230): Verilog HDL assignment warning at gr8ram.v(134): truncated value with size 32 to match size of target (8) File: //mac/iCloud/Repos2/GR8RAM/cpld2/gr8ram.v Line: 134
-Warning (10230): Verilog HDL assignment warning at gr8ram.v(142): truncated value with size 32 to match size of target (8) File: //mac/iCloud/Repos2/GR8RAM/cpld2/gr8ram.v Line: 142
-Warning (10230): Verilog HDL assignment warning at gr8ram.v(149): truncated value with size 32 to match size of target (8) File: //mac/iCloud/Repos2/GR8RAM/cpld2/gr8ram.v Line: 149
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(42): truncated value with size 32 to match size of target (4) File: //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v Line: 42
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(47): truncated value with size 32 to match size of target (14) File: //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v Line: 47
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(134): truncated value with size 32 to match size of target (8) File: //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v Line: 134
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(142): truncated value with size 32 to match size of target (8) File: //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v Line: 142
+Warning (10230): Verilog HDL assignment warning at GR8RAM.v(149): truncated value with size 32 to match size of target (8) File: //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v Line: 149
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "nNMIout" is stuck at VCC File: //mac/iCloud/Repos2/GR8RAM/cpld2/gr8ram.v Line: 563
-    Warning (13410): Pin "nIRQout" is stuck at VCC File: //mac/iCloud/Repos2/GR8RAM/cpld2/gr8ram.v Line: 566
-    Warning (13410): Pin "nRDYout" is stuck at VCC File: //mac/iCloud/Repos2/GR8RAM/cpld2/gr8ram.v Line: 565
-    Warning (13410): Pin "nINHout" is stuck at VCC File: //mac/iCloud/Repos2/GR8RAM/cpld2/gr8ram.v Line: 564
-    Warning (13410): Pin "RWout" is stuck at VCC File: //mac/iCloud/Repos2/GR8RAM/cpld2/gr8ram.v Line: 567
-    Warning (13410): Pin "nDMAout" is stuck at VCC File: //mac/iCloud/Repos2/GR8RAM/cpld2/gr8ram.v Line: 562
-    Warning (13410): Pin "RAdir" is stuck at VCC File: //mac/iCloud/Repos2/GR8RAM/cpld2/gr8ram.v Line: 561
+    Warning (13410): Pin "nNMIout" is stuck at VCC File: //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v Line: 563
+    Warning (13410): Pin "nIRQout" is stuck at VCC File: //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v Line: 566
+    Warning (13410): Pin "nRDYout" is stuck at VCC File: //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v Line: 565
+    Warning (13410): Pin "nINHout" is stuck at VCC File: //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v Line: 564
+    Warning (13410): Pin "RWout" is stuck at VCC File: //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v Line: 567
+    Warning (13410): Pin "nDMAout" is stuck at VCC File: //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v Line: 562
+    Warning (13410): Pin "RAdir" is stuck at VCC File: //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v Line: 561
 Info (17049): 3 registers lost all their fanouts during netlist optimizations.
 Info (21057): Implemented 333 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 28 input pins
     Info (21059): Implemented 35 output pins
     Info (21060): Implemented 17 bidirectional pins
     Info (21061): Implemented 253 logic cells
-Info (144001): Generated suppressed messages file /Repos2/GR8RAM/cpld2/output_files/GR8RAM.map.smsg
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 15 warnings
-    Info: Peak virtual memory: 13114 megabytes
-    Info: Processing ended: Tue Feb 28 11:21:16 2023
-    Info: Elapsed time: 00:00:23
-    Info: Total CPU time (on all processors): 00:00:48
+Info (144001): Generated suppressed messages file /Repos/GR8RAM/cpld/output_files/GR8RAM.map.smsg
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 14 warnings
+    Info: Peak virtual memory: 13145 megabytes
+    Info: Processing ended: Fri Feb 16 20:46:11 2024
+    Info: Elapsed time: 00:00:19
+    Info: Total CPU time (on all processors): 00:00:41
 
 
 +------------------------------------------+
 ; Analysis & Synthesis Suppressed Messages ;
 +------------------------------------------+
-The suppressed messages can be found in /Repos2/GR8RAM/cpld2/output_files/GR8RAM.map.smsg.
+The suppressed messages can be found in /Repos/GR8RAM/cpld/output_files/GR8RAM.map.smsg.
 
 
