@@ -27,3 +27,4 @@ GR8RAM-backups/*
 *.kicad_prl
 cpld/db/*
 cpld/incremental_db/*
+cpld/GR8RAM.qws
