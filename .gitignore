@@ -24,8 +24,6 @@ GR8RAM-backups/*
 *.ses
 
 *.DS_Store
-cpld/db/GR8RAM.db_info
-cpld/db/GR8RAM.tmw_info
-cpld/GR8RAM.qws
-Documentation/~$4205AManual.docx
 *.kicad_prl
+cpld/db/*
+cpld/incremental_db/*
