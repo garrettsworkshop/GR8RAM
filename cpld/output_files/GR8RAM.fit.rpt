@@ -1,5 +1,5 @@
 Fitter report for GR8RAM
-Fri Feb 16 20:46:15 2024
+Fri Feb 16 20:53:58 2024
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -58,7 +58,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------+
 ; Fitter Summary                                                      ;
 +-----------------------+---------------------------------------------+
-; Fitter Status         ; Successful - Fri Feb 16 20:46:15 2024       ;
+; Fitter Status         ; Successful - Fri Feb 16 20:53:58 2024       ;
 ; Quartus Prime Version ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
 ; Revision Name         ; GR8RAM                                      ;
 ; Top-level Entity Name ; GR8RAM                                      ;
@@ -134,7 +134,7 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   1.0%      ;
+;     Processor 2            ;   0.8%      ;
 ;     Processors 3-4         ;   0.7%      ;
 +----------------------------+-------------+
 
@@ -780,8 +780,8 @@ Warning (169174): The Reserve All Unused Pins setting has not been specified, an
 Info (144001): Generated suppressed messages file /Repos/GR8RAM/cpld/output_files/GR8RAM.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 4 warnings
     Info: Peak virtual memory: 13772 megabytes
-    Info: Processing ended: Fri Feb 16 20:46:15 2024
-    Info: Elapsed time: 00:00:03
+    Info: Processing ended: Fri Feb 16 20:53:58 2024
+    Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:03
 
 
