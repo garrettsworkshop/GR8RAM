@@ -1,5 +1,5 @@
 Flow report for GR8RAM
-Fri Feb 16 20:54:03 2024
+Wed Mar 20 05:23:41 2024
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -41,7 +41,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------+
 ; Flow Summary                                                        ;
 +-----------------------+---------------------------------------------+
-; Flow Status           ; Successful - Fri Feb 16 20:54:00 2024       ;
+; Flow Status           ; Successful - Wed Mar 20 05:23:38 2024       ;
 ; Quartus Prime Version ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
 ; Revision Name         ; GR8RAM                                      ;
 ; Top-level Entity Name ; GR8RAM                                      ;
@@ -60,7 +60,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 02/16/2024 20:53:35 ;
+; Start date & time ; 03/20/2024 05:23:11 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; GR8RAM              ;
 +-------------------+---------------------+
@@ -71,7 +71,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                       ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +---------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID                 ; 121380219419.170813481504184           ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID                 ; 121380219419.171092659013692           ; --            ; --          ; --         ;
 ; IOBANK_VCCIO                          ; -- (Not supported for targeted family) ; --            ; --          ; 1          ;
 ; IOBANK_VCCIO                          ; -- (Not supported for targeted family) ; --            ; --          ; 2          ;
 ; MAX_CORE_JUNCTION_TEMP                ; 85                                     ; --            ; --          ; --         ;
@@ -86,11 +86,11 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:20     ; 1.0                     ; 13135 MB            ; 00:00:43                           ;
-; Fitter               ; 00:00:02     ; 1.0                     ; 13772 MB            ; 00:00:03                           ;
-; Assembler            ; 00:00:01     ; 1.0                     ; 13093 MB            ; 00:00:01                           ;
-; Timing Analyzer      ; 00:00:02     ; 1.0                     ; 13090 MB            ; 00:00:01                           ;
-; Total                ; 00:00:25     ; --                      ; --                  ; 00:00:48                           ;
+; Analysis & Synthesis ; 00:00:20     ; 1.0                     ; 13139 MB            ; 00:00:42                           ;
+; Fitter               ; 00:00:04     ; 1.0                     ; 13773 MB            ; 00:00:03                           ;
+; Assembler            ; 00:00:01     ; 1.0                     ; 13094 MB            ; 00:00:01                           ;
+; Timing Analyzer      ; 00:00:02     ; 1.0                     ; 13093 MB            ; 00:00:01                           ;
+; Total                ; 00:00:27     ; --                      ; --                  ; 00:00:47                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

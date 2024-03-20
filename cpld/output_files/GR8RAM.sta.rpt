@@ -1,5 +1,5 @@
 Timing Analyzer report for GR8RAM
-Fri Feb 16 20:54:03 2024
+Wed Mar 20 05:23:41 2024
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -80,11 +80,10 @@ https://fpgasoftware.intel.com/eula.
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 2           ;
+; Maximum used               ; 1           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processor 2            ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -93,7 +92,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------+--------+--------------------------+
 ; SDC File Path ; Status ; Read at                  ;
 +---------------+--------+--------------------------+
-; GR8RAM.sdc    ; OK     ; Fri Feb 16 20:54:03 2024 ;
+; GR8RAM.sdc    ; OK     ; Wed Mar 20 05:23:41 2024 ;
 +---------------+--------+--------------------------+
 
 
@@ -747,7 +746,7 @@ No non-DPA dedicated SERDES Receiver circuitry present in device or used in desi
 Info: *******************************************************************
 Info: Running Quartus Prime Timing Analyzer
     Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Fri Feb 16 20:54:01 2024
+    Info: Processing started: Wed Mar 20 05:23:39 2024
 Info: Command: quartus_sta GR8RAM -c GR8RAM
 Info: qsta_default_script.tcl version: #1
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -784,8 +783,8 @@ Info (332001): The selected device family is not supported by the report_metasta
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus Prime Timing Analyzer was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 13090 megabytes
-    Info: Processing ended: Fri Feb 16 20:54:03 2024
+    Info: Peak virtual memory: 13093 megabytes
+    Info: Processing ended: Wed Mar 20 05:23:41 2024
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:01
 

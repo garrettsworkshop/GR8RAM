@@ -1,5 +1,5 @@
 Fitter report for GR8RAM
-Fri Feb 16 20:53:58 2024
+Wed Mar 20 05:23:36 2024
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -58,7 +58,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------+
 ; Fitter Summary                                                      ;
 +-----------------------+---------------------------------------------+
-; Fitter Status         ; Successful - Fri Feb 16 20:53:58 2024       ;
+; Fitter Status         ; Successful - Wed Mar 20 05:23:36 2024       ;
 ; Quartus Prime Version ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
 ; Revision Name         ; GR8RAM                                      ;
 ; Top-level Entity Name ; GR8RAM                                      ;
@@ -135,14 +135,14 @@ https://fpgasoftware.intel.com/eula.
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
 ;     Processor 2            ;   0.8%      ;
-;     Processors 3-4         ;   0.7%      ;
+;     Processors 3-4         ;   0.5%      ;
 +----------------------------+-------------+
 
 
 +--------------+
 ; Pin-Out File ;
 +--------------+
-The pin-out file can be found in /Repos/GR8RAM/cpld/output_files/GR8RAM.pin.
+The pin-out file can be found in /Repos/GR8RAM/CPLD/output_files/GR8RAM.pin.
 
 
 +---------------------------------------------------------------------+
@@ -741,13 +741,13 @@ Info (332111): Found 2 clocks
     Info (332111):   40.000         C25M
     Info (332111):  978.000         PHI0
 Info (186079): Completed User Assigned Global Signals Promotion Operation
-Info (186215): Automatically promoted signal "C25M" to use Global clock in PIN 64 File: //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v Line: 9
-Info (186216): Automatically promoted some destinations of signal "PHI0" to use Global clock File: //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v Line: 9
+Info (186215): Automatically promoted signal "C25M" to use Global clock in PIN 64 File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 9
+Info (186216): Automatically promoted some destinations of signal "PHI0" to use Global clock File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 9
     Info (186217): Destination "comb~0" may be non-global or may not use global clock
-    Info (186217): Destination "PHI0r1" may be non-global or may not use global clock File: //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v Line: 10
-Info (186228): Pin "PHI0" drives global clock, but is not placed in a dedicated clock pin position File: //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v Line: 9
-Info (186216): Automatically promoted some destinations of signal "nRESr" to use Global clock File: //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v Line: 16
-    Info (186217): Destination "IOROMEN" may be non-global or may not use global clock File: //Mac/Home/Repos/GR8RAM/cpld/GR8RAM.v Line: 94
+    Info (186217): Destination "PHI0r1" may be non-global or may not use global clock File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 10
+Info (186228): Pin "PHI0" drives global clock, but is not placed in a dedicated clock pin position File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 9
+Info (186216): Automatically promoted some destinations of signal "nRESr" to use Global clock File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 16
+    Info (186217): Destination "IOROMEN" may be non-global or may not use global clock File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 94
 Info (186079): Completed Auto Global Promotion Operation
 Info (176234): Starting register packing
 Info (186468): Started processing fast register assignments
@@ -777,17 +777,17 @@ Info (170194): Fitter routing operations ending: elapsed time is 00:00:00
 Info (11888): Total time spent on timing analysis during the Fitter is 0.16 seconds.
 Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:00
 Warning (169174): The Reserve All Unused Pins setting has not been specified, and will default to 'As output driving ground'.
-Info (144001): Generated suppressed messages file /Repos/GR8RAM/cpld/output_files/GR8RAM.fit.smsg
+Info (144001): Generated suppressed messages file /Repos/GR8RAM/CPLD/output_files/GR8RAM.fit.smsg
 Info: Quartus Prime Fitter was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 13772 megabytes
-    Info: Processing ended: Fri Feb 16 20:53:58 2024
-    Info: Elapsed time: 00:00:02
+    Info: Peak virtual memory: 13773 megabytes
+    Info: Processing ended: Wed Mar 20 05:23:36 2024
+    Info: Elapsed time: 00:00:04
     Info: Total CPU time (on all processors): 00:00:03
 
 
 +----------------------------+
 ; Fitter Suppressed Messages ;
 +----------------------------+
-The suppressed messages can be found in /Repos/GR8RAM/cpld/output_files/GR8RAM.fit.smsg.
+The suppressed messages can be found in /Repos/GR8RAM/CPLD/output_files/GR8RAM.fit.smsg.
 
 
