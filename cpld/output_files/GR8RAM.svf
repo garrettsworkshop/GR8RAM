@@ -1,4 +1,4 @@
-!Copyright (C) 2022  Intel Corporation. All rights reserved.
+!Copyright (C) 2019  Intel Corporation. All rights reserved.
 !Your use of Intel Corporation's design tools, logic functions 
 !and other software and tools, and any partner logic 
 !functions, and any output files from any of the foregoing 
@@ -13,9 +13,9 @@
 !refer to the applicable agreement for further details, at
 !https://fpgasoftware.intel.com/eula.
 !
-!Quartus Prime SVF converter 22.1
+!Quartus Prime SVF converter 19.1
 !
-!Device #1: EPM240 - //mac/iCloud/Repos2/GR8RAM/cpld2/output_files/GR8RAM.pof Tue Feb 28 11:21:26 2023
+!Device #1: EPM240 - //Mac/iCloud/Repos/GR8RAM/CPLD/output_files/GR8RAM.pof Wed Mar 20 05:23:38 2024
 !
 !NOTE "USERCODE" "00163AA4";
 !
