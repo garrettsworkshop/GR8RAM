@@ -12630,7 +12630,7 @@
   (gr_text "ZK, GF" (at 132.461 129.921) (layer "B.SilkS") (tstamp 7a17f3a3-d393-4254-8e0d-4675b63e33a0)
     (effects (font (size 0.8128 0.8128) (thickness 0.2032)) (justify mirror))
   )
-  (gr_text "B10A" (at 71.755 129.921) (layer "B.SilkS") (tstamp f293dcdc-0078-4171-acc4-c0bec3e55ed2)
+  (gr_text "B10B" (at 71.755 129.921) (layer "B.SilkS") (tstamp f293dcdc-0078-4171-acc4-c0bec3e55ed2)
     (effects (font (size 0.8128 0.8128) (thickness 0.2032)) (justify mirror))
   )
   (gr_text "Firmware Select:" (at 135.636 102.235) (layer "F.SilkS") (tstamp 288591eb-e0b4-4f0a-a2ab-ca51785dc45d)
