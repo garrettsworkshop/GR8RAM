@@ -34,3 +34,6 @@ CPLD/MAXV/GR8RAM.qws
 
 /Hardware/MAX/GR8RAM-backups/*
 /Hardware/LCMXO2/GR8RAM-backups/*
+*.qws
+/CPLD/incremental_db
+/CPLD/db
