@@ -6,9 +6,9 @@
 
   (paper "A4")
   (title_block
-    (title "GR8RAM (GW4205A)")
-    (date "2021-04-20")
-    (rev "1.0")
+    (title "GR8RAM (GW4205B)")
+    (date "2024-03-21")
+    (rev "B.1.0")
     (company "Garrett's Workshop")
   )
 
