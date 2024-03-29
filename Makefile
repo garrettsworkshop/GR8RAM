@@ -33,19 +33,15 @@ CMD_PCBPDF = pcb export pdf --black-and-white -l F.Fab,Edge.Cuts -o $(F_PCBPDF) 
 
 
 .PHONY: all clean \
-		Hardware/MAX Hardware/MAX/gerber Hardware/MAX/Documentation \
 		Hardware/LCMXO2 Hardware/LCMXO2/gerber Hardware/LCMXO2/Documentation
 
-all: Hardware/MAX Hardware/LCMXO2
+all: Hardware/LCMXO2
 clean:
-	rm -fr Hardware/MAX/gerber/ Hardware/MAX/Documentation/
 	rm -fr Hardware/LCMXO2/gerber/ Hardware/LCMXO2/Documentation/
 
-
-Hardware/MAX: Hardware/MAX/gerber Hardware/MAX/Documentation
 Hardware/LCMXO2: Hardware/LCMXO2/gerber Hardware/LCMXO2/Documentation
 
-Hardware/MAX/gerber Hardware/LCMXO2/gerber:
+Hardware/LCMXO2/gerber:
 	mkdir -p $@
 	$(KICAD) $(CMD_GERBER)
 	$(KICAD) $(CMD_DRILL)
@@ -61,7 +57,7 @@ Hardware/MAX/gerber Hardware/LCMXO2/gerber:
 	sed -i '' '/"U10"/d' $(F_POS_JUMPER)
 	rm -f $(F_ZIP)
 	zip -r $(F_ZIP) $@/
-Hardware/MAX/Documentation Hardware/LCMXO2/Documentation:
+Hardware/LCMXO2/Documentation:
 	mkdir -p $@
 	$(KICAD) $(CMD_SCHPDF)
 	$(KICAD) $(CMD_PCBPDF)
