@@ -1,5 +1,5 @@
 Analysis & Synthesis report for GR8RAM
-Wed Mar 20 05:23:30 2024
+Sun May 12 22:39:13 2024
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -46,12 +46,12 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                              ;
 +-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Wed Mar 20 05:23:30 2024       ;
+; Analysis & Synthesis Status ; Successful - Sun May 12 22:39:13 2024       ;
 ; Quartus Prime Version       ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
 ; Revision Name               ; GR8RAM                                      ;
 ; Top-level Entity Name       ; GR8RAM                                      ;
 ; Family                      ; MAX II                                      ;
-; Total logic elements        ; 253                                         ;
+; Total logic elements        ; 254                                         ;
 ; Total pins                  ; 80                                          ;
 ; Total virtual pins          ; 0                                           ;
 ; UFM blocks                  ; 0 / 1 ( 0 % )                               ;
@@ -66,6 +66,7 @@ https://fpgasoftware.intel.com/eula.
 ; Device                                                           ; EPM240T100C5       ;                    ;
 ; Top-level entity name                                            ; GR8RAM             ; GR8RAM             ;
 ; Family name                                                      ; MAX II             ; Cyclone V          ;
+; Maximum processors allowed for parallel compilation              ; 4                  ;                    ;
 ; Use smart compilation                                            ; Off                ; Off                ;
 ; Enable parallel Assembler and Timing Analyzer during compilation ; On                 ; On                 ;
 ; Enable compact report table                                      ; Off                ; Off                ;
@@ -159,33 +160,33 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+-------+
 ; Resource                                    ; Usage ;
 +---------------------------------------------+-------+
-; Total logic elements                        ; 253   ;
-;     -- Combinational with no register       ; 129   ;
-;     -- Register only                        ; 26    ;
-;     -- Combinational with a register        ; 98    ;
+; Total logic elements                        ; 254   ;
+;     -- Combinational with no register       ; 132   ;
+;     -- Register only                        ; 23    ;
+;     -- Combinational with a register        ; 99    ;
 ;                                             ;       ;
 ; Logic element usage by number of LUT inputs ;       ;
-;     -- 4 input functions                    ; 124   ;
-;     -- 3 input functions                    ; 30    ;
-;     -- 2 input functions                    ; 71    ;
+;     -- 4 input functions                    ; 126   ;
+;     -- 3 input functions                    ; 36    ;
+;     -- 2 input functions                    ; 67    ;
 ;     -- 1 input functions                    ; 0     ;
 ;     -- 0 input functions                    ; 2     ;
 ;                                             ;       ;
 ; Logic elements by mode                      ;       ;
-;     -- normal mode                          ; 220   ;
+;     -- normal mode                          ; 221   ;
 ;     -- arithmetic mode                      ; 33    ;
 ;     -- qfbk mode                            ; 0     ;
 ;     -- register cascade mode                ; 0     ;
-;     -- synchronous clear/load mode          ; 45    ;
-;     -- asynchronous clear/load mode         ; 29    ;
+;     -- synchronous clear/load mode          ; 46    ;
+;     -- asynchronous clear/load mode         ; 28    ;
 ;                                             ;       ;
-; Total registers                             ; 124   ;
+; Total registers                             ; 122   ;
 ; Total logic cells in carry chains           ; 37    ;
 ; I/O pins                                    ; 80    ;
 ; Maximum fan-out node                        ; C25M  ;
-; Maximum fan-out                             ; 110   ;
-; Total fan-out                               ; 1076  ;
-; Average fan-out                             ; 3.23  ;
+; Maximum fan-out                             ; 108   ;
+; Total fan-out                               ; 1089  ;
+; Average fan-out                             ; 3.26  ;
 +---------------------------------------------+-------+
 
 
@@ -194,7 +195,7 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+-------------+--------------+
 ; Compilation Hierarchy Node ; Logic Cells ; LC Registers ; UFM Blocks ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Carry Chain LCs ; Packed LCs ; Full Hierarchy Name ; Entity Name ; Library Name ;
 +----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+-------------+--------------+
-; |GR8RAM                    ; 253 (253)   ; 124          ; 0          ; 80   ; 0            ; 129 (129)    ; 26 (26)           ; 98 (98)          ; 37 (37)         ; 0 (0)      ; |GR8RAM             ; GR8RAM      ; work         ;
+; |GR8RAM                    ; 254 (254)   ; 122          ; 0          ; 80   ; 0            ; 132 (132)    ; 23 (23)           ; 99 (99)          ; 37 (37)         ; 0 (0)      ; |GR8RAM             ; GR8RAM      ; work         ;
 +----------------------------+-------------+--------------+------------+------+--------------+--------------+-------------------+------------------+-----------------+------------+---------------------+-------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -231,10 +232,10 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 124   ;
-; Number of registers using Synchronous Clear  ; 12    ;
+; Total registers                              ; 122   ;
+; Number of registers using Synchronous Clear  ; 13    ;
 ; Number of registers using Synchronous Load   ; 33    ;
-; Number of registers using Asynchronous Clear ; 29    ;
+; Number of registers using Asynchronous Clear ; 28    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 29    ;
 ; Number of registers using Preset             ; 0     ;
@@ -262,13 +263,13 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
-; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |GR8RAM|PS[2]              ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |GR8RAM|SA[11]~reg0        ;
-; 20:1               ; 6 bits    ; 78 LEs        ; 24 LEs               ; 54 LEs                 ; Yes        ; |GR8RAM|SA[3]~reg0         ;
-; 20:1               ; 3 bits    ; 39 LEs        ; 18 LEs               ; 21 LEs                 ; Yes        ; |GR8RAM|SA[1]~reg0         ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |GR8RAM|PS[0]              ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |GR8RAM|SA[12]~reg0        ;
+; 20:1               ; 6 bits    ; 78 LEs        ; 24 LEs               ; 54 LEs                 ; Yes        ; |GR8RAM|SA[6]~reg0         ;
+; 20:1               ; 3 bits    ; 39 LEs        ; 18 LEs               ; 21 LEs                 ; Yes        ; |GR8RAM|SA[2]~reg0         ;
 ; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |GR8RAM|WRD[7]             ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |GR8RAM|RDD[1]             ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; Yes        ; |GR8RAM|RDD[4]             ;
+; 9:1                ; 4 bits    ; 24 LEs        ; 20 LEs               ; 4 LEs                  ; Yes        ; |GR8RAM|RDD[1]             ;
+; 10:1               ; 4 bits    ; 24 LEs        ; 20 LEs               ; 4 LEs                  ; Yes        ; |GR8RAM|RDD[4]             ;
 ; 18:1               ; 2 bits    ; 24 LEs        ; 8 LEs                ; 16 LEs                 ; Yes        ; |GR8RAM|DQMH~reg0          ;
 ; 7:1                ; 5 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |GR8RAM|IS                 ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
@@ -280,38 +281,33 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Wed Mar 20 05:23:10 2024
+    Info: Processing started: Sun May 12 22:38:54 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off GR8RAM -c GR8RAM
-Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
-Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
+Info (16303): Aggressive Area optimization mode selected -- logic area will be prioritized at the potential cost of reduced timing performance
+Info (20032): Parallel compilation is enabled and will use up to 4 processors
 Info (12021): Found 1 design units, including 1 entities, in source file gr8ram.v
     Info (12023): Found entity 1: GR8RAM File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 1
 Info (12127): Elaborating entity "GR8RAM" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at GR8RAM.v(42): truncated value with size 32 to match size of target (4) File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 42
-Warning (10230): Verilog HDL assignment warning at GR8RAM.v(47): truncated value with size 32 to match size of target (14) File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 47
-Warning (10230): Verilog HDL assignment warning at GR8RAM.v(134): truncated value with size 32 to match size of target (8) File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 134
-Warning (10230): Verilog HDL assignment warning at GR8RAM.v(142): truncated value with size 32 to match size of target (8) File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 142
-Warning (10230): Verilog HDL assignment warning at GR8RAM.v(149): truncated value with size 32 to match size of target (8) File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 149
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "nNMIout" is stuck at VCC File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 563
-    Warning (13410): Pin "nIRQout" is stuck at VCC File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 566
-    Warning (13410): Pin "nRDYout" is stuck at VCC File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 565
-    Warning (13410): Pin "nINHout" is stuck at VCC File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 564
-    Warning (13410): Pin "RWout" is stuck at VCC File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 567
-    Warning (13410): Pin "nDMAout" is stuck at VCC File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 562
-    Warning (13410): Pin "RAdir" is stuck at VCC File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 561
+    Warning (13410): Pin "nNMIout" is stuck at VCC File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 564
+    Warning (13410): Pin "nIRQout" is stuck at VCC File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 567
+    Warning (13410): Pin "nRDYout" is stuck at VCC File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 566
+    Warning (13410): Pin "nINHout" is stuck at VCC File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 565
+    Warning (13410): Pin "RWout" is stuck at VCC File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 568
+    Warning (13410): Pin "nDMAout" is stuck at VCC File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 563
+    Warning (13410): Pin "RAdir" is stuck at VCC File: //Mac/iCloud/Repos/GR8RAM/CPLD/GR8RAM.v Line: 562
 Info (17049): 3 registers lost all their fanouts during netlist optimizations.
-Info (21057): Implemented 333 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 334 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 28 input pins
     Info (21059): Implemented 35 output pins
     Info (21060): Implemented 17 bidirectional pins
-    Info (21061): Implemented 253 logic cells
+    Info (21061): Implemented 254 logic cells
 Info (144001): Generated suppressed messages file /Repos/GR8RAM/CPLD/output_files/GR8RAM.map.smsg
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 14 warnings
-    Info: Peak virtual memory: 13139 megabytes
-    Info: Processing ended: Wed Mar 20 05:23:30 2024
-    Info: Elapsed time: 00:00:20
-    Info: Total CPU time (on all processors): 00:00:42
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 8 warnings
+    Info: Peak virtual memory: 13135 megabytes
+    Info: Processing ended: Sun May 12 22:39:13 2024
+    Info: Elapsed time: 00:00:19
+    Info: Total CPU time (on all processors): 00:00:41
 
 
 +------------------------------------------+

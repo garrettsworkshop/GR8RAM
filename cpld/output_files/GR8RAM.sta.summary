@@ -3,19 +3,19 @@ Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Setup 'C25M'
-Slack : 10.278
+Slack : 13.913
 TNS   : 0.000
 
 Type  : Hold 'C25M'
-Slack : 1.376
+Slack : 1.379
 TNS   : 0.000
 
 Type  : Recovery 'C25M'
-Slack : 33.311
+Slack : 33.194
 TNS   : 0.000
 
 Type  : Removal 'C25M'
-Slack : 6.135
+Slack : 6.252
 TNS   : 0.000
 
 Type  : Minimum Pulse Width 'C25M'

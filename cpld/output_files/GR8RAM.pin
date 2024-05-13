@@ -63,7 +63,7 @@ CHIP  "GR8RAM"  ASSIGNED TO AN: EPM240T100C5
 
 Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment
 -------------------------------------------------------------------------------------------------------------
-RA[4]                        : 1         : input  : 3.3-V LVTTL       :         : 2         : N              
+RA[4]                        : 1         : input  : 3.3-V LVTTL       :         : 2         : Y              
 RA[5]                        : 2         : input  : 3.3-V LVTTL       :         : 1         : Y              
 RA[6]                        : 3         : input  : 3.3-V LVTTL       :         : 1         : Y              
 RA[3]                        : 4         : input  : 3.3-V LVTTL       :         : 1         : Y              

@@ -7,17 +7,13 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 
 	/* Clock signals */
 	input C25M, PHI0;
-	reg PHI0r1, PHI0r2;
-	always @(posedge C25M) begin PHI0r1 <= PHI0; PHI0r2 <= PHI0r1; end
+	reg [4:1] PHI0r;
+	always @(posedge C25M) PHI0r[4:1] <= {PHI0r[3:1], PHI0};
 	
-	/* Reset filter */
+	/* Reset synchronization */
 	input nRES;
-	reg [3:0] nRESf = 0;
-	reg nRESr = 0;
-	always @(posedge C25M) begin 
-		nRESf[3:0] <= { nRESf[2:0], nRES };
-		nRESr <= nRESf[3] || nRESf[2] || nRESf[1] || nRESf[0];
-	end
+	reg nRESf = 0; always @(posedge C25M) nRESf <= nRES;
+	reg nRESr = 0; always @(posedge C25M) nRESr <= nRESf;
 
 	/* Firmware select */
 	input [1:0] SetFW;
@@ -35,16 +31,16 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 
 	/* State counter from PHI0 rising edge */
 	reg [3:0] PS = 0;
-	wire PSStart = PS==0 && PHI0r1 && !PHI0r2;
+	wire PSStart = PHI0r[1] && !PHI0r[2];
 	always @(posedge C25M) begin
 		if (PSStart) PS <= 1;
 		else if (PS==0) PS <= 0;
-		else PS <= PS+1;
+		else PS <= PS+4'h1;
 	end
 
 	/* Long state counter: counts from 0 to $3FFF */
 	reg [13:0] LS = 0;
-	always @(posedge C25M) begin if (PS==15) LS <= LS+1; end
+	always @(posedge C25M) begin if (PS==15) LS <= LS+14'h1; end
 
 	/* Init state */
 	output reg nRESout = 0;
@@ -93,24 +89,22 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 	/* IOROMEN and REGEN control */
 	reg IOROMEN = 0;
 	reg REGEN = 0;
-	reg nIOSTRBr;
-	wire IOROMRES = RAr[10:0]==11'h7FF && !nIOSTRB && !nIOSTRBr;
-	always @(posedge C25M, negedge nRESr) begin
+	always @(posedge C25M) begin
 		if (!nRESr) REGEN <= 0;
 		else if (PS==8 && !nIOSEL) REGEN <= 1;
 	end
 	always @(posedge C25M) begin
-		nIOSTRBr <= nIOSTRB;
 		if (!nRESr) IOROMEN <= 0;
-		else if (PS==8 && IOROMRES) IOROMEN <= 0;
+		else if (PS==8 && !nIOSTRB && RAr[10:0]==11'h7FF) IOROMEN <= 0;
 		else if (PS==8 && !nIOSEL) IOROMEN <= 1;
 	end
 
-	/* Apple data bus */
-	inout [7:0] RD = RDdir ? 8'bZ : RDD[7:0];
+	/* Apple and internal data bus */
+	wire DBSEL = nWEr && (!nDEVSEL || !nIOSEL || (!nIOSTRB && IOROMEN && RAr[10:0]!=11'h7FF));
+	wire RDOE =  DBSEL && PHI0 && PHI0r[4];
 	reg [7:0] RDD;
-	output RDdir = !(PHI0r2 && nWE && PHI0 &&
-		(!nDEVSEL || !nIOSEL || (!nIOSTRB && IOROMEN && RA[10:0]!=11'h7FF)));
+	inout [7:0] RD = RDOE ? RDD[7:0] : 8'bZ;
+	output RDdir = !(DBSEL && PHI0r[3]);
 
 	/* Slinky address registers */
 	reg [23:0] Addr = 0;
@@ -131,7 +125,7 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 				Addr[7:0] <= RD[7:0];
 				AddrIncM <= Addr[7] && !RD[7];
 			end else if (AddrIncL) begin
-				Addr[7:0] <= Addr[7:0]+1;
+				Addr[7:0] <= Addr[7:0]+8'h1;
 				AddrIncM <= Addr[7:0]==8'hFF;
 			end else AddrIncM <= 0;
 
@@ -139,14 +133,14 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 				Addr[15:8] <= RD[7:0];
 				AddrIncH <= Addr[15] && !RD[7];
 			end else if (AddrIncM) begin
-				Addr[15:8] <= Addr[15:8]+1;
+				Addr[15:8] <= Addr[15:8]+8'h1;
 				AddrIncH <= Addr[15:8]==8'hFF;
 			end else AddrIncH <= 0;
 
 			if (PS==8 && AddrHSEL && !nWEr) begin
 				Addr[23:16] <= RD[7:0];
 			end else if (AddrIncH) begin
-				Addr[23:16] <= Addr[23:16]+1;
+				Addr[23:16] <= Addr[23:16]+8'h1;
 			end
 		end
 	end
@@ -327,10 +321,17 @@ module GR8RAM(C25M, PHI0, nRES, nRESout, SetFW,
 	/* Apple data bus from SDRAM */
 	always @(negedge C25M) begin
 		if (PS==5) begin
-			if (AddrLSpecSEL) RDD[7:0] <= Addr[7:0];
-			else if (AddrMSpecSEL) RDD[7:0] <= Addr[15:8];
-			else if (AddrHSpecSEL) RDD[7:0] <= { SetEN24bit ? Addr[23:20] : 4'hF, Addr[19:16] };
-			else RDD[7:0] <= SD[7:0];
+			if (nDEVSEL || RAr[3]) RDD[7:0] <= SD[7:0];
+			else case (RAr[2:0])
+				3'h7: RDD[7:0] <= 8'h10; // Hex 10 (meaning firmware 1.0)
+				3'h6: RDD[7:0] <= 8'h41; // ASCII "A" (meaning rev. A)
+				3'h5: RDD[7:0] <= 8'h05; // Hex 05 (meaning "4205")
+				3'h4: RDD[7:0] <= 8'h47; // ASCII "G" (meaning "GW")
+				3'h3: RDD[7:0] <= SD[7:0];
+				3'h2: RDD[7:0] <= { SetEN24bit ? Addr[23:20] : 4'hF, Addr[19:16] };
+				3'h1: RDD[7:0] <= Addr[15:8];
+				3'h0: RDD[7:0] <= Addr[7:0];
+			endcase
 		end
 	end
 
