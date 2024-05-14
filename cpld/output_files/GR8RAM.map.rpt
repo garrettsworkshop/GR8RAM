@@ -1,5 +1,5 @@
 Analysis & Synthesis report for GR8RAM
-Sun May 12 22:39:13 2024
+Tue May 14 02:45:35 2024
 Quartus Prime Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
 
 
@@ -46,7 +46,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                              ;
 +-----------------------------+---------------------------------------------+
-; Analysis & Synthesis Status ; Successful - Sun May 12 22:39:13 2024       ;
+; Analysis & Synthesis Status ; Successful - Tue May 14 02:45:35 2024       ;
 ; Quartus Prime Version       ; 19.1.0 Build 670 09/22/2019 SJ Lite Edition ;
 ; Revision Name               ; GR8RAM                                      ;
 ; Top-level Entity Name       ; GR8RAM                                      ;
@@ -281,7 +281,7 @@ Encoding Type:  One-Hot
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 19.1.0 Build 670 09/22/2019 SJ Lite Edition
-    Info: Processing started: Sun May 12 22:38:54 2024
+    Info: Processing started: Tue May 14 02:45:12 2024
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off GR8RAM -c GR8RAM
 Info (16303): Aggressive Area optimization mode selected -- logic area will be prioritized at the potential cost of reduced timing performance
 Info (20032): Parallel compilation is enabled and will use up to 4 processors
@@ -304,10 +304,10 @@ Info (21057): Implemented 334 device resources after synthesis - the final resou
     Info (21061): Implemented 254 logic cells
 Info (144001): Generated suppressed messages file /Repos/GR8RAM/CPLD/output_files/GR8RAM.map.smsg
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 8 warnings
-    Info: Peak virtual memory: 13135 megabytes
-    Info: Processing ended: Sun May 12 22:39:13 2024
-    Info: Elapsed time: 00:00:19
-    Info: Total CPU time (on all processors): 00:00:41
+    Info: Peak virtual memory: 13137 megabytes
+    Info: Processing ended: Tue May 14 02:45:35 2024
+    Info: Elapsed time: 00:00:23
+    Info: Total CPU time (on all processors): 00:00:49
 
 
 +------------------------------------------+
