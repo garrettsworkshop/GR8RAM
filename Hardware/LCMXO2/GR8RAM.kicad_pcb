@@ -13122,7 +13122,7 @@
   (gr_text "1 MB Slinky" (at 131.318 104.521) (layer "F.SilkS") (tstamp 5f8645f3-0da2-4b8f-9941-bc3e13c84bec)
     (effects (font (size 0.9525 0.9525) (thickness 0.2032)) (justify left))
   )
-  (gr_text "JLCJLCJLC" (at 92.8 101.4 90) (layer "F.SilkS") (tstamp 6d725ab9-250c-433c-adaf-c91ab3befef9)
+  (gr_text "JLCJLCJLCJLC" (at 121.2 103.05 90) (layer "F.SilkS") (tstamp 6d725ab9-250c-433c-adaf-c91ab3befef9)
     (effects (font (size 0.8128 0.8128) (thickness 0.2032)))
   )
   (gr_text "8 MB RAMFactor" (at 131.318 109.601) (layer "F.SilkS") (tstamp 858864ab-3393-45e6-8d98-b721775db8a6)
