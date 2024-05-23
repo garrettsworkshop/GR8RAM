@@ -30,3 +30,5 @@ cpld/incremental_db/*
 cpld/GR8RAM.qws
 ~GR8RAM.kicad_sch.lck
 *.kicad_prl
+/Hardware/LCMXO2/GR8RAM-backups
+*.lck
