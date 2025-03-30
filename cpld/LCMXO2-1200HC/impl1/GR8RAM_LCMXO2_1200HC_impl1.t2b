@@ -1,0 +1,5 @@
+
+
+-g RamCfg:Reset
+
+-path "//Mac/iCloud/Repos/GR8RAM/cpld/LCMXO2-1200HC"  

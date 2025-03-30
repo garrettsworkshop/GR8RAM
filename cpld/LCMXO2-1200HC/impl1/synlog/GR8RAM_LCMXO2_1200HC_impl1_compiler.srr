@@ -1,0 +1,101 @@
+
+Copyright (C) 1994-2018 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: N-2018.03L-SP1-1
+Install: C:\lscc\diamond\3.11_x64\synpbase
+OS: Windows 6.2
+
+Hostname: ZANEMACWIN11
+
+Implementation : impl1
+Synopsys HDL Compiler, Version comp2018q2p1, Build 461R, Built Apr  1 2019 09:17:43
+
+@N|Running in 64-bit mode
+
+Copyright (C) 1994-2018 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: N-2018.03L-SP1-1
+Install: C:\lscc\diamond\3.11_x64\synpbase
+OS: Windows 6.2
+
+Hostname: ZANEMACWIN11
+
+Implementation : impl1
+Synopsys Verilog Compiler, Version comp2018q2p1, Build 461R, Built Apr  1 2019 09:17:43
+
+@N|Running in 64-bit mode
+@I::"C:\lscc\diamond\3.11_x64\synpbase\lib\lucent\machxo2.v" (library work)
+@I::"C:\lscc\diamond\3.11_x64\synpbase\lib\lucent\pmi_def.v" (library work)
+@I::"C:\lscc\diamond\3.11_x64\synpbase\lib\vlog\hypermods.v" (library __hyper__lib__)
+@I::"C:\lscc\diamond\3.11_x64\synpbase\lib\vlog\umr_capim.v" (library snps_haps)
+@I::"C:\lscc\diamond\3.11_x64\synpbase\lib\vlog\scemi_objects.v" (library snps_haps)
+@I::"C:\lscc\diamond\3.11_x64\synpbase\lib\vlog\scemi_pipes.svh" (library snps_haps)
+@I::"\\Mac\iCloud\Repos\GR8RAM\cpld\GR8RAM.v" (library work)
+Verilog syntax check successful!
+File \\Mac\iCloud\Repos\GR8RAM\cpld\GR8RAM.v changed - recompiling
+Selecting top level module GR8RAM
+@N: CG364 :"C:\lscc\diamond\3.11_x64\synpbase\lib\lucent\machxo2.v":1601:7:1601:12|Synthesizing module ODDRXE in library work.
+Running optimization stage 1 on ODDRXE .......
+@N: CG364 :"\\Mac\iCloud\Repos\GR8RAM\cpld\GR8RAM.v":1:7:1:12|Synthesizing module GR8RAM in library work.
+Running optimization stage 1 on GR8RAM .......
+Running optimization stage 2 on GR8RAM .......
+@N: CL201 :"\\Mac\iCloud\Repos\GR8RAM\cpld\GR8RAM.v":49:1:49:6|Trying to extract state machine for register IS.
+Running optimization stage 2 on ODDRXE .......
+
+At c_ver Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 73MB peak: 75MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Thu Jun 13 00:38:46 2024
+
+###########################################################]
+
+Copyright (C) 1994-2018 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: N-2018.03L-SP1-1
+Install: C:\lscc\diamond\3.11_x64\synpbase
+OS: Windows 6.2
+
+Hostname: ZANEMACWIN11
+
+Implementation : impl1
+Synopsys Synopsys Netlist Linker, Version comp2018q2p1, Build 461R, Built Apr  1 2019 09:17:43
+
+@N|Running in 64-bit mode
+
+At syn_nfilter Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 67MB peak: 68MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Thu Jun 13 00:38:46 2024
+
+###########################################################]
+
+For a summary of runtime and memory usage for all design units, please see file:
+==========================================================
+@L: A:\\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-1200HC\impl1\synwork\GR8RAM_LCMXO2_1200HC_impl1_comp.rt.csv
+
+@END
+
+At c_hdl Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 3MB peak: 4MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Thu Jun 13 00:38:46 2024
+
+###########################################################]

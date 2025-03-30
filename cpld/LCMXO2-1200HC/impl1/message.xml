@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaliMessageLog>
+    <Task name="Map">
+        <Message>
+            <ID>51001030</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>nRESr</Dynamic>
+        </Message>
+    </Task>
+    <Task name="PAR">
+        <Message>
+            <ID>61061008</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>PHI0_c</Dynamic>
+            <Dynamic>Primary</Dynamic>
+            <Dynamic>PHI0</Dynamic>
+            <Dynamic>17</Dynamic>
+            <Dynamic>Primary</Dynamic>
+        </Message>
+    </Task>
+    <Task name="Synplify_Synthesis">
+        <Message>
+            <ID>2011000</ID>
+            <Severity>Info</Severity>
+        </Message>
+        <Message>
+            <ID>2019993</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>FX474 |User-specified initial value defined for some sequential elements which can prevent optimum synthesis results from being achieved.</Dynamic>
+            <Navigation>FX474</Navigation>
+            <Navigation>User-specified initial value defined for some sequential elements which can prevent optimum synthesis results from being achieved. </Navigation>
+        </Message>
+        <Message>
+            <ID>2019991</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>MT529 :&quot;\\mac\icloud\repos\gr8ram\cpld\gr8ram.v&quot;:67:1:67:6|Found inferred clock GR8RAM|PHI0 which controls 18 sequential elements including CXXXr. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance.</Dynamic>
+            <Navigation>MT529</Navigation>
+            <Navigation>\\mac\icloud\repos\gr8ram\cpld\gr8ram.v</Navigation>
+            <Navigation>67</Navigation>
+            <Navigation>1</Navigation>
+            <Navigation>67</Navigation>
+            <Navigation>6</Navigation>
+            <Navigation>Found inferred clock GR8RAM|PHI0 which controls 18 sequential elements including CXXXr. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. </Navigation>
+        </Message>
+        <Message>
+            <ID>2019991</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>MT529 :&quot;\\mac\icloud\repos\gr8ram\cpld\gr8ram.v&quot;:20:16:20:21|Found inferred clock GR8RAM|RCLK which controls 104 sequential elements including nRESf. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance.</Dynamic>
+            <Navigation>MT529</Navigation>
+            <Navigation>\\mac\icloud\repos\gr8ram\cpld\gr8ram.v</Navigation>
+            <Navigation>20</Navigation>
+            <Navigation>16</Navigation>
+            <Navigation>20</Navigation>
+            <Navigation>21</Navigation>
+            <Navigation>Found inferred clock GR8RAM|RCLK which controls 104 sequential elements including nRESf. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. </Navigation>
+        </Message>
+        <Message>
+            <ID>2019991</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>FA239 :&quot;\\mac\icloud\repos\gr8ram\cpld\gr8ram.v&quot;:348:2:348:5|ROM nRAS_2 (in view: work.GR8RAM(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.</Dynamic>
+            <Navigation>FA239</Navigation>
+            <Navigation>\\mac\icloud\repos\gr8ram\cpld\gr8ram.v</Navigation>
+            <Navigation>348</Navigation>
+            <Navigation>2</Navigation>
+            <Navigation>348</Navigation>
+            <Navigation>5</Navigation>
+            <Navigation>ROM nRAS_2 (in view: work.GR8RAM(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.</Navigation>
+        </Message>
+        <Message>
+            <ID>2019991</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>FA239 :&quot;\\mac\icloud\repos\gr8ram\cpld\gr8ram.v&quot;:348:2:348:5|ROM nCAS_2 (in view: work.GR8RAM(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.</Dynamic>
+            <Navigation>FA239</Navigation>
+            <Navigation>\\mac\icloud\repos\gr8ram\cpld\gr8ram.v</Navigation>
+            <Navigation>348</Navigation>
+            <Navigation>2</Navigation>
+            <Navigation>348</Navigation>
+            <Navigation>5</Navigation>
+            <Navigation>ROM nCAS_2 (in view: work.GR8RAM(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.</Navigation>
+        </Message>
+        <Message>
+            <ID>2019991</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>FA239 :&quot;\\mac\icloud\repos\gr8ram\cpld\gr8ram.v&quot;:348:2:348:5|ROM nRAS_2 (in view: work.GR8RAM(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.</Dynamic>
+            <Navigation>FA239</Navigation>
+            <Navigation>\\mac\icloud\repos\gr8ram\cpld\gr8ram.v</Navigation>
+            <Navigation>348</Navigation>
+            <Navigation>2</Navigation>
+            <Navigation>348</Navigation>
+            <Navigation>5</Navigation>
+            <Navigation>ROM nRAS_2 (in view: work.GR8RAM(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.</Navigation>
+        </Message>
+        <Message>
+            <ID>2019991</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>FA239 :&quot;\\mac\icloud\repos\gr8ram\cpld\gr8ram.v&quot;:348:2:348:5|ROM nCAS_2 (in view: work.GR8RAM(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.</Dynamic>
+            <Navigation>FA239</Navigation>
+            <Navigation>\\mac\icloud\repos\gr8ram\cpld\gr8ram.v</Navigation>
+            <Navigation>348</Navigation>
+            <Navigation>2</Navigation>
+            <Navigation>348</Navigation>
+            <Navigation>5</Navigation>
+            <Navigation>ROM nCAS_2 (in view: work.GR8RAM(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.</Navigation>
+        </Message>
+        <Message>
+            <ID>2019991</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>MT246 :&quot;\\mac\icloud\repos\gr8ram\cpld\gr8ram.v&quot;:10:11:10:19|Blackbox ODDRXE is missing a user supplied timing model. This may have a negative effect on timing analysis and optimizations (Quality of Results)</Dynamic>
+            <Navigation>MT246</Navigation>
+            <Navigation>\\mac\icloud\repos\gr8ram\cpld\gr8ram.v</Navigation>
+            <Navigation>10</Navigation>
+            <Navigation>11</Navigation>
+            <Navigation>10</Navigation>
+            <Navigation>19</Navigation>
+            <Navigation>Blackbox ODDRXE is missing a user supplied timing model. This may have a negative effect on timing analysis and optimizations (Quality of Results)</Navigation>
+        </Message>
+        <Message>
+            <ID>2019993</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>MT420 |Found inferred clock GR8RAM|PHI0 with period 10.00ns. Please declare a user-defined clock on port PHI0.</Dynamic>
+            <Navigation>MT420</Navigation>
+            <Navigation>Found inferred clock GR8RAM|PHI0 with period 10.00ns. Please declare a user-defined clock on port PHI0.</Navigation>
+        </Message>
+        <Message>
+            <ID>2019993</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>MT420 |Found inferred clock GR8RAM|RCLK with period 10.00ns. Please declare a user-defined clock on port RCLK.</Dynamic>
+            <Navigation>MT420</Navigation>
+            <Navigation>Found inferred clock GR8RAM|RCLK with period 10.00ns. Please declare a user-defined clock on port RCLK.</Navigation>
+        </Message>
+    </Task>
+</BaliMessageLog>

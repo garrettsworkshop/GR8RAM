@@ -1,0 +1,1 @@
+run_tcl -fg GR8RAM_LCMXO2_1200HC_impl1_synplify.tcl

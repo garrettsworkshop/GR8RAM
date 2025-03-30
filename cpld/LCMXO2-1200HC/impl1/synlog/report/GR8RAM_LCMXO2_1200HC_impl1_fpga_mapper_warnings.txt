@@ -1,0 +1,7 @@
+@W: FA239 :"\\mac\icloud\repos\gr8ram\cpld\gr8ram.v":348:2:348:5|ROM nRAS_2 (in view: work.GR8RAM(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.
+@W: FA239 :"\\mac\icloud\repos\gr8ram\cpld\gr8ram.v":348:2:348:5|ROM nCAS_2 (in view: work.GR8RAM(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.
+@W: FA239 :"\\mac\icloud\repos\gr8ram\cpld\gr8ram.v":348:2:348:5|ROM nRAS_2 (in view: work.GR8RAM(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.
+@W: FA239 :"\\mac\icloud\repos\gr8ram\cpld\gr8ram.v":348:2:348:5|ROM nCAS_2 (in view: work.GR8RAM(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.
+@W: MT246 :"\\mac\icloud\repos\gr8ram\cpld\gr8ram.v":10:11:10:19|Blackbox ODDRXE is missing a user supplied timing model. This may have a negative effect on timing analysis and optimizations (Quality of Results)
+@W: MT420 |Found inferred clock GR8RAM|PHI0 with period 10.00ns. Please declare a user-defined clock on port PHI0.
+@W: MT420 |Found inferred clock GR8RAM|RCLK with period 10.00ns. Please declare a user-defined clock on port RCLK.

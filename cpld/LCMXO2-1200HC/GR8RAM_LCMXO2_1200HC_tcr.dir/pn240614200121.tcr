@@ -1,0 +1,6 @@
+#Start recording tcl command: 6/13/2024 00:37:49
+#Project Location: //Mac/iCloud/Repos/GR8RAM/cpld/LCMXO2-1200HC; Project name: GR8RAM_LCMXO2_1200HC
+prj_project open "//Mac/iCloud/Repos/GR8RAM/cpld/LCMXO2-1200HC/GR8RAM_LCMXO2_1200HC.ldf"
+prj_run Export -impl impl1
+prj_run Export -impl impl1 -forceAll
+#Stop recording: 6/14/2024 20:01:21

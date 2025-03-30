@@ -1,0 +1,427 @@
+<HTML>
+<HEAD><TITLE>Project Summary</TITLE>
+<STYLE TYPE="text/css">
+<!--
+ body,pre{    font-family:'Courier New', monospace;    color: #000000;    font-size:88%;    background-color: #ffffff;}h1 {    font-weight: bold;    margin-top: 24px;    margin-bottom: 10px;    border-bottom: 3px solid #000;    font-size: 1em;}h2 {    font-weight: bold;    margin-top: 18px;    margin-bottom: 5px;    font-size: 0.90em;}h3 {    font-weight: bold;    margin-top: 12px;    margin-bottom: 5px;    font-size: 0.80em;}p {    font-size:78%;}P.Table {    margin-top: 4px;    margin-bottom: 4px;    margin-right: 4px;    margin-left: 4px;}table{    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    border-collapse: collapse;}th {    font-weight:bold;    padding: 4px;    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    vertical-align:top;    text-align:left;    font-size:78%;}td {    padding: 4px;    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    vertical-align:top;    font-size:78%;}a {    color:#013C9A;    text-decoration:none;}a:visited {    color:#013C9A;}a:hover, a:active {    text-decoration:underline;    color:#5BAFD4;}.pass{background-color: #00ff00;}.fail{background-color: #ff0000;}.comment{    font-size: 90%;    font-style: italic;}
+-->
+</STYLE>
+</HEAD>
+<PRE><A name="Mrp"></A>
+            Lattice Mapping Report File for Design Module 'GR8RAM'
+
+
+
+<A name="mrp_di"></A><B><U><big>Design Information</big></U></B>
+
+Command line:   map -a MachXO2 -p LCMXO2-1200HC -t TQFP100 -s 4 -oc Commercial
+     GR8RAM_LCMXO2_1200HC_impl1.ngd -o GR8RAM_LCMXO2_1200HC_impl1_map.ncd -pr
+     GR8RAM_LCMXO2_1200HC_impl1.prf -mp GR8RAM_LCMXO2_1200HC_impl1.mrp -lpf //Ma
+     c/iCloud/Repos/GR8RAM/cpld/LCMXO2-1200HC/impl1/GR8RAM_LCMXO2_1200HC_impl1_s
+     ynplify.lpf -lpf //Mac/iCloud/Repos/GR8RAM/cpld/GR8RAM-LCMXO2.lpf -c 0 -gui
+     -msgset //Mac/iCloud/Repos/GR8RAM/cpld/LCMXO2-1200HC/promote.xml 
+Target Vendor:  LATTICE
+Target Device:  LCMXO2-1200HCTQFP100
+Target Performance:   4
+Mapper:  xo2c00,  version:  Diamond (64-bit) 3.11.3.469
+Mapped on:  06/13/24  00:38:52
+
+
+<A name="mrp_ds"></A><B><U><big>Design Summary</big></U></B>
+   Number of registers:    118 out of  1520 (8%)
+      PFU registers:           68 out of  1280 (5%)
+      PIO registers:           50 out of   240 (21%)
+   Number of SLICEs:       136 out of   640 (21%)
+      SLICEs as Logic/ROM:    136 out of   640 (21%)
+      SLICEs as RAM:            0 out of   480 (0%)
+      SLICEs as Carry:         13 out of   640 (2%)
+   Number of LUT4s:        268 out of  1280 (21%)
+      Number used as logic LUTs:        242
+      Number used as distributed RAM:     0
+      Number used as ripple logic:       26
+      Number used as shift registers:     0
+   Number of PIO sites used: 73 + 4(JTAG) out of 80 (96%)
+   Number of IDDR/ODDR/TDDR cells used: 1 out of 240 (0%)
+      Number of IDDR cells:   0
+      Number of ODDR cells:   1
+      Number of TDDR cells:   0
+   Number of PIO using at least one IDDR/ODDR/TDDR: 1 (0 differential)
+      Number of PIO using IDDR only:        0 (0 differential)
+      Number of PIO using ODDR only:        1 (0 differential)
+      Number of PIO using TDDR only:        0 (0 differential)
+      Number of PIO using IDDR/ODDR:        0 (0 differential)
+      Number of PIO using IDDR/TDDR:        0 (0 differential)
+      Number of PIO using ODDR/TDDR:        0 (0 differential)
+      Number of PIO using IDDR/ODDR/TDDR:   0 (0 differential)
+   Number of block RAMs:  0 out of 7 (0%)
+   Number of GSRs:        1 out of 1 (100%)
+   EFB used :        No
+   JTAG used :       No
+   Readback used :   No
+   Oscillator used : No
+   Startup used :    No
+   POR :             On
+   Bandgap :         On
+   Number of Power Controller:  0 out of 1 (0%)
+   Number of Dynamic Bank Controller (BCINRD):  0 out of 4 (0%)
+   Number of Dynamic Bank Controller (BCLVDSO):  0 out of 1 (0%)
+   Number of DCCA:  0 out of 8 (0%)
+   Number of DCMA:  0 out of 2 (0%)
+   Number of PLLs:  0 out of 1 (0%)
+
+   Number of DQSDLLs:  0 out of 2 (0%)
+   Number of CLKDIVC:  0 out of 4 (0%)
+   Number of ECLKSYNCA:  0 out of 4 (0%)
+   Number of ECLKBRIDGECS:  0 out of 2 (0%)
+   Notes:-
+      1. Total number of LUT4s = (Number of logic LUT4s) + 2*(Number of
+     distributed RAMs) + 2*(Number of ripple logic)
+      2. Number of logic LUT4s does not include count of distributed RAM and
+     ripple logic.
+   Number of clocks:  2
+     Net RCLK_c: 80 loads, 72 rising, 8 falling (Driver: PIO RCLK )
+     Net PHI0_c: 14 loads, 14 rising, 0 falling (Driver: PIO PHI0 )
+   Number of Clock Enables:  6
+     Net un1_nRESout4_1_i_0: 2 loads, 2 LSLICEs
+     Net PS[0]: 5 loads, 3 LSLICEs
+     Net SetFWr3: 2 loads, 0 LSLICEs
+     Net N_254_i: 8 loads, 8 LSLICEs
+     Net Bank5: 1 loads, 0 LSLICEs
+     Net RDD37: 8 loads, 1 LSLICEs
+   Number of local set/reset loads for net nRESr merged into GSR:  28
+   Number of LSRs:  1
+     Net FCKout120: 13 loads, 0 LSLICEs
+   Number of nets driven by tri-state buffers:  0
+   Top 10 highest fanout non-clock nets:
+     Net PS[0]: 33 loads
+     Net SBA14: 31 loads
+     Net N_248: 29 loads
+     Net PS[3]: 28 loads
+     Net PS[2]: 24 loads
+     Net PS[1]: 23 loads
+     Net RAr[1]: 20 loads
+     Net RAMSpecSEL: 19 loads
+     Net FCKout120: 18 loads
+     Net un1_PS_6: 14 loads
+
+
+
+
+   Number of warnings:  1
+   Number of errors:    0
+     
+
+
+
+
+<A name="mrp_dwe"></A><B><U><big>Design Errors/Warnings</big></U></B>
+
+WARNING - map: Using local reset signal 'nRESr' to infer global GSR net.
+
+
+
+<A name="mrp_ioa"></A><B><U><big>IO (PIO) Attributes</big></U></B>
+
++---------------------+-----------+-----------+------------+
+| IO Name             | Direction | Levelmode | IO         |
+|                     |           |  IO_TYPE  | Register   |
++---------------------+-----------+-----------+------------+
+| RD[0]               | BIDIR     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+
+| nFCS                | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| RCLKout             | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| RCLK                | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| MOSI                | BIDIR     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| MISO                | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| FCK                 | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| SD[7]               | BIDIR     | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| SD[6]               | BIDIR     | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| SD[5]               | BIDIR     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| SD[4]               | BIDIR     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| SD[3]               | BIDIR     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| SD[2]               | BIDIR     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| SD[1]               | BIDIR     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| SD[0]               | BIDIR     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| RCKE                | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| DQMH                | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| DQML                | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| nSWE                | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| nCAS                | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| nRAS                | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| nRCS                | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| SA[12]              | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| SA[11]              | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| SA[10]              | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| SA[9]               | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| SA[8]               | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| SA[7]               | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| SA[6]               | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+
+| SA[5]               | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| SA[4]               | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| SA[3]               | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| SA[2]               | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| SA[1]               | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| SA[0]               | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| SBA[1]              | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| SBA[0]              | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| nIOSTRB             | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| nDEVSEL             | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| nIOSEL              | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| nDinOE              | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| nDoutOE             | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| RD[7]               | BIDIR     | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| RD[6]               | BIDIR     | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| RD[5]               | BIDIR     | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| RD[4]               | BIDIR     | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| RD[3]               | BIDIR     | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| RD[2]               | BIDIR     | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| RD[1]               | BIDIR     | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| nWE                 | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| RA[15]              | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| RA[14]              | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| RA[13]              | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| RA[12]              | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| RA[11]              | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| RA[10]              | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| RA[9]               | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+
+| RA[8]               | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| RA[7]               | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| RA[6]               | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| RA[5]               | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| RA[4]               | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| RA[3]               | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| RA[2]               | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| RA[1]               | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| RA[0]               | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| LED                 | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| SetFW[1]            | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| SetFW[0]            | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| nIRQout             | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| nRESout             | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| nRES                | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| PHI0                | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+
+
+
+<A name="mrp_rm"></A><B><U><big>Removed logic</big></U></B>
+
+Signal SDOE_i was merged into signal SDOE
+Signal MOSIOE_i was merged into signal MOSIOE
+Signal FCKOE_i was merged into signal FCKOE
+Signal nRESr_i was merged into signal nRESr
+Signal PS_i[0] was merged into signal PS[0]
+Signal RDD_0_.CN was merged into signal RCLK_c
+Signal LS_s_0_S1[13] undriven or does not drive anything - clipped.
+Signal LS_s_0_COUT[13] undriven or does not drive anything - clipped.
+Signal un1_Addr_1_cry_0_0_S0 undriven or does not drive anything - clipped.
+Signal N_2 undriven or does not drive anything - clipped.
+Signal un1_Addr_1_s_7_0_S1 undriven or does not drive anything - clipped.
+Signal un1_Addr_1_s_7_0_COUT undriven or does not drive anything - clipped.
+Signal LS_cry_0_S0[0] undriven or does not drive anything - clipped.
+Signal N_1 undriven or does not drive anything - clipped.
+Block SDOE_RNIBPBD was optimized away.
+Block MOSI_pad_RNO was optimized away.
+Block FCKOE_RNI8HE1 was optimized away.
+Block nRESr_RNIAPB9 was optimized away.
+Block PS_RNIBBDD[0] was optimized away.
+Block RDD_0_.CN was optimized away.
+
+
+     
+
+
+
+<A name="mrp_gsr"></A><B><U><big>GSR Usage</big></U></B>
+---------
+
+GSR Component:
+   The local reset signal 'nRESr' of the design has been inferred as Global Set
+        Reset (GSR). The reset signal used for GSR control is 'nRESr'.
+        
+
+     GSR Property:
+   The design components with GSR property set to ENABLED will respond to global
+        set reset while the components with GSR property set to DISABLED will
+        not.
+        
+
+
+
+<A name="mrp_runtime"></A><B><U><big>Run Time and Memory Usage</big></U></B>
+-------------------------
+
+   Total CPU Time: 0 secs  
+   Total REAL Time: 0 secs  
+   Peak Memory Usage: 64 MB
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+     Copyright (c) 1995 AT&T Corp.   All rights reserved.
+     Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+     Copyright (c) 2001 Agere Systems   All rights reserved.
+     Copyright (c) 2002-2020 Lattice Semiconductor Corporation,  All rights
+     reserved.
+
+
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</PRE></FONT>
+</BODY>
+</HTML>

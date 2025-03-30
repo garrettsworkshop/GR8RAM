@@ -1,0 +1,18 @@
+@P:  Worst Slack : 1.955
+@P:  GR8RAM|PHI0 - Estimated Frequency : NA
+@P:  GR8RAM|PHI0 - Requested Frequency : 100.0 MHz
+@P:  GR8RAM|PHI0 - Estimated Period : NA
+@P:  GR8RAM|PHI0 - Requested Period : 10.000
+@P:  GR8RAM|PHI0 - Slack : NA
+@P:  GR8RAM|RCLK - Estimated Frequency : 134.3 MHz
+@P:  GR8RAM|RCLK - Requested Frequency : 100.0 MHz
+@P:  GR8RAM|RCLK - Estimated Period : 7.448
+@P:  GR8RAM|RCLK - Requested Period : 10.000
+@P:  GR8RAM|RCLK - Slack : 1.955
+@P:  System - Estimated Frequency : NA
+@P:  System - Requested Frequency : 100.0 MHz
+@P:  System - Estimated Period : NA
+@P:  System - Requested Period : 10.000
+@P:  System - Slack : NA
+@P:  Total Area : 247.0
+@P:  CPU Time : 0h:00m:02s

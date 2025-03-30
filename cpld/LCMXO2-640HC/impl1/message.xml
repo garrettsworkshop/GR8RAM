@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaliMessageLog>
+    <Task name="Map">
+        <Message>
+            <ID>52101271</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>OSCH</Dynamic>
+            <Dynamic>OSCH_inst</Dynamic>
+            <Dynamic>44.30</Dynamic>
+            <Dynamic>44.33</Dynamic>
+            <Dynamic>5.5</Dynamic>
+        </Message>
+    </Task>
+    <Task name="PAR">
+        <Message>
+            <ID>61061008</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>PHI0_c</Dynamic>
+            <Dynamic>Secondary</Dynamic>
+            <Dynamic>PHI0</Dynamic>
+            <Dynamic>17</Dynamic>
+            <Dynamic>Secondary</Dynamic>
+        </Message>
+    </Task>
+    <Task name="Translate">
+        <Message>
+            <ID>1166052</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>logical</Dynamic>
+            <Dynamic>OSCH_inst_SEDSTDBY</Dynamic>
+            <Navigation>OSCH_inst_SEDSTDBY</Navigation>
+        </Message>
+        <Message>
+            <ID>1166052</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>logical</Dynamic>
+            <Dynamic>CLKin_c</Dynamic>
+            <Navigation>CLKin_c</Navigation>
+        </Message>
+        <Message>
+            <ID>1166052</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>logical</Dynamic>
+            <Dynamic>BA_c[11]</Dynamic>
+            <Navigation>BA_c[11]</Navigation>
+        </Message>
+        <Message>
+            <ID>1166052</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>logical</Dynamic>
+            <Dynamic>BA_c[12]</Dynamic>
+            <Navigation>BA_c[12]</Navigation>
+        </Message>
+        <Message>
+            <ID>1166052</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>logical</Dynamic>
+            <Dynamic>BA_c[13]</Dynamic>
+            <Navigation>BA_c[13]</Navigation>
+        </Message>
+        <Message>
+            <ID>1166052</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>logical</Dynamic>
+            <Dynamic>BA_c[14]</Dynamic>
+            <Navigation>BA_c[14]</Navigation>
+        </Message>
+        <Message>
+            <ID>1166052</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>logical</Dynamic>
+            <Dynamic>BA_c[15]</Dynamic>
+            <Navigation>BA_c[15]</Navigation>
+        </Message>
+        <Message>
+            <ID>1163101</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>7</Dynamic>
+        </Message>
+    </Task>
+    <Task name="Synplify_Synthesis">
+        <Message>
+            <ID>2011000</ID>
+            <Severity>Info</Severity>
+        </Message>
+        <Message>
+            <ID>2019991</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>CL246 :&quot;\\Mac\iCloud\Repos\GR8RAM\cpld\GR8RAM.v&quot;:15:14:15:15|Input port bits 15 to 11 of BA[15:0] are unused. Assign logic for all port bits or change the input port size.</Dynamic>
+            <Navigation>CL246</Navigation>
+            <Navigation>\\Mac\iCloud\Repos\GR8RAM\cpld\GR8RAM.v</Navigation>
+            <Navigation>15</Navigation>
+            <Navigation>14</Navigation>
+            <Navigation>15</Navigation>
+            <Navigation>15</Navigation>
+            <Navigation>Input port bits 15 to 11 of BA[15:0] are unused. Assign logic for all port bits or change the input port size.</Navigation>
+        </Message>
+        <Message>
+            <ID>2019993</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>FX474 |User-specified initial value defined for some sequential elements which can prevent optimum synthesis results from being achieved.</Dynamic>
+            <Navigation>FX474</Navigation>
+            <Navigation>User-specified initial value defined for some sequential elements which can prevent optimum synthesis results from being achieved. </Navigation>
+        </Message>
+        <Message>
+            <ID>2019991</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>FA239 :&quot;\\mac\icloud\repos\gr8ram\cpld\initcontroller.v&quot;:168:4:168:7|ROM nFCSout_2 (in view: work.InitController(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.</Dynamic>
+            <Navigation>FA239</Navigation>
+            <Navigation>\\mac\icloud\repos\gr8ram\cpld\initcontroller.v</Navigation>
+            <Navigation>168</Navigation>
+            <Navigation>4</Navigation>
+            <Navigation>168</Navigation>
+            <Navigation>7</Navigation>
+            <Navigation>ROM nFCSout_2 (in view: work.InitController(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.</Navigation>
+        </Message>
+        <Message>
+            <ID>2019991</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>FA239 :&quot;\\mac\icloud\repos\gr8ram\cpld\initcontroller.v&quot;:168:4:168:7|ROM MOSIOE_2 (in view: work.InitController(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.</Dynamic>
+            <Navigation>FA239</Navigation>
+            <Navigation>\\mac\icloud\repos\gr8ram\cpld\initcontroller.v</Navigation>
+            <Navigation>168</Navigation>
+            <Navigation>4</Navigation>
+            <Navigation>168</Navigation>
+            <Navigation>7</Navigation>
+            <Navigation>ROM MOSIOE_2 (in view: work.InitController(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.</Navigation>
+        </Message>
+        <Message>
+            <ID>2019991</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>FA239 :&quot;\\mac\icloud\repos\gr8ram\cpld\initcontroller.v&quot;:168:4:168:7|ROM RAMCmd_2[2:0] (in view: work.InitController(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.</Dynamic>
+            <Navigation>FA239</Navigation>
+            <Navigation>\\mac\icloud\repos\gr8ram\cpld\initcontroller.v</Navigation>
+            <Navigation>168</Navigation>
+            <Navigation>4</Navigation>
+            <Navigation>168</Navigation>
+            <Navigation>7</Navigation>
+            <Navigation>ROM RAMCmd_2[2:0] (in view: work.InitController(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.</Navigation>
+        </Message>
+        <Message>
+            <ID>2019991</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>FA239 :&quot;\\mac\icloud\repos\gr8ram\cpld\initcontroller.v&quot;:168:4:168:7|ROM nFCSout_2 (in view: work.InitController(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.</Dynamic>
+            <Navigation>FA239</Navigation>
+            <Navigation>\\mac\icloud\repos\gr8ram\cpld\initcontroller.v</Navigation>
+            <Navigation>168</Navigation>
+            <Navigation>4</Navigation>
+            <Navigation>168</Navigation>
+            <Navigation>7</Navigation>
+            <Navigation>ROM nFCSout_2 (in view: work.InitController(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.</Navigation>
+        </Message>
+        <Message>
+            <ID>2019991</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>FA239 :&quot;\\mac\icloud\repos\gr8ram\cpld\initcontroller.v&quot;:168:4:168:7|ROM MOSIOE_2 (in view: work.InitController(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.</Dynamic>
+            <Navigation>FA239</Navigation>
+            <Navigation>\\mac\icloud\repos\gr8ram\cpld\initcontroller.v</Navigation>
+            <Navigation>168</Navigation>
+            <Navigation>4</Navigation>
+            <Navigation>168</Navigation>
+            <Navigation>7</Navigation>
+            <Navigation>ROM MOSIOE_2 (in view: work.InitController(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.</Navigation>
+        </Message>
+        <Message>
+            <ID>2019991</ID>
+            <Severity>Warning</Severity>
+            <Dynamic>MT246 :&quot;\\mac\icloud\repos\gr8ram\cpld\sdramcontroller.v&quot;:203:8:203:16|Blackbox ODDRXE is missing a user supplied timing model. This may have a negative effect on timing analysis and optimizations (Quality of Results)</Dynamic>
+            <Navigation>MT246</Navigation>
+            <Navigation>\\mac\icloud\repos\gr8ram\cpld\sdramcontroller.v</Navigation>
+            <Navigation>203</Navigation>
+            <Navigation>8</Navigation>
+            <Navigation>203</Navigation>
+            <Navigation>16</Navigation>
+            <Navigation>Blackbox ODDRXE is missing a user supplied timing model. This may have a negative effect on timing analysis and optimizations (Quality of Results)</Navigation>
+        </Message>
+    </Task>
+</BaliMessageLog>

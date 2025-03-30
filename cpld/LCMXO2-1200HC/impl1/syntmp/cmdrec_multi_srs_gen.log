@@ -1,0 +1,7 @@
+C:\lscc\diamond\3.11_x64\synpbase\bin64\syn_nfilter.exe  -link  -top  GR8RAM  -multisrs  \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-1200HC\impl1\synwork\GR8RAM_LCMXO2_1200HC_impl1_comp.srs  -osyn  \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-1200HC\impl1\synwork\GR8RAM_LCMXO2_1200HC_impl1_mult.srs  -log  \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-1200HC\impl1\synlog\GR8RAM_LCMXO2_1200HC_impl1_multi_srs_gen.srr 
+relcom:C:\lscc\diamond\3.11_x64\synpbase\bin64\syn_nfilter.exe -link -top GR8RAM -multisrs ..\synwork\GR8RAM_LCMXO2_1200HC_impl1_comp.srs -osyn ..\synwork\GR8RAM_LCMXO2_1200HC_impl1_mult.srs -log ..\synlog\GR8RAM_LCMXO2_1200HC_impl1_multi_srs_gen.srr
+rc:0 success:1 runtime:0
+file:..\synwork\GR8RAM_LCMXO2_1200HC_impl1_comp.srs|io:i|time:1718253526|size:14025|exec:0|csum:EAF28E76AAD13BF5D119487B1DECA79A
+file:..\synwork\GR8RAM_LCMXO2_1200HC_impl1_mult.srs|io:o|time:1718253527|size:13851|exec:0|csum:
+file:..\synlog\GR8RAM_LCMXO2_1200HC_impl1_multi_srs_gen.srr|io:o|time:1718253527|size:1159|exec:0|csum:
+file:C:\lscc\diamond\3.11_x64\synpbase\bin64\syn_nfilter.exe|io:i|time:1554128552|size:8734720|exec:1|csum:0A206A5298321BBDD627E7975EAE3EC2

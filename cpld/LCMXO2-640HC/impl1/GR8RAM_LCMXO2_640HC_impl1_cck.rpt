@@ -1,0 +1,163 @@
+
+Copyright (C) 1994-2018 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: N-2018.03L-SP1-1
+Install: C:\lscc\diamond\3.11_x64\synpbase
+OS: Windows 6.2
+
+Hostname: ZANEMACWIN11
+
+Implementation : impl1
+
+# Written on Sun Jul 14 06:18:42 2024
+
+##### DESIGN INFO #######################################################
+
+Top View:                "GR8RAM"
+Constraint File(s):      "\\Mac\iCloud\Repos\GR8RAM\cpld\GR8RAM.sdc"
+
+
+
+
+##### SUMMARY ############################################################
+
+Found 0 issues in 0 out of 2 constraints
+
+
+##### DETAILS ############################################################
+
+
+
+Clock Relationships
+*******************
+
+Starting     Ending     |     rise to rise     |     fall to fall     |     rise to fall     |     fall to rise                     
+-----------------------------------------------------------------------------------------------------------------------------------
+CLK          System     |     22.558           |     No paths         |     No paths         |     No paths                         
+CLK          CLK        |     22.558           |     No paths         |     11.279           |     11.279                           
+PHI0         CLK        |     No paths         |     No paths         |     No paths         |     7.515                            
+===================================================================================================================================
+ Note: 'No paths' indicates there are no paths in the design for that pair of clock edges.
+       'Diff grp' indicates that paths exist but the starting clock and ending clock are in different clock groups.
+
+
+Unconstrained Start/End Points
+******************************
+
+p:BA[0]
+p:BA[1]
+p:BA[2]
+p:BA[3]
+p:BA[4]
+p:BA[5]
+p:BA[6]
+p:BA[7]
+p:BA[8]
+p:BA[9]
+p:BA[10]
+p:BA[11]
+p:BA[12]
+p:BA[13]
+p:BA[14]
+p:BA[15]
+p:BD[0] (bidir end point)
+p:BD[0] (bidir start point)
+p:BD[1] (bidir end point)
+p:BD[1] (bidir start point)
+p:BD[2] (bidir end point)
+p:BD[2] (bidir start point)
+p:BD[3] (bidir end point)
+p:BD[3] (bidir start point)
+p:BD[4] (bidir end point)
+p:BD[4] (bidir start point)
+p:BD[5] (bidir end point)
+p:BD[5] (bidir start point)
+p:BD[6] (bidir end point)
+p:BD[6] (bidir start point)
+p:BD[7] (bidir end point)
+p:BD[7] (bidir start point)
+p:CLKin
+p:DQMH
+p:DQML
+p:FCK
+p:LED
+p:MISO
+p:MOSI (bidir end point)
+p:MOSI (bidir start point)
+p:RA[0]
+p:RA[1]
+p:RA[2]
+p:RA[3]
+p:RA[4]
+p:RA[5]
+p:RA[6]
+p:RA[7]
+p:RA[8]
+p:RA[9]
+p:RA[10]
+p:RA[11]
+p:RA[12]
+p:RBA[0]
+p:RBA[1]
+p:RCKE
+p:RCLK
+p:RD[0] (bidir end point)
+p:RD[0] (bidir start point)
+p:RD[1] (bidir end point)
+p:RD[1] (bidir start point)
+p:RD[2] (bidir end point)
+p:RD[2] (bidir start point)
+p:RD[3] (bidir end point)
+p:RD[3] (bidir start point)
+p:RD[4] (bidir end point)
+p:RD[4] (bidir start point)
+p:RD[5] (bidir end point)
+p:RD[5] (bidir start point)
+p:RD[6] (bidir end point)
+p:RD[6] (bidir start point)
+p:RD[7] (bidir end point)
+p:RD[7] (bidir start point)
+p:SW[1]
+p:SW[2]
+p:nCAS
+p:nDEVSEL
+p:nFCS (bidir end point)
+p:nFCS (bidir start point)
+p:nIOSEL
+p:nIOSTRB
+p:nIRQout
+p:nRAS
+p:nRCS
+p:nRESin
+p:nRESout
+p:nRWE
+p:nWE
+
+
+Inapplicable constraints
+************************
+
+(none)
+
+
+Applicable constraints with issues
+**********************************
+
+(none)
+
+
+Constraints with matching wildcard expressions
+**********************************************
+
+(none)
+
+
+Library Report
+**************
+
+
+# End of Constraint Checker Report

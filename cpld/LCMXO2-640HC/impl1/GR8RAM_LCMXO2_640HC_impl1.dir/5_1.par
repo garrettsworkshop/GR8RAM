@@ -1,0 +1,214 @@
+
+Lattice Place and Route Report for Design "GR8RAM_LCMXO2_640HC_impl1_map.ncd"
+Sun Jul 14 06:18:50 2024
+
+PAR: Place And Route Diamond (64-bit) 3.11.3.469.
+Command Line: par -w -l 5 -i 6 -t 1 -c 0 -e 0 -gui -msgset //Mac/iCloud/Repos/GR8RAM/cpld/LCMXO2-640HC/promote.xml -exp parUseNBR=1:parCDP=0:parCDR=0:parPathBased=OFF GR8RAM_LCMXO2_640HC_impl1_map.ncd GR8RAM_LCMXO2_640HC_impl1.dir/5_1.ncd GR8RAM_LCMXO2_640HC_impl1.prf
+Preference file: GR8RAM_LCMXO2_640HC_impl1.prf.
+Placement level-cost: 5-1.
+Routing Iterations: 6
+
+Loading design for application par from file GR8RAM_LCMXO2_640HC_impl1_map.ncd.
+Design name: GR8RAM
+NCD version: 3.3
+Vendor:      LATTICE
+Device:      LCMXO2-640HC
+Package:     TQFP100
+Performance: 4
+Loading device for application par from file 'xo2c640.nph' in environment: C:/lscc/diamond/3.11_x64/ispfpga.
+Package Status:                     Final          Version 1.39.
+Performance Hardware Data Status:   Final          Version 34.4.
+License checked out.
+
+
+Ignore Preference Error(s):  True
+Device utilization summary:
+
+   PIO (prelim)   67+4(JTAG)/80      89% used
+                  67+4(JTAG)/79      90% bonded
+   IOLOGIC           32/80           40% used
+
+   SLICE            189/320          59% used
+
+   OSC                1/1           100% used
+
+
+Number of Signals: 585
+Number of Connections: 1624
+
+Pin Constraint Summary:
+   67 out of 67 pins locked (100% locked).
+
+The following 1 signal is selected to use the primary clock routing resources:
+    CLK (driver: OSCH_inst, clk load #: 127)
+
+
+The following 3 signals are selected to use the secondary clock routing resources:
+    ram.RA_0_sqmuxa (driver: ram/SLICE_172, clk load #: 0, sr load #: 13, ce load #: 0)
+    RegReset (driver: bi/SLICE_81, clk load #: 0, sr load #: 12, ce load #: 0)
+    PHI0_c (driver: PHI0, clk load #: 5, sr load #: 0, ce load #: 0)
+
+WARNING - par: Signal "PHI0_c" is selected to use Secondary clock resources. However, its driver comp "PHI0" is located at "17", which is not a dedicated pin for connecting to Secondary clock resources. General routing has to be used to route this signal, and it might suffer from excessive delay or skew.
+No signal is selected as Global Set/Reset.
+Starting Placer Phase 0.
+.............
+Finished Placer Phase 0.  REAL time: 0 secs 
+
+Starting Placer Phase 1.
+....................
+Placer score = 80114.
+Finished Placer Phase 1.  REAL time: 8 secs 
+
+Starting Placer Phase 2.
+.
+Placer score =  79942
+Finished Placer Phase 2.  REAL time: 8 secs 
+
+
+------------------ Clock Report ------------------
+
+Global Clock Resources:
+  CLK_PIN    : 0 out of 8 (0%)
+  General PIO: 1 out of 80 (1%)
+  DCM        : 0 out of 2 (0%)
+  DCC        : 0 out of 8 (0%)
+
+Global Clocks:
+  PRIMARY "CLK" from OSC on comp "OSCH_inst" on site "OSC", clk load = 127
+  SECONDARY "ram.RA_0_sqmuxa" from F1 on comp "ram/SLICE_172" on site "R6C8B", clk load = 0, ce load = 0, sr load = 13
+  SECONDARY "RegReset" from Q0 on comp "bi/SLICE_81" on site "R2C9A", clk load = 0, ce load = 0, sr load = 12
+  SECONDARY "PHI0_c" from comp "PHI0" on PIO site "17 (PL6B)", clk load = 5, ce load = 0, sr load = 0
+
+  PRIMARY  : 1 out of 8 (12%)
+  SECONDARY: 3 out of 8 (37%)
+
+--------------- End of Clock Report ---------------
+
+
+I/O Usage Summary (final):
+   67 + 4(JTAG) out of 80 (88.8%) PIO sites used.
+   67 + 4(JTAG) out of 79 (89.9%) bonded PIO sites used.
+   Number of PIO comps: 67; differential: 0.
+   Number of Vref pins used: 0.
+
+I/O Bank Usage Summary:
++----------+----------------+------------+-----------+
+| I/O Bank | Usage          | Bank Vccio | Bank Vref |
++----------+----------------+------------+-----------+
+| 0        | 13 / 19 ( 68%) | 3.3V       | -         |
+| 1        | 20 / 20 (100%) | 3.3V       | -         |
+| 2        | 19 / 20 ( 95%) | 3.3V       | -         |
+| 3        | 15 / 20 ( 75%) | 3.3V       | -         |
++----------+----------------+------------+-----------+
+
+Total placer CPU time: 7 secs 
+
+Dumping design to file GR8RAM_LCMXO2_640HC_impl1.dir/5_1.ncd.
+
+0 connections routed; 1624 unrouted.
+Starting router resource preassignment
+
+Completed router resource preassignment. Real time: 11 secs 
+
+Start NBR router at 06:19:02 07/14/24
+
+*****************************************************************
+Info: NBR allows conflicts(one node used by more than one signal)
+      in the earlier iterations. In each iteration, it tries to  
+      solve the conflicts while keeping the critical connections 
+      routed as short as possible. The routing process is said to
+      be completed when no conflicts exist and all connections   
+      are routed.                                                
+Note: NBR uses a different method to calculate timing slacks. The
+      worst slack and total negative slack may not be the same as
+      that in TRCE report. You should always run TRCE to verify  
+      your design.                                               
+*****************************************************************
+
+Start NBR special constraint process at 06:19:02 07/14/24
+
+Start NBR section for initial routing at 06:19:02 07/14/24
+Level 1, iteration 1
+0(0.00%) conflict; 1279(78.76%) untouched conns; 0 (nbr) score; 
+Estimated worst slack/total negative slack<setup>: 8.730ns/0.000ns; real time: 12 secs 
+Level 2, iteration 1
+0(0.00%) conflict; 1276(78.57%) untouched conns; 0 (nbr) score; 
+Estimated worst slack/total negative slack<setup>: 8.874ns/0.000ns; real time: 12 secs 
+Level 3, iteration 1
+0(0.00%) conflict; 1274(78.45%) untouched conns; 0 (nbr) score; 
+Estimated worst slack/total negative slack<setup>: 9.028ns/0.000ns; real time: 12 secs 
+Level 4, iteration 1
+12(0.03%) conflicts; 0(0.00%) untouched conn; 0 (nbr) score; 
+Estimated worst slack/total negative slack<setup>: 8.306ns/0.000ns; real time: 12 secs 
+
+Info: Initial congestion level at 75% usage is 0
+Info: Initial congestion area  at 75% usage is 0 (0.00%)
+
+Start NBR section for normal routing at 06:19:02 07/14/24
+Level 4, iteration 1
+5(0.01%) conflicts; 0(0.00%) untouched conn; 0 (nbr) score; 
+Estimated worst slack/total negative slack<setup>: 8.306ns/0.000ns; real time: 12 secs 
+Level 4, iteration 2
+1(0.00%) conflict; 0(0.00%) untouched conn; 0 (nbr) score; 
+Estimated worst slack/total negative slack<setup>: 7.674ns/0.000ns; real time: 12 secs 
+Level 4, iteration 3
+0(0.00%) conflict; 0(0.00%) untouched conn; 0 (nbr) score; 
+Estimated worst slack/total negative slack<setup>: 7.674ns/0.000ns; real time: 12 secs 
+
+Start NBR section for setup/hold timing optimization with effort level 3 at 06:19:02 07/14/24
+
+Start NBR section for re-routing at 06:19:02 07/14/24
+Level 4, iteration 1
+0(0.00%) conflict; 0(0.00%) untouched conn; 0 (nbr) score; 
+Estimated worst slack/total negative slack<setup>: 7.674ns/0.000ns; real time: 12 secs 
+
+Start NBR section for post-routing at 06:19:02 07/14/24
+
+End NBR router with 0 unrouted connection
+
+NBR Summary
+-----------
+  Number of unrouted connections : 0 (0.00%)
+  Number of connections with timing violations : 0 (0.00%)
+  Estimated worst slack<setup> : 7.674ns
+  Timing score<setup> : 0
+-----------
+Notes: The timing info is calculated for SETUP only and all PAR_ADJs are ignored.
+
+
+
+Total CPU time 12 secs 
+Total REAL time: 13 secs 
+Completely routed.
+End of route.  1624 routed (100.00%); 0 unrouted.
+
+Hold time timing score: 0, hold timing errors: 0
+
+Timing score: 0 
+
+Dumping design to file GR8RAM_LCMXO2_640HC_impl1.dir/5_1.ncd.
+
+
+All signals are completely routed.
+
+
+PAR_SUMMARY::Run status = Completed
+PAR_SUMMARY::Number of unrouted conns = 0
+PAR_SUMMARY::Worst  slack<setup/<ns>> = 7.674
+PAR_SUMMARY::Timing score<setup/<ns>> = 0.000
+PAR_SUMMARY::Worst  slack<hold /<ns>> = 0.260
+PAR_SUMMARY::Timing score<hold /<ns>> = 0.000
+PAR_SUMMARY::Number of errors = 0
+
+Total CPU  time to completion: 12 secs 
+Total REAL time to completion: 13 secs 
+
+par done!
+
+Note: user must run 'Trace' for timing closure signoff.
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2020 Lattice Semiconductor Corporation,  All rights reserved.

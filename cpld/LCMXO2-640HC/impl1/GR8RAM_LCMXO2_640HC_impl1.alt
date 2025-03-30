@@ -1,0 +1,75 @@
+NOTE Copyright (C), 1992-2010, Lattice Semiconductor Corporation *
+NOTE All Rights Reserved *
+NOTE DATE CREATED: Sun Jul 14 06:19:07 2024 *
+NOTE DESIGN NAME: GR8RAM *
+NOTE DEVICE NAME: LCMXO2-640HC-4TQFP100 *
+NOTE PIN ASSIGNMENTS *
+NOTE PINS BD[0] : 65 : inout *
+NOTE PINS LED : 81 : out *
+NOTE PINS PHI0 : 17 : in *
+NOTE PINS FCK : 96 : out *
+NOTE PINS nFCS : 88 : inout *
+NOTE PINS MOSI : 97 : inout *
+NOTE PINS MISO : 98 : in *
+NOTE PINS RD[7] : 31 : inout *
+NOTE PINS RD[6] : 30 : inout *
+NOTE PINS RD[5] : 29 : inout *
+NOTE PINS RD[4] : 28 : inout *
+NOTE PINS RD[3] : 27 : inout *
+NOTE PINS RD[2] : 21 : inout *
+NOTE PINS RD[1] : 24 : inout *
+NOTE PINS RD[0] : 25 : inout *
+NOTE PINS DQMH : 34 : out *
+NOTE PINS DQML : 32 : out *
+NOTE PINS nRWE : 35 : out *
+NOTE PINS nCAS : 36 : out *
+NOTE PINS nRAS : 37 : out *
+NOTE PINS RCKE : 40 : out *
+NOTE PINS nRCS : 41 : out *
+NOTE PINS RA[12] : 42 : out *
+NOTE PINS RA[11] : 45 : out *
+NOTE PINS RA[10] : 47 : out *
+NOTE PINS RA[9] : 49 : out *
+NOTE PINS RA[8] : 53 : out *
+NOTE PINS RA[7] : 57 : out *
+NOTE PINS RA[6] : 62 : out *
+NOTE PINS RA[5] : 52 : out *
+NOTE PINS RA[4] : 51 : out *
+NOTE PINS RA[3] : 60 : out *
+NOTE PINS RA[2] : 58 : out *
+NOTE PINS RA[1] : 59 : out *
+NOTE PINS RA[0] : 54 : out *
+NOTE PINS RBA[1] : 48 : out *
+NOTE PINS RBA[0] : 43 : out *
+NOTE PINS RCLK : 39 : out *
+NOTE PINS nIOSTRB : 18 : in *
+NOTE PINS nDEVSEL : 16 : in *
+NOTE PINS nIOSEL : 15 : in *
+NOTE PINS nDinOE : 77 : out *
+NOTE PINS nDoutOE : 1 : out *
+NOTE PINS BD[7] : 75 : inout *
+NOTE PINS BD[6] : 71 : inout *
+NOTE PINS BD[5] : 70 : inout *
+NOTE PINS BD[4] : 69 : inout *
+NOTE PINS BD[3] : 68 : inout *
+NOTE PINS BD[2] : 67 : inout *
+NOTE PINS BD[1] : 66 : inout *
+NOTE PINS nWE : 19 : in *
+NOTE PINS BA[10] : 3 : in *
+NOTE PINS BA[9] : 2 : in *
+NOTE PINS BA[8] : 99 : in *
+NOTE PINS BA[7] : 87 : in *
+NOTE PINS BA[6] : 86 : in *
+NOTE PINS BA[5] : 85 : in *
+NOTE PINS BA[4] : 4 : in *
+NOTE PINS BA[3] : 84 : in *
+NOTE PINS BA[2] : 83 : in *
+NOTE PINS BA[1] : 78 : in *
+NOTE PINS BA[0] : 74 : in *
+NOTE PINS SW[2] : 63 : in *
+NOTE PINS SW[1] : 64 : in *
+NOTE PINS nIRQout : 12 : out *
+NOTE PINS nRESout : 7 : out *
+NOTE PINS nRESin : 20 : in *
+NOTE CONFIGURATION MODE: NONE *
+NOTE COMPRESSION: on *

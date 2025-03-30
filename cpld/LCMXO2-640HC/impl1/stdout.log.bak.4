@@ -1,0 +1,79 @@
+Running in Lattice mode
+
+Starting:    C:\lscc\diamond\3.11_x64\synpbase\bin64\mbin\synbatch.exe
+Install:     C:\lscc\diamond\3.11_x64\synpbase
+Hostname:    ZANEMACWIN11
+Date:        Thu Jul 11 19:50:22 2024
+Version:     N-2018.03L-SP1-1
+
+Arguments:   -product synplify_pro -batch GR8RAM_LCMXO2_640HC_impl1_synplify.tcl
+ProductType: synplify_pro
+
+
+
+
+log file: "\\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-640HC\impl1\GR8RAM_LCMXO2_640HC_impl1.srr"
+Running: impl1 in foreground
+
+Running proj_1|impl1
+
+Running Flow: compile (Compile) on proj_1|impl1
+# Thu Jul 11 19:50:22 2024
+
+Running Flow: compile_flow (Compile Process) on proj_1|impl1
+# Thu Jul 11 19:50:22 2024
+
+Running: compiler (Compile Input) on proj_1|impl1
+# Thu Jul 11 19:50:22 2024
+Copied \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-640HC\impl1\synwork\GR8RAM_LCMXO2_640HC_impl1_comp.srs to \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-640HC\impl1\GR8RAM_LCMXO2_640HC_impl1.srs
+
+compiler completed
+# Thu Jul 11 19:50:23 2024
+
+Return Code: 0
+Run Time:00h:00m:01s
+
+Running: multi_srs_gen (Multi-srs Generator) on proj_1|impl1
+# Thu Jul 11 19:50:23 2024
+
+multi_srs_gen completed
+# Thu Jul 11 19:50:24 2024
+
+Return Code: 0
+Run Time:00h:00m:01s
+Copied \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-640HC\impl1\synwork\GR8RAM_LCMXO2_640HC_impl1_mult.srs to \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-640HC\impl1\GR8RAM_LCMXO2_640HC_impl1.srs
+Copied \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-640HC\impl1\GR8RAM_LCMXO2_640HC_impl1.srr to \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-640HC\impl1\GR8RAM_LCMXO2_640HC_impl1.srf
+Complete: Compile Process on proj_1|impl1
+
+Running: premap (Premap) on proj_1|impl1
+# Thu Jul 11 19:50:24 2024
+
+premap completed with warnings
+# Thu Jul 11 19:50:24 2024
+
+Return Code: 1
+Run Time:00h:00m:00s
+Complete: Compile on proj_1|impl1
+
+Running Flow: map (Map) on proj_1|impl1
+# Thu Jul 11 19:50:24 2024
+License granted for 4 parallel jobs
+
+Running: fpga_mapper (Map & Optimize) on proj_1|impl1
+# Thu Jul 11 19:50:24 2024
+Copied \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-640HC\impl1\synwork\GR8RAM_LCMXO2_640HC_impl1_m.srm to \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-640HC\impl1\GR8RAM_LCMXO2_640HC_impl1.srm
+
+fpga_mapper completed with warnings
+# Thu Jul 11 19:50:28 2024
+
+Return Code: 1
+Run Time:00h:00m:04s
+Complete: Map on proj_1|impl1
+Copied \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-640HC\impl1\GR8RAM_LCMXO2_640HC_impl1.srr to \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-640HC\impl1\GR8RAM_LCMXO2_640HC_impl1.srf
+Complete: Logic Synthesis on proj_1|impl1
+TCL script complete: "GR8RAM_LCMXO2_640HC_impl1_synplify.tcl"
+exit status=0
+exit status=0
+Save changes for project:
+\\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-640HC\impl1\proj_1.prj
+batch mode default:no

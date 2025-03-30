@@ -1,0 +1,15 @@
+@N: MF284 |Setting synthesis effort to medium for the design
+@N: MF916 |Option synthesis_strategy=base is enabled. 
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+@N: MF284 |Setting synthesis effort to medium for the design
+@N: MO106 :"\\mac\icloud\repos\gr8ram\cpld\gr8ram.v":348:2:348:5|Found ROM nRAS_2 (in view: work.GR8RAM(verilog)) with 12 words by 1 bit.
+@N: MO106 :"\\mac\icloud\repos\gr8ram\cpld\gr8ram.v":348:2:348:5|Found ROM nCAS_2 (in view: work.GR8RAM(verilog)) with 12 words by 1 bit.
+@N: FX493 |Applying initial value "000" on instance IS[2:0].
+@N: FX493 |Applying initial value "0000" on instance PS[3:0].
+@N: MO231 :"\\mac\icloud\repos\gr8ram\cpld\gr8ram.v":44:1:44:6|Found counter in view:work.GR8RAM(verilog) instance LS[13:0] 
+@N: FX164 |The option to pack registers in the IOB has not been specified. Please set syn_useioff attribute.  
+@N: FX1056 |Writing EDF file: \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-1200HC\impl1\GR8RAM_LCMXO2_1200HC_impl1.edi
+@N: BW106 |Synplicity Constraint File capacitance units using default value of 1pF 
+@N: MT320 |This timing report is an estimate of place and route data. For final timing results, use the FPGA vendor place and route report.
+@N: MT322 |Clock constraints include only register-to-register paths associated with each individual clock.

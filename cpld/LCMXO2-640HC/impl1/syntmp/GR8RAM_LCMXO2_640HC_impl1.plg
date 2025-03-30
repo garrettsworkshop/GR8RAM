@@ -1,0 +1,22 @@
+@P:  Worst Slack : 5.124
+@P:  CLK - Estimated Frequency : 114.2 MHz
+@P:  CLK - Requested Frequency : 44.3 MHz
+@P:  CLK - Estimated Period : 8.754
+@P:  CLK - Requested Period : 22.558
+@P:  CLK - Slack : 8.522
+@P:  PHI0 - Estimated Frequency : 3.2 MHz
+@P:  PHI0 - Requested Frequency : 1.0 MHz
+@P:  PHI0 - Estimated Period : 310.881
+@P:  PHI0 - Requested Period : 977.000
+@P:  PHI0 - Slack : 5.124
+@P:  System - Estimated Frequency : NA
+@P:  System - Requested Frequency : 100.0 MHz
+@P:  System - Estimated Period : NA
+@P:  System - Requested Period : 10.000
+@P:  System - Slack : NA
+@P:  Total Area : 310.0
+@P:  Total Area : 0.0
+@P:  Total Area : 0.0
+@P:  Total Area : 0.0
+@P:  Total Area : 0.0
+@P:  CPU Time : 0h:00m:02s

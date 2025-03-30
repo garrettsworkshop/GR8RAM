@@ -1,0 +1,45 @@
+SE/30 PDS (54)
+--------
+(1) CPUCLK
+(32) AD[31:0]
+(3) ALE, nAOE, nDOE
+(2) /RESETin, /RESETout
+(5) /AS, /DS, R/W, SIZ[1:0]
+(5) /DSACK[1:0], /STERM, /BERR, /HALT
+(2) /BR, /BG
+(3) /IPL[2:0]
+(1) /IRQ
+
+SDRAM (29)
+--------
+(4) RCLK[3:0] 
+(15) RBA[1:0], RA[12:0]
+(2) /CS[1:0]
+(4) DQM[3:0]
+(4) CKE, /RAS, /CAS, /WE
+
+SRAM (9)
+--------
+(6) /L2OE, /L2WE, /B[3:0]
+(3) /GCOE, /GSTERM, /GSTERMEN, /GRDOE, /GRDOEEN
+/DCOE
+
+ROM (6)
+--------
+(4) FCK[1:0], /CS[1:0]
+(2) MISO, MOSI
+
+Fast CPU (84)
+--------
+(2) CPUCLK, FPUCLK
+(35) FC[2:0], A[31:0]
+(32) D[31:0]
+(3) /BALOE
+(6) /AS, SIZ[1:0], R/W, /RMC, /CBREQ
+(5) /DSACK[1:0], /CBACK, /HALT, /BERR
+(1) /FSTERMD
+
+Link (10)
+--------
+(2) LCLK, /LSOF
+(8) LD[7:0]

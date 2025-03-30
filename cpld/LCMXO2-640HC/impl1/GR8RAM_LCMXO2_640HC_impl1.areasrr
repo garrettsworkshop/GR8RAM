@@ -1,0 +1,106 @@
+----------------------------------------------------------------------
+Report for cell GR8RAM.verilog
+
+Register bits: 183 of 640 (29%)
+PIC Latch:       0
+I/O cells:       73
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                                 BB       18       100.0
+                              CCU2D       29       100.0
+                            FD1P3AX       25       100.0
+                            FD1P3IX       14       100.0
+                            FD1P3JX        2       100.0
+                            FD1S3AX       63       100.0
+                            FD1S3IX       48       100.0
+                            FD1S3JX        1       100.0
+                                GSR        1       100.0
+                                 IB       26       100.0
+                           IFS1P3DX        9       100.0
+                                INV        8       100.0
+                                 OB       28       100.0
+                                OBZ        1       100.0
+                             ODDRXE        2       100.0
+                           OFS1P3DX       10       100.0
+                           OFS1P3IX        7       100.0
+                           OFS1P3JX        4       100.0
+                           ORCALUT4      302       100.0
+                               OSCH        1       100.0
+                              PFUMX       21       100.0
+                                PUR        1       100.0
+                                VHI        5       100.0
+                                VLO        5       100.0
+SUB MODULES 
+                       BusInterface        1       100.0
+                     InitController        1       100.0
+                    SDRAMController        1       100.0
+                    SlinkyRegisters        1       100.0
+                            
+                         TOTAL           635           
+----------------------------------------------------------------------
+Report for cell SDRAMController.netlist
+     Instance path:  ram
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                            FD1P3AX        5        20.0
+                            FD1P3IX       10        71.4
+                            FD1P3JX        2       100.0
+                            FD1S3AX        1         1.6
+                            FD1S3IX        3         6.3
+                                INV        1        12.5
+                             ODDRXE        1        50.0
+                           ORCALUT4       82        27.2
+                                VHI        1        20.0
+                                VLO        1        20.0
+                            
+                         TOTAL           107           
+----------------------------------------------------------------------
+Report for cell InitController.netlist
+     Instance path:  ic
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                                 BB        2        11.1
+                              CCU2D       14        48.3
+                            FD1P3AX       16        64.0
+                            FD1P3IX        3        21.4
+                            FD1S3AX       43        68.3
+                            FD1S3IX       10        20.8
+                                INV        3        37.5
+                                OBZ        1       100.0
+                             ODDRXE        1        50.0
+                           ORCALUT4      105        34.8
+                              PFUMX        3        14.3
+                                VHI        1        20.0
+                                VLO        1        20.0
+                            
+                         TOTAL           203           
+----------------------------------------------------------------------
+Report for cell SlinkyRegisters.netlist
+     Instance path:  registers
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                              CCU2D       15        51.7
+                            FD1S3IX       26        54.2
+                           ORCALUT4       46        15.2
+                              PFUMX       10        47.6
+                                VHI        1        20.0
+                                VLO        1        20.0
+                            
+                         TOTAL            99           
+----------------------------------------------------------------------
+Report for cell BusInterface.netlist
+     Instance path:  bi
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                            FD1P3AX        4        16.0
+                            FD1P3IX        1         7.1
+                            FD1S3AX       19        30.2
+                            FD1S3IX        9        18.8
+                            FD1S3JX        1       100.0
+                                INV        4        50.0
+                           ORCALUT4       69        22.8
+                              PFUMX        8        38.1
+                                VHI        1        20.0
+                                VLO        1        20.0
+                            
+                         TOTAL           117           

@@ -1,0 +1,31 @@
+----------------------------------------------------------------------
+Report for cell GR8RAM.verilog
+
+Register bits: 118 of 1280 (9%)
+PIC Latch:       0
+I/O cells:       73
+                                          Cell usage:
+                               cell       count    Res Usage(%)
+                                 BB       17       100.0
+                              CCU2D       13       100.0
+                            FD1P3AX       24       100.0
+                            FD1S3AX       17       100.0
+                            FD1S3DX       27       100.0
+                                GSR        1       100.0
+                                 IB       26       100.0
+                           IFS1P3DX       18       100.0
+                                INV        7       100.0
+                                 OB       28       100.0
+                                OBZ        2       100.0
+                             ODDRXE        1       100.0
+                           OFS1P3BX        7       100.0
+                           OFS1P3DX       12       100.0
+                           OFS1P3IX       10       100.0
+                           OFS1P3JX        3       100.0
+                           ORCALUT4      240       100.0
+                              PFUMX        7       100.0
+                                PUR        1       100.0
+                                VHI        1       100.0
+                                VLO        1       100.0
+                            
+                         TOTAL           463           

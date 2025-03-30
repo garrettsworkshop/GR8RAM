@@ -1,0 +1,6 @@
+@W: FA239 :"\\mac\icloud\repos\gr8ram\cpld\initcontroller.v":168:4:168:7|ROM nFCSout_2 (in view: work.InitController(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.
+@W: FA239 :"\\mac\icloud\repos\gr8ram\cpld\initcontroller.v":168:4:168:7|ROM MOSIOE_2 (in view: work.InitController(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.
+@W: FA239 :"\\mac\icloud\repos\gr8ram\cpld\initcontroller.v":168:4:168:7|ROM RAMCmd_2[2:0] (in view: work.InitController(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.
+@W: FA239 :"\\mac\icloud\repos\gr8ram\cpld\initcontroller.v":168:4:168:7|ROM nFCSout_2 (in view: work.InitController(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.
+@W: FA239 :"\\mac\icloud\repos\gr8ram\cpld\initcontroller.v":168:4:168:7|ROM MOSIOE_2 (in view: work.InitController(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.
+@W: MT246 :"\\mac\icloud\repos\gr8ram\cpld\sdramcontroller.v":203:8:203:16|Blackbox ODDRXE is missing a user supplied timing model. This may have a negative effect on timing analysis and optimizations (Quality of Results)

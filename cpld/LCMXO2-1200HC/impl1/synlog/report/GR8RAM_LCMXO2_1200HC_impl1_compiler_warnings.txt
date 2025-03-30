@@ -1,0 +1,2 @@
+@W: CL169 :"\\Mac\iCloud\Repos\GR8RAM\cpld\GR8RAM.v":27:1:27:6|Pruning unused register SetFWLoaded. Make sure that there are no unused intermediate registers.
+

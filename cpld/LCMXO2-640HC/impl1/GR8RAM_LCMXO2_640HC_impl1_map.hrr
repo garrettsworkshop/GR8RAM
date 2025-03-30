@@ -1,0 +1,53 @@
+---------------------------------------------------
+Report for cell GR8RAM
+   Instance path: GR8RAM
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	     189.00        100.0
+                                 IOLGC	      30.00        100.0
+                                  LUT4	     310.00        100.0
+                                 IOREG	         30        100.0
+                                 IOBUF	         67        100.0
+                                PFUREG	        153        100.0
+                                RIPPLE	         29        100.0
+SUB MODULES
+                                  cell	      count    SLC Usage(%)
+                       SDRAMController	          1        22.2
+                       SlinkyRegisters	          1        20.0
+                          BusInterface	          1        20.8
+                        InitController	          1        36.7
+---------------------------------------------------
+Report for cell SDRAMController
+   Instance path: GR8RAM/ram
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      41.92        22.2
+                                  LUT4	      84.00        27.1
+                                PFUREG	         21        13.7
+---------------------------------------------------
+Report for cell InitController
+   Instance path: GR8RAM/ic
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      69.33        36.7
+                                  LUT4	     108.00        34.8
+                                 IOBUF	          3         4.5
+                                PFUREG	         72        47.1
+                                RIPPLE	         14        48.3
+---------------------------------------------------
+Report for cell SlinkyRegisters
+   Instance path: GR8RAM/registers
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      37.75        20.0
+                                  LUT4	      46.00        14.8
+                                PFUREG	         26        17.0
+                                RIPPLE	         15        51.7
+---------------------------------------------------
+Report for cell BusInterface
+   Instance path: GR8RAM/bi
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	      39.33        20.8
+                                  LUT4	      70.00        22.6
+                                PFUREG	         34        22.2

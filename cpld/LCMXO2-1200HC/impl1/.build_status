@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BuildStatus>
+    <Strategy name="Strategy1">
+        <Milestone name="Export" build_result="0" build_time="0">
+            <Task name="IBIS" build_result="0" update_result="3" update_time="0"/>
+            <Task name="TimingSimFileVlg" build_result="0" update_result="3" update_time="0"/>
+            <Task name="TimingSimFileVHD" build_result="0" update_result="3" update_time="0"/>
+            <Task name="Bitgen" build_result="0" update_result="3" update_time="0"/>
+            <Task name="Jedecgen" build_result="2" update_result="0" update_time="1718253547"/>
+        </Milestone>
+        <Milestone name="Map" build_result="2" build_time="1718253533">
+            <Task name="Map" build_result="2" update_result="0" update_time="1718253533"/>
+            <Task name="MapTrace" build_result="0" update_result="3" update_time="0"/>
+            <Task name="MapVerilogSimFile" build_result="0" update_result="3" update_time="0"/>
+            <Task name="MapVHDLSimFile" build_result="0" update_result="3" update_time="0"/>
+        </Milestone>
+        <Milestone name="PAR" build_result="2" build_time="1718253543">
+            <Task name="PAR" build_result="2" update_result="0" update_time="1718253543"/>
+            <Task name="PARTrace" build_result="0" update_result="3" update_time="0"/>
+            <Task name="IOTiming" build_result="0" update_result="3" update_time="0"/>
+        </Milestone>
+        <Milestone name="Synthesis" build_result="2" build_time="1718253532">
+            <Task name="Synplify_Synthesis" build_result="2" update_result="0" update_time="1718253532"/>
+        </Milestone>
+        <Milestone name="TOOL_Report" build_result="0" build_time="0">
+            <Task name="HDLE" build_result="0" update_result="3" update_time="0"/>
+        </Milestone>
+        <Milestone name="Translate" build_result="2" build_time="1718253532">
+            <Task name="Translate" build_result="2" update_result="0" update_time="1718253532"/>
+        </Milestone>
+        <Report name="GR8RAM_LCMXO2_1200HC_impl1.bgn" last_build_time="1718253547" last_build_size="4416"/>
+        <Report name="GR8RAM_LCMXO2_1200HC_impl1.edi" last_build_time="1718253531" last_build_size="215733"/>
+        <Report name="GR8RAM_LCMXO2_1200HC_impl1.jed" last_build_time="1718253547" last_build_size="352059"/>
+        <Report name="GR8RAM_LCMXO2_1200HC_impl1.ncd" last_build_time="1718253543" last_build_size="323416"/>
+        <Report name="GR8RAM_LCMXO2_1200HC_impl1.ngd" last_build_time="1718253532" last_build_size="232595"/>
+        <Report name="GR8RAM_LCMXO2_1200HC_impl1_map.ncd" last_build_time="1718253533" last_build_size="229621"/>
+    </Strategy>
+</BuildStatus>

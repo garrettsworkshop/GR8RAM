@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- *************************************************************************************
+FILE DESCRIPTION
+The file contains the job information from mapper to be displayed as part of the summary report.
+*******************************************************************************************-->
+<job_run_status name="Mapper">
+<report_link name="Detailed report">
+<data>\\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-1200HC\impl1\synlog\GR8RAM_LCMXO2_1200HC_impl1_premap.srr</data>
+<title></title>
+</report_link>
+<job_status>
+<data>Completed</data>
+</job_status>
+<job_info>
+<info name="Notes">
+<data>8</data>
+<report_link name="more">
+<data>\\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-1200HC\impl1\synlog\report\GR8RAM_LCMXO2_1200HC_impl1_premap_notes.txt</data>
+</report_link>
+</info>
+<info name="Warnings">
+<data>3</data>
+<report_link name="more">
+<data>\\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-1200HC\impl1\synlog\report\GR8RAM_LCMXO2_1200HC_impl1_premap_warnings.txt</data>
+</report_link>
+</info>
+<info name="Errors">
+<data>0</data>
+<report_link name="more">
+<data>\\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-1200HC\impl1\synlog\report\GR8RAM_LCMXO2_1200HC_impl1_premap_errors.txt</data>
+</report_link>
+</info>
+<info name="CPU Time">
+<data>0h:00m:00s</data>
+</info>
+<info name="Real Time">
+<data>0h:00m:00s</data>
+</info>
+<info name="Peak Memory">
+<data>143MB</data>
+</info>
+<info name="Date &amp; Time">
+<data type="timestamp">1718253528</data>
+</info>
+</job_info>
+</job_run_status>

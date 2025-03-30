@@ -1,0 +1,32 @@
+Resource Usage Report
+Part: lcmxo2_640hc-4
+
+Register bits: 183 of 640 (29%)
+PIC Latch:       0
+I/O cells:       73
+
+Details:
+BB:             18
+CCU2D:          29
+FD1P3AX:        25
+FD1P3IX:        14
+FD1P3JX:        2
+FD1S3AX:        63
+FD1S3IX:        48
+FD1S3JX:        1
+GSR:            1
+IB:             26
+IFS1P3DX:       9
+INV:            8
+OB:             28
+OBZ:            1
+ODDRXE:         2
+OFS1P3DX:       10
+OFS1P3IX:       7
+OFS1P3JX:       4
+ORCALUT4:       302
+OSCH:           1
+PFUMX:          21
+PUR:            1
+VHI:            5
+VLO:            5

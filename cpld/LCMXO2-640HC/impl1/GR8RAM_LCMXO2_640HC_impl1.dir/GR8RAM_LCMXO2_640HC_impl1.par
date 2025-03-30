@@ -1,0 +1,28 @@
+PAR: Place And Route Diamond (64-bit) 3.11.3.469.
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2020 Lattice Semiconductor Corporation,  All rights reserved.
+Sun Jul 14 06:18:50 2024
+
+C:/lscc/diamond/3.11_x64/ispfpga\bin\nt64\par -f GR8RAM_LCMXO2_640HC_impl1.p2t
+GR8RAM_LCMXO2_640HC_impl1_map.ncd GR8RAM_LCMXO2_640HC_impl1.dir
+GR8RAM_LCMXO2_640HC_impl1.prf -gui -msgset
+//Mac/iCloud/Repos/GR8RAM/cpld/LCMXO2-640HC/promote.xml
+
+
+Preference file: GR8RAM_LCMXO2_640HC_impl1.prf.
+
+Level/       Number       Worst        Timing       Worst        Timing       Run          NCD
+Cost [ncd]   Unrouted     Slack        Score        Slack(hold)  Score(hold)  Time         Status
+----------   --------     -----        ------       -----------  -----------  ----         ------
+5_1   *      0            7.674        0            0.260        0            13           Completed
+
+* : Design saved.
+
+Total (real) run time for 1-seed: 13 secs 
+
+par done!
+
+Note: user must run 'Trace' for timing closure signoff.

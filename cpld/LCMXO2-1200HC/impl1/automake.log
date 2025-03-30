@@ -1,0 +1,1035 @@
+
+synpwrap -msg -prj "GR8RAM_LCMXO2_1200HC_impl1_synplify.tcl" -log "GR8RAM_LCMXO2_1200HC_impl1.srf"
+Copyright (C) 1992-2019 Lattice Semiconductor Corporation. All rights reserved.
+Lattice Diamond Version 3.11.3.469
+    <postMsg mid="2011000" type="Info"    dynamic="0" navigation="0"  />
+
+==contents of GR8RAM_LCMXO2_1200HC_impl1.srf
+#Build: Synplify Pro (R) N-2018.03L-SP1-1, Build 443R, Apr  1 2019
+#install: C:\lscc\diamond\3.11_x64\synpbase
+#OS: Windows 8 6.2
+#Hostname: ZANEMACWIN11
+
+# Thu Jun 13 00:38:45 2024
+
+#Implementation: impl1
+
+
+Copyright (C) 1994-2018 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: N-2018.03L-SP1-1
+Install: C:\lscc\diamond\3.11_x64\synpbase
+OS: Windows 6.2
+
+Hostname: ZANEMACWIN11
+
+Implementation : impl1
+Synopsys HDL Compiler, Version comp2018q2p1, Build 461R, Built Apr  1 2019 09:17:43
+
+@N|Running in 64-bit mode
+
+Copyright (C) 1994-2018 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: N-2018.03L-SP1-1
+Install: C:\lscc\diamond\3.11_x64\synpbase
+OS: Windows 6.2
+
+Hostname: ZANEMACWIN11
+
+Implementation : impl1
+Synopsys Verilog Compiler, Version comp2018q2p1, Build 461R, Built Apr  1 2019 09:17:43
+
+@N|Running in 64-bit mode
+@I::"C:\lscc\diamond\3.11_x64\synpbase\lib\lucent\machxo2.v" (library work)
+@I::"C:\lscc\diamond\3.11_x64\synpbase\lib\lucent\pmi_def.v" (library work)
+@I::"C:\lscc\diamond\3.11_x64\synpbase\lib\vlog\hypermods.v" (library __hyper__lib__)
+@I::"C:\lscc\diamond\3.11_x64\synpbase\lib\vlog\umr_capim.v" (library snps_haps)
+@I::"C:\lscc\diamond\3.11_x64\synpbase\lib\vlog\scemi_objects.v" (library snps_haps)
+@I::"C:\lscc\diamond\3.11_x64\synpbase\lib\vlog\scemi_pipes.svh" (library snps_haps)
+@I::"\\Mac\iCloud\Repos\GR8RAM\cpld\GR8RAM.v" (library work)
+Verilog syntax check successful!
+File \\Mac\iCloud\Repos\GR8RAM\cpld\GR8RAM.v changed - recompiling
+Selecting top level module GR8RAM
+@N: CG364 :"C:\lscc\diamond\3.11_x64\synpbase\lib\lucent\machxo2.v":1601:7:1601:12|Synthesizing module ODDRXE in library work.
+Running optimization stage 1 on ODDRXE .......
+@N: CG364 :"\\Mac\iCloud\Repos\GR8RAM\cpld\GR8RAM.v":1:7:1:12|Synthesizing module GR8RAM in library work.
+Running optimization stage 1 on GR8RAM .......
+Running optimization stage 2 on GR8RAM .......
+@N: CL201 :"\\Mac\iCloud\Repos\GR8RAM\cpld\GR8RAM.v":49:1:49:6|Trying to extract state machine for register IS.
+Running optimization stage 2 on ODDRXE .......
+
+At c_ver Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 73MB peak: 75MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Thu Jun 13 00:38:46 2024
+
+###########################################################]
+
+Copyright (C) 1994-2018 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: N-2018.03L-SP1-1
+Install: C:\lscc\diamond\3.11_x64\synpbase
+OS: Windows 6.2
+
+Hostname: ZANEMACWIN11
+
+Implementation : impl1
+Synopsys Synopsys Netlist Linker, Version comp2018q2p1, Build 461R, Built Apr  1 2019 09:17:43
+
+@N|Running in 64-bit mode
+
+At syn_nfilter Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 67MB peak: 68MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Thu Jun 13 00:38:46 2024
+
+###########################################################]
+
+For a summary of runtime and memory usage for all design units, please see file:
+==========================================================
+@L: A:\\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-1200HC\impl1\synwork\GR8RAM_LCMXO2_1200HC_impl1_comp.rt.csv
+
+@END
+
+At c_hdl Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 3MB peak: 4MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Thu Jun 13 00:38:46 2024
+
+###########################################################]
+
+Copyright (C) 1994-2018 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: N-2018.03L-SP1-1
+Install: C:\lscc\diamond\3.11_x64\synpbase
+OS: Windows 6.2
+
+Hostname: ZANEMACWIN11
+
+Database state : \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-1200HC\impl1\synwork\|impl1
+Synopsys Synopsys Netlist Linker, Version comp2018q2p1, Build 461R, Built Apr  1 2019 09:17:43
+
+@N|Running in 64-bit mode
+File \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-1200HC\impl1\synwork\GR8RAM_LCMXO2_1200HC_impl1_comp.srs changed - recompiling
+
+At syn_nfilter Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 67MB peak: 68MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Thu Jun 13 00:38:47 2024
+
+###########################################################]
+# Thu Jun 13 00:38:47 2024
+
+
+Copyright (C) 1994-2018 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: N-2018.03L-SP1-1
+Install: C:\lscc\diamond\3.11_x64\synpbase
+OS: Windows 6.2
+
+Hostname: ZANEMACWIN11
+
+Implementation : impl1
+Synopsys Lattice Technology Pre-mapping, Version maplat2018q2p1, Build 055R, Built Apr  3 2019 09:51:54
+
+
+Mapper Startup Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 100MB)
+
+@A: MF827 |No constraint file specified.
+@N: MF284 |Setting synthesis effort to medium for the design
+@L: \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-1200HC\impl1\GR8RAM_LCMXO2_1200HC_impl1_scck.rpt 
+Printing clock  summary report in "\\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-1200HC\impl1\GR8RAM_LCMXO2_1200HC_impl1_scck.rpt" file 
+@N: MF916 |Option synthesis_strategy=base is enabled. 
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+
+Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 100MB peak: 102MB)
+
+
+Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 100MB peak: 102MB)
+
+
+Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 112MB peak: 112MB)
+
+
+Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 112MB peak: 114MB)
+
+@N: MF284 |Setting synthesis effort to medium for the design
+@A: FX681 :"\\mac\icloud\repos\gr8ram\cpld\gr8ram.v":36:1:36:6|Initial value on register PS[3:0] is non-zero which can prevent the register from being packed into a block RAM or DSP.
+@W: FX474 |User-specified initial value defined for some sequential elements which can prevent optimum synthesis results from being achieved. 
+@N: MH105 |UMR3 is only supported for HAPS-80.
+@N: MH105 |UMR3 is only supported for HAPS-80.
+syn_allowed_resources : blockrams=7  set on top level netlist GR8RAM
+
+Finished netlist restructuring (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 140MB peak: 143MB)
+
+
+
+Clock Summary
+******************
+
+          Start           Requested     Requested     Clock        Clock                   Clock
+Level     Clock           Frequency     Period        Type         Group                   Load 
+------------------------------------------------------------------------------------------------
+0 -       GR8RAM|RCLK     100.0 MHz     10.000        inferred     Inferred_clkgroup_1     104  
+                                                                                                
+0 -       GR8RAM|PHI0     100.0 MHz     10.000        inferred     Inferred_clkgroup_0     18   
+================================================================================================
+
+
+
+Clock Load Summary
+***********************
+
+                Clock     Source         Clock Pin        Non-clock Pin       Non-clock Pin     
+Clock           Load      Pin            Seq Example      Seq Example         Comb Example      
+------------------------------------------------------------------------------------------------
+GR8RAM|RCLK     104       RCLK(port)     PHI0r[4:1].C     -                   un1_RCLK.I[0](inv)
+                                                                                                
+GR8RAM|PHI0     18        PHI0(port)     RAr[11:0].C      PHI0r[4:1].D[0]     nDoutOE.I[0](inv) 
+================================================================================================
+
+@W: MT529 :"\\mac\icloud\repos\gr8ram\cpld\gr8ram.v":67:1:67:6|Found inferred clock GR8RAM|PHI0 which controls 18 sequential elements including CXXXr. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. 
+@W: MT529 :"\\mac\icloud\repos\gr8ram\cpld\gr8ram.v":20:16:20:21|Found inferred clock GR8RAM|RCLK which controls 104 sequential elements including nRESf. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. 
+
+ICG Latch Removal Summary:
+Number of ICG latches removed: 0
+Number of ICG latches not removed:	0
+
+
+@S |Clock Optimization Summary
+
+
+
+#### START OF PREMAP CLOCK OPTIMIZATION REPORT #####[
+
+2 non-gated/non-generated clock tree(s) driving 118 clock pin(s) of sequential element(s)
+0 gated/generated clock tree(s) driving 0 clock pin(s) of sequential element(s)
+0 instances converted, 0 sequential instances remain driven by gated/generated clocks
+
+=========================== Non-Gated/Non-Generated Clocks ============================
+Clock Tree ID     Driving Element     Drive Element Type     Fanout     Sample Instance
+---------------------------------------------------------------------------------------
+@KP:ckid0_0       RCLK                Unconstrained_port     104        nRESf          
+@KP:ckid0_1       PHI0                Unconstrained_port     14         CXXXr          
+=======================================================================================
+
+
+##### END OF CLOCK OPTIMIZATION REPORT ######
+
+@N: FX1143 |Skipping assigning INTERNAL_VREF to iobanks, because the table of mapping from pin to iobank is not initialized.
+Finished Pre Mapping Phase.
+
+Starting constraint checker (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 141MB peak: 143MB)
+
+
+Finished constraint checker preprocessing (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 141MB peak: 143MB)
+
+None
+None
+
+Finished constraint checker (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 141MB peak: 143MB)
+
+Pre-mapping successful!
+
+At Mapper Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 57MB peak: 143MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+# Thu Jun 13 00:38:48 2024
+
+###########################################################]
+# Thu Jun 13 00:38:48 2024
+
+
+Copyright (C) 1994-2018 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: N-2018.03L-SP1-1
+Install: C:\lscc\diamond\3.11_x64\synpbase
+OS: Windows 6.2
+
+Hostname: ZANEMACWIN11
+
+Implementation : impl1
+Synopsys Lattice Technology Mapper, Version maplat2018q2p1, Build 055R, Built Apr  3 2019 09:51:54
+
+
+Mapper Startup Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 99MB)
+
+@N: MF284 |Setting synthesis effort to medium for the design
+@N: MF916 |Option synthesis_strategy=base is enabled. 
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+
+Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 98MB peak: 100MB)
+
+
+Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 98MB peak: 100MB)
+
+
+Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 111MB peak: 111MB)
+
+
+Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 111MB peak: 113MB)
+
+@N: MF284 |Setting synthesis effort to medium for the design
+
+
+Starting Optimization and Mapping (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 139MB peak: 142MB)
+
+
+Available hyper_sources - for debug and ip models
+	None Found
+
+@W: FA239 :"\\mac\icloud\repos\gr8ram\cpld\gr8ram.v":348:2:348:5|ROM nRAS_2 (in view: work.GR8RAM(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.
+@W: FA239 :"\\mac\icloud\repos\gr8ram\cpld\gr8ram.v":348:2:348:5|ROM nCAS_2 (in view: work.GR8RAM(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.
+@W: FA239 :"\\mac\icloud\repos\gr8ram\cpld\gr8ram.v":348:2:348:5|ROM nRAS_2 (in view: work.GR8RAM(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.
+@N: MO106 :"\\mac\icloud\repos\gr8ram\cpld\gr8ram.v":348:2:348:5|Found ROM nRAS_2 (in view: work.GR8RAM(verilog)) with 12 words by 1 bit.
+@W: FA239 :"\\mac\icloud\repos\gr8ram\cpld\gr8ram.v":348:2:348:5|ROM nCAS_2 (in view: work.GR8RAM(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.
+@N: MO106 :"\\mac\icloud\repos\gr8ram\cpld\gr8ram.v":348:2:348:5|Found ROM nCAS_2 (in view: work.GR8RAM(verilog)) with 12 words by 1 bit.
+@N: FX493 |Applying initial value "000" on instance IS[2:0].
+@N: FX493 |Applying initial value "0000" on instance PS[3:0].
+
+Finished RTL optimizations (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 139MB peak: 142MB)
+
+@N: MO231 :"\\mac\icloud\repos\gr8ram\cpld\gr8ram.v":44:1:44:6|Found counter in view:work.GR8RAM(verilog) instance LS[13:0] 
+
+Starting factoring (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 140MB peak: 142MB)
+
+
+Finished factoring (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 144MB peak: 145MB)
+
+
+Finished generic timing optimizations - Pass 1 (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 146MB peak: 146MB)
+
+
+Starting Early Timing Optimization (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 146MB peak: 147MB)
+
+
+Finished Early Timing Optimization (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 147MB peak: 148MB)
+
+
+Finished generic timing optimizations - Pass 2 (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 147MB peak: 148MB)
+
+
+Finished preparing to map (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 146MB peak: 148MB)
+
+
+Finished technology mapping (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 165MB peak: 166MB)
+
+Pass		 CPU time		Worst Slack		Luts / Registers
+------------------------------------------------------------
+   1		0h:00m:01s		     1.70ns		 247 /       118
+
+Finished technology timing optimizations and critical path resynthesis (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 165MB peak: 166MB)
+
+@N: FX164 |The option to pack registers in the IOB has not been specified. Please set syn_useioff attribute.  
+
+Finished restoring hierarchy (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 165MB peak: 166MB)
+
+
+Start Writing Netlists (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 131MB peak: 166MB)
+
+Writing Analyst data base \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-1200HC\impl1\synwork\GR8RAM_LCMXO2_1200HC_impl1_m.srm
+
+Finished Writing Netlist Databases (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:02s; Memory used current: 165MB peak: 167MB)
+
+Writing EDIF Netlist and constraint files
+@N: FX1056 |Writing EDF file: \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-1200HC\impl1\GR8RAM_LCMXO2_1200HC_impl1.edi
+N-2018.03L-SP1-1
+@N: BW106 |Synplicity Constraint File capacitance units using default value of 1pF 
+
+Finished Writing EDIF Netlist and constraint files (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:02s; Memory used current: 169MB peak: 171MB)
+
+
+Start final timing analysis (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:02s; Memory used current: 169MB peak: 171MB)
+
+@W: MT246 :"\\mac\icloud\repos\gr8ram\cpld\gr8ram.v":10:11:10:19|Blackbox ODDRXE is missing a user supplied timing model. This may have a negative effect on timing analysis and optimizations (Quality of Results)
+@W: MT420 |Found inferred clock GR8RAM|PHI0 with period 10.00ns. Please declare a user-defined clock on port PHI0.
+@W: MT420 |Found inferred clock GR8RAM|RCLK with period 10.00ns. Please declare a user-defined clock on port RCLK.
+
+
+##### START OF TIMING REPORT #####[
+# Timing Report written on Thu Jun 13 00:38:51 2024
+#
+
+
+Top view:               GR8RAM
+Requested Frequency:    100.0 MHz
+Wire load mode:         top
+Paths requested:        5
+Constraint File(s):    
+@N: MT320 |This timing report is an estimate of place and route data. For final timing results, use the FPGA vendor place and route report.
+
+@N: MT322 |Clock constraints include only register-to-register paths associated with each individual clock.
+
+
+
+Performance Summary
+*******************
+
+
+Worst slack in design: 1.955
+
+                   Requested     Estimated     Requested     Estimated               Clock        Clock              
+Starting Clock     Frequency     Frequency     Period        Period        Slack     Type         Group              
+---------------------------------------------------------------------------------------------------------------------
+GR8RAM|PHI0        100.0 MHz     NA            10.000        NA            NA        inferred     Inferred_clkgroup_0
+GR8RAM|RCLK        100.0 MHz     134.3 MHz     10.000        7.448         1.955     inferred     Inferred_clkgroup_1
+System             100.0 MHz     NA            10.000        NA            NA        system       system_clkgroup    
+=====================================================================================================================
+Estimated period and frequency reported as NA means no slack depends directly on the clock waveform
+
+
+
+
+
+Clock Relationships
+*******************
+
+Clocks                    |    rise  to  rise   |    fall  to  fall   |    rise  to  fall   |    fall  to  rise 
+----------------------------------------------------------------------------------------------------------------
+Starting     Ending       |  constraint  slack  |  constraint  slack  |  constraint  slack  |  constraint  slack
+----------------------------------------------------------------------------------------------------------------
+GR8RAM|PHI0  GR8RAM|RCLK  |  Diff grp    -      |  No paths    -      |  Diff grp    -      |  No paths    -    
+GR8RAM|RCLK  GR8RAM|RCLK  |  10.000      2.552  |  No paths    -      |  5.000       1.955  |  No paths    -    
+================================================================================================================
+ Note: 'No paths' indicates there are no paths in the design for that pair of clock edges.
+       'Diff grp' indicates that paths exist but the starting clock and ending clock are in different clock groups.
+
+
+
+Interface Information 
+*********************
+
+No IO constraint found
+
+
+
+====================================
+Detailed Report for Clock: GR8RAM|RCLK
+====================================
+
+
+
+Starting Points with Worst Slack
+********************************
+
+                  Starting                                           Arrival          
+Instance          Reference       Type         Pin     Net           Time        Slack
+                  Clock                                                               
+--------------------------------------------------------------------------------------
+PS[3]             GR8RAM|RCLK     FD1S3AX      Q       PS[3]         1.309       1.955
+PS[0]             GR8RAM|RCLK     FD1S3AX      Q       PS[0]         1.305       1.958
+PS[2]             GR8RAM|RCLK     FD1S3AX      Q       PS[2]         1.296       1.968
+PS[1]             GR8RAM|RCLK     FD1S3AX      Q       PS[1]         1.288       1.976
+Addr[1]           GR8RAM|RCLK     FD1S3DX      Q       Addr[1]       1.232       2.009
+SetFWr_0io[1]     GR8RAM|RCLK     IFS1P3DX     Q       SetFWr[1]     1.232       2.009
+Addr[2]           GR8RAM|RCLK     FD1S3DX      Q       Addr[2]       1.228       2.013
+Addr[3]           GR8RAM|RCLK     FD1S3DX      Q       Addr[3]       1.220       2.021
+Addr[10]          GR8RAM|RCLK     FD1S3DX      Q       Addr[10]      1.220       2.021
+Addr[4]           GR8RAM|RCLK     FD1S3DX      Q       Addr[4]       1.204       2.037
+======================================================================================
+
+
+Ending Points with Worst Slack
+******************************
+
+               Starting                                          Required          
+Instance       Reference       Type         Pin     Net          Time         Slack
+               Clock                                                               
+-----------------------------------------------------------------------------------
+RDD[0]         GR8RAM|RCLK     FD1P3AX      SP      RDD37        4.528        1.955
+RDD_0io[1]     GR8RAM|RCLK     OFS1P3DX     SP      RDD37        4.528        1.955
+RDD_0io[2]     GR8RAM|RCLK     OFS1P3DX     SP      RDD37        4.528        1.955
+RDD_0io[3]     GR8RAM|RCLK     OFS1P3DX     SP      RDD37        4.528        1.955
+RDD_0io[4]     GR8RAM|RCLK     OFS1P3DX     SP      RDD37        4.528        1.955
+RDD_0io[5]     GR8RAM|RCLK     OFS1P3DX     SP      RDD37        4.528        1.955
+RDD_0io[6]     GR8RAM|RCLK     OFS1P3DX     SP      RDD37        4.528        1.955
+RDD_0io[7]     GR8RAM|RCLK     OFS1P3DX     SP      RDD37        4.528        1.955
+RDD_0io[1]     GR8RAM|RCLK     OFS1P3DX     D       RDD_8[1]     5.089        2.009
+RDD_0io[4]     GR8RAM|RCLK     OFS1P3DX     D       RDD_8[4]     5.089        2.009
+===================================================================================
+
+
+
+Worst Path Information
+***********************
+
+
+Path information for path number 1: 
+      Requested Period:                      5.000
+    - Setup time:                            0.472
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         4.528
+
+    - Propagation time:                      2.573
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (critical) :                     1.955
+
+    Number of logic level(s):                1
+    Starting point:                          PS[3] / Q
+    Ending point:                            RDD[0] / SP
+    The start point is clocked by            GR8RAM|RCLK [rising] on pin CK
+    The end   point is clocked by            GR8RAM|RCLK [falling] on pin CK
+
+Instance / Net                  Pin      Pin               Arrival     No. of    
+Name               Type         Name     Dir     Delay     Time        Fan Out(s)
+---------------------------------------------------------------------------------
+PS[3]              FD1S3AX      Q        Out     1.309     1.309       -         
+PS[3]              Net          -        -       -         -           28        
+RDD37_0_a2         ORCALUT4     D        In      0.000     1.309       -         
+RDD37_0_a2         ORCALUT4     Z        Out     1.265     2.573       -         
+RDD37              Net          -        -       -         -           8         
+RDD[0]             FD1P3AX      SP       In      0.000     2.573       -         
+=================================================================================
+
+
+
+##### END OF TIMING REPORT #####]
+
+Timing exceptions that could not be applied
+None
+
+Finished final timing analysis (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:02s; Memory used current: 169MB peak: 171MB)
+
+
+Finished timing report (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:02s; Memory used current: 169MB peak: 171MB)
+
+---------------------------------------
+Resource Usage Report
+Part: lcmxo2_1200hc-4
+
+Register bits: 118 of 1280 (9%)
+PIC Latch:       0
+I/O cells:       73
+
+
+Details:
+BB:             17
+CCU2D:          13
+FD1P3AX:        24
+FD1S3AX:        17
+FD1S3DX:        27
+GSR:            1
+IB:             26
+IFS1P3DX:       18
+INV:            7
+OB:             28
+OBZ:            2
+ODDRXE:         1
+OFS1P3BX:       7
+OFS1P3DX:       12
+OFS1P3IX:       10
+OFS1P3JX:       3
+ORCALUT4:       240
+PFUMX:          7
+PUR:            1
+VHI:            1
+VLO:            1
+Mapper successful!
+
+At Mapper Exit (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:03s; Memory used current: 32MB peak: 171MB)
+
+Process took 0h:00m:03s realtime, 0h:00m:03s cputime
+# Thu Jun 13 00:38:51 2024
+
+###########################################################]
+
+
+Synthesis exit by 0.
+
+edif2ngd  -l "MachXO2" -d LCMXO2-1200HC -path "//Mac/iCloud/Repos/GR8RAM/cpld/LCMXO2-1200HC/impl1" -path "//Mac/iCloud/Repos/GR8RAM/cpld/LCMXO2-1200HC"   "//Mac/iCloud/Repos/GR8RAM/cpld/LCMXO2-1200HC/impl1/GR8RAM_LCMXO2_1200HC_impl1.edi" "GR8RAM_LCMXO2_1200HC_impl1.ngo"   
+edif2ngd:  version Diamond (64-bit) 3.11.3.469
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2020 Lattice Semiconductor Corporation,  All rights reserved.
+Writing the design to GR8RAM_LCMXO2_1200HC_impl1.ngo...
+
+Total CPU Time: 0 secs  
+Total REAL Time: 0 secs  
+Peak Memory Usage: 30 MB
+
+
+ngdbuild  -a "MachXO2" -d LCMXO2-1200HC  -p "C:/lscc/diamond/3.11_x64/ispfpga/xo2c00/data"  -p "//Mac/iCloud/Repos/GR8RAM/cpld/LCMXO2-1200HC/impl1" -p "//Mac/iCloud/Repos/GR8RAM/cpld/LCMXO2-1200HC"  "GR8RAM_LCMXO2_1200HC_impl1.ngo" "GR8RAM_LCMXO2_1200HC_impl1.ngd"  	
+ngdbuild:  version Diamond (64-bit) 3.11.3.469
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2020 Lattice Semiconductor Corporation,  All rights reserved.
+Reading 'GR8RAM_LCMXO2_1200HC_impl1.ngo' ...
+Loading NGL library 'C:/lscc/diamond/3.11_x64/ispfpga/xo2c00a/data/xo2alib.ngl'...
+Loading NGL library 'C:/lscc/diamond/3.11_x64/ispfpga/xo2c00/data/xo2clib.ngl'...
+Loading NGL library 'C:/lscc/diamond/3.11_x64/ispfpga/mg5g00/data/mg5glib.ngl'...
+Loading NGL library 'C:/lscc/diamond/3.11_x64/ispfpga/or5g00/data/orc5glib.ngl'...
+
+
+Running DRC...
+
+DRC complete with no errors or warnings
+
+Design Results:
+    462 blocks expanded
+Complete the first expansion.
+Writing 'GR8RAM_LCMXO2_1200HC_impl1.ngd' ...
+Total CPU Time: 0 secs 
+Total REAL Time: 0 secs 
+Peak Memory Usage: 38 MB
+
+
+map -a "MachXO2" -p LCMXO2-1200HC -t TQFP100 -s 4 -oc Commercial   "GR8RAM_LCMXO2_1200HC_impl1.ngd" -o "GR8RAM_LCMXO2_1200HC_impl1_map.ncd" -pr "GR8RAM_LCMXO2_1200HC_impl1.prf" -mp "GR8RAM_LCMXO2_1200HC_impl1.mrp" -lpf "//Mac/iCloud/Repos/GR8RAM/cpld/LCMXO2-1200HC/impl1/GR8RAM_LCMXO2_1200HC_impl1_synplify.lpf" -lpf "//Mac/iCloud/Repos/GR8RAM/cpld/GR8RAM-LCMXO2.lpf" -c 0           
+map:  version Diamond (64-bit) 3.11.3.469
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2020 Lattice Semiconductor Corporation,  All rights reserved.
+   Process the file: GR8RAM_LCMXO2_1200HC_impl1.ngd
+   Picdevice="LCMXO2-1200HC"
+
+   Pictype="TQFP100"
+
+   Picspeed=4
+
+   Remove unused logic
+
+   Do not produce over sized NCDs.
+
+Part used: LCMXO2-1200HCTQFP100, Performance used: 4.
+
+Loading device for application map from file 'xo2c1200.nph' in environment: C:/lscc/diamond/3.11_x64/ispfpga.
+Package Status:                     Final          Version 1.42.
+
+Running general design DRC...
+
+Removing unused logic...
+
+Optimizing...
+
+1 CCU2 constant inputs absorbed.
+
+    <postMsg mid="51001030" type="Warning" dynamic="1" navigation="0" arg0="nRESr"  />
+
+
+
+Design Summary:
+   Number of registers:    118 out of  1520 (8%)
+      PFU registers:           68 out of  1280 (5%)
+      PIO registers:           50 out of   240 (21%)
+   Number of SLICEs:       136 out of   640 (21%)
+      SLICEs as Logic/ROM:    136 out of   640 (21%)
+      SLICEs as RAM:            0 out of   480 (0%)
+      SLICEs as Carry:         13 out of   640 (2%)
+   Number of LUT4s:        268 out of  1280 (21%)
+      Number used as logic LUTs:        242
+      Number used as distributed RAM:     0
+      Number used as ripple logic:       26
+      Number used as shift registers:     0
+   Number of PIO sites used: 73 + 4(JTAG) out of 80 (96%)
+   Number of IDDR/ODDR/TDDR cells used: 1 out of 240 (0%)
+      Number of IDDR cells:   0
+      Number of ODDR cells:   1
+      Number of TDDR cells:   0
+   Number of PIO using at least one IDDR/ODDR/TDDR: 1 (0 differential)
+      Number of PIO using IDDR only:        0 (0 differential)
+      Number of PIO using ODDR only:        1 (0 differential)
+      Number of PIO using TDDR only:        0 (0 differential)
+      Number of PIO using IDDR/ODDR:        0 (0 differential)
+      Number of PIO using IDDR/TDDR:        0 (0 differential)
+      Number of PIO using ODDR/TDDR:        0 (0 differential)
+      Number of PIO using IDDR/ODDR/TDDR:   0 (0 differential)
+   Number of block RAMs:  0 out of 7 (0%)
+   Number of GSRs:        1 out of 1 (100%)
+   EFB used :        No
+   JTAG used :       No
+   Readback used :   No
+   Oscillator used : No
+   Startup used :    No
+   POR :             On
+   Bandgap :         On
+   Number of Power Controller:  0 out of 1 (0%)
+   Number of Dynamic Bank Controller (BCINRD):  0 out of 4 (0%)
+   Number of Dynamic Bank Controller (BCLVDSO):  0 out of 1 (0%)
+   Number of DCCA:  0 out of 8 (0%)
+   Number of DCMA:  0 out of 2 (0%)
+   Number of PLLs:  0 out of 1 (0%)
+   Number of DQSDLLs:  0 out of 2 (0%)
+   Number of CLKDIVC:  0 out of 4 (0%)
+   Number of ECLKSYNCA:  0 out of 4 (0%)
+   Number of ECLKBRIDGECS:  0 out of 2 (0%)
+   Notes:-
+      1. Total number of LUT4s = (Number of logic LUT4s) + 2*(Number of distributed RAMs) + 2*(Number of ripple logic)
+      2. Number of logic LUT4s does not include count of distributed RAM and ripple logic.
+   Number of clocks:  2
+     Net RCLK_c: 80 loads, 72 rising, 8 falling (Driver: PIO RCLK )
+     Net PHI0_c: 14 loads, 14 rising, 0 falling (Driver: PIO PHI0 )
+   Number of Clock Enables:  6
+     Net un1_nRESout4_1_i_0: 2 loads, 2 LSLICEs
+     Net PS[0]: 5 loads, 3 LSLICEs
+     Net SetFWr3: 2 loads, 0 LSLICEs
+     Net N_254_i: 8 loads, 8 LSLICEs
+     Net Bank5: 1 loads, 0 LSLICEs
+     Net RDD37: 8 loads, 1 LSLICEs
+   Number of local set/reset loads for net nRESr merged into GSR:  28
+   Number of LSRs:  1
+     Net FCKout120: 13 loads, 0 LSLICEs
+   Number of nets driven by tri-state buffers:  0
+   Top 10 highest fanout non-clock nets:
+     Net PS[0]: 33 loads
+     Net SBA14: 31 loads
+     Net N_248: 29 loads
+     Net PS[3]: 28 loads
+     Net PS[2]: 24 loads
+     Net PS[1]: 23 loads
+     Net RAr[1]: 20 loads
+     Net RAMSpecSEL: 19 loads
+     Net FCKout120: 18 loads
+     Net un1_PS_6: 14 loads
+ 
+
+   Number of warnings:  1
+   Number of errors:    0
+
+
+
+Total CPU Time: 0 secs  
+Total REAL Time: 0 secs  
+Peak Memory Usage: 64 MB
+
+Dumping design to file GR8RAM_LCMXO2_1200HC_impl1_map.ncd.
+
+mpartrce -p "GR8RAM_LCMXO2_1200HC_impl1.p2t" -f "GR8RAM_LCMXO2_1200HC_impl1.p3t" -tf "GR8RAM_LCMXO2_1200HC_impl1.pt" "GR8RAM_LCMXO2_1200HC_impl1_map.ncd" "GR8RAM_LCMXO2_1200HC_impl1.ncd"
+
+---- MParTrce Tool ----
+Removing old design directory at request of -rem command line option to this program.
+Running par. Please wait . . .
+
+Lattice Place and Route Report for Design "GR8RAM_LCMXO2_1200HC_impl1_map.ncd"
+Thu Jun 13 00:38:53 2024
+
+PAR: Place And Route Diamond (64-bit) 3.11.3.469.
+Command Line: par -w -l 5 -i 6 -t 1 -c 0 -e 0 -gui -msgset //Mac/iCloud/Repos/GR8RAM/cpld/LCMXO2-1200HC/promote.xml -exp parUseNBR=1:parCDP=0:parCDR=0:parPathBased=OFF GR8RAM_LCMXO2_1200HC_impl1_map.ncd GR8RAM_LCMXO2_1200HC_impl1.dir/5_1.ncd GR8RAM_LCMXO2_1200HC_impl1.prf
+Preference file: GR8RAM_LCMXO2_1200HC_impl1.prf.
+Placement level-cost: 5-1.
+Routing Iterations: 6
+
+Loading design for application par from file GR8RAM_LCMXO2_1200HC_impl1_map.ncd.
+Design name: GR8RAM
+NCD version: 3.3
+Vendor:      LATTICE
+Device:      LCMXO2-1200HC
+Package:     TQFP100
+Performance: 4
+Loading device for application par from file 'xo2c1200.nph' in environment: C:/lscc/diamond/3.11_x64/ispfpga.
+Package Status:                     Final          Version 1.42.
+Performance Hardware Data Status:   Final          Version 34.4.
+License checked out.
+
+
+Ignore Preference Error(s):  True
+Device utilization summary:
+
+   PIO (prelim)   73+4(JTAG)/108     71% used
+                  73+4(JTAG)/80      96% bonded
+   IOLOGIC           51/108          47% used
+
+   SLICE            136/640          21% used
+
+   GSR                1/1           100% used
+
+
+Number of Signals: 430
+Number of Connections: 1211
+
+Pin Constraint Summary:
+   73 out of 73 pins locked (100% locked).
+
+The following 2 signals are selected to use the primary clock routing resources:
+    RCLK_c (driver: RCLK, clk load #: 80)
+    PHI0_c (driver: PHI0, clk load #: 14)
+
+    <postMsg mid="61061008" type="Warning" dynamic="5" navigation="0" arg0="PHI0_c" arg1="Primary" arg2="PHI0" arg3="17" arg4="Primary"  />
+
+The following 1 signal is selected to use the secondary clock routing resources:
+    FCKout120 (driver: SLICE_54, clk load #: 0, sr load #: 13, ce load #: 0)
+
+Signal nRESr is selected as Global Set/Reset.
+Starting Placer Phase 0.
+.........
+Finished Placer Phase 0.  REAL time: 2 secs 
+
+Starting Placer Phase 1.
+....................
+Placer score = 87858.
+Finished Placer Phase 1.  REAL time: 4 secs 
+
+Starting Placer Phase 2.
+.
+Placer score =  86903
+Finished Placer Phase 2.  REAL time: 4 secs 
+
+
+------------------ Clock Report ------------------
+
+Global Clock Resources:
+  CLK_PIN    : 1 out of 8 (12%)
+  General PIO: 1 out of 108 (0%)
+  PLL        : 0 out of 1 (0%)
+  DCM        : 0 out of 2 (0%)
+  DCC        : 0 out of 8 (0%)
+
+Global Clocks:
+  PRIMARY "RCLK_c" from comp "RCLK" on CLK_PIN site "38 (PB11A)", clk load = 80
+  PRIMARY "PHI0_c" from comp "PHI0" on PIO site "17 (PL8B)", clk load = 14
+  SECONDARY "FCKout120" from F0 on comp "SLICE_54" on site "R7C12B", clk load = 0, ce load = 0, sr load = 13
+
+  PRIMARY  : 2 out of 8 (25%)
+  SECONDARY: 1 out of 8 (12%)
+
+Edge Clocks:
+  No edge clock selected.
+
+--------------- End of Clock Report ---------------
+
+
+I/O Usage Summary (final):
+   73 + 4(JTAG) out of 108 (71.3%) PIO sites used.
+   73 + 4(JTAG) out of 80 (96.3%) bonded PIO sites used.
+   Number of PIO comps: 73; differential: 0.
+   Number of Vref pins used: 0.
+
+I/O Bank Usage Summary:
++----------+----------------+------------+-----------+
+| I/O Bank | Usage          | Bank Vccio | Bank Vref |
++----------+----------------+------------+-----------+
+| 0        | 13 / 19 ( 68%) | 3.3V       | -         |
+| 1        | 20 / 21 ( 95%) | 3.3V       | -         |
+| 2        | 20 / 20 (100%) | 3.3V       | -         |
+| 3        | 20 / 20 (100%) | 3.3V       | -         |
++----------+----------------+------------+-----------+
+
+Total placer CPU time: 3 secs 
+
+Dumping design to file GR8RAM_LCMXO2_1200HC_impl1.dir/5_1.ncd.
+
+
+-----------------------------------------------------------------
+INFO - par: ASE feature is off due to non timing-driven settings.  
+-----------------------------------------------------------------
+
+0 connections routed; 1211 unrouted.
+Starting router resource preassignment
+
+Completed router resource preassignment. Real time: 9 secs 
+
+Start NBR router at 00:39:02 06/13/24
+
+*****************************************************************
+Info: NBR allows conflicts(one node used by more than one signal)
+      in the earlier iterations. In each iteration, it tries to  
+      solve the conflicts while keeping the critical connections 
+      routed as short as possible. The routing process is said to
+      be completed when no conflicts exist and all connections   
+      are routed.                                                
+Note: NBR uses a different method to calculate timing slacks. The
+      worst slack and total negative slack may not be the same as
+      that in TRCE report. You should always run TRCE to verify  
+      your design.                                               
+*****************************************************************
+
+Start NBR special constraint process at 00:39:02 06/13/24
+
+Start NBR section for initial routing at 00:39:02 06/13/24
+Level 4, iteration 1
+19(0.02%) conflicts; 0(0.00%) untouched conn; 0 (nbr) score; real time: 9 secs 
+
+Info: Initial congestion level at 75% usage is 0
+Info: Initial congestion area  at 75% usage is 0 (0.00%)
+
+Start NBR section for normal routing at 00:39:02 06/13/24
+Level 4, iteration 1
+4(0.00%) conflicts; 0(0.00%) untouched conn; 0 (nbr) score; real time: 9 secs 
+Level 4, iteration 2
+1(0.00%) conflict; 0(0.00%) untouched conn; 0 (nbr) score; real time: 9 secs 
+Level 4, iteration 3
+0(0.00%) conflict; 0(0.00%) untouched conn; 0 (nbr) score; real time: 9 secs 
+
+Start NBR section for re-routing at 00:39:02 06/13/24
+Level 4, iteration 1
+0(0.00%) conflict; 0(0.00%) untouched conn; 0 (nbr) score; real time: 9 secs 
+
+Start NBR section for post-routing at 00:39:02 06/13/24
+
+End NBR router with 0 unrouted connection
+
+NBR Summary
+-----------
+  Number of unrouted connections : 0 (0.00%)
+  Number of connections with timing violations : 0 (0.00%)
+  Estimated worst slack<setup> : <n/a>
+  Timing score<setup> : 0
+-----------
+Notes: The timing info is calculated for SETUP only and all PAR_ADJs are ignored.
+
+
+
+Total CPU time 8 secs 
+Total REAL time: 9 secs 
+Completely routed.
+End of route.  1211 routed (100.00%); 0 unrouted.
+
+Hold time timing score: 0, hold timing errors: 0
+
+Timing score: 0 
+
+Dumping design to file GR8RAM_LCMXO2_1200HC_impl1.dir/5_1.ncd.
+
+
+PAR_SUMMARY::Run status = Completed
+PAR_SUMMARY::Number of unrouted conns = 0
+PAR_SUMMARY::Worst  slack<setup/<ns>> = <n/a>
+PAR_SUMMARY::Timing score<setup/<ns>> = <n/a>
+PAR_SUMMARY::Worst  slack<hold /<ns>> = <n/a>
+PAR_SUMMARY::Timing score<hold /<ns>> = <n/a>
+PAR_SUMMARY::Number of errors = 0
+
+Total CPU  time to completion: 9 secs 
+Total REAL time to completion: 10 secs 
+
+par done!
+
+Note: user must run 'Trace' for timing closure signoff.
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2020 Lattice Semiconductor Corporation,  All rights reserved.
+Exiting par with exit code 0
+Exiting mpartrce with exit code 0
+
+tmcheck -par "GR8RAM_LCMXO2_1200HC_impl1.par" 
+
+bitgen -f "GR8RAM_LCMXO2_1200HC_impl1.t2b" -w "GR8RAM_LCMXO2_1200HC_impl1.ncd"  -jedec "GR8RAM_LCMXO2_1200HC_impl1.prf"
+
+
+BITGEN: Bitstream Generator Diamond (64-bit) 3.11.3.469
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+Copyright (c) 1995 AT&T Corp.   All rights reserved.
+Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+Copyright (c) 2001 Agere Systems   All rights reserved.
+Copyright (c) 2002-2020 Lattice Semiconductor Corporation,  All rights reserved.
+
+
+Loading design for application Bitgen from file GR8RAM_LCMXO2_1200HC_impl1.ncd.
+Design name: GR8RAM
+NCD version: 3.3
+Vendor:      LATTICE
+Device:      LCMXO2-1200HC
+Package:     TQFP100
+Performance: 4
+Loading device for application Bitgen from file 'xo2c1200.nph' in environment: C:/lscc/diamond/3.11_x64/ispfpga.
+Package Status:                     Final          Version 1.42.
+Performance Hardware Data Status:   Final          Version 34.4.
+
+Running DRC.
+DRC detected 0 errors and 0 warnings.
+Reading Preference File from GR8RAM_LCMXO2_1200HC_impl1.prf.
+
+Preference Summary:
++---------------------------------+---------------------------------+
+|  Preference                     |  Current Setting                |
++---------------------------------+---------------------------------+
+|                         RamCfg  |                        Reset**  |
++---------------------------------+---------------------------------+
+|                     MCCLK_FREQ  |                         2.08**  |
++---------------------------------+---------------------------------+
+|                  CONFIG_SECURE  |                          OFF**  |
++---------------------------------+---------------------------------+
+|                          INBUF  |                           ON**  |
++---------------------------------+---------------------------------+
+|                      JTAG_PORT  |                       ENABLE**  |
++---------------------------------+---------------------------------+
+|                       SDM_PORT  |                      DISABLE**  |
++---------------------------------+---------------------------------+
+|                 SLAVE_SPI_PORT  |                      DISABLE**  |
++---------------------------------+---------------------------------+
+|                MASTER_SPI_PORT  |                      DISABLE**  |
++---------------------------------+---------------------------------+
+|                       I2C_PORT  |                      DISABLE**  |
++---------------------------------+---------------------------------+
+|        MUX_CONFIGURATION_PORTS  |                      DISABLE**  |
++---------------------------------+---------------------------------+
+|                  CONFIGURATION  |                          CFG**  |
++---------------------------------+---------------------------------+
+|                COMPRESS_CONFIG  |                           ON**  |
++---------------------------------+---------------------------------+
+|                        MY_ASSP  |                          OFF**  |
++---------------------------------+---------------------------------+
+|               ONE_TIME_PROGRAM  |                          OFF**  |
++---------------------------------+---------------------------------+
+|                 ENABLE_TRANSFR  |                      DISABLE**  |
++---------------------------------+---------------------------------+
+|                  SHAREDEBRINIT  |                      DISABLE**  |
++---------------------------------+---------------------------------+
+|            BACKGROUND_RECONFIG  |                          OFF**  |
++---------------------------------+---------------------------------+
+ *  Default setting.
+ ** The specified setting matches the default setting.
+
+
+Creating bit map...
+ 
+Bitstream Status: Final           Version 1.95.
+ 
+Saving bit stream in "GR8RAM_LCMXO2_1200HC_impl1.jed".
+ 
+===========
+UFM Summary.
+===========
+UFM Size:        511 Pages (128*511 Bits).
+UFM Utilization: General Purpose Flash Memory.
+ 
+Available General Purpose Flash Memory:  511 Pages (Page 0 to Page 510).
+Initialized UFM Pages:                     0 Page.
+ 
+Total CPU Time: 3 secs 
+Total REAL Time: 4 secs 
+Peak Memory Usage: 275 MB

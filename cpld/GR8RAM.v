@@ -1,334 +1,190 @@
-module GR8RAM2(
-	/* Clock signals */
-	input C25M,
+module GR8RAM(
+	/* Apple II PHI0 clock */
 	input PHI0,
+	/* 25 MHz crystal oscillator input (not usually mounted) */
+	input CLKin /* synthesis syn_force_pads=1 syn_noprune=1 */,
+	/* LED output */
+	output LED,
+	/* Reset and IRQ */
 	input nRESin,
-	output reg nRESout,
-	input [1:0] SetFW,
-	output reg nIRQout,
-	input [15:0] BA,
+	output nRESout,
+	output nIRQout,
+	/* DIP switch inputs */
+	input [2:1] SW,
+	/* Buffered address, write enable, data buses */
+	input [15:0] BA /* synthesis syn_force_pads=1 syn_noprune=1 */,
 	input nWE,
 	inout [7:0] BD,
-	output BDdir,
+	output nDoutOE,
+	output nDinOE,
 	/* Card select signals */
 	input nIOSEL, 
 	input nDEVSEL, 
 	input nIOSTRB,
 	/* SDRAM bus */
-	output reg [1:0] RBA,
-	output reg [12:0] RA,
+	output RCLK,
+	output [1:0] RBA,
+	output [12:0] RA,
 	output nRCS,
-	output reg nRAS,
-	output reg nCAS,
-	output reg nRWE,
-	output reg DQML,
-	output reg DQMH,
-	output reg RCKE,
-	output reg [7:0] RD,
+	output RCKE,
+	output nRAS,
+	output nCAS,
+	output nRWE,
+	output DQML,
+	output DQMH,
+	inout [7:0] RD,
 	/* SPI NOR flash */
-	output reg nFCS,
-	output reg FCK,
-	inout MISO,
-	inout MOSI);
-
-	/* PHI0 synchronization signals */
-	reg PHI0r0, PHI0r1;
-	always @(negedge C25M) begin PHI0r0 <= PHI0; end
-	always @(posedge C25M) begin PHI0r1 <= PHI0r0; end
+	inout nFCS,
+	output FCK,
+	inout MOSI,
+	input MISO);
 	
-	/* Reset synchronization */
-	reg nRESr0, nRESr;
-	always @(negedge C25M) nRESr0 <= nRESin;
-	always @(posedge C25M) nRESr <= nRESr0;
-	wire RES = RES;
+	assign LED = 1;
+	
+	/* Internal clock */
+	wire CLK;
+	defparam OSCH_inst.NOM_FREQ = "44.33";
+	OSCH OSCH_inst(.STDBY(1'b0), .OSC(CLK), .SEDSTDBY());
 
-	/* Firmware select */
-	input [1:0] SetFW;
-	reg [1:0] SetFWr;
-	reg SetFWLoaded = 0;
-	always @(posedge C25M) begin
-		if (!SetFWLoaded) begin
-			SetFWLoaded <= 1;
-			SetFWr[1:0] <= SetFW[1:0];
-		end
-	end
-	wire [1:0] SetROM = ~SetFWr[1:0];
-	wire SetEN16MB = SetROM[1:0]==2'b11;
-	wire SetEN24b = SetROM[1];
+	/* Apple II bus interface */
+	wire [7:0] BI_WRD;
+	wire BI_RAMRD, BI_ROMRD, BI_RAMWR, BI_RAMRef;
+	wire AddrHWR, AddrMWR, AddrLWR, AddrInc, BankWR, RegReset;
 
-	/* State counters */
-	reg [2:0] IS = 0;
-	reg [24:0] S = 0;
-	wire Ready = IS[2];
+    /* Slinky address and ROM bank registers */
+	wire [23:0] Addr;
+	wire Bank;
 
-	/* Reset output disable */
-	assign nRESout = Ready;
+    /* Init controller */
+	wire InitDone;
+	wire [2:0] IC_RAMCmd;
+	wire [24:0] IC_Addr;
+	wire [7:0] IC_WRD;
+	wire [1:0] SetSize;
+	wire SetRamFactorEN;
+	wire SetRestoreEN;
+	
+    /* SDRAM controller */
+    wire [7:0] RDD;
 
-	/* Init state counter control */
-	// IS 0 - wait and issue NOP CKE (ends at S[19:0]==20'hFFFFF)
-	// IS 1 - Load mode and AREF, issue SPI NOR read (ends at S[4:0]==5'h3F)
-	// IS 2 - Write driver (ends at S[16:0]==17'h1FFFF)
-	// IS 3 - Write image (ends at S[24:0]==25'h1FFFFFF)
-	// IS 7 - Operating mode
-	always @(posedge C25M) begin
-		case (IS[2:0]) begin
-			3'h0: if (S[19:0]==  20'hFFFFF) IS[2:0] <= 3'h1;
-			3'h1: if (S[19:0]==      5'h3F) IS[2:0] <= 3'h2;
-			3'h2: if (S[19:0]==  17'h1FFFF) IS[2:0] <= 3'h3;
-			3'h3: if (S[19:0]==25'h1FFFFFF) IS[2:0] <= 3'h7;
-		end
-	end
+	/* Apple II bus interface */
+	BusInterface bi(
+		/* Clock signal inputs */
+		.CLK(CLK),
+		.PHI0(PHI0),
+		/* Apple II reset input */
+		.nRES (nRESin),
+		/* Card select signal inputs */
+		.nDEVSEL(nDEVSEL),
+		.nIOSEL(nIOSEL),
+		.nIOSTRB(nIOSTRB),
+		/* Buffered address, write enable inputs */
+		.BA(BA[10:0]),
+		.nWE(nWE),
+		/* Data bus mux inputs */
+		.RDD(RDD),
+		.Addr(Addr),
+		/* Data bus output and BD buffer control */
+		.BD(BD),
+		.nDoutOE(nDoutOE),
+		.nDinOE(nDinOE),
+		/* Write data output to slinky registers and RAM controller */
+		.WRD(BI_WRD),
+		/* Initialization done input from initialization controller */
+		.BusEnable(InitDone),
+		/* SDRAM command outputs */
+		.RAMRD(BI_RAMRD),
+		.ROMRD(BI_ROMRD),
+		.RAMWR(BI_RAMWR),
+		.RAMRef(BI_RAMRef),
+		/* Register command outputs */
+		.AddrHWR(AddrHWR),
+		.AddrMWR(AddrMWR),
+		.AddrLWR(AddrLWR),
+		.AddrInc(AddrInc),
+		.BankWR(BankWR),
+		.RegReset(RegReset));
 
-	/* RAM state counter control */
-	always @(posedge C25M) begin
-		if (IS[2:0]==3'h0 && S[19:0]==  20'hFFFFF ||
-			IS[2:0]==3'h1 && S[19:0]==      5'h3F ||
-			IS[2:0]==3'h2 && S[19:0]==  17'h1FFFF ||
-			IS[2:0]==3'h3 && S[19:0]==25'h1FFFFFF) S <= 0;
-		else if (Ready) begin
-			S[24:4] <= 0;
-			if (S[3:0]==0 && PHI0r1) S[2:0] <= 4'h1;
-			else if (S[3:0]!=0) S[3:0] <= S[3:0]+4'h1;
-		end else S[24:0] <= S[24:0]+25'h1;
-	end
 
-	/* IOROMEN control */
-	reg IOROMEN = 0;
-	always @(posedge C25M) begin
-		if (RES) IOROMEN <= 0;
-		else if (S[2:0]==3'h2) begin
-			if (!nIOSTRB && BA[10:0]==11'h7FF) IOROMEN <= 0;
-			else if (!nIOSEL) IOROMEN <= 1;
-		end
-	end
+    /* Slinky address and ROM bank registers */
+	SlinkyRegisters registers(
+		/* Clock signal */
+		.CLK(CLK),
+		/* Slinky/RamFactor mode bit */
+		.SetRamFactorEN(SetRamFactorEN),
+		/* Register command inputs */
+		.AddrHWR(AddrHWR),
+		.AddrMWR(AddrMWR),
+		.AddrLWR(AddrLWR),
+		.AddrInc(AddrInc),
+		.BankWR(BankWR),
+		.RegReset(RegReset),
+		/* Write data input */
+		.WRD(BI_WRD),
+		/* Slinky address register output */
+		.Addr(Addr),
+		/* ROM bank register output */
+		.Bank(Bank));
 
-	/* RegEN control */
-	reg RegEN = 0;
-	always @(posedge C25M) begin
-		if (RES) RegEN <= 0;
-		else if (S[2:0]==3'h2 && !nIOSEL) RegEN <= 1;
-	end
 
-	/* ROM bank register */
-	reg Bank = 0;
-	always @(posedge C25M, negedge nRESr) begin
-		if (RES) Bank <= 0;
-		else if (S[2:0]==3'h4 && BankSEL && !nWEr) begin
-			Bank <= RD[0];
-		end
-	end
+    /* Init controller */
+	InitController ic(
+		/* Clock signal */
+		.CLK(CLK),
+		/* Settings input and outputs */
+		.SW({ RD[0], SW[2:1] }),
+		.SetSize(SetSize),
+		.SetRamFactorEN(SetRamFactorEN),
+		.SetRestoreEN(SetRestoreEN),
+		/* Initialization done and POR outputs */
+		.InitDone(InitDone),
+		/* SDRAM command outputs */
+		.RAMCmd(IC_RAMCmd),
+		.RAMAddr(IC_Addr),
+		/* SDRAM write data output */
+		.WRD(IC_WRD),
+		/* SPI flash bus */
+		.nFCS(nFCS),
+		.FCK(FCK),
+		.MOSI(MOSI),
+		.MISO(MISO));
 
-	/* RAMROMCS command signal */
-	reg RAMROMCS;
-	always @(posedge C25M) begin
-		if (S[3:0]==4'h0) RAMROMCS <= !RES &&PHI0r1 && BA[15:12]==4'hC;
-		else if S[3:0]==4'h1) begin
-			RAMROMCS <= !RES && (
-				(!nIOSEL) ||
-				(!nIOSTRB && IOROMEN) ||
-				(!nDEVSEL && RegEN && A[3:0]==4'h3));
-		end else if (S[3:0]==4'h9) RAMROMCS <= !RES && RefC[2:0]==0;
-	end
 
-	/* Register select command signals */
-	reg RAMRegSEL;
-	reg AddrHWR, AddrMWR, AddrLWR;
-	always @(posedge C25M) begin
-		RAMRegSEL <= !RES && S[3:0]==4'h6 !nDEVSEL && BA[3:0]==4'h3;
-		AddrHWR <=   !RES && S[3:0]==4'h6 !nDEVSEL && BA[3:0]==4'h2;
-		AddrMWR <=   !RES && S[3:0]==4'h6 !nDEVSEL && BA[3:0]==4'h1;
-		AddrLWR <=   !RES && S[3:0]==4'h6 !nDEVSEL && BA[3:0]==4'h0;
-	end
+    /* SDRAM controller */
+	SDRAMController ram(
+		/* Clock signal */
+		.CLK(CLK),
+		/* POR input from init controller */
+		.InitDone(InitDone),
+		/* Command inputs from bus interface */
+		.BI_RAMRD(BI_RAMRD),
+		.BI_RAMWR(BI_RAMWR),
+		.BI_RAMRef(BI_RAMRef),
+		.Addr(Addr),
+		.BD(BD),
+		/* Command inputs from init controller */
+		.IC_RAMCmd(IC_RAMCmd),
+		.IC_Addr(IC_Addr),
+		.IC_WRD(IC_WRD),
+		/* SDRAM bus */
+		.RCLK(RCLK),
+		.RBA(RBA),
+		.RA(RA),
+		.nRCS(nRCS),
+		.RCKE(RCKE),
+		.nRAS(nRAS),
+		.nCAS(nCAS),
+		.nRWE(nRWE),
+		.DQML(DQML),
+		.DQMH(DQMH),
+		.RD(RD),
+		/* SDRAM read data */
+		.RDD(RDD));
 
-	/* Slinky address registers */
-	reg [23:0] Addr = 0;
-	reg AddrIncL = 0;
-	reg AddrIncM = 0;
-	reg AddrIncH = 0;
-	always @(posedge C25M, negedge nRESr) begin
-		if (RES) begin
-			Addr[23:0] <= 0;
-			AddrIncL <= 0;
-			AddrIncM <= 0;
-			AddrIncH <= 0;
-		end else begin
-			if (RAMRegSEL) AddrIncL <= 1;
-			else AddrIncL <= 0;
+    /* Reset output is InitDone */
+    assign nRESout = InitDone;
 
-			if (AddrLWR) begin
-				Addr[7:0] <= RD[7:0];
-				AddrIncM <= Addr[7] && !RD[7];
-			end else if (AddrIncL) begin
-				Addr[7:0] <= Addr[7:0]+1;
-				AddrIncM <= Addr[7:0]==8'hFF;
-			end else AddrIncM <= 0;
+	/* IRQ always disabled */
+	assign nIRQout = 1;
 
-			if (AddrMWR) begin
-				Addr[15:8] <= RD[7:0];
-				AddrIncH <= Addr[15] && !RD[7];
-			end else if (AddrIncM) begin
-				Addr[15:8] <= Addr[15:8]+1;
-				AddrIncH <= Addr[15:8]==8'hFF;
-			end else AddrIncH <= 0;
-
-			if (AddrHWR) begin
-				Addr[23:16] <= RD[7:0];
-			end else if (AddrIncH) begin
-				Addr[23:16] <= Addr[23:16]+1;
-			end
-		end
-	end
-
-	/* Apple II data output latch */
-	reg [7:0] BDout;
-	always @(negedge C25M) begin
-		if (S[2:0]==4'h6) begin
-			if (!nDEVSEL) case (BA[1:0])
-				4'h3: BDout[7:0] <= RD[7:0];
-				4'h2: BDout[7:0] <= SetEN24b ? Addr[23:16] { 4'hF, Addr[19:16] };
-				4'h1: BDout[7:0] <= Addr[15:8];
-				4'h0: BDout[7:0] <= Addr[7:0];
-				defaut: BDout[7:0] <= 0;
-			endcase else BDout[7:0] <= RD[7:0];
-		end
-	end
-
-	always @(posedge C25M) begin
-		case (IS[2:0])
-			3'h0: begin
-				// NOP CKE
-			end 3'h1: case (S[4:0])
-				5'h00: begin
-					// PC all CKE
-				end 5'h08: begin
-					// LDM CKE
-				end 5'h10, 5'h12, 5'h14, 5'h16,
-					5'h18, 5'h1A, 5'h1C, 5'h1E: begin
-					// AREF CKE
-				end default: begin
-					// NOP CKE
-				end
-			endcase 3'h2, 3'h3: case (S[2:0])
-				3'h0: begin
-					// NOP CKE
-				end 3'h1: begin
-					// AREF CKE
-				end 3'h2: begin
-					// NOP CKE
-				end 3'h3: begin
-					// ACT CKE
-				end 3'h4: begin
-					// WR CKE
-				end 3'h5: begin
-					// WR CKE
-				end 3'h6: begin
-					// NOP CKE
-				end 3'h7: begin
-					// PC all CKD
-				end
-			endcase default: case (S[3:0])
-				4'h1: begin
-					if (!RAMROMCS) begin
-						// NOP CKD
-					end else if (nWE) begin
-						// NOP CKE
-					end else begin
-						// NOP CKD
-					end
-				end 4'h2: begin
-					if (!RAMROMCS) begin
-						// NOP CKD
-					end else if (nWE) begin
-						// ACT CKE
-					end else begin
-						// NOP CKD
-					end
-				end 4'h3: begin
-					if (!RAMROMCS) begin
-						// NOP CKD
-					end else if (nWE) begin
-						// RD CKE
-					end else begin
-						// NOP CKD
-					end
-				end 4'h4: begin
-					if (!RAMROMCS) begin
-						// NOP CKD
-					end else if (nWE) begin
-						// PC all CKE
-					end else begin
-						// NOP CKD
-					end
-				end 4'h5: begin
-					if (!RAMROMCS) begin
-						// NOP CKD
-					end else if (nWE) begin
-						// NOP CKD
-					end else begin
-						// NOP CKE
-					end
-				end 4'h6: begin
-					if (!RAMROMCS) begin
-						// NOP CKD
-					end else if (nWE) begin
-						// NOP CKD
-					end else begin
-						// ACT CKE
-					end
-				end 4'h7: begin
-					if (!RAMROMCS) begin
-						// NOP CKD
-					end else if (nWE) begin
-						// NOP CKD
-					end else begin
-						// WR CKE
-					end
-				end 4'h8: begin
-					if (!RAMROMCS) begin
-						// NOP CKD
-					end else if (nWE) begin
-						// NOP CKD
-					end else begin
-						// NOP CKE
-					end
-				end 4'h9: begin
-					if (!RAMROMCS) begin
-						// NOP CKD
-					end else if (nWE) begin
-						// NOP CKD
-					end else begin
-						// PC all CKD
-					end
-				end 4'hA: begin
-					if (!RAMROMCS) begin
-						// NOP CKD
-					end else begin
-						// NOP CKE
-					end
-				end 4'hB: begin
-					if (!RAMROMCS) begin
-						// NOP CKD
-					end else begin
-						// AREF CKE
-					end
-				end default: begin
-					// NOP CKD
-				end
-			endcase
-		endcase
-	end
-
-	/* DMA/INT in/out */
-	input INTin, DMAin;
-	output INTout = INTin;
-	output DMAout = DMAin;
-
-	/* Unused Pins */
-	output RAdir = 1;
-	output nDMAout = 1;
-	output nNMIout = 1;
-	output nINHout = 1;
-	output nRDYout = 1;
-	output nIRQout = 1;
-	output RWout = 1;
 endmodule

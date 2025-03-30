@@ -1,0 +1,765 @@
+<HTML>
+<HEAD><TITLE>Synthesis Report</TITLE>
+<STYLE TYPE="text/css">
+<!--
+ body,pre{    font-family:'Courier New', monospace;    color: #000000;    font-size:88%;    background-color: #ffffff;}h1 {    font-weight: bold;    margin-top: 24px;    margin-bottom: 10px;    border-bottom: 3px solid #000;    font-size: 1em;}h2 {    font-weight: bold;    margin-top: 18px;    margin-bottom: 5px;    font-size: 0.90em;}h3 {    font-weight: bold;    margin-top: 12px;    margin-bottom: 5px;    font-size: 0.80em;}p {    font-size:78%;}P.Table {    margin-top: 4px;    margin-bottom: 4px;    margin-right: 4px;    margin-left: 4px;}table{    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    border-collapse: collapse;}th {    font-weight:bold;    padding: 4px;    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    vertical-align:top;    text-align:left;    font-size:78%;}td {    padding: 4px;    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    vertical-align:top;    font-size:78%;}a {    color:#013C9A;    text-decoration:none;}a:visited {    color:#013C9A;}a:hover, a:active {    text-decoration:underline;    color:#5BAFD4;}.pass{background-color: #00ff00;}.fail{background-color: #ff0000;}.comment{    font-size: 90%;    font-style: italic;}
+-->
+</STYLE>
+</HEAD>
+<PRE><A name="Syn"></A><B><U><big>Synthesis Report</big></U></B>
+#Build: Synplify Pro (R) N-2018.03L-SP1-1, Build 443R, Apr  1 2019
+#install: C:\lscc\diamond\3.11_x64\synpbase
+#OS: Windows 8 6.2
+#Hostname: ZANEMACWIN11
+
+# Sun Jul 14 06:18:40 2024
+
+#Implementation: impl1
+
+
+Copyright (C) 1994-2018 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: N-2018.03L-SP1-1
+Install: C:\lscc\diamond\3.11_x64\synpbase
+OS: Windows 6.2
+
+Hostname: ZANEMACWIN11
+
+Implementation : impl1
+Synopsys HDL Compiler, Version comp2018q2p1, Build 461R, Built Apr  1 2019 09:17:43
+
+@N|Running in 64-bit mode
+
+Copyright (C) 1994-2018 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: N-2018.03L-SP1-1
+Install: C:\lscc\diamond\3.11_x64\synpbase
+OS: Windows 6.2
+
+Hostname: ZANEMACWIN11
+
+Implementation : impl1
+Synopsys Verilog Compiler, Version comp2018q2p1, Build 461R, Built Apr  1 2019 09:17:43
+
+@N|Running in 64-bit mode
+@I::"C:\lscc\diamond\3.11_x64\synpbase\lib\lucent\machxo2.v" (library work)
+@I::"C:\lscc\diamond\3.11_x64\synpbase\lib\lucent\pmi_def.v" (library work)
+@I::"C:\lscc\diamond\3.11_x64\synpbase\lib\vlog\hypermods.v" (library __hyper__lib__)
+@I::"C:\lscc\diamond\3.11_x64\synpbase\lib\vlog\umr_capim.v" (library snps_haps)
+@I::"C:\lscc\diamond\3.11_x64\synpbase\lib\vlog\scemi_objects.v" (library snps_haps)
+@I::"C:\lscc\diamond\3.11_x64\synpbase\lib\vlog\scemi_pipes.svh" (library snps_haps)
+@I::"\\Mac\iCloud\Repos\GR8RAM\cpld\GR8RAM.v" (library work)
+@I::"\\Mac\iCloud\Repos\GR8RAM\cpld\SlinkyRegisters.v" (library work)
+@I::"\\Mac\iCloud\Repos\GR8RAM\cpld\BusInterface.v" (library work)
+@I::"\\Mac\iCloud\Repos\GR8RAM\cpld\InitController.v" (library work)
+@I::"\\Mac\iCloud\Repos\GR8RAM\cpld\SDRAMController.v" (library work)
+Verilog syntax check successful!
+Selecting top level module GR8RAM
+@N: CG364 :"C:\lscc\diamond\3.11_x64\synpbase\lib\lucent\machxo2.v":1793:7:1793:10|Synthesizing module OSCH in library work.
+Running optimization stage 1 on OSCH .......
+@N: CG364 :"\\Mac\iCloud\Repos\GR8RAM\cpld\BusInterface.v":1:8:1:19|Synthesizing module BusInterface in library work.
+Running optimization stage 1 on BusInterface .......
+@N: CG364 :"\\Mac\iCloud\Repos\GR8RAM\cpld\SlinkyRegisters.v":1:7:1:21|Synthesizing module SlinkyRegisters in library work.
+Running optimization stage 1 on SlinkyRegisters .......
+@N: CG364 :"C:\lscc\diamond\3.11_x64\synpbase\lib\lucent\machxo2.v":82:7:82:8|Synthesizing module BB in library work.
+Running optimization stage 1 on BB .......
+@N: CG364 :"C:\lscc\diamond\3.11_x64\synpbase\lib\lucent\machxo2.v":1601:7:1601:12|Synthesizing module ODDRXE in library work.
+Running optimization stage 1 on ODDRXE .......
+@N: CG364 :"C:\lscc\diamond\3.11_x64\synpbase\lib\lucent\machxo2.v":868:7:868:9|Synthesizing module OBZ in library work.
+Running optimization stage 1 on OBZ .......
+@N: CG364 :"\\Mac\iCloud\Repos\GR8RAM\cpld\InitController.v":1:7:1:20|Synthesizing module InitController in library work.
+Running optimization stage 1 on InitController .......
+@N: CL189 :"\\Mac\iCloud\Repos\GR8RAM\cpld\InitController.v":82:1:82:6|Register bit InitDone is always 0.
+@N: CG364 :"\\Mac\iCloud\Repos\GR8RAM\cpld\SDRAMController.v":1:7:1:21|Synthesizing module SDRAMController in library work.
+Running optimization stage 1 on SDRAMController .......
+@N: CG364 :"\\Mac\iCloud\Repos\GR8RAM\cpld\GR8RAM.v":1:7:1:12|Synthesizing module GR8RAM in library work.
+Running optimization stage 1 on GR8RAM .......
+Running optimization stage 2 on GR8RAM .......
+@W: CL246 :"\\Mac\iCloud\Repos\GR8RAM\cpld\GR8RAM.v":15:14:15:15|Input port bits 15 to 11 of BA[15:0] are unused. Assign logic for all port bits or change the input port size.
+@N: CL159 :"\\Mac\iCloud\Repos\GR8RAM\cpld\GR8RAM.v":5:7:5:11|Input CLKin is unused.
+Running optimization stage 2 on SDRAMController .......
+Running optimization stage 2 on InitController .......
+Running optimization stage 2 on OBZ .......
+Running optimization stage 2 on ODDRXE .......
+Running optimization stage 2 on BB .......
+Running optimization stage 2 on SlinkyRegisters .......
+Running optimization stage 2 on BusInterface .......
+Running optimization stage 2 on OSCH .......
+
+At c_ver Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 73MB peak: 74MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Sun Jul 14 06:18:40 2024
+
+###########################################################]
+
+Copyright (C) 1994-2018 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: N-2018.03L-SP1-1
+Install: C:\lscc\diamond\3.11_x64\synpbase
+OS: Windows 6.2
+
+Hostname: ZANEMACWIN11
+
+Implementation : impl1
+Synopsys Synopsys Netlist Linker, Version comp2018q2p1, Build 461R, Built Apr  1 2019 09:17:43
+
+@N|Running in 64-bit mode
+File \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-640HC\impl1\synwork\layer0.srs changed - recompiling
+
+At syn_nfilter Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 67MB peak: 68MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Sun Jul 14 06:18:40 2024
+
+###########################################################]
+
+For a summary of runtime and memory usage for all design units, please see file:
+==========================================================
+@L: A:\\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-640HC\impl1\synwork\GR8RAM_LCMXO2_640HC_impl1_comp.rt.csv
+
+@END
+
+At c_hdl Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 3MB peak: 4MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Sun Jul 14 06:18:40 2024
+
+###########################################################]
+
+Copyright (C) 1994-2018 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: N-2018.03L-SP1-1
+Install: C:\lscc\diamond\3.11_x64\synpbase
+OS: Windows 6.2
+
+Hostname: ZANEMACWIN11
+
+Database state : \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-640HC\impl1\synwork\|impl1
+Synopsys Synopsys Netlist Linker, Version comp2018q2p1, Build 461R, Built Apr  1 2019 09:17:43
+
+@N|Running in 64-bit mode
+File \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-640HC\impl1\synwork\GR8RAM_LCMXO2_640HC_impl1_comp.srs changed - recompiling
+
+At syn_nfilter Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 68MB peak: 69MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+
+Process completed successfully.
+# Sun Jul 14 06:18:42 2024
+
+###########################################################]
+# Sun Jul 14 06:18:42 2024
+
+
+Copyright (C) 1994-2018 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: N-2018.03L-SP1-1
+Install: C:\lscc\diamond\3.11_x64\synpbase
+OS: Windows 6.2
+
+Hostname: ZANEMACWIN11
+
+Implementation : impl1
+Synopsys Lattice Technology Pre-mapping, Version maplat2018q2p1, Build 055R, Built Apr  3 2019 09:51:54
+
+
+Mapper Startup Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 100MB)
+
+Reading constraint file: \\Mac\iCloud\Repos\GR8RAM\cpld\GR8RAM.sdc
+@N: MF284 |Setting synthesis effort to medium for the design
+@L: \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-640HC\impl1\GR8RAM_LCMXO2_640HC_impl1_scck.rpt 
+Printing clock  summary report in "\\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-640HC\impl1\GR8RAM_LCMXO2_640HC_impl1_scck.rpt" file 
+@N: MF916 |Option synthesis_strategy=base is enabled. 
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+
+Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 100MB peak: 102MB)
+
+
+Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 100MB peak: 102MB)
+
+
+Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 112MB peak: 113MB)
+
+
+Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 112MB peak: 115MB)
+
+@N: MF284 |Setting synthesis effort to medium for the design
+@W: FX474 |User-specified initial value defined for some sequential elements which can prevent optimum synthesis results from being achieved. 
+@N: MH105 |UMR3 is only supported for HAPS-80.
+@N: MH105 |UMR3 is only supported for HAPS-80.
+@N: BN362 :"\\mac\icloud\repos\gr8ram\cpld\businterface.v":122:1:122:6|Removing sequential instance ROMRD (in view: work.BusInterface(verilog)) of type view:PrimLib.dff(prim) because it does not drive other instances.
+@N: BN362 :"\\mac\icloud\repos\gr8ram\cpld\slinkyregisters.v":65:1:65:6|Removing sequential instance Bank (in view: work.SlinkyRegisters(verilog)) of type view:PrimLib.sdffre(prim) because it does not drive other instances.
+@N: BN362 :"\\mac\icloud\repos\gr8ram\cpld\businterface.v":97:1:97:6|Removing sequential instance BankWR (in view: work.BusInterface(verilog)) of type view:PrimLib.dff(prim) because it does not drive other instances.
+@N: BN362 :"\\mac\icloud\repos\gr8ram\cpld\businterface.v":97:1:97:6|Removing sequential instance BankWRpre (in view: work.BusInterface(verilog)) of type view:PrimLib.dffe(prim) because it does not drive other instances.
+syn_allowed_resources : blockrams=2  set on top level netlist GR8RAM
+
+Finished netlist restructuring (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 141MB peak: 143MB)
+
+
+
+Clock Summary
+******************
+
+          Start      Requested     Requested     Clock        Clock                Clock
+Level     Clock      Frequency     Period        Type         Group                Load 
+----------------------------------------------------------------------------------------
+0 -       CLK        44.3 MHz      22.558        declared     default_clkgroup     174  
+                                                                                        
+0 -       PHI0       1.0 MHz       977.000       declared     default_clkgroup     10   
+                                                                                        
+0 -       System     100.0 MHz     10.000        system       system_clkgroup      0    
+========================================================================================
+
+
+
+Clock Load Summary
+***********************
+
+           Clock     Source                  Clock Pin       Non-clock Pin        Non-clock Pin        
+Clock      Load      Pin                     Seq Example     Seq Example          Comb Example         
+-------------------------------------------------------------------------------------------------------
+CLK        174       OSCH_inst.OSC(OSCH)     ram.RDDLE.C     -                    ram.un1_CLK.I[0](inv)
+                                                                                                       
+PHI0       10        PHI0(port)              bi.nRESr.C      bi.PHI0r[0].D[0]     bi.un1_PHI0.I[0](inv)
+                                                                                                       
+System     0         -                       -               -                    -                    
+=======================================================================================================
+
+ICG Latch Removal Summary:
+Number of ICG latches removed: 0
+Number of ICG latches not removed:	0
+
+
+@S |Clock Optimization Summary
+
+
+
+#### START OF PREMAP CLOCK OPTIMIZATION REPORT #####[
+
+2 non-gated/non-generated clock tree(s) driving 183 clock pin(s) of sequential element(s)
+0 gated/generated clock tree(s) driving 0 clock pin(s) of sequential element(s)
+0 instances converted, 0 sequential instances remain driven by gated/generated clocks
+
+=========================== Non-Gated/Non-Generated Clocks ============================
+Clock Tree ID     Driving Element     Drive Element Type     Fanout     Sample Instance
+---------------------------------------------------------------------------------------
+@KP:ckid0_0       OSCH_inst.OSC       OSCH                   174        ram.RDOE       
+@KP:ckid0_1       PHI0                port                   9          bi.WRD[7:0]    
+=======================================================================================
+
+
+##### END OF CLOCK OPTIMIZATION REPORT ######
+
+@N: FX1143 |Skipping assigning INTERNAL_VREF to iobanks, because the table of mapping from pin to iobank is not initialized.
+Finished Pre Mapping Phase.
+
+Starting constraint checker (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 141MB peak: 143MB)
+
+
+Finished constraint checker preprocessing (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 141MB peak: 143MB)
+
+None
+None
+
+Finished constraint checker (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 141MB peak: 143MB)
+
+Pre-mapping successful!
+
+At Mapper Exit (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 57MB peak: 143MB)
+
+Process took 0h:00m:01s realtime, 0h:00m:01s cputime
+# Sun Jul 14 06:18:43 2024
+
+###########################################################]
+# Sun Jul 14 06:18:43 2024
+
+
+Copyright (C) 1994-2018 Synopsys, Inc.
+This Synopsys software and all associated documentation are proprietary to Synopsys, Inc.
+and may only be used pursuant to the terms and conditions of a written license agreement
+with Synopsys, Inc. All other use, reproduction, modification, or distribution of the
+Synopsys software or the associated documentation is strictly prohibited.
+Tool: Synplify Pro (R)
+Build: N-2018.03L-SP1-1
+Install: C:\lscc\diamond\3.11_x64\synpbase
+OS: Windows 6.2
+
+Hostname: ZANEMACWIN11
+
+Implementation : impl1
+Synopsys Lattice Technology Mapper, Version maplat2018q2p1, Build 055R, Built Apr  3 2019 09:51:54
+
+
+Mapper Startup Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 99MB peak: 99MB)
+
+@N: MF284 |Setting synthesis effort to medium for the design
+@N: MF916 |Option synthesis_strategy=base is enabled. 
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+
+Design Input Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 98MB peak: 100MB)
+
+
+Mapper Initialization Complete (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 98MB peak: 100MB)
+
+
+Start loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 111MB peak: 111MB)
+
+
+Finished loading timing files (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 111MB peak: 113MB)
+
+@N: MF284 |Setting synthesis effort to medium for the design
+
+
+Starting Optimization and Mapping (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 139MB peak: 142MB)
+
+
+Available hyper_sources - for debug and ip models
+	None Found
+
+@W: FA239 :"\\mac\icloud\repos\gr8ram\cpld\initcontroller.v":168:4:168:7|ROM nFCSout_2 (in view: work.InitController(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.
+@W: FA239 :"\\mac\icloud\repos\gr8ram\cpld\initcontroller.v":168:4:168:7|ROM MOSIOE_2 (in view: work.InitController(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.
+@W: FA239 :"\\mac\icloud\repos\gr8ram\cpld\initcontroller.v":168:4:168:7|ROM RAMCmd_2[2:0] (in view: work.InitController(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.
+@N: MO106 :"\\mac\icloud\repos\gr8ram\cpld\initcontroller.v":168:4:168:7|Found ROM RAMCmd_2[2:0] (in view: work.InitController(verilog)) with 80 words by 3 bits.
+@W: FA239 :"\\mac\icloud\repos\gr8ram\cpld\initcontroller.v":168:4:168:7|ROM nFCSout_2 (in view: work.InitController(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.
+@N: MO106 :"\\mac\icloud\repos\gr8ram\cpld\initcontroller.v":168:4:168:7|Found ROM nFCSout_2 (in view: work.InitController(verilog)) with 80 words by 1 bit.
+@W: FA239 :"\\mac\icloud\repos\gr8ram\cpld\initcontroller.v":168:4:168:7|ROM MOSIOE_2 (in view: work.InitController(verilog)) mapped in logic. To map to a technology ROM, apply attribute syn_romstyle on this instance.
+@N: MO106 :"\\mac\icloud\repos\gr8ram\cpld\initcontroller.v":168:4:168:7|Found ROM MOSIOE_2 (in view: work.InitController(verilog)) with 80 words by 1 bit.
+@N: FX493 |Applying initial value "000" on instance ram.RS[2:0].
+
+Finished RTL optimizations (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 140MB peak: 142MB)
+
+
+Starting factoring (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 141MB peak: 142MB)
+
+
+Finished factoring (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 146MB peak: 147MB)
+
+
+Finished generic timing optimizations - Pass 1 (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 145MB peak: 147MB)
+
+
+Starting Early Timing Optimization (Real Time elapsed 0h:00m:00s; CPU Time elapsed 0h:00m:00s; Memory used current: 145MB peak: 147MB)
+
+
+Finished Early Timing Optimization (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:00s; Memory used current: 145MB peak: 147MB)
+
+
+Finished generic timing optimizations - Pass 2 (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:00s; Memory used current: 145MB peak: 147MB)
+
+
+Finished preparing to map (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 145MB peak: 147MB)
+
+
+Finished technology mapping (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 159MB peak: 161MB)
+
+Pass		 CPU time		Worst Slack		Luts / Registers
+------------------------------------------------------------
+   1		0h:00m:01s		     5.98ns		 311 /       183
+
+Finished technology timing optimizations and critical path resynthesis (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 159MB peak: 161MB)
+
+@N: FX164 |The option to pack registers in the IOB has not been specified. Please set syn_useioff attribute.  
+@A: BN291 :"\\mac\icloud\repos\gr8ram\cpld\sdramcontroller.v":58:1:58:6|Boundary register ram.RBA_1_.fb (in view: work.GR8RAM(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\mac\icloud\repos\gr8ram\cpld\sdramcontroller.v":58:1:58:6|Boundary register ram.RBA_0_.fb (in view: work.GR8RAM(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\mac\icloud\repos\gr8ram\cpld\sdramcontroller.v":58:1:58:6|Boundary register ram.DQMH.fb (in view: work.GR8RAM(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\mac\icloud\repos\gr8ram\cpld\sdramcontroller.v":58:1:58:6|Boundary register ram.DQML.fb (in view: work.GR8RAM(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\mac\icloud\repos\gr8ram\cpld\sdramcontroller.v":58:1:58:6|Boundary register ram.RA_12_.fb (in view: work.GR8RAM(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\mac\icloud\repos\gr8ram\cpld\sdramcontroller.v":58:1:58:6|Boundary register ram.RA_11_.fb (in view: work.GR8RAM(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\mac\icloud\repos\gr8ram\cpld\sdramcontroller.v":58:1:58:6|Boundary register ram.RA_10_.fb (in view: work.GR8RAM(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\mac\icloud\repos\gr8ram\cpld\sdramcontroller.v":58:1:58:6|Boundary register ram.RA_9_.fb (in view: work.GR8RAM(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\mac\icloud\repos\gr8ram\cpld\sdramcontroller.v":58:1:58:6|Boundary register ram.RA_8_.fb (in view: work.GR8RAM(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\mac\icloud\repos\gr8ram\cpld\sdramcontroller.v":58:1:58:6|Boundary register ram.RA_7_.fb (in view: work.GR8RAM(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\mac\icloud\repos\gr8ram\cpld\sdramcontroller.v":58:1:58:6|Boundary register ram.RA_6_.fb (in view: work.GR8RAM(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\mac\icloud\repos\gr8ram\cpld\sdramcontroller.v":58:1:58:6|Boundary register ram.RA_5_.fb (in view: work.GR8RAM(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\mac\icloud\repos\gr8ram\cpld\sdramcontroller.v":58:1:58:6|Boundary register ram.RA_4_.fb (in view: work.GR8RAM(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\mac\icloud\repos\gr8ram\cpld\sdramcontroller.v":58:1:58:6|Boundary register ram.RA_3_.fb (in view: work.GR8RAM(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\mac\icloud\repos\gr8ram\cpld\sdramcontroller.v":58:1:58:6|Boundary register ram.RA_2_.fb (in view: work.GR8RAM(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\mac\icloud\repos\gr8ram\cpld\sdramcontroller.v":58:1:58:6|Boundary register ram.RA_1_.fb (in view: work.GR8RAM(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+@A: BN291 :"\\mac\icloud\repos\gr8ram\cpld\sdramcontroller.v":58:1:58:6|Boundary register ram.RA_0_.fb (in view: work.GR8RAM(verilog)) is packed into a complex cell. To disable register packing, set syn_keep=1 on the net between the register and the complex cell. 
+
+Finished restoring hierarchy (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 159MB peak: 161MB)
+
+
+Start Writing Netlists (Real Time elapsed 0h:00m:01s; CPU Time elapsed 0h:00m:01s; Memory used current: 124MB peak: 161MB)
+
+Writing Analyst data base \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-640HC\impl1\synwork\GR8RAM_LCMXO2_640HC_impl1_m.srm
+
+Finished Writing Netlist Databases (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:01s; Memory used current: 158MB peak: 161MB)
+
+Writing EDIF Netlist and constraint files
+@N: FX1056 |Writing EDF file: \\Mac\iCloud\Repos\GR8RAM\cpld\LCMXO2-640HC\impl1\GR8RAM_LCMXO2_640HC_impl1.edi
+N-2018.03L-SP1-1
+@N: BW106 |Synplicity Constraint File capacitance units using default value of 1pF 
+
+Finished Writing EDIF Netlist and constraint files (Real Time elapsed 0h:00m:02s; CPU Time elapsed 0h:00m:02s; Memory used current: 162MB peak: 164MB)
+
+
+Start final timing analysis (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:02s; Memory used current: 162MB peak: 164MB)
+
+@W: MT246 :"\\mac\icloud\repos\gr8ram\cpld\sdramcontroller.v":203:8:203:16|Blackbox ODDRXE is missing a user supplied timing model. This may have a negative effect on timing analysis and optimizations (Quality of Results)
+@N: MT615 |Found clock CLK with period 22.56ns 
+@N: MT615 |Found clock PHI0 with period 977.00ns 
+
+
+##### START OF TIMING REPORT #####[
+# Timing Report written on Sun Jul 14 06:18:46 2024
+#
+
+
+Top view:               GR8RAM
+Requested Frequency:    1.0 MHz
+Wire load mode:         top
+Paths requested:        5
+Constraint File(s):    \\Mac\iCloud\Repos\GR8RAM\cpld\GR8RAM.sdc
+                       
+@N: MT320 |This timing report is an estimate of place and route data. For final timing results, use the FPGA vendor place and route report.
+
+@N: MT322 |Clock constraints include only register-to-register paths associated with each individual clock.
+
+
+
+Performance Summary
+*******************
+
+
+Worst slack in design: 5.124
+
+                   Requested     Estimated     Requested     Estimated               Clock        Clock           
+Starting Clock     Frequency     Frequency     Period        Period        Slack     Type         Group           
+------------------------------------------------------------------------------------------------------------------
+CLK                44.3 MHz      114.2 MHz     22.558        8.754         8.522     declared     default_clkgroup
+PHI0               1.0 MHz       3.2 MHz       977.000       310.881       5.124     declared     default_clkgroup
+System             100.0 MHz     NA            10.000        NA            NA        system       system_clkgroup 
+==================================================================================================================
+Estimated period and frequency reported as NA means no slack depends directly on the clock waveform
+
+
+
+
+
+Clock Relationships
+*******************
+
+Clocks            |    rise  to  rise    |    fall  to  fall   |    rise  to  fall   |    fall  to  rise 
+---------------------------------------------------------------------------------------------------------
+Starting  Ending  |  constraint  slack   |  constraint  slack  |  constraint  slack  |  constraint  slack
+---------------------------------------------------------------------------------------------------------
+CLK       System  |  22.558      21.586  |  No paths    -      |  No paths    -      |  No paths    -    
+CLK       CLK     |  22.558      13.804  |  No paths    -      |  11.279      9.588  |  11.279      8.522
+PHI0      CLK     |  No paths    -       |  No paths    -      |  No paths    -      |  7.515       5.124
+=========================================================================================================
+ Note: 'No paths' indicates there are no paths in the design for that pair of clock edges.
+       'Diff grp' indicates that paths exist but the starting clock and ending clock are in different clock groups.
+
+
+
+Interface Information 
+*********************
+
+No IO constraint found
+
+
+
+====================================
+Detailed Report for Clock: CLK
+====================================
+
+
+
+Starting Points with Worst Slack
+********************************
+
+                 Starting                                      Arrival           
+Instance         Reference     Type         Pin     Net        Time        Slack 
+                 Clock                                                           
+---------------------------------------------------------------------------------
+ram.RDD[6]       CLK           FD1P3AX      Q       RDD[6]     0.972       8.522 
+ram.RDD[7]       CLK           FD1P3AX      Q       RDD[7]     0.972       8.522 
+ram_RDDio[0]     CLK           IFS1P3DX     Q       RDD[0]     0.972       8.522 
+ram_RDDio[1]     CLK           IFS1P3DX     Q       RDD[1]     0.972       8.522 
+ram_RDDio[2]     CLK           IFS1P3DX     Q       RDD[2]     0.972       8.522 
+ram_RDDio[3]     CLK           IFS1P3DX     Q       RDD[3]     0.972       8.522 
+ram_RDDio[4]     CLK           IFS1P3DX     Q       RDD[4]     0.972       8.522 
+ram_RDDio[5]     CLK           IFS1P3DX     Q       RDD[5]     0.972       8.522 
+ram.RDDLE        CLK           FD1S3IX      Q       RDDLE      1.220       9.588 
+ic.MOSIr         CLK           FD1S3AX      Q       MOSIr      0.972       10.202
+=================================================================================
+
+
+Ending Points with Worst Slack
+******************************
+
+                  Starting                                             Required          
+Instance          Reference     Type         Pin     Net               Time         Slack
+                  Clock                                                                  
+-----------------------------------------------------------------------------------------
+bi_BDoutio[0]     CLK           OFS1P3DX     D       bi.BDout_8[0]     11.173       8.522
+bi_BDoutio[1]     CLK           OFS1P3DX     D       bi.BDout_8[1]     11.173       8.522
+bi_BDoutio[2]     CLK           OFS1P3DX     D       bi.BDout_8[2]     11.173       8.522
+bi_BDoutio[3]     CLK           OFS1P3DX     D       bi.BDout_8[3]     11.173       8.522
+bi_BDoutio[4]     CLK           OFS1P3DX     D       bi.BDout_8[4]     11.173       8.522
+bi_BDoutio[5]     CLK           OFS1P3DX     D       bi.BDout_8[5]     11.173       8.522
+bi_BDoutio[6]     CLK           OFS1P3DX     D       bi.BDout_8[6]     11.173       8.522
+bi_BDoutio[7]     CLK           OFS1P3DX     D       bi.BDout_8[7]     11.173       8.522
+ram.RDD[6]        CLK           FD1P3AX      SP      RDDLE             10.807       9.588
+ram.RDD[7]        CLK           FD1P3AX      SP      RDDLE             10.807       9.588
+=========================================================================================
+
+
+
+Worst Path Information
+***********************
+
+
+Path information for path number 1: 
+      Requested Period:                      11.279
+    - Setup time:                            0.106
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         11.173
+
+    - Propagation time:                      2.652
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (non-critical) :                 8.522
+
+    Number of logic level(s):                3
+    Starting point:                          ram.RDD[6] / Q
+    Ending point:                            bi_BDoutio[6] / D
+    The start point is clocked by            CLK [falling] on pin CK
+    The end   point is clocked by            CLK [rising] on pin SCLK
+
+Instance / Net                      Pin      Pin               Arrival     No. of    
+Name                   Type         Name     Dir     Delay     Time        Fan Out(s)
+-------------------------------------------------------------------------------------
+ram.RDD[6]             FD1P3AX      Q        Out     0.972     0.972       -         
+RDD[6]                 Net          -        -       -         -           1         
+bi.BDout_8_2_bm[6]     ORCALUT4     B        In      0.000     0.972       -         
+bi.BDout_8_2_bm[6]     ORCALUT4     Z        Out     1.017     1.989       -         
+BDout_8_2_bm[6]        Net          -        -       -         -           1         
+bi.BDout_8_2[6]        PFUMX        ALUT     In      0.000     1.989       -         
+bi.BDout_8_2[6]        PFUMX        Z        Out     0.214     2.203       -         
+N_61                   Net          -        -       -         -           1         
+bi.BDout_8[6]          ORCALUT4     D        In      0.000     2.203       -         
+bi.BDout_8[6]          ORCALUT4     Z        Out     0.449     2.652       -         
+BDout_8[6]             Net          -        -       -         -           1         
+bi_BDoutio[6]          OFS1P3DX     D        In      0.000     2.652       -         
+=====================================================================================
+
+
+
+
+====================================
+Detailed Report for Clock: PHI0
+====================================
+
+
+
+Starting Points with Worst Slack
+********************************
+
+               Starting                                         Arrival          
+Instance       Reference     Type         Pin     Net           Time        Slack
+               Clock                                                             
+---------------------------------------------------------------------------------
+bi_nRESrio     PHI0          IFS1P3DX     Q       bi.nRESr      0.972       5.124
+bi.WRD[7]      PHI0          FD1S3AX      Q       BI_WRD[7]     1.180       5.567
+bi.WRD[0]      PHI0          FD1S3AX      Q       BI_WRD[0]     1.108       5.639
+bi.WRD[1]      PHI0          FD1S3AX      Q       BI_WRD[1]     1.108       5.639
+bi.WRD[2]      PHI0          FD1S3AX      Q       BI_WRD[2]     1.108       5.639
+bi.WRD[3]      PHI0          FD1S3AX      Q       BI_WRD[3]     1.108       5.639
+bi.WRD[4]      PHI0          FD1S3AX      Q       BI_WRD[4]     1.108       5.639
+bi.WRD[5]      PHI0          FD1S3AX      Q       BI_WRD[5]     1.108       5.639
+bi.WRD[6]      PHI0          FD1S3AX      Q       BI_WRD[6]     1.108       5.639
+=================================================================================
+
+
+Ending Points with Worst Slack
+******************************
+
+                         Starting                                          Required          
+Instance                 Reference     Type        Pin     Net             Time         Slack
+                         Clock                                                               
+---------------------------------------------------------------------------------------------
+bi.RegReset              PHI0          FD1S3JX     PD      fb              6.713        5.124
+registers.AddrHInc       PHI0          FD1S3IX     D       AddrHInc_4      7.978        5.567
+registers.AddrMInc       PHI0          FD1S3IX     D       AddrMInc_4      7.978        5.567
+registers.Addr_1[23]     PHI0          FD1S3IX     D       Addr_12[23]     7.978        5.567
+registers.Addr_1[16]     PHI0          FD1S3IX     D       Addr_12[16]     7.978        5.639
+registers.Addr_1[17]     PHI0          FD1S3IX     D       Addr_12[17]     7.978        5.639
+registers.Addr_1[18]     PHI0          FD1S3IX     D       Addr_12[18]     7.978        5.639
+registers.Addr_1[19]     PHI0          FD1S3IX     D       Addr_12[19]     7.978        5.639
+registers.Addr_1[20]     PHI0          FD1S3IX     D       Addr_12[20]     7.978        5.639
+registers.Addr_1[21]     PHI0          FD1S3IX     D       Addr_12[21]     7.978        5.639
+=============================================================================================
+
+
+
+Worst Path Information
+***********************
+
+
+Path information for path number 1: 
+      Requested Period:                      7.515
+    - Setup time:                            0.803
+    + Clock delay at ending point:           0.000 (ideal)
+    = Required time:                         6.713
+
+    - Propagation time:                      1.589
+    - Clock delay at starting point:         0.000 (ideal)
+    = Slack (critical) :                     5.124
+
+    Number of logic level(s):                1
+    Starting point:                          bi_nRESrio / Q
+    Ending point:                            bi.RegReset / PD
+    The start point is clocked by            PHI0 [falling] on pin SCLK
+    The end   point is clocked by            CLK [rising] on pin CK
+
+Instance / Net                  Pin      Pin               Arrival     No. of    
+Name               Type         Name     Dir     Delay     Time        Fan Out(s)
+---------------------------------------------------------------------------------
+bi_nRESrio         IFS1P3DX     Q        Out     0.972     0.972       -         
+bi.nRESr           Net          -        -       -         -           1         
+bi.RegReset.fb     ORCALUT4     B        In      0.000     0.972       -         
+bi.RegReset.fb     ORCALUT4     Z        Out     0.617     1.589       -         
+fb                 Net          -        -       -         -           1         
+bi.RegReset        FD1S3JX      PD       In      0.000     1.589       -         
+=================================================================================
+
+
+
+##### END OF TIMING REPORT #####]
+
+Timing exceptions that could not be applied
+None
+
+Finished final timing analysis (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:02s; Memory used current: 162MB peak: 164MB)
+
+
+Finished timing report (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:02s; Memory used current: 162MB peak: 164MB)
+
+---------------------------------------
+Resource Usage Report
+Part: lcmxo2_640hc-4
+
+Register bits: 183 of 640 (29%)
+PIC Latch:       0
+I/O cells:       73
+
+
+Details:
+BB:             18
+CCU2D:          29
+FD1P3AX:        25
+FD1P3IX:        14
+FD1P3JX:        2
+FD1S3AX:        63
+FD1S3IX:        48
+FD1S3JX:        1
+GSR:            1
+IB:             26
+IFS1P3DX:       9
+INV:            8
+OB:             28
+OBZ:            1
+ODDRXE:         2
+OFS1P3DX:       10
+OFS1P3IX:       7
+OFS1P3JX:       4
+ORCALUT4:       302
+OSCH:           1
+PFUMX:          21
+PUR:            1
+VHI:            5
+VLO:            5
+Mapper successful!
+
+At Mapper Exit (Real Time elapsed 0h:00m:03s; CPU Time elapsed 0h:00m:02s; Memory used current: 33MB peak: 164MB)
+
+Process took 0h:00m:03s realtime, 0h:00m:02s cputime
+# Sun Jul 14 06:18:46 2024
+
+###########################################################]
+
+
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</PRE></FONT>
+</BODY>
+</HTML>

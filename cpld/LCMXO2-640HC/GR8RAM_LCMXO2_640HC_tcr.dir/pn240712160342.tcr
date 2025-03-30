@@ -1,0 +1,26 @@
+#Start recording tcl command: 7/11/2024 19:39:21
+#Project Location: //Mac/iCloud/Repos/GR8RAM/cpld/LCMXO2-640HC; Project name: GR8RAM_LCMXO2_640HC
+prj_project open "//Mac/iCloud/Repos/GR8RAM/cpld/LCMXO2-640HC/GR8RAM_LCMXO2_640HC.ldf"
+prj_run Synthesis -impl impl1 -task Synplify_Synthesis
+prj_run Synthesis -impl impl1 -task Synplify_Synthesis
+prj_run Synthesis -impl impl1 -task Synplify_Synthesis
+prj_run Synthesis -impl impl1 -task Synplify_Synthesis
+prj_run Synthesis -impl impl1 -task Synplify_Synthesis
+prj_run Synthesis -impl impl1 -task Synplify_Synthesis
+prj_run Synthesis -impl impl1 -task Synplify_Synthesis
+prj_run Synthesis -impl impl1 -task Synplify_Synthesis
+prj_run Synthesis -impl impl1 -task Synplify_Synthesis
+prj_run Synthesis -impl impl1 -task Synplify_Synthesis
+prj_run Synthesis -impl impl1 -task Synplify_Synthesis
+prj_run Synthesis -impl impl1 -task Synplify_Synthesis
+prj_run Synthesis -impl impl1 -task Synplify_Synthesis
+prj_run Synthesis -impl impl1 -task Synplify_Synthesis
+prj_run Synthesis -impl impl1 -task Synplify_Synthesis
+prj_run Synthesis -impl impl1 -task Synplify_Synthesis
+prj_run Export -impl impl1
+prj_run Export -impl impl1 -forceAll
+prj_run Export -impl impl1
+prj_run Export -impl impl1 -forceAll
+prj_run Export -impl impl1 -forceAll
+prj_run PAR -impl impl1
+#Stop recording: 7/12/2024 16:03:42

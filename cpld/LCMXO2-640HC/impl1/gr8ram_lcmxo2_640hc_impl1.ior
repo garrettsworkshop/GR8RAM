@@ -1,0 +1,132 @@
+Loading design for application iotiming from file gr8ram_lcmxo2_640hc_impl1.ncd.
+Design name: GR8RAM
+NCD version: 3.3
+Vendor:      LATTICE
+Device:      LCMXO2-640HC
+Package:     TQFP100
+Performance: 5
+Package Status:                     Final          Version 1.39.
+Performance Hardware Data Status:   Final          Version 34.4.
+Loading design for application iotiming from file gr8ram_lcmxo2_640hc_impl1.ncd.
+Design name: GR8RAM
+NCD version: 3.3
+Vendor:      LATTICE
+Device:      LCMXO2-640HC
+Package:     TQFP100
+Performance: 6
+Package Status:                     Final          Version 1.39.
+Performance Hardware Data Status:   Final          Version 34.4.
+Loading design for application iotiming from file gr8ram_lcmxo2_640hc_impl1.ncd.
+Design name: GR8RAM
+NCD version: 3.3
+Vendor:      LATTICE
+Device:      LCMXO2-640HC
+Package:     TQFP100
+Performance: M
+Package Status:                     Final          Version 1.39.
+Performance Hardware Data Status:   Final          Version 34.4.
+// Design: GR8RAM
+// Package: TQFP100
+// ncd File: gr8ram_lcmxo2_640hc_impl1.ncd
+// Version: Diamond (64-bit) 3.11.3.469
+// Written on Thu Jul 11 20:06:48 2024
+// M: Minimum Performance Grade
+// iotiming GR8RAM_LCMXO2_640HC_impl1.ncd GR8RAM_LCMXO2_640HC_impl1.prf -gui -msgset //Mac/iCloud/Repos/GR8RAM/cpld/LCMXO2-640HC/promote.xml
+
+I/O Timing Report (All units are in ns)
+
+Worst Case Results across Performance Grades (M, 6, 5, 4):
+
+// Input Setup and Hold Times
+
+Port    Clock Edge  Setup Performance_Grade  Hold Performance_Grade
+----------------------------------------------------------------------
+BA[0]   CLKin R     9.502      4      -0.183     M
+BA[10]  CLKin R     1.227      4      -0.027     M
+BA[1]   CLKin R    10.789      4      -0.328     M
+BA[2]   CLKin R     9.560      4      -0.208     M
+BA[3]   CLKin R    11.107      4      -0.383     M
+BA[4]   CLKin R     2.111      4      -0.167     M
+BA[5]   CLKin R     2.359      4      -0.257     M
+BA[6]   CLKin R     1.925      4      -0.134     M
+BA[7]   CLKin R     1.584      4      -0.057     M
+BA[8]   CLKin R     1.369      4      -0.029     M
+BA[9]   CLKin R     2.385      4      -0.235     M
+BD[0]   PHI0  F     0.926      4       0.588     4
+BD[1]   PHI0  F     0.396      4       1.004     4
+BD[2]   PHI0  F     0.063      4       1.297     4
+BD[3]   PHI0  F     0.165      4       1.178     4
+BD[4]   PHI0  F     0.562      4       0.851     4
+BD[5]   PHI0  F     0.592      4       0.814     4
+BD[6]   PHI0  F     0.989      4       0.487     4
+BD[7]   PHI0  F     0.989      4       0.487     4
+MISO    CLKin F     0.034      M       1.958     4
+MOSI    CLKin F     0.925      4       0.083     4
+PHI0    CLKin F    -0.020      M       2.150     4
+RD[0]   CLKin R     1.584      4       2.150     4
+RD[1]   CLKin F    -0.020      M       2.150     4
+RD[2]   CLKin F    -0.020      M       2.150     4
+RD[3]   CLKin F    -0.016      M       2.131     4
+RD[4]   CLKin F    -0.016      M       2.131     4
+RD[5]   CLKin F    -0.016      M       2.131     4
+RD[6]   CLKin F     0.744      4       0.256     4
+RD[7]   CLKin F     0.846      4       0.185     6
+SW[1]   CLKin R     2.506      4      -0.127     M
+SW[2]   CLKin R     2.550      4      -0.030     6
+nDEVSEL CLKin F    -0.020      M       2.150     4
+nFCS    CLKin R     1.240      4      -0.025     M
+nIOSEL  CLKin F    -0.020      M       2.150     4
+nRESin  PHI0  F    -0.277      M       3.255     4
+nWE     CLKin R     4.822      4      -0.187     M
+
+
+// Clock to Output Delay
+
+Port    Clock Edge  Max_Delay Performance_Grade  Min_Delay Performance_Grade
+------------------------------------------------------------------------
+BD[0]   CLKin R    13.022         4        2.176          M
+BD[1]   CLKin R    13.946         4        2.181          M
+BD[2]   CLKin R    13.946         4        2.181          M
+BD[3]   CLKin R    13.534         4        2.181          M
+BD[4]   CLKin R    13.534         4        2.181          M
+BD[5]   CLKin R    14.492         4        2.181          M
+BD[6]   CLKin R    14.492         4        2.181          M
+BD[7]   CLKin R    14.080         4        2.181          M
+DQMH    CLKin R     7.032         4        2.313          M
+DQML    CLKin R     7.032         4        2.313          M
+FCK     CLKin R     8.247         4        1.972          M
+MOSI    CLKin R     8.190         4        2.259          M
+RA[0]   CLKin R     8.767         4        2.713          M
+RA[10]  CLKin R     7.032         4        2.313          M
+RA[11]  CLKin R     8.350         4        2.609          M
+RA[12]  CLKin R     8.245         4        2.585          M
+RA[1]   CLKin R     8.464         4        2.632          M
+RA[2]   CLKin R     8.566         4        2.661          M
+RA[3]   CLKin R     8.566         4        2.661          M
+RA[4]   CLKin R     8.566         4        2.661          M
+RA[5]   CLKin R     8.067         4        2.521          M
+RA[6]   CLKin R     8.370         4        2.601          M
+RA[7]   CLKin R     8.494         4        2.626          M
+RA[8]   CLKin R     8.370         4        2.601          M
+RA[9]   CLKin R     8.275         4        2.579          M
+RBA[0]  CLKin R     7.032         4        2.313          M
+RBA[1]  CLKin R     7.032         4        2.313          M
+RCKE    CLKin R     7.032         4        2.313          M
+RCLK    CLKin R     6.700         4        1.924          M
+RD[0]   CLKin R    10.399         4        2.572          M
+RD[1]   CLKin R    10.399         4        2.572          M
+RD[2]   CLKin R    10.399         4        2.776          M
+RD[3]   CLKin R     9.543         4        2.260          M
+RD[4]   CLKin R     9.543         4        2.499          M
+RD[5]   CLKin R     9.543         4        2.504          M
+RD[6]   CLKin R     9.543         4        2.183          M
+RD[7]   CLKin R     9.091         4        2.183          M
+nCAS    CLKin R     7.032         4        2.313          M
+nDinOE  CLKin R    12.008         4        3.425          M
+nDoutOE CLKin R    12.184         4        3.294          M
+nFCS    CLKin R     8.869         4        2.361          M
+nRAS    CLKin R     7.032         4        2.313          M
+nRWE    CLKin R     7.032         4        2.313          M
+WARNING: you must also run trce with hold speed: 4
+WARNING: you must also run trce with hold speed: 6
+WARNING: you must also run trce with setup speed: M

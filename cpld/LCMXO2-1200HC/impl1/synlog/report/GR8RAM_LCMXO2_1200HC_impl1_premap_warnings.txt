@@ -1,0 +1,3 @@
+@W: FX474 |User-specified initial value defined for some sequential elements which can prevent optimum synthesis results from being achieved. 
+@W: MT529 :"\\mac\icloud\repos\gr8ram\cpld\gr8ram.v":67:1:67:6|Found inferred clock GR8RAM|PHI0 which controls 18 sequential elements including CXXXr. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. 
+@W: MT529 :"\\mac\icloud\repos\gr8ram\cpld\gr8ram.v":20:16:20:21|Found inferred clock GR8RAM|RCLK which controls 104 sequential elements including nRESf. This clock has no specified timing constraint which may prevent conversion of gated or generated clocks and may adversely impact design performance. 

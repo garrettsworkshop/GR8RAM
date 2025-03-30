@@ -1,0 +1,24 @@
+#
+# Logical Preferences generated for Lattice by Synplify maplat2018q2p1, Build 055R.
+#
+
+# Period Constraints 
+#FREQUENCY PORT "PHI0" 100.0 MHz;
+#FREQUENCY PORT "RCLK" 100.0 MHz;
+
+
+# Output Constraints 
+
+# Input Constraints 
+
+# Point-to-point Delay Constraints 
+
+
+
+# Block Path Constraints 
+#BLOCK PATH FROM CLKNET "RCLK_c" TO CLKNET "PHI0_c";
+#BLOCK PATH FROM CLKNET "PHI0_c" TO CLKNET "RCLK_c";
+
+BLOCK ASYNCPATHS;
+
+# End of generated Logical Preferences.

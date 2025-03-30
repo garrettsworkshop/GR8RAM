@@ -1,0 +1,13 @@
+i RCLK
+m 0 0
+u 37 104
+p {p:RCLK}{t:nRESf.C}
+e ckid0_0 {t:nRESf.C} dffr
+c ckid0_0 {p:RCLK} Unconstrained_port Inferred clock from port
+i PHI0
+m 0 0
+u 3 14
+p {p:PHI0}{t:CXXXr.C}
+e ckid0_1 {t:CXXXr.C} dff
+c ckid0_1 {p:PHI0} Unconstrained_port Inferred clock from port
+l 0 0 0 0 0

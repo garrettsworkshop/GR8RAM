@@ -1,0 +1,12 @@
+@N: MF284 |Setting synthesis effort to medium for the design
+@N: MF916 |Option synthesis_strategy=base is enabled. 
+@N: MF248 |Running in 64-bit mode.
+@N: MF666 |Clock conversion enabled. (Command "set_option -fix_gated_and_generated_clocks 1" in the project file.)
+@N: MF284 |Setting synthesis effort to medium for the design
+@N: MH105 |UMR3 is only supported for HAPS-80.
+@N: MH105 |UMR3 is only supported for HAPS-80.
+@N: BN362 :"\\mac\icloud\repos\gr8ram\cpld\businterface.v":122:1:122:6|Removing sequential instance ROMRD (in view: work.BusInterface(verilog)) of type view:PrimLib.dff(prim) because it does not drive other instances.
+@N: BN362 :"\\mac\icloud\repos\gr8ram\cpld\slinkyregisters.v":65:1:65:6|Removing sequential instance Bank (in view: work.SlinkyRegisters(verilog)) of type view:PrimLib.sdffre(prim) because it does not drive other instances.
+@N: BN362 :"\\mac\icloud\repos\gr8ram\cpld\businterface.v":97:1:97:6|Removing sequential instance BankWR (in view: work.BusInterface(verilog)) of type view:PrimLib.dff(prim) because it does not drive other instances.
+@N: BN362 :"\\mac\icloud\repos\gr8ram\cpld\businterface.v":97:1:97:6|Removing sequential instance BankWRpre (in view: work.BusInterface(verilog)) of type view:PrimLib.dffe(prim) because it does not drive other instances.
+@N: FX1143 |Skipping assigning INTERNAL_VREF to iobanks, because the table of mapping from pin to iobank is not initialized.

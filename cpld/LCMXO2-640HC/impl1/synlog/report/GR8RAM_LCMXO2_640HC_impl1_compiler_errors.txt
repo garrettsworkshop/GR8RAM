@@ -1,0 +1,2 @@
+@E: CG426 :"\\Mac\iCloud\Repos\GR8RAM\cpld\BusInterface.v":119:23:119:29|Assignment target AddrInc must be of type reg or genvar
+

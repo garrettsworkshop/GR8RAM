@@ -1,0 +1,12 @@
+---------------------------------------------------
+Report for cell GR8RAM
+   Instance path: GR8RAM
+                     Cell usage:
+                                  cell	      count    Res Usage(%)
+                                  SLIC	     136.00        100.0
+                                 IOLGC	      50.00        100.0
+                                  LUT4	     242.00        100.0
+                                 IOREG	         50        100.0
+                                 IOBUF	         73        100.0
+                                PFUREG	         68        100.0
+                                RIPPLE	         13        100.0

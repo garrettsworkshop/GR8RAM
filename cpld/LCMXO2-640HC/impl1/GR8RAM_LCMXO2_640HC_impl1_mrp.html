@@ -1,0 +1,486 @@
+<HTML>
+<HEAD><TITLE>Project Summary</TITLE>
+<STYLE TYPE="text/css">
+<!--
+ body,pre{    font-family:'Courier New', monospace;    color: #000000;    font-size:88%;    background-color: #ffffff;}h1 {    font-weight: bold;    margin-top: 24px;    margin-bottom: 10px;    border-bottom: 3px solid #000;    font-size: 1em;}h2 {    font-weight: bold;    margin-top: 18px;    margin-bottom: 5px;    font-size: 0.90em;}h3 {    font-weight: bold;    margin-top: 12px;    margin-bottom: 5px;    font-size: 0.80em;}p {    font-size:78%;}P.Table {    margin-top: 4px;    margin-bottom: 4px;    margin-right: 4px;    margin-left: 4px;}table{    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    border-collapse: collapse;}th {    font-weight:bold;    padding: 4px;    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    vertical-align:top;    text-align:left;    font-size:78%;}td {    padding: 4px;    border-width: 1px 1px 1px 1px;    border-style: solid solid solid solid;    border-color: black black black black;    vertical-align:top;    font-size:78%;}a {    color:#013C9A;    text-decoration:none;}a:visited {    color:#013C9A;}a:hover, a:active {    text-decoration:underline;    color:#5BAFD4;}.pass{background-color: #00ff00;}.fail{background-color: #ff0000;}.comment{    font-size: 90%;    font-style: italic;}
+-->
+</STYLE>
+</HEAD>
+<PRE><A name="Mrp"></A>
+            Lattice Mapping Report File for Design Module 'GR8RAM'
+
+
+
+<A name="mrp_di"></A><B><U><big>Design Information</big></U></B>
+
+Command line:   map -a MachXO2 -p LCMXO2-640HC -t TQFP100 -s 4 -oc Commercial
+     GR8RAM_LCMXO2_640HC_impl1.ngd -o GR8RAM_LCMXO2_640HC_impl1_map.ncd -pr
+     GR8RAM_LCMXO2_640HC_impl1.prf -mp GR8RAM_LCMXO2_640HC_impl1.mrp -lpf //Mac/
+     iCloud/Repos/GR8RAM/cpld/LCMXO2-640HC/impl1/GR8RAM_LCMXO2_640HC_impl1_synpl
+     ify.lpf -lpf //Mac/iCloud/Repos/GR8RAM/cpld/GR8RAM-LCMXO2.lpf -c 0 -gui
+     -msgset //Mac/iCloud/Repos/GR8RAM/cpld/LCMXO2-640HC/promote.xml 
+Target Vendor:  LATTICE
+Target Device:  LCMXO2-640HCTQFP100
+Target Performance:   4
+Mapper:  xo2c00,  version:  Diamond (64-bit) 3.11.3.469
+Mapped on:  07/14/24  06:18:48
+
+
+<A name="mrp_ds"></A><B><U><big>Design Summary</big></U></B>
+   Number of registers:    183 out of   877 (21%)
+      PFU registers:          153 out of   640 (24%)
+      PIO registers:           30 out of   237 (13%)
+   Number of SLICEs:       189 out of   320 (59%)
+      SLICEs as Logic/ROM:    189 out of   320 (59%)
+      SLICEs as RAM:            0 out of   240 (0%)
+      SLICEs as Carry:         29 out of   320 (9%)
+   Number of LUT4s:        368 out of   640 (58%)
+      Number used as logic LUTs:        310
+      Number used as distributed RAM:     0
+      Number used as ripple logic:       58
+      Number used as shift registers:     0
+   Number of PIO sites used: 67 + 4(JTAG) out of 79 (90%)
+   Number of IDDR/ODDR/TDDR cells used: 2 out of 237 (1%)
+      Number of IDDR cells:   0
+      Number of ODDR cells:   2
+      Number of TDDR cells:   0
+   Number of PIO using at least one IDDR/ODDR/TDDR: 2 (0 differential)
+      Number of PIO using IDDR only:        0 (0 differential)
+      Number of PIO using ODDR only:        2 (0 differential)
+      Number of PIO using TDDR only:        0 (0 differential)
+      Number of PIO using IDDR/ODDR:        0 (0 differential)
+      Number of PIO using IDDR/TDDR:        0 (0 differential)
+      Number of PIO using ODDR/TDDR:        0 (0 differential)
+      Number of PIO using IDDR/ODDR/TDDR:   0 (0 differential)
+   Number of block RAMs:  0 out of 2 (0%)
+   Number of GSRs:        0 out of 1 (0%)
+   EFB used :        No
+   JTAG used :       No
+   Readback used :   No
+   Oscillator used : Yes
+   Startup used :    No
+   POR :             On
+   Bandgap :         On
+   Number of Power Controller:  0 out of 1 (0%)
+   Number of Dynamic Bank Controller (BCINRD):  0 out of 4 (0%)
+   Number of DCCA:  0 out of 8 (0%)
+   Number of DCMA:  0 out of 2 (0%)
+   Notes:-
+      1. Total number of LUT4s = (Number of logic LUT4s) + 2*(Number of
+
+     distributed RAMs) + 2*(Number of ripple logic)
+      2. Number of logic LUT4s does not include count of distributed RAM and
+     ripple logic.
+   Number of clocks:  2
+     Net CLK: 127 loads, 117 rising, 10 falling (Driver: OSCH_inst )
+     Net PHI0_c: 5 loads, 0 rising, 5 falling (Driver: PIO PHI0 )
+   Number of Clock Enables:  12
+     Net ram.un1_RS22_4_i: 1 loads, 0 LSLICEs
+     Net ram.un1_RS22_7_i: 7 loads, 6 LSLICEs
+     Net ram/RS_1_sqmuxa_2_i: 2 loads, 2 LSLICEs
+     Net ram.RDDLE: 7 loads, 1 LSLICEs
+     Net ram.un1_RS22_3_i: 2 loads, 0 LSLICEs
+     Net ram.un1_RS23_1_i: 1 loads, 0 LSLICEs
+     Net ic/CSTC: 8 loads, 8 LSLICEs
+     Net ic/SetSize12: 3 loads, 3 LSLICEs
+     Net ic/IS20: 2 loads, 2 LSLICEs
+     Net bi/un1_ROMRD_1: 1 loads, 1 LSLICEs
+     Net bi/un4_BankWRpre: 4 loads, 4 LSLICEs
+     Net bi.BDoutLE: 8 loads, 0 LSLICEs
+   Number of LSRs:  13
+     Net ram.RA_0_sqmuxa: 13 loads, 6 LSLICEs
+     Net ram.RS[2]: 1 loads, 1 LSLICEs
+     Net ram/RS22: 1 loads, 1 LSLICEs
+     Net ram.RCKEs_i: 1 loads, 0 LSLICEs
+     Net ic/IS15: 1 loads, 1 LSLICEs
+     Net ic.FOE12: 2 loads, 2 LSLICEs
+     Net ic/SetRestoreEN: 5 loads, 3 LSLICEs
+     Net ic/IS20: 4 loads, 4 LSLICEs
+     Net N_32_i: 1 loads, 0 LSLICEs
+     Net RegReset: 12 loads, 12 LSLICEs
+     Net registers/Addr_0_sqmuxa: 8 loads, 8 LSLICEs
+     Net bi/fb: 1 loads, 1 LSLICEs
+     Net bi/S[1]: 8 loads, 8 LSLICEs
+   Number of nets driven by tri-state buffers:  0
+   Top 10 highest fanout non-clock nets:
+     Net ic/IS[1]: 41 loads
+     Net ic/IS[2]: 40 loads
+     Net ic/IS[0]: 39 loads
+     Net RegReset: 24 loads
+     Net nDEVSEL_c: 17 loads
+     Net bi/S[1]: 16 loads
+     Net ram.RS[2]: 14 loads
+     Net ram/CS[0]: 14 loads
+     Net ram/RA_1_sqmuxa: 14 loads
+     Net ram/RS22: 14 loads
+
+
+
+
+   Number of warnings:  1
+   Number of errors:    0
+     
+
+
+
+
+
+
+
+
+<A name="mrp_dwe"></A><B><U><big>Design Errors/Warnings</big></U></B>
+
+WARNING - map: OSCH 'OSCH_inst' has FREQUENCY preference value set to 44.30 MHZ,
+     which is different from the actual value 44.33 MHZ. The FREQUENCY
+     preference is still within the 5.5% tolerence of the actual value.
+
+
+
+<A name="mrp_ioa"></A><B><U><big>IO (PIO) Attributes</big></U></B>
+
++---------------------+-----------+-----------+------------+
+| IO Name             | Direction | Levelmode | IO         |
+|                     |           |  IO_TYPE  | Register   |
++---------------------+-----------+-----------+------------+
+| BD[0]               | BIDIR     | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| LED                 | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| PHI0                | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| FCK                 | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| nFCS                | BIDIR     | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| MOSI                | BIDIR     | LVCMOS33  | TRI        |
++---------------------+-----------+-----------+------------+
+| MISO                | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| RD[7]               | BIDIR     | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| RD[6]               | BIDIR     | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| RD[5]               | BIDIR     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| RD[4]               | BIDIR     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| RD[3]               | BIDIR     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| RD[2]               | BIDIR     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| RD[1]               | BIDIR     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| RD[0]               | BIDIR     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+| DQMH                | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| DQML                | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| nRWE                | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| nCAS                | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| nRAS                | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| RCKE                | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| nRCS                | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+
+| RA[12]              | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| RA[11]              | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| RA[10]              | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| RA[9]               | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| RA[8]               | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| RA[7]               | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| RA[6]               | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| RA[5]               | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| RA[4]               | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| RA[3]               | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| RA[2]               | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| RA[1]               | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| RA[0]               | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| RBA[1]              | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| RBA[0]              | OUTPUT    | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| RCLK                | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| nIOSTRB             | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| nDEVSEL             | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| nIOSEL              | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| nDinOE              | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| nDoutOE             | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| BD[7]               | BIDIR     | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| BD[6]               | BIDIR     | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| BD[5]               | BIDIR     | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| BD[4]               | BIDIR     | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| BD[3]               | BIDIR     | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| BD[2]               | BIDIR     | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+| BD[1]               | BIDIR     | LVCMOS33  | OUT        |
++---------------------+-----------+-----------+------------+
+
+| nWE                 | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| BA[10]              | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| BA[9]               | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| BA[8]               | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| BA[7]               | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| BA[6]               | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| BA[5]               | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| BA[4]               | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| BA[3]               | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| BA[2]               | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| BA[1]               | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| BA[0]               | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| SW[2]               | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| SW[1]               | INPUT     | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| nIRQout             | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| nRESout             | OUTPUT    | LVCMOS33  |            |
++---------------------+-----------+-----------+------------+
+| nRESin              | INPUT     | LVCMOS33  | IN         |
++---------------------+-----------+-----------+------------+
+
+
+
+<A name="mrp_rm"></A><B><U><big>Removed logic</big></U></B>
+
+Block GSR_INST undriven or does not drive anything - clipped.
+Block CLKin_pad undriven or does not drive anything - clipped.
+Block BA_pad[11] undriven or does not drive anything - clipped.
+Block BA_pad[12] undriven or does not drive anything - clipped.
+Block BA_pad[13] undriven or does not drive anything - clipped.
+Block BA_pad[14] undriven or does not drive anything - clipped.
+Block BA_pad[15] undriven or does not drive anything - clipped.
+Block bi/VCC undriven or does not drive anything - clipped.
+Block bi/GND undriven or does not drive anything - clipped.
+Block registers/VCC undriven or does not drive anything - clipped.
+Signal ic.MISOr.CN was merged into signal CLK
+Signal bi/S_i[1] was merged into signal bi/S[1]
+Signal bi.nRESr.CN was merged into signal PHI0_c
+Signal ic.SetRestoreEN_i was merged into signal ic/SetRestoreEN
+Signal RDOE_i was merged into signal ram/RDOE
+Signal registers/GND undriven or does not drive anything - clipped.
+Signal CLKin_c undriven or does not drive anything - clipped.
+Signal CLKin undriven or does not drive anything - clipped.
+
+Signal BA_c[11] undriven or does not drive anything - clipped.
+Signal BA[11] undriven or does not drive anything - clipped.
+Signal BA_c[12] undriven or does not drive anything - clipped.
+Signal BA[12] undriven or does not drive anything - clipped.
+Signal BA_c[13] undriven or does not drive anything - clipped.
+Signal BA[13] undriven or does not drive anything - clipped.
+Signal BA_c[14] undriven or does not drive anything - clipped.
+Signal BA[14] undriven or does not drive anything - clipped.
+Signal BA_c[15] undriven or does not drive anything - clipped.
+Signal BA[15] undriven or does not drive anything - clipped.
+Signal registers/un1_Addr_2_s_7_0_S1 undriven or does not drive anything -
+     clipped.
+Signal registers/un1_Addr_2_s_7_0_COUT undriven or does not drive anything -
+     clipped.
+Signal registers/un1_Addr_1_cry_0_0_S0 undriven or does not drive anything -
+     clipped.
+Signal registers/N_3 undriven or does not drive anything - clipped.
+Signal registers/un1_Addr_1_s_7_0_S1 undriven or does not drive anything -
+     clipped.
+Signal registers/un1_Addr_1_s_7_0_COUT undriven or does not drive anything -
+     clipped.
+Signal registers/un1_Addr_cry_0_0_S0 undriven or does not drive anything -
+     clipped.
+Signal registers/N_4 undriven or does not drive anything - clipped.
+Signal registers/un1_Addr_s_7_0_S1 undriven or does not drive anything -
+     clipped.
+Signal registers/un1_Addr_s_7_0_COUT undriven or does not drive anything -
+     clipped.
+Signal registers/un1_Addr_2_cry_0_0_S0 undriven or does not drive anything -
+     clipped.
+Signal registers/N_2 undriven or does not drive anything - clipped.
+Signal ic/un2_LS_1_cry_0_0_S1 undriven or does not drive anything - clipped.
+Signal ic/un2_LS_1_cry_0_0_S0 undriven or does not drive anything - clipped.
+Signal ic/N_1 undriven or does not drive anything - clipped.
+Signal ic/un2_LS_1_cry_11_0_COUT undriven or does not drive anything - clipped.
+Signal ic/un2_CS_cry_0_0_S1 undriven or does not drive anything - clipped.
+Signal ic/un2_CS_cry_0_0_S0 undriven or does not drive anything - clipped.
+Signal ic/N_2 undriven or does not drive anything - clipped.
+Signal ic/un2_CS_cry_11_0_COUT undriven or does not drive anything - clipped.
+Signal OSCH_inst_SEDSTDBY undriven or does not drive anything - clipped.
+Block bi/PHI0r_0_.CN was optimized away.
+Block bi/S_RNIL2O[1] was optimized away.
+Block bi/WRD_2_.CN was optimized away.
+Block ic/SetRestoreEN_RNITQI was optimized away.
+Block ram/RDOE_RNIOU95 was optimized away.
+Block registers/GND was optimized away.
+
+     
+
+OSC Summary
+-----------
+
+OSC 1:                                     Pin/Node Value
+  OSC Instance Name:                                OSCH_inst
+  OSC Type:                                         OSCH
+  STDBY Input:                                      NONE
+
+  OSC Output:                              NODE     CLK
+  OSC Nominal Frequency (MHz):                      44.33
+
+
+
+<A name="mrp_asic"></A><B><U><big>ASIC Components</big></U></B>
+---------------
+
+Instance Name: OSCH_inst
+         Type: OSCH
+
+
+
+<A name="mrp_runtime"></A><B><U><big>Run Time and Memory Usage</big></U></B>
+-------------------------
+
+   Total CPU Time: 0 secs  
+   Total REAL Time: 0 secs  
+   Peak Memory Usage: 60 MB
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Copyright (c) 1991-1994 by NeoCAD Inc. All rights reserved.
+     Copyright (c) 1995 AT&T Corp.   All rights reserved.
+     Copyright (c) 1995-2001 Lucent Technologies Inc.  All rights reserved.
+     Copyright (c) 2001 Agere Systems   All rights reserved.
+     Copyright (c) 2002-2020 Lattice Semiconductor Corporation,  All rights
+     reserved.
+
+
+
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+<BR>
+</PRE></FONT>
+</BODY>
+</HTML>

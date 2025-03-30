@@ -1,0 +1,13 @@
+i CLK
+m 0 0
+u 57 174
+p {t:CLK_keep.OUT[0]}{t:ram.CLK}{p:ram.CLK}{t:ram.RDOE.C}
+e ckid0_0 {t:ram.RDOE.C} dffr
+c ckid0_0 {t:OSCH_inst.OSC} OSCH Clock from user definition
+i PHI0
+m 0 0
+u 2 9
+p {p:PHI0}{t:bi.PHI0}{p:bi.PHI0}{t:bi.un1_PHI0.I[0]}{t:bi.un1_PHI0.OUT[0]}{t:bi.WRD[7:0].C}
+e ckid0_1 {t:bi.WRD[7:0].C} dff
+c ckid0_1 {p:PHI0} port Clock from user definition
+l 0 0 0 0 0
