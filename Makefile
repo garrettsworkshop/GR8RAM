@@ -16,6 +16,10 @@ F_POS_JUMPER = $(F_POS_N).JUMPER.csv
 F_ZIP = $@/GR8RAM.4205B.$(CHIPTYPE)-gerber.zip
 F_SCHPDF = $@/GR8RAM.4205B.$(CHIPTYPE)-Schematic.pdf
 F_PCBPDF = $@/GR8RAM.4205B.$(CHIPTYPE)-Placement.pdf
+F_IN1OLD = $@/GR8RAM-In1_Cu.g2
+F_IN1NEW = $@/GR8RAM-In1_Cu.g1
+F_IN2OLD = $@/GR8RAM-In2_Cu.g3
+F_IN2NEW = $@/GR8RAM-In2_Cu.g2
 
 
 OPT_GERBER = -l $(LAYERS) --subtract-soldermask --no-netlist --no-x2
@@ -44,6 +48,8 @@ Hardware/LCMXO2: Hardware/LCMXO2/gerber Hardware/LCMXO2/Documentation
 Hardware/LCMXO2/gerber:
 	mkdir -p $@
 	$(KICAD) $(CMD_GERBER)
+	mv $(F_IN1NEW) $(F_IN1OLD)
+	mv $(F_IN2NEW) $(F_IN2OLD)
 	$(KICAD) $(CMD_DRILL)
 	$(KICAD) $(CMD_POS)
 	$(KICAD) $(CMD_NETLIST)
