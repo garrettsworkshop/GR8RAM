@@ -10193,15 +10193,6 @@
 		(uuid "aa130053-a451-4f12-97f7-3d4d891a5f83")
 	)
 	(bus_entry
-		(at 86.36 41.91)
-		(size 2.54 2.54)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "aad4bbf4-5800-4e8b-b838-f244720b3085")
-	)
-	(bus_entry
 		(at 83.82 80.01)
 		(size -2.54 2.54)
 		(stroke
@@ -12188,7 +12179,7 @@
 	)
 	(wire
 		(pts
-			(xy 113.03 187.96) (xy 113.03 190.5)
+			(xy 113.03 185.42) (xy 113.03 187.96)
 		)
 		(stroke
 			(width 0)
@@ -12738,7 +12729,7 @@
 	)
 	(wire
 		(pts
-			(xy 105.41 175.26) (xy 97.79 175.26)
+			(xy 105.41 172.72) (xy 97.79 172.72)
 		)
 		(stroke
 			(width 0)
@@ -12758,7 +12749,7 @@
 	)
 	(wire
 		(pts
-			(xy 97.79 190.5) (xy 113.03 190.5)
+			(xy 97.79 187.96) (xy 113.03 187.96)
 		)
 		(stroke
 			(width 0)
@@ -13008,7 +12999,7 @@
 	)
 	(wire
 		(pts
-			(xy 110.49 175.26) (xy 115.57 175.26)
+			(xy 110.49 172.72) (xy 115.57 172.72)
 		)
 		(stroke
 			(width 0)
@@ -13768,7 +13759,7 @@
 	)
 	(wire
 		(pts
-			(xy 97.79 187.96) (xy 105.41 187.96)
+			(xy 97.79 185.42) (xy 105.41 185.42)
 		)
 		(stroke
 			(width 0)
@@ -14367,7 +14358,7 @@
 		(uuid "109caac1-5036-4f23-9a66-f569d871501b")
 	)
 	(label "RCLKr"
-		(at 115.57 175.26 180)
+		(at 115.57 172.72 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -14537,7 +14528,7 @@
 		(uuid "21573090-1953-4b11-9042-108ae79fe9c5")
 	)
 	(label "Din~{OE}"
-		(at 97.79 187.96 0)
+		(at 97.79 185.42 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -15197,7 +15188,7 @@
 		(uuid "63caf46e-0228-40de-b819-c6bd29dd1711")
 	)
 	(label "Dout~{OE}"
-		(at 97.79 190.5 0)
+		(at 97.79 187.96 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -16397,7 +16388,7 @@
 		(uuid "c81031ca-cd56-4ea3-b0db-833cbbdd7b2e")
 	)
 	(label "RCLK"
-		(at 97.79 175.26 0)
+		(at 97.79 172.72 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -17075,28 +17066,6 @@
 			(justify left bottom)
 		)
 		(uuid "fef37e8b-0ff0-4da2-8a57-acaf19551d1a")
-	)
-	(global_label "~{INIT}"
-		(shape input)
-		(at 161.29 97.79 0)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left)
-		)
-		(uuid "9a0fc0ea-80a4-45fd-9419-4e9258f713f0")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 167.1287 97.79 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
 	)
 	(symbol
 		(lib_id "Device:C_Small")
@@ -27226,7 +27195,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small")
-		(at 107.95 175.26 270)
+		(at 107.95 172.72 270)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -27234,7 +27203,7 @@
 		(dnp no)
 		(uuid "6b220e06-24ae-4c76-ba7a-7970bc4633d4")
 		(property "Reference" "R2"
-			(at 107.95 171.45 90)
+			(at 107.95 168.91 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27242,7 +27211,7 @@
 			)
 		)
 		(property "Value" "47"
-			(at 107.95 173.99 90)
+			(at 107.95 171.45 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27251,7 +27220,7 @@
 			)
 		)
 		(property "Footprint" "stdpads:R_0603"
-			(at 107.95 175.26 0)
+			(at 107.95 172.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27260,7 +27229,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 107.95 175.26 0)
+			(at 107.95 172.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27269,7 +27238,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 107.95 175.26 0)
+			(at 107.95 172.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27277,7 +27246,7 @@
 			)
 		)
 		(property "LCSC Part" "C23182"
-			(at 107.95 175.26 0)
+			(at 107.95 172.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27431,7 +27400,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small")
-		(at 105.41 185.42 0)
+		(at 105.41 182.88 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -27439,7 +27408,7 @@
 		(dnp no)
 		(uuid "833d704d-28c8-41b4-8078-6e330d193971")
 		(property "Reference" "R15"
-			(at 106.68 184.15 0)
+			(at 106.68 181.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27448,7 +27417,7 @@
 			)
 		)
 		(property "Value" "3k3"
-			(at 106.68 186.69 0)
+			(at 106.68 184.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27457,7 +27426,7 @@
 			)
 		)
 		(property "Footprint" "stdpads:R_0603"
-			(at 105.41 185.42 0)
+			(at 105.41 182.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27466,7 +27435,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 105.41 185.42 0)
+			(at 105.41 182.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27475,7 +27444,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 105.41 185.42 0)
+			(at 105.41 182.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -27483,7 +27452,7 @@
 			)
 		)
 		(property "LCSC Part" "C22978"
-			(at 105.41 185.42 0)
+			(at 105.41 182.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28446,7 +28415,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_Small")
-		(at 113.03 185.42 0)
+		(at 113.03 182.88 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -28454,7 +28423,7 @@
 		(dnp no)
 		(uuid "9dbce082-05f7-4977-bd52-451afa80d007")
 		(property "Reference" "R23"
-			(at 114.3 184.15 0)
+			(at 114.3 181.61 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28463,7 +28432,7 @@
 			)
 		)
 		(property "Value" "3k3"
-			(at 114.3 186.69 0)
+			(at 114.3 184.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28472,7 +28441,7 @@
 			)
 		)
 		(property "Footprint" "stdpads:R_0603"
-			(at 113.03 185.42 0)
+			(at 113.03 182.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28481,7 +28450,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 113.03 185.42 0)
+			(at 113.03 182.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28490,7 +28459,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 113.03 185.42 0)
+			(at 113.03 182.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28498,7 +28467,7 @@
 			)
 		)
 		(property "LCSC Part" "C22978"
-			(at 113.03 185.42 0)
+			(at 113.03 182.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28933,7 +28902,7 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 113.03 182.88 0)
+		(at 113.03 180.34 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -28941,7 +28910,7 @@
 		(dnp no)
 		(uuid "b11a189e-8938-473e-844a-5e59c336aaac")
 		(property "Reference" "#PWR033"
-			(at 113.03 186.69 0)
+			(at 113.03 184.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28950,7 +28919,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 113.03 179.07 0)
+			(at 113.03 176.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28958,7 +28927,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 113.03 182.88 0)
+			(at 113.03 180.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28967,7 +28936,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 113.03 182.88 0)
+			(at 113.03 180.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -28976,7 +28945,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 113.03 182.88 0)
+			(at 113.03 180.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -30123,7 +30092,7 @@
 	)
 	(symbol
 		(lib_id "power:+3V3")
-		(at 105.41 182.88 0)
+		(at 105.41 180.34 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -30131,7 +30100,7 @@
 		(dnp no)
 		(uuid "d61a5fcb-af99-44eb-a9ae-202efe1c9100")
 		(property "Reference" "#PWR011"
-			(at 105.41 186.69 0)
+			(at 105.41 184.15 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -30140,7 +30109,7 @@
 			)
 		)
 		(property "Value" "+3V3"
-			(at 105.41 179.07 0)
+			(at 105.41 176.53 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -30148,7 +30117,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 105.41 182.88 0)
+			(at 105.41 180.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -30157,7 +30126,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 105.41 182.88 0)
+			(at 105.41 180.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -30166,7 +30135,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 105.41 182.88 0)
+			(at 105.41 180.34 0)
 			(effects
 				(font
 					(size 1.27 1.27)
