@@ -3,9 +3,9 @@
     "GenerationSoftware": {
       "Vendor": "KiCad",
       "Application": "Pcbnew",
-      "Version": "7.0.10"
+      "Version": "9.0.1"
     },
-    "CreationDate": "2024-07-28T09:51:36-04:00"
+    "CreationDate": "2025-04-12T23:39:18-04:00"
   },
   "GeneralSpecs": {
     "ProjectId": {
@@ -47,13 +47,13 @@
       "FilePolarity": "Positive"
     },
     {
-      "Path": "GR8RAM-In1_Cu.g2",
-      "FileFunction": "Copper,L2,Inr",
+      "Path": "GR8RAM-In1_Cu.g1",
+      "FileFunction": "Copper,L5,Inr",
       "FilePolarity": "Positive"
     },
     {
-      "Path": "GR8RAM-In2_Cu.g3",
-      "FileFunction": "Copper,L3,Inr",
+      "Path": "GR8RAM-In2_Cu.g2",
+      "FileFunction": "Copper,L7,Inr",
       "FilePolarity": "Positive"
     },
     {
